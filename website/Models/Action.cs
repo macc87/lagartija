@@ -10,7 +10,7 @@ namespace website.Models
     {
         [Required]
         public int Id { get; set; }
-        [Required, Display(Name = "Action Type")]
-        public string ActionType { get; set; }
+        [Required, Display(Name = "Action Name")]
+        public string ActionName { get; set; }
     }
 }
