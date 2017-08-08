@@ -30,7 +30,7 @@ namespace website.Models
     public class ApplicationDbContext : IdentityDbContext<FantasyUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("FantasyLeague")
         {
         }
 
@@ -38,5 +38,13 @@ namespace website.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Sport> Sports { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<PromoCode> PromoCodes { get; set; }
+
+
+
     }
 }
