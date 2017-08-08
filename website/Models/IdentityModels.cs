@@ -45,5 +45,6 @@ namespace website.Models
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Action> Actions { get; set; }
         public DbSet<ClimaConditions> ClimaConditions { get; set; }
+        public DbSet<Stadium> Stadiums { get; set; }
     }
 }
