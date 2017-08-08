@@ -43,8 +43,7 @@ namespace website.Models
         public DbSet<News> News { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
-
-
+        public DbSet<Action> Actions { get; set; }
 
     }
 }
