@@ -44,6 +44,6 @@ namespace website.Models
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
         public DbSet<Action> Actions { get; set; }
-
+        public DbSet<ClimaConditions> ClimaConditions { get; set; }
     }
 }
