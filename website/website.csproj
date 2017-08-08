@@ -213,6 +213,8 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\Sport.cs" />
+    <Compile Include="Models\Stadium.cs" />
+    <Compile Include="Models\StadiumController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +305,11 @@
     <Content Include="Views\ClimaConditions\Create.cshtml" />
     <Content Include="Views\ClimaConditions\Edit.cshtml" />
     <Content Include="Views\ClimaConditions\Delete.cshtml" />
+    <Content Include="Views\Stadium\Index.cshtml" />
+    <Content Include="Views\Stadium\Details.cshtml" />
+    <Content Include="Views\Stadium\Create.cshtml" />
+    <Content Include="Views\Stadium\Edit.cshtml" />
+    <Content Include="Views\Stadium\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
