@@ -29,9 +29,12 @@ namespace website.Models
 
     public class ApplicationDbContext : IdentityDbContext<FantasyUser>
     {
+        public string UploadPath { get; set; }
+
         public ApplicationDbContext()
             : base("FantasyLeague")
         {
+            UploadPath = "/Media/Images";
         }
 
         public static ApplicationDbContext Create()
@@ -46,5 +49,6 @@ namespace website.Models
         public DbSet<Action> Actions { get; set; }
         public DbSet<ClimaConditions> ClimaConditions { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 }

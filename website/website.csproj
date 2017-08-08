@@ -211,6 +211,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerController.cs" />
     <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\Sport.cs" />
     <Compile Include="Models\Stadium.cs" />
@@ -310,9 +312,15 @@
     <Content Include="Views\Stadium\Create.cshtml" />
     <Content Include="Views\Stadium\Edit.cshtml" />
     <Content Include="Views\Stadium\Delete.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Player\Details.cshtml" />
+    <Content Include="Views\Player\Create.cshtml" />
+    <Content Include="Views\Player\Edit.cshtml" />
+    <Content Include="Views\Player\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Media\Images\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Promotion\" />
   </ItemGroup>
