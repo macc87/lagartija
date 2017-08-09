@@ -1,52 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Net;
-using System.Data.Entity;
+using website.Models;
 
-namespace website.Models
+namespace website.Controllers
 {
-    public class ActionController : Controller
+    public class ClimaConditionsController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Action
+        // GET: ClimaConditions
         public ActionResult Index()
         {
-            return View(db.Actions);
+            return View(db.ClimaConditions);
         }
 
-        // GET: Action/Details/5
+        // GET: ClimaConditions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Action a = db.Actions.Find(id);
-            if (a == null)
+            ClimaConditions c = db.ClimaConditions.Find(id);
+            if (c == null)
             {
                 return HttpNotFound();
             }
-            return View(a);
+            return View(c);
         }
 
-        // GET: Action/Create
+        // GET: ClimaConditions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Action/Create
+        // POST: ClimaConditions/Create
         [HttpPost]
-        public ActionResult Create(Action a)
+        public ActionResult Create(ClimaConditions c)
         {
             try
             {
-                db.Actions.Add(a);
+                db.ClimaConditions.Add(c);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -56,54 +56,54 @@ namespace website.Models
             }
         }
 
-        // GET: Action/Edit/5
+        // GET: ClimaConditions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Action a = db.Actions.Find(id);
-            if (a == null)
+            ClimaConditions c = db.ClimaConditions.Find(id);
+            if (c == null)
             {
                 return HttpNotFound();
             }
-            return View(a);
+            return View(c);
         }
 
-        // POST: Action/Edit/5
+        // POST: ClimaConditions/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Action a)
+        public ActionResult Edit(int id, ClimaConditions c)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(a).State = EntityState.Modified;
+                    db.Entry(c).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(a);
+                return View(c);
             }
         }
 
-        // GET: Action/Delete/5
+        // GET: ClimaConditions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Action a = db.Actions.Find(id);
-            return View(a);
+            ClimaConditions c = db.ClimaConditions.Find(id);
+            return View(c);
         }
 
-        // POST: Action/Delete/5
+        // POST: ClimaConditions/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, Action a)
+        public ActionResult Delete(int? id, ClimaConditions c)
         {
             try
             {
@@ -111,8 +111,8 @@ namespace website.Models
                 {
                     return HttpNotFound();
                 }
-                a = db.Actions.Find(id);
-                db.Actions.Remove(a);
+                c = db.ClimaConditions.Find(id);
+                db.ClimaConditions.Remove(c);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -1,51 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Data.Entity;
+using website.Models;
 
-namespace website.Models
+namespace website.Controllers
 {
-    public class StadiumController : Controller
+    public class ActionController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Stadium
+        // GET: Action
         public ActionResult Index()
         {
-            return View(db.Stadiums);
+            return View(db.Actions);
         }
 
-        // GET: Stadium/Details/5
+        // GET: Action/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Stadium s = db.Stadiums.Find(id);
-            if (s == null)
+            Action a = db.Actions.Find(id);
+            if (a == null)
             {
                 return HttpNotFound();
             }
-            return View(s);
+            return View(a);
         }
 
-        // GET: Stadium/Create
+        // GET: Action/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Stadium/Create
+        // POST: Action/Create
         [HttpPost]
-        public ActionResult Create(Stadium s)
+        public ActionResult Create(Action a)
         {
             try
             {
-                db.Stadiums.Add(s);
+                db.Actions.Add(a);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -55,54 +57,54 @@ namespace website.Models
             }
         }
 
-        // GET: Stadium/Edit/5
+        // GET: Action/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Stadium s = db.Stadiums.Find(id);
-            if (s == null)
+            Action a = db.Actions.Find(id);
+            if (a == null)
             {
                 return HttpNotFound();
             }
-            return View(s);
+            return View(a);
         }
 
-        // POST: Stadium/Edit/5
+        // POST: Action/Edit/5
         [HttpPost]
-        public ActionResult Edit(int? id, Stadium s)
+        public ActionResult Edit(int id, Action a)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(s).State = EntityState.Modified;
+                    db.Entry(a).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(s);
+                return View(a);
             }
         }
 
-        // GET: Stadium/Delete/5
+        // GET: Action/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Stadium s = db.Stadiums.Find(id);
-            return View(s);
+            Action a = db.Actions.Find(id);
+            return View(a);
         }
 
-        // POST: Stadium/Delete/5
+        // POST: Action/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, Stadium s)
+        public ActionResult Delete(int? id, Action a)
         {
             try
             {
@@ -110,8 +112,8 @@ namespace website.Models
                 {
                     return HttpNotFound();
                 }
-                s = db.Stadiums.Find(id);
-                db.Stadiums.Remove(s);
+                a = db.Actions.Find(id);
+                db.Actions.Remove(a);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

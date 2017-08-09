@@ -5,47 +5,48 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using website.Models;
 
-namespace website.Models
+namespace website.Controllers
 {
-    public class ClimaConditionsController : Controller
+    public class StadiumController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ClimaConditions
+        // GET: Stadium
         public ActionResult Index()
         {
-            return View(db.ClimaConditions);
+            return View(db.Stadiums);
         }
 
-        // GET: ClimaConditions/Details/5
+        // GET: Stadium/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClimaConditions c = db.ClimaConditions.Find(id);
-            if (c == null)
+            Stadium s = db.Stadiums.Find(id);
+            if (s == null)
             {
                 return HttpNotFound();
             }
-            return View(c);
+            return View(s);
         }
 
-        // GET: ClimaConditions/Create
+        // GET: Stadium/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ClimaConditions/Create
+        // POST: Stadium/Create
         [HttpPost]
-        public ActionResult Create(ClimaConditions c)
+        public ActionResult Create(Stadium s)
         {
             try
             {
-                db.ClimaConditions.Add(c);
+                db.Stadiums.Add(s);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -55,54 +56,54 @@ namespace website.Models
             }
         }
 
-        // GET: ClimaConditions/Edit/5
+        // GET: Stadium/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            ClimaConditions c = db.ClimaConditions.Find(id);
-            if (c == null)
+            Stadium s = db.Stadiums.Find(id);
+            if (s == null)
             {
                 return HttpNotFound();
             }
-            return View(c);
+            return View(s);
         }
 
-        // POST: ClimaConditions/Edit/5
+        // POST: Stadium/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, ClimaConditions c)
+        public ActionResult Edit(int? id, Stadium s)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(c).State = EntityState.Modified;
+                    db.Entry(s).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(c);
+                return View(s);
             }
         }
 
-        // GET: ClimaConditions/Delete/5
+        // GET: Stadium/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            ClimaConditions c = db.ClimaConditions.Find(id);
-            return View(c);
+            Stadium s = db.Stadiums.Find(id);
+            return View(s);
         }
 
-        // POST: ClimaConditions/Delete/5
+        // POST: Stadium/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, ClimaConditions c)
+        public ActionResult Delete(int? id, Stadium s)
         {
             try
             {
@@ -110,8 +111,8 @@ namespace website.Models
                 {
                     return HttpNotFound();
                 }
-                c = db.ClimaConditions.Find(id);
-                db.ClimaConditions.Remove(c);
+                s = db.Stadiums.Find(id);
+                db.Stadiums.Remove(s);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

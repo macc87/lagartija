@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin;
+using website.Models;
 
-namespace website.Models
+namespace website.Controllers
 {
     public class PlayerController : Controller
     {
@@ -26,11 +28,14 @@ namespace website.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Player p = db.Players.Find(id);
+            PlayerViewModel pView = new PlayerViewModel();
+            pView.player = p;
+            pView.PhotoPath = db.UploadPath + @"Images\" + p.Photo;  
             if (p == null)
             {
                 return HttpNotFound();
             }
-            return View(p);
+            return View(pView);
         }
 
         // GET: Player/Create
@@ -45,13 +50,12 @@ namespace website.Models
         {
             try
             {
-                
                 db.Players.Add(player);
                 db.SaveChanges();
-                string fname = db.UploadPath + "/Player_" + player.Id.ToString() + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
-                //TODO: Salvar la imagen en el archivo fname, pero no sabe de donde vino para hacer el save as por lo que da un error de no encontrado en C://Media/Images/....
-                //ImageUrl.SaveAs();
-                player.Photo = fname;
+                string path = db.UploadPath + "Images/Player_" + player.Id.ToString() + '.' + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
+                //TODO: Salvar la imagen en el archivo path, pero no sabe de donde vino para hacer el save as por lo que da un error de no encontrado en C://Media/Images/....
+                ImageUrl.SaveAs(path);
+                player.Photo = ImageUrl.FileName ;
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
