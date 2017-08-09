@@ -27,7 +27,7 @@ namespace website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Action a = db.Actions.Find(id);
+            Models.Action a = db.Actions.Find(id);
             if (a == null)
             {
                 return HttpNotFound();
@@ -43,7 +43,7 @@ namespace website.Controllers
 
         // POST: Action/Create
         [HttpPost]
-        public ActionResult Create(Action a)
+        public ActionResult Create(Models.Action a)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Action a = db.Actions.Find(id);
+            Models.Action a = db.Actions.Find(id);
             if (a == null)
             {
                 return HttpNotFound();
@@ -74,7 +74,7 @@ namespace website.Controllers
 
         // POST: Action/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Action a)
+        public ActionResult Edit(int id, Models.Action a)
         {
             try
             {
@@ -98,13 +98,13 @@ namespace website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            Action a = db.Actions.Find(id);
+            Models.Action a = db.Actions.Find(id);
             return View(a);
         }
 
         // POST: Action/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, Action a)
+        public ActionResult Delete(int? id, Models.Action a)
         {
             try
             {

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.IO;
+using Microsoft.Owin;
 
 namespace website.Models
 {
@@ -30,11 +32,13 @@ namespace website.Models
     public class ApplicationDbContext : IdentityDbContext<FantasyUser>
     {
         public string UploadPath { get; set; }
+        public string Path { get; set; }
 
         public ApplicationDbContext()
             : base("FantasyLeague")
         {
-            UploadPath = "/Media/Images";
+            Path = @"D:\Work\Freelance\FantasyLeague\Project\website\website";
+            UploadPath = Path + @"\Media\";
         }
 
         public static ApplicationDbContext Create()

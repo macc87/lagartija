@@ -28,9 +28,11 @@ namespace website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Player p = db.Players.Find(id);
-            PlayerViewModel pView = new PlayerViewModel();
-            pView.player = p;
-            pView.PhotoPath = db.UploadPath + @"Images\" + p.Photo;  
+            PlayerViewModel pView = new PlayerViewModel()
+            {
+                player = p,
+                PhotoPath = db.UploadPath + @"Images\" + p.Photo
+            };
             if (p == null)
             {
                 return HttpNotFound();
@@ -52,10 +54,11 @@ namespace website.Controllers
             {
                 db.Players.Add(player);
                 db.SaveChanges();
-                string path = db.UploadPath + "Images/Player_" + player.Id.ToString() + '.' + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
+                string filename = "Player_" + player.Id.ToString() + '.' + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
+                string path = db.UploadPath + @"Images/" + filename;
                 //TODO: Salvar la imagen en el archivo path, pero no sabe de donde vino para hacer el save as por lo que da un error de no encontrado en C://Media/Images/....
                 ImageUrl.SaveAs(path);
-                player.Photo = ImageUrl.FileName ;
+                player.Photo = filename;
                 db.Entry(player).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
