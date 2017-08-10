@@ -31,7 +31,9 @@ namespace website.Controllers
             PlayerViewModel pView = new PlayerViewModel()
             {
                 player = p,
-                PhotoPath = db.UploadPath + @"Images\" + p.Photo
+                //PhotoPath = db.UploadPath + @"Images\" + p.Photo
+                //PhotoPath = Server.MapPath("~/Media/Images") + p.Photo
+                PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Photo)
             };
             if (p == null)
             {
@@ -55,7 +57,8 @@ namespace website.Controllers
                 db.Players.Add(player);
                 db.SaveChanges();
                 string filename = "Player_" + player.Id.ToString() + '.' + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
-                string path = db.UploadPath + @"Images/" + filename;
+                //string path = db.UploadPath + @"Images/" + filename;
+                string path = Server.MapPath("~/Content/Media/Images") + filename;
                 //TODO: Salvar la imagen en el archivo path, pero no sabe de donde vino para hacer el save as por lo que da un error de no encontrado en C://Media/Images/....
                 ImageUrl.SaveAs(path);
                 player.Photo = filename;

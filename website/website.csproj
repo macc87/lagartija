@@ -321,7 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Media\Images\" />
+    <Folder Include="Content\Media\Images\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Promotion\" />
   </ItemGroup>
