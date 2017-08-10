@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\PromoCodeController.cs" />
     <Compile Include="Controllers\SportController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
@@ -210,6 +211,8 @@
     <Compile Include="Models\ContestType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -326,6 +329,11 @@
     <Content Include="Views\Team\Create.cshtml" />
     <Content Include="Views\Team\Edit.cshtml" />
     <Content Include="Views\Team\Delete.cshtml" />
+    <Content Include="Views\Position\Index.cshtml" />
+    <Content Include="Views\Position\Details.cshtml" />
+    <Content Include="Views\Position\Create.cshtml" />
+    <Content Include="Views\Position\Edit.cshtml" />
+    <Content Include="Views\Position\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
