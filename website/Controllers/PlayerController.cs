@@ -28,17 +28,17 @@ namespace website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Player p = db.Players.Find(id);
-            PlayerViewModel pView = new PlayerViewModel()
-            {
-                player = p,
-                //PhotoPath = db.UploadPath + @"Images\" + p.Photo
-                //PhotoPath = Server.MapPath("~/Media/Images") + p.Photo
-                PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Photo)
-            };
             if (p == null)
             {
                 return HttpNotFound();
             }
+            PlayerViewModel pView = new PlayerViewModel()
+            {
+                player = p,
+
+                PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Photo)
+            };
+           
             return View(pView);
         }
 
@@ -57,9 +57,7 @@ namespace website.Controllers
                 db.Players.Add(player);
                 db.SaveChanges();
                 string filename = "Player_" + player.Id.ToString() + '.' + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
-                //string path = db.UploadPath + @"Images/" + filename;
                 string path = Server.MapPath("~/Content/Media/Images") + filename;
-                //TODO: Salvar la imagen en el archivo path, pero no sabe de donde vino para hacer el save as por lo que da un error de no encontrado en C://Media/Images/....
                 ImageUrl.SaveAs(path);
                 player.Photo = filename;
                 db.Entry(player).State = EntityState.Modified;
@@ -96,9 +94,10 @@ namespace website.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string fname = db.UploadPath + "/Player_" + player.Id.ToString() + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
-                    player.Photo = fname;
-                    ImageUrl.SaveAs(fname);
+                    string filename =  "Player_" + player.Id.ToString() + ImageUrl.FileName.Substring(ImageUrl.FileName.Length - 3, 3);
+                    string path = Server.MapPath("~/Content/Media/Images") + filename;
+                    player.Photo = filename;
+                    ImageUrl.SaveAs(path);
                     db.Entry(player).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -135,7 +134,8 @@ namespace website.Controllers
                 db.Players.Remove(player);
                 db.SaveChanges();
                 string fname = player.Photo;
-                System.IO.File.Delete(fname);
+                string path = Server.MapPath("~/Content/Media/Images") + fname;
+                System.IO.File.Delete(path);
                 return RedirectToAction("Index");
             }
             catch
