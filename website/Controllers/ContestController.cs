@@ -127,7 +127,7 @@ namespace website.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch
             {
                 return View();
             }
@@ -216,7 +216,7 @@ namespace website.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch
             {
                 return View(contestVM);
             }
@@ -255,7 +255,7 @@ namespace website.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch
             {
                 return View(contest);
             }
