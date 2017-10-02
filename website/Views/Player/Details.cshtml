@@ -1,0 +1,42 @@
+﻿@model website.Models.PlayerViewModel
+
+@{
+    ViewBag.Title = "Player Details";
+}
+
+<h2>Player Details</h2>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.player.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.player.Name)
+        </dd>
+
+        <dt>
+                Photo
+        </dt>
+
+        <dd>
+            <img src=@Url.Content(Model.PhotoPath)  width="100" height="100"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.player.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.player.Salary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.player.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
