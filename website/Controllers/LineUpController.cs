@@ -86,6 +86,7 @@ namespace website.Controllers
                 Users = GetUsers(),
                 SelectedUser = "",
             };
+            FantasyUser u = new FantasyUser();
             var Players = db.Players.ToList();
             var Contests = db.Contests.ToList();
             List<CheckBoxViewModel> ckBoxModel = new List<CheckBoxViewModel>();
