@@ -64,6 +64,5 @@ namespace website.Models
         public DbSet<Game> Games { get; set; }
         public DbSet<ContestToGame> ContestToGames { get; set; }
         public DbSet<Contest> Contests { get; set; }
-
     }
 }

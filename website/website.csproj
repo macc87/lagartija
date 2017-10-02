@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201710010508113_ContestFixings.Designer.cs">
       <DependentUpon>201710010508113_ContestFixings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710020342476_AddFantasyUSerToLineUP.cs" />
+    <Compile Include="Migrations\201710020342476_AddFantasyUSerToLineUP.Designer.cs">
+      <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Action.cs" />
@@ -429,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710010508113_ContestFixings.resx">
       <DependentUpon>201710010508113_ContestFixings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710020342476_AddFantasyUSerToLineUP.resx">
+      <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,8 +15,8 @@ namespace website.Controllers
         // GET: LineUp
         public ActionResult Index()
         {
-            //List<LineUp> lup = db.LineUps.Include(s => s.User).ToList();
-            List<LineUp> lup = db.LineUps.ToList();
+            List<LineUp> lup = db.LineUps.Include(s => s.User).ToList();
+            //List<LineUp> lup = db.LineUps.ToList();
             return View(lup);
         }
 
@@ -83,8 +83,8 @@ namespace website.Controllers
         {
             LineUpViewModel lineupViewModel = new LineUpViewModel()
             {
-                //Users = GetUsers(),
-                //SelectedUser = ""
+                Users = GetUsers(),
+                SelectedUser = "",
             };
             var Players = db.Players.ToList();
             var Contests = db.Contests.ToList();
@@ -119,11 +119,11 @@ namespace website.Controllers
         {
             try
             {
-                //int idUser = int.Parse(lineupVM.SelectedUser);
-                //FantasyUser user = db.FantasyUsers.Find(idUser);
+                int idUser = int.Parse(lineupVM.SelectedUser);
+                FantasyUser user = db.Users.Find(idUser);
                 LineUp lup = new LineUp()
                 {
-                    //User = user,
+                    User = user,
                     Players = new List<Player>(),
                     Contests = new List<Contest>()
                 };
@@ -200,9 +200,9 @@ namespace website.Controllers
             LineUpViewModel lupViewModel = new LineUpViewModel()
             {
                 Id = id.Value,
-                //Users = GetUsers(),
-                //SelectedUser = lup.User.Id.ToString(),
-                //User = lup.User
+                Users = GetUsers(),
+                SelectedUser = lup.User.Id.ToString(),
+                User = lup.User
             };
             var MyCheckboxPlayers = new List<CheckBoxViewModel>();
             var MyCheckboxContest = new List<CheckBoxViewModel>();
@@ -226,8 +226,8 @@ namespace website.Controllers
             try
             {
                 LineUp lup = db.LineUps.Find(lupViewModel.Id);
-                //int iduser = int.Parse(lupViewModel.SelectedUser);
-                //lup.User = db.FantasyUsers.Find(iduser);
+                int iduser = int.Parse(lupViewModel.SelectedUser);
+                lup.User = db.Users.Find(iduser);
 
                 foreach (var item in db.LineUpToPlayers)
                 {
@@ -277,8 +277,8 @@ namespace website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
-            //LineUp res = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
-            LineUp res = db.LineUps.Find(id);
+            LineUp res = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
+            //LineUp res = db.LineUps.Find(id);
             return View(res);
         }
 
@@ -292,8 +292,8 @@ namespace website.Controllers
                 {
                     return HttpNotFound();
                 }
-                //LUP = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
-                LUP = db.LineUps.Find(id);
+                LUP = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
+                //LUP = db.LineUps.Find(id);
 
                 List<LineUpToPlayer> Players = db.LineUpToPlayers.Where(x => x.LineUpId == LUP.Id).ToList();
                 List<LineUpToContest> Contests = db.LineUpToContests.Where(x => x.LineUpId == LUP.Id).ToList();
@@ -318,15 +318,15 @@ namespace website.Controllers
             }
         }
 
-        /*private IEnumerable<SelectListItem> GetUsers()
+        private IEnumerable<SelectListItem> GetUsers()
         {
-            var types = db.FantasyUsers.Select(
+            var types = db.Users.Select(
                 x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.UserName
                 });
             return new SelectList(types, "Value", "Text");
-        }*/
+        }
     }
 }
