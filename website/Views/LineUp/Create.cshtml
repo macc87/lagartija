@@ -1,0 +1,64 @@
+﻿@model website.Models.LineUpViewModel
+
+@{
+    ViewBag.Title = "Create LineUp";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Line Up</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contests, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @for (int i = 0; i < Model.Contests.Count; i++)
+                {
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => Model.Contests[i].Checked)
+                    </div>
+                    <div class="col-md-11">
+                        @Html.LabelFor(model => Model.Contests[i].Checked, Model.Contests[i].Name)
+                    </div>
+                    @Html.HiddenFor(model => Model.Contests[i].Id)
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Players, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @for (int i = 0; i < Model.Players.Count; i++)
+                {
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => Model.Players[i].Checked)
+                    </div>
+                    <div class="col-md-11">
+                        @Html.LabelFor(model => Model.Players[i].Checked, Model.Players[i].Name)
+                    </div>
+                    @Html.HiddenFor(model => Model.Players[i].Id)
+                }
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
