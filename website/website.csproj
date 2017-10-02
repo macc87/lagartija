@@ -191,8 +191,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContestController.cs" />
+    <Compile Include="Controllers\ContestTypeController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LineUpController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MLBPlayerController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
@@ -202,15 +207,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709231750577_MLBPlayerOnDelte.cs" />
+    <Compile Include="Migrations\201709231750577_MLBPlayerOnDelte.Designer.cs">
+      <DependentUpon>201709231750577_MLBPlayerOnDelte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709250554477_lineups-games-contest.cs" />
+    <Compile Include="Migrations\201709250554477_lineups-games-contest.Designer.cs">
+      <DependentUpon>201709250554477_lineups-games-contest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709302323464_SeparateDateTimeOnGames.cs" />
+    <Compile Include="Migrations\201709302323464_SeparateDateTimeOnGames.Designer.cs">
+      <DependentUpon>201709302323464_SeparateDateTimeOnGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710010508113_ContestFixings.cs" />
+    <Compile Include="Migrations\201710010508113_ContestFixings.Designer.cs">
+      <DependentUpon>201710010508113_ContestFixings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Action.cs" />
     <Compile Include="Controllers\ActionController.cs" />
+    <Compile Include="Models\CheckBoxViewModel.cs" />
+    <Compile Include="Models\Contest.cs" />
     <Compile Include="Models\ClimaConditions.cs" />
     <Compile Include="Controllers\ClimaConditionsController.cs" />
     <Compile Include="Models\ContestType.cs" />
+    <Compile Include="Models\ContestViewModel.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LineUp.cs" />
+    <Compile Include="Models\ContestToGame.cs" />
+    <Compile Include="Models\LineUpToContest.cs" />
+    <Compile Include="Models\LineUpToPlayer.cs" />
+    <Compile Include="Models\LineUpViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MLBPlayer.cs" />
+    <Compile Include="Models\MLBPlayerViewModel.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\Team.cs" />
@@ -334,6 +367,31 @@
     <Content Include="Views\Position\Create.cshtml" />
     <Content Include="Views\Position\Edit.cshtml" />
     <Content Include="Views\Position\Delete.cshtml" />
+    <Content Include="Views\MLBPlayer\Index.cshtml" />
+    <Content Include="Views\MLBPlayer\Details.cshtml" />
+    <Content Include="Views\MLBPlayer\Create.cshtml" />
+    <Content Include="Views\MLBPlayer\Edit.cshtml" />
+    <Content Include="Views\MLBPlayer\Delete.cshtml" />
+    <Content Include="Views\LineUp\Index.cshtml" />
+    <Content Include="Views\LineUp\Details.cshtml" />
+    <Content Include="Views\LineUp\Create.cshtml" />
+    <Content Include="Views\LineUp\Edit.cshtml" />
+    <Content Include="Views\LineUp\Delete.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Edit.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
+    <Content Include="Views\Contest\Index.cshtml" />
+    <Content Include="Views\Contest\Details.cshtml" />
+    <Content Include="Views\Contest\Create.cshtml" />
+    <Content Include="Views\Contest\Edit.cshtml" />
+    <Content Include="Views\Contest\Delete.cshtml" />
+    <Content Include="Views\ContestType\Index.cshtml" />
+    <Content Include="Views\ContestType\Create.cshtml" />
+    <Content Include="Views\ContestType\Edit.cshtml" />
+    <Content Include="Views\ContestType\Delete.cshtml" />
+    <Content Include="Views\ContestType\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -358,6 +416,20 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709231750577_MLBPlayerOnDelte.resx">
+      <DependentUpon>201709231750577_MLBPlayerOnDelte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250554477_lineups-games-contest.resx">
+      <DependentUpon>201709250554477_lineups-games-contest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709302323464_SeparateDateTimeOnGames.resx">
+      <DependentUpon>201709302323464_SeparateDateTimeOnGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710010508113_ContestFixings.resx">
+      <DependentUpon>201710010508113_ContestFixings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
