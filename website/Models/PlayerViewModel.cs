@@ -7,7 +7,7 @@ namespace website.Models
 {
     public class PlayerViewModel
     {
-        public Player player { get; set; }
+        public Player Player { get; set; }
         public string PhotoPath { get; set; }
     }
 }

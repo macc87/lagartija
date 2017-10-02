@@ -56,5 +56,14 @@ namespace website.Models
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Position> Positions { get; set; }
+        public DbSet<MLBPlayer> MLBPlayers { get; set; }
+        public DbSet<LineUp> LineUps { get; set; }
+        public DbSet<LineUpToPlayer> LineUpToPlayers { get; set; }
+        public DbSet<LineUpToContest> LineUpToContests { get; set; }
+        public DbSet<ContestType> ContestTypes { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<ContestToGame> ContestToGames { get; set; }
+        public DbSet<Contest> Contests { get; set; }
+
     }
 }
