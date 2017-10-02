@@ -227,6 +227,14 @@
     <Compile Include="Migrations\201710020342476_AddFantasyUSerToLineUP.Designer.cs">
       <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021621079_COntestLineup.cs" />
+    <Compile Include="Migrations\201710021621079_COntestLineup.Designer.cs">
+      <DependentUpon>201710021621079_COntestLineup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710022044408_NotificationsDates.cs" />
+    <Compile Include="Migrations\201710022044408_NotificationsDates.Designer.cs">
+      <DependentUpon>201710022044408_NotificationsDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Action.cs" />
@@ -437,6 +445,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710020342476_AddFantasyUSerToLineUP.resx">
       <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021621079_COntestLineup.resx">
+      <DependentUpon>201710021621079_COntestLineup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710022044408_NotificationsDates.resx">
+      <DependentUpon>201710022044408_NotificationsDates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
