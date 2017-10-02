@@ -86,9 +86,8 @@ namespace website.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }        
         
-        [Required]
         [Display(Name = "Got a promocode or referral username?", Description = "Optional")]
         public string Promo { get; set; }
     }
