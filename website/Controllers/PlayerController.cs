@@ -34,8 +34,7 @@ namespace website.Controllers
             }
             PlayerViewModel pView = new PlayerViewModel()
             {
-                player = p,
-
+                Player = p,
                 PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Photo)
             };
            
