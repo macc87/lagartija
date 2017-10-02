@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using website.Models;
 
 namespace website.Controllers
@@ -12,10 +14,27 @@ namespace website.Controllers
     public class LineUpController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<FantasyUser> UserManager { get; set;}
+
+        public LineUpController()
+        {
+            UserManager = new UserManager<FantasyUser>(new UserStore<FantasyUser>(this.db));
+        }
+
         // GET: LineUp
         public ActionResult Index()
         {
             List<LineUp> lup = db.LineUps.Include(s => s.User).ToList();
+
+            foreach (LineUp lp in lup)
+            {
+                lp.Contests = new List<Contest>();
+                List <LineUpToContest> lu2cont = db.LineUpToContests.Where(x => x.LineUpId == lp.Id).ToList();
+                foreach (LineUpToContest lc in lu2cont)
+                {
+                    lp.Contests.Add(db.Contests.Find(lc.ContestId));
+                }
+            }
             //List<LineUp> lup = db.LineUps.ToList();
             return View(lup);
         }
@@ -120,8 +139,8 @@ namespace website.Controllers
         {
             try
             {
-                int idUser = int.Parse(lineupVM.SelectedUser);
-                FantasyUser user = db.Users.Find(idUser);
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                //FantasyUser user = db.Users.Find(idUser);
                 LineUp lup = new LineUp()
                 {
                     User = user,

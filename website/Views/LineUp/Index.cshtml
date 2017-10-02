@@ -11,14 +11,20 @@
 </p>
 <table class="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.FantasyUser)</th>
+        <th>@Html.DisplayNameFor(model => model.User)</th>
+        <th>@Html.DisplayNameFor(model => model.Contests)</th>
     </tr>
-    <tr></tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>@Html.DisplayFor(model => item.User.UserName)</td>
         <td>
-        <th>@Html.DisplayFor(model => model.FantasyUser.)</th>
+            @foreach (var item in model.Contests)
+            {
+                <div>
+                    @Html.DisplayFor(model => item.Name)
+                </div>
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
