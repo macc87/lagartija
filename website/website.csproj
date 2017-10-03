@@ -430,6 +430,8 @@
     <Content Include="Views\Home\Lobby.cshtml" />
     <Content Include="Views\Lobby\Index.cshtml" />
     <Content Include="Views\Home\PartakeContest.cshtml" />
+    <Content Include="Views\Home\CreateContest.cshtml" />
+    <Content Include="Views\Home\ContestDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

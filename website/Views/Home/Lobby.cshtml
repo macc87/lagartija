@@ -42,7 +42,7 @@
         <div class="col-md-6">
         </div>
         <div class="col-md-6" style="text-align:right" >
-            <h3>@ViewBag.NextContextTime.Hour : @ViewBag.NextContextTime.Minutes : @ViewBag.NextContextTime.Seconds</h3>
+            <h3>@ViewBag.NextContextTime</h3>
         </div>
     </div>
     <div class="row">
@@ -52,18 +52,17 @@
                 <th>Scheduled</th>
                 <th>Signed Up</th>
                 <th>Prize</th>
-                <th>Entry</th>
+                <th>Entry Fee</th>
             </tr>
             @foreach (var item in @ViewBag.ActiveContest)
             {
                 <tr>
-                    <td>@item.Name</td>
+                    <td>@Html.ActionLink((string)item.Name, "ContestDetails", new { id = item.Id })></td>
                     <td>@item.FirstGame</td>
                     <td>@item.SignedUp <span> / </span> @item.MaxCapacity </td>
                     <td>$50000000</td>
-                    <td>@item.EntryFee</td>
                     <td>
-                        @Html.ActionLink(item.EntryFee.ToString(), "PartakeContest", new { id = item.Id })
+                        @Html.ActionLink("$" + (string)@item.EntryFee.ToString(), "PartakeContest", new { id = item.Id })
                     </td>
                 </tr>
             }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using website.Models;
 
 namespace website.Controllers
@@ -11,6 +13,13 @@ namespace website.Controllers
     public class HomeController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<FantasyUser> UserManager { get; set; }
+
+        public HomeController()
+        {
+            UserManager = new UserManager<FantasyUser>(new UserStore<FantasyUser>(this.db));
+        }
+
         public ActionResult Index()
         {
             List<Notification> Notifications = new List<Notification>();
@@ -90,18 +99,56 @@ namespace website.Controllers
             return View(n);
         }
 
+        // GET: Contest/Partake/5
         public ActionResult PartakeContest(int? id)
         {
             Contest c = db.Contests.Include("ContestType").Where(d => d.Id == id).First();
             c.Games = GetGames(c);
             ViewBag.Contest = c;
-            ViewBag.Players = db.Players.ToList();
-            ViewBag.Teams = GetTeams(c);
-            
+            List<Team> teams = GetTeams(c);
+            ViewBag.Players = GetMLBPlayers(teams);
+            ViewBag.Teams = teams;
+            DateTime nextGame = c.Games.Min(t => t.Scheduled);
+            TimeSpan s = nextGame.Subtract(DateTime.Now);
+            ViewBag.NextContextTime = s;
+            LineUp l = new LineUp()
+            {
+                User = UserManager.FindById(User.Identity.GetUserId()),
+                Contests = new List<Contest>
+                {
+                    c
+                }
+            };
+            ViewBag.LineUp = l;
             return View(c);
         }
+
+        // POST: Contest/Create/5
+        [HttpPost]
+        public ActionResult PartakeContest(int? id, LineUp l)
+        {
+            Contest c = db.Contests.Include("ContestType").Where(d => d.Id == id).First();
+            c.Games = GetGames(c);
+            ViewBag.Contest = c;
+            List<Team> teams = GetTeams(c);
+            ViewBag.Players = GetMLBPlayers(teams);
+            ViewBag.Teams = teams;
+            DateTime nextGame = c.Games.Min(t => t.Scheduled);
+            TimeSpan s = nextGame.Subtract(DateTime.Now);
+            ViewBag.NextContextTime = s;
+            LineUp LUP = new LineUp()
+            {
+                User = UserManager.FindById(User.Identity.GetUserId()),
+                Contests = new List<Contest>
+                {
+                    c
+                }
+            };
+            ViewBag.LineUp = LUP;
+            return View();
+        }
         // GET: Contest/Create
-        public ActionResult Create()
+        public ActionResult CreateContest()
         {
             ContestViewModel contestViewModel = new ContestViewModel()
             {
@@ -124,7 +171,7 @@ namespace website.Controllers
 
         // POST: Contest/Create
         [HttpPost]
-        public ActionResult Create(ContestViewModel contestVM)
+        public ActionResult CreateContest(ContestViewModel contestVM)
         {
             try
             {
@@ -164,6 +211,53 @@ namespace website.Controllers
             {
                 return View();
             }
+        }
+
+        // GET: Contest/Details/5
+        public ActionResult ContestDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Contest contest = db.Contests.Include("ContestType").Where(s => s.Id == id).First();
+            if (contest == null)
+            {
+                return HttpNotFound();
+            }
+            var Games = from a in db.Games
+                        select new
+                        {
+                            a.Id,
+                            a.HomeTeam,
+                            a.AwayTeam,
+                            a.Scheduled,
+                            Checked = ((from c2g in db.ContestToGames
+                                        where (c2g.GameId == a.Id) & (c2g.ContestId == id)
+                                        select c2g).Count() > 0)
+                        };
+            ContestViewModel contestViewModel = new ContestViewModel()
+            {
+                Id = id.Value,
+                Cap = contest.Cap,
+                EntryFee = contest.EntryFee,
+                MaxCapacity = contest.MaxCapacity,
+                Name = contest.Name,
+                SignedUp = contest.SignedUp,
+                Types = GetContestTypes(),
+                SelectedContestType = contest.ContestType.Id.ToString(),
+                ContestType = contest.ContestType
+            };
+            var MyCheckboxGames = new List<CheckBoxViewModel>();
+
+            foreach (var item in Games)
+            {
+                string name = item.HomeTeam.Name + " vs " + item.AwayTeam.Name + " on " + item.Scheduled.Date.ToShortDateString();
+                MyCheckboxGames.Add(new CheckBoxViewModel { Id = item.Id, Name = name, Checked = item.Checked });
+            }
+
+            contestViewModel.Games = MyCheckboxGames;
+            return View(contestViewModel);
         }
 
         #region AuxiliaryFunctions
@@ -224,18 +318,18 @@ namespace website.Controllers
             }
             return teams;
         }
-        private List<Player> GetTeams(List<Team> Teams)
+        private List<MLBPlayer> GetMLBPlayers(List<Team> Teams)
         {
-            List<Player> teams = new List<Player>();
+            List<MLBPlayer> players = new List<MLBPlayer>();
             foreach (Team t in Teams)
             {
-                /*db.Players.Where(r=> r.)
-                Team Away = db.Teams.Include("Sport").Where(s => s.Id == g.AwayTeam.Id).First();
-                Team Home = db.Teams.Include("Sport").Where(s => s.Id == g.HomeTeam.Id).First();
-                teams.Add(Away);
-                teams.Add(Home);*/
+                List<MLBPlayer> teamPlayer = db.MLBPlayers.Where(r => r.Team.Id == t.Id).ToList();
+                foreach (MLBPlayer mlb in teamPlayer)
+                {
+                    players.Add(mlb);
+                }
             }
-            return teams;
+            return players;
         }
         #endregion
     }
