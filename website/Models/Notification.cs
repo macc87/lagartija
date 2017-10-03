@@ -14,5 +14,9 @@ namespace website.Models
         public string Name { get; set; }
         [Required, Display(Name = "Notification Content")]
         public string Content { get; set; }
+        [Required, Display(Name="Notification Initial Date"), DataType(DataType.Date)]
+        public DateTime InitialDate { get; set; }
+        [Required, Display(Name = "Notification Final Date"), DataType(DataType.Date)]
+        public DateTime FinalDate { get; set; }
     }
 }
