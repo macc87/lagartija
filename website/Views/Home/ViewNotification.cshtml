@@ -1,0 +1,49 @@
+﻿@model website.Models.Notification
+
+@{
+    ViewBag.Title = "ViewNotification";
+}
+
+<h2>ViewNotification</h2>
+
+<div>
+    <h4>Notification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InitialDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitialDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>

@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Lobby";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9"><h3>Invite Your Friends to Play, Create Your Own Contests</h3></div>
+        <div class="col-md-3">@Html.ActionLink("New Contest", "CreateContest")</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Promotions</h2>
+            @foreach (var item in @ViewBag.Promotions)
+            {
+                <div>
+                    <span>@item.Name</span> |
+                    <span>@item.PromotionContent</span> |
+                    <span>
+                        @Html.ActionLink("Ver Promoción", "ViewPromotion", new { id = item.Id })
+                    </span>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Notifications</h2>
+            @foreach (var item in @ViewBag.Notifications)
+            {
+                <div>
+                    <span>@item.Name</span> |
+                    <span>@item.Content</span> |
+                    <span>
+                        @Html.ActionLink("Ver Notificación", "ViewNotification", new { id = item.Id })
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6" style="text-align:right" >
+            <h3>@ViewBag.NextContextTime.Hour : @ViewBag.NextContextTime.Minutes : @ViewBag.NextContextTime.Seconds</h3>
+        </div>
+    </div>
+    <div class="row">
+        <table width="100%">
+            <tr>
+                <th>Name</th>
+                <th>Scheduled</th>
+                <th>Signed Up</th>
+                <th>Prize</th>
+                <th>Entry</th>
+            </tr>
+            @foreach (var item in @ViewBag.ActiveContest)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.FirstGame</td>
+                    <td>@item.SignedUp <span> / </span> @item.MaxCapacity </td>
+                    <td>$50000000</td>
+                    <td>@item.EntryFee</td>
+                    <td>
+                        @Html.ActionLink(item.EntryFee.ToString(), "PartakeContest", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>    
+
+</div>

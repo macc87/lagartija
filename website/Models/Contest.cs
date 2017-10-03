@@ -24,6 +24,12 @@ namespace website.Models
         public ContestType ContestType { get; set; }
         [Required]
         public List<Game> Games { get; set; }
+
+        public DateTime FirstGame {
+            get {
+                return Games.Min(t => t.Scheduled);
+            }
+        }
     }
 }
 
