@@ -1,7 +1,7 @@
 ﻿@model website.Models.Contest
 
 @{
-    ViewBag.Title = "PartakeContest";
+    ViewBag.Title = "Partake Contest";
 }
 
 <h2>PartakeContest</h2>
@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            @ViewBag.Contest.ContestType
+            @ViewBag.Contest.ContestType.Type
         </div>
         <div class="col-md-4">
             $ @ViewBag.Contest.EntryFee
@@ -31,23 +31,81 @@
     <div class="row">
         @foreach (var item in @ViewBag.Contest.Games)
         {
-            <div class="col-md-3">
-                <div class="">
-                    @item.Name
-                </div>
-                <div class="">
-                    @item.HomeTeam vs @item.AwayTeam
-                </div>
-                <div>
-                    @item.Wheather
-                </div>
-                <div>
-                    Temp: @item.Temperture Deg
-                </div>
-                <div>
-                    Hum: @item.Humidity %
+            <div class="col-md-4">
+                <div style="border:2px solid gray; padding:4px">
+                    <div class="">
+                        @Html.ActionLink((string)item.HomeTeam.Name, "TeamDetails", new { id = item.HomeTeam.Id }) vs 
+                        @Html.ActionLink((string)item.AwayTeam.Name, "TeamDetails", new { id = item.AwayTeam.Id })
+                    </div>
+                    <div>
+                        @item.Wheather.Condition
+                    </div>
+                    <div>
+                        Temp: @item.Temperture Deg
+                    </div>
+                    <div>
+                        Hum: @item.Humidity %
+                    </div>
                 </div>
             </div>
         }
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6"><h2>Create LineUp</h2></div>
+        <div class="col-md-6 align-right">
+            <h2>      $ 500 | $ @ViewBag.Contest.Cap</h2>
+            <div> Per Capita | Salary Cap</div>
+        </div>
+        <div class="col-md-6">
+            <h2>Available Players</h2>
+            @foreach (var player in @ViewBag.Players)
+            {
+                <div class="col-md-12 player-wrapper">
+                    <div class="col-md-6">
+                        <div>
+                            <img src=@Url.Content(string.Format("~/Content/Media/Images/{0}", player.Player.Photo)) width="50" height="50" />
+                        </div>
+                        <div>
+                            @Html.ActionLink((string)player.Player.Name, "PlayerDetails", new { id = player.Id })
+                        </div>
+                        <div>
+                            @player.Position.PositionName
+                        </div>
+                    </div>
+                    <div class="col-md-4 align-right">
+                        @player.Player.Salary
+                    </div>
+                    <div class="2">
+                        +
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Your LineUp</h2>
+            @foreach (var player in @ViewBag.Players)
+            {
+                <div class="col-md-12 player-wrapper">
+                    <div class="col-md-6">
+                        <div>
+                            <img src=@Url.Content(string.Format("~/Content/Media/Images/{0}", player.Player.Photo)) width="50" height="50" />
+                        </div>
+                        <div>
+                            @Html.ActionLink((string)player.Player.Name, "PlayerDetails", new { id = player.Id })
+                        </div>
+                        <div>
+                            @player.Position.PositionName
+                        </div>
+                    </div>
+                    <div class="col-md-4 align-right">
+                        @player.Player.Salary
+                    </div>
+                    <div class="2">
+                        +
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
