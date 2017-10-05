@@ -16,7 +16,15 @@ namespace website.Controllers
         // GET: Contest
         public ActionResult Index()
         {
-            List<Contest> contests = db.Contests.Include(t => t.ContestType).ToList();
+            List<Contest> contests = new List<Contest>();
+            try
+            {
+                contests = db.Contests.Include(t => t.ContestType).ToList();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
             return View(contests);
         }
 

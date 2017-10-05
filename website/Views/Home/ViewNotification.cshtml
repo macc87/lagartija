@@ -1,10 +1,10 @@
 ﻿@model website.Models.Notification
 
 @{
-    ViewBag.Title = "Notification Details";
+    ViewBag.Title = "ViewNotification";
 }
 
-<h2>Notification Details</h2>
+<h2>ViewNotification</h2>
 
 <div>
     <h4>Notification</h4>
@@ -25,6 +25,7 @@
         <dd>
             @Html.DisplayFor(model => model.Content)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.InitialDate)
         </dt>
@@ -32,6 +33,7 @@
         <dd>
             @Html.DisplayFor(model => model.InitialDate)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FinalDate)
         </dt>
@@ -39,9 +41,9 @@
         <dd>
             @Html.DisplayFor(model => model.FinalDate)
         </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Home", "Index")
 </p>

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using website.Models;
 
 namespace website.Controllers
@@ -12,10 +14,28 @@ namespace website.Controllers
     public class LineUpController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<FantasyUser> UserManager { get; set;}
+
+        public LineUpController()
+        {
+            UserManager = new UserManager<FantasyUser>(new UserStore<FantasyUser>(this.db));
+        }
+
         // GET: LineUp
         public ActionResult Index()
         {
             List<LineUp> lup = db.LineUps.Include(s => s.User).ToList();
+
+            foreach (LineUp lp in lup)
+            {
+                lp.Contests = new List<Contest>();
+                List <LineUpToContest> lu2cont = db.LineUpToContests.Where(x => x.LineUpId == lp.Id).ToList();
+                foreach (LineUpToContest lc in lu2cont)
+                {
+                    Contest c = db.Contests.Include(t => t.ContestType).Where(t => lc.ContestId == t.Id).First();
+                    lp.Contests.Add(c);
+                }
+            }
             //List<LineUp> lup = db.LineUps.ToList();
             return View(lup);
         }
@@ -27,8 +47,7 @@ namespace website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //LineUp lineup = db.LineUps.Include(t => t.User).First(t => t.Id == id);
-            LineUp lineup = db.LineUps.Find(id);
+            LineUp lineup = db.LineUps.Include(t => t.User).First(t => t.Id == id);
             if (lineup == null)
             {
                 return HttpNotFound();
@@ -55,9 +74,7 @@ namespace website.Controllers
             LineUpViewModel Lineupview = new LineUpViewModel()
             {
                 Id = id.Value,
-                //Users = GetUsers(),
-                //SelectedUser = lineup.User.Id.ToString(),
-                //User = lineup.User
+                User = lineup.User
             };
             var MyCheckboxPlayers = new List<CheckBoxViewModel>();
             var MyCheckboxContests = new List<CheckBoxViewModel>();
@@ -81,11 +98,7 @@ namespace website.Controllers
         // GET: LineUp/Create
         public ActionResult Create()
         {
-            LineUpViewModel lineupViewModel = new LineUpViewModel()
-            {
-                Users = GetUsers(),
-                SelectedUser = "",
-            };
+            LineUpViewModel lineupViewModel = new LineUpViewModel();
             FantasyUser u = new FantasyUser();
             var Players = db.Players.ToList();
             var Contests = db.Contests.ToList();
@@ -120,8 +133,7 @@ namespace website.Controllers
         {
             try
             {
-                int idUser = int.Parse(lineupVM.SelectedUser);
-                FantasyUser user = db.Users.Find(idUser);
+                var user = UserManager.FindById(User.Identity.GetUserId());
                 LineUp lup = new LineUp()
                 {
                     User = user,
@@ -201,8 +213,6 @@ namespace website.Controllers
             LineUpViewModel lupViewModel = new LineUpViewModel()
             {
                 Id = id.Value,
-                Users = GetUsers(),
-                SelectedUser = lup.User.Id.ToString(),
                 User = lup.User
             };
             var MyCheckboxPlayers = new List<CheckBoxViewModel>();
@@ -227,8 +237,10 @@ namespace website.Controllers
             try
             {
                 LineUp lup = db.LineUps.Find(lupViewModel.Id);
-                int iduser = int.Parse(lupViewModel.SelectedUser);
-                lup.User = db.Users.Find(iduser);
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                lup.User = user;
+                lup.Contests = new List<Contest>();
+                lup.Players = new List<Player>();
 
                 foreach (var item in db.LineUpToPlayers)
                 {
@@ -260,7 +272,7 @@ namespace website.Controllers
                         db.LineUpToContests.Add(new LineUpToContest() { LineUpId = lup.Id, ContestId = item.Id });
                     }
                 }
-
+                
                 db.Entry(lup).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -279,7 +291,13 @@ namespace website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NoContent);
             }
             LineUp res = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
-            //LineUp res = db.LineUps.Find(id);
+            res.Contests = new List<Contest>();
+            List<LineUpToContest> lu2cont = db.LineUpToContests.Where(x => x.LineUpId == res.Id).ToList();
+            foreach (LineUpToContest lc in lu2cont)
+            {
+                Contest c = db.Contests.Include(t => t.ContestType).Where(t => lc.ContestId == t.Id).First();
+                res.Contests.Add(c);
+            }
             return View(res);
         }
 
@@ -294,8 +312,8 @@ namespace website.Controllers
                     return HttpNotFound();
                 }
                 LUP = db.LineUps.Include(x => x.User).ToList().Where(s => s.Id == id).First();
-                //LUP = db.LineUps.Find(id);
-
+                LUP.Contests = new List<Contest>();
+                LUP.Players = new List<Player>();
                 List<LineUpToPlayer> Players = db.LineUpToPlayers.Where(x => x.LineUpId == LUP.Id).ToList();
                 List<LineUpToContest> Contests = db.LineUpToContests.Where(x => x.LineUpId == LUP.Id).ToList();
                 foreach (var item in Players)
@@ -313,21 +331,10 @@ namespace website.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View(LUP);
             }
-        }
-
-        private IEnumerable<SelectListItem> GetUsers()
-        {
-            var types = db.Users.Select(
-                x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.UserName
-                });
-            return new SelectList(types, "Value", "Text");
         }
     }
 }

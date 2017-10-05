@@ -1,13 +1,13 @@
-﻿@model website.Models.Notification
+﻿@model website.Models.Promotion
 
 @{
-    ViewBag.Title = "Notification Details";
+    ViewBag.Title = "ViewPromotion";
 }
 
-<h2>Notification Details</h2>
+<h2>View Promotion</h2>
 
 <div>
-    <h4>Notification</h4>
+    <h4>Promotion</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,12 +19,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.PromotionContent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @Html.DisplayFor(model => model.PromotionContent)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.InitialDate)
         </dt>
@@ -32,6 +33,7 @@
         <dd>
             @Html.DisplayFor(model => model.InitialDate)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FinalDate)
         </dt>
@@ -39,9 +41,9 @@
         <dd>
             @Html.DisplayFor(model => model.FinalDate)
         </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Home", "Index")
 </p>

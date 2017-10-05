@@ -12,12 +12,28 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.User)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.User.UserName)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contests)
+        </dt>
+        <dd>
+            @foreach (var item in Model.Contests)
+            {
+                <div>
+                    @Html.DisplayFor(model => item.Name)
+                </div>
+                <div>
+                    @Html.DisplayFor(model => item.ContestType.Type)
+                </div>
+            }
+        </dd>
+
+
     </dl>
 
     @using (Html.BeginForm()) {

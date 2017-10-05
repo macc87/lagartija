@@ -1,10 +1,10 @@
-﻿@model IEnumerable<website.Models.Notification>
+﻿@model IEnumerable<website.Models.Promotion>
 
 @{
-    ViewBag.Title = "Notification List";
+    ViewBag.Title = "Index";
 }
 
-<h2>Notification List</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.PromotionContent)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InitialDate)
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Content)
+            @Html.DisplayFor(modelItem => item.PromotionContent)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InitialDate)

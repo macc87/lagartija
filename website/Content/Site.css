@@ -22,3 +22,28 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.align-right{
+    text-align:right;
+}
+
+/* Temporary CSS */
+
+.table-content-lineup,
+.table-content-lineup td {
+    border-style: solid;
+    border-width: 3px;
+    border-color: lightgray;
+    padding: 5px;
+}
+
+.player-wrapper {
+    background-color: lightgray;
+    margin: 5px;
+    padding: 5px;
+    height: 100px;
+}
+
+.livecontest-info h4{
+    display:inline-block;
+}

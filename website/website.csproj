@@ -196,12 +196,14 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineUpController.cs" />
+    <Compile Include="Controllers\LobbyController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MLBPlayerController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\PromoCodeController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\SportController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +229,26 @@
     <Compile Include="Migrations\201710020342476_AddFantasyUSerToLineUP.Designer.cs">
       <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021621079_COntestLineup.cs" />
+    <Compile Include="Migrations\201710021621079_COntestLineup.Designer.cs">
+      <DependentUpon>201710021621079_COntestLineup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710022044408_NotificationsDates.cs" />
+    <Compile Include="Migrations\201710022044408_NotificationsDates.Designer.cs">
+      <DependentUpon>201710022044408_NotificationsDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710022116002_AddingPromotions.cs" />
+    <Compile Include="Migrations\201710022116002_AddingPromotions.Designer.cs">
+      <DependentUpon>201710022116002_AddingPromotions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710022120291_AddingPromotionsDates.cs" />
+    <Compile Include="Migrations\201710022120291_AddingPromotionsDates.Designer.cs">
+      <DependentUpon>201710022120291_AddingPromotionsDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710022124552_AddingPromotionsDatesNamechange.cs" />
+    <Compile Include="Migrations\201710022124552_AddingPromotionsDatesNamechange.Designer.cs">
+      <DependentUpon>201710022124552_AddingPromotionsDatesNamechange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Action.cs" />
@@ -244,12 +266,14 @@
     <Compile Include="Models\ContestToGame.cs" />
     <Compile Include="Models\LineUpToContest.cs" />
     <Compile Include="Models\LineUpToPlayer.cs" />
+    <Compile Include="Models\LineUpMLBViewModel.cs" />
     <Compile Include="Models\LineUpViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MLBPlayer.cs" />
     <Compile Include="Models\MLBPlayerViewModel.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\PositionViewModel.cs" />
+    <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Notification.cs" />
@@ -397,12 +421,28 @@
     <Content Include="Views\ContestType\Edit.cshtml" />
     <Content Include="Views\ContestType\Delete.cshtml" />
     <Content Include="Views\ContestType\Details.cshtml" />
+    <Content Include="Views\Promotion\Index.cshtml" />
+    <Content Include="Views\Promotion\Details.cshtml" />
+    <Content Include="Views\Promotion\Create.cshtml" />
+    <Content Include="Views\Promotion\Edit.cshtml" />
+    <Content Include="Views\Promotion\Delete.cshtml" />
+    <Content Include="Views\Home\ViewPromotion.cshtml" />
+    <Content Include="Views\Home\ViewNotification.cshtml" />
+    <Content Include="Views\Home\Lobby.cshtml" />
+    <Content Include="Views\Lobby\Index.cshtml" />
+    <Content Include="Views\Home\PartakeContest.cshtml" />
+    <Content Include="Views\Home\CreateContest.cshtml" />
+    <Content Include="Views\Home\ContestDetails.cshtml" />
+    <Content Include="Views\Home\TeamDetails.cshtml" />
+    <Content Include="Views\Home\PlayerDetails.cshtml" />
+    <Content Include="Views\Home\MyActiveContest.cshtml" />
+    <Content Include="Views\Home\MyLiveContests.cshtml" />
+    <Content Include="Views\Home\MyLiveContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Media\Images\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\Promotion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -437,6 +477,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710020342476_AddFantasyUSerToLineUP.resx">
       <DependentUpon>201710020342476_AddFantasyUSerToLineUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021621079_COntestLineup.resx">
+      <DependentUpon>201710021621079_COntestLineup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710022044408_NotificationsDates.resx">
+      <DependentUpon>201710022044408_NotificationsDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710022116002_AddingPromotions.resx">
+      <DependentUpon>201710022116002_AddingPromotions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710022120291_AddingPromotionsDates.resx">
+      <DependentUpon>201710022120291_AddingPromotionsDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710022124552_AddingPromotionsDatesNamechange.resx">
+      <DependentUpon>201710022124552_AddingPromotionsDatesNamechange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
