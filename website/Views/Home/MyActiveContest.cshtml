@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "MyActiveContests";
+}
+
+<h2>My Active Contests</h2>
+
+<div class="container">
+    @foreach (var lineup in @ViewBag.MLBLineUps)
+    {
+        <div class="row" style="border:2px solid gray; margin-bottom:10px; padding: 5px;">
+            @foreach (var player in lineup.Players)
+            {
+                <div class="col-md-2" style="border:2px solid lightgray; margin:2px; padding:2px">
+                    <div>
+                        <img src=@Url.Content(string.Format("~/Content/Media/Images/{0}", player.Player.Photo)) width="50" height="50" />
+                    </div>
+                    <div>
+                        @Html.ActionLink((string)player.Player.Name, "PlayerDetails", new { id = player.Id })
+                    </div>
+                    <div>
+                        @player.Position.PositionName
+                    </div>
+                </div>
+            }
+            <hr />
+            <table width="100%" class="table-content-lineup">
+                <tr>
+                    <td>Name</td>
+                    <td>Contest Type</td>
+                    <td>Entry</td>
+                    <td>Prizes</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @foreach (var contest in lineup.Contests)
+                {
+                    <tr>
+                        <td>@contest.Name</td>
+                        <td>@contest.ContestType.Type</td>
+                        <td>$ @contest.EntryFee</td>
+                        <td>$ 1000000</td>
+                        <td>@Html.ActionLink("Delete", "DeleteMLBPlaye", new { id = contest.Id })</td>
+                        <td>@Html.ActionLink("Edit", "EditMLBPlayer", new { id = contest.Id })</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
