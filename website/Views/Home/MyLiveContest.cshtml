@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "MyLiveContest";
+}
+
+<h2>Live Contest</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@ViewBag.Contest.Name</h3>
+        </div>
+        <table width="100%">
+            <tr>
+                <td><h4>8th / @ViewBag.Contest.MaxCapacity</h4></td>
+                <td><h4>@ViewBag.Contest.ContestType.Type</h4></td>
+                <td><h4>$ 2000000</h4></td>
+                <td><h4>@ViewBag.Contest.EntryFee</h4></td>
+                <td><h4>$ 400</h4></td>
+            </tr>
+            <tr>
+                <td><h5>Pos/Max Capacity</h5></td>
+                <td><h5>Contest Type</h5></td>
+                <td><h5>Prize</h5></td>
+                <td><h5>Entry Fee</h5></td>
+                <td><h5>Winnings</h5></td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table-content-lineup" width="100%">
+            <tr>
+                <td>Position</td>
+                <td>User</td>
+                <td>Winnings</td>
+                <td>Score</td>
+            </tr>
+            @foreach (var user in @ViewBag.Users)
+            {
+                <tr>
+                    <td>100</td>
+                    <td>@user.UserName</td>
+                    <td>$ 400</td>
+                    <td>500 pt</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h2>My Line Up</h2>
+            @foreach (var player in @ViewBag.Players)
+            {
+                <div class="col-md-12 player-wrapper">
+                    <div class="col-md-6">
+                        <div>
+                            <img src=@Url.Content(string.Format("~/Content/Media/Images/{0}", player.Player.Photo)) width="50" height="50" />
+                        </div>
+                        <div>
+                            @Html.ActionLink((string)player.Player.Name, "PlayerDetails", new { id = player.Id })
+                        </div>
+                        <div>
+                            @player.Position.PositionName
+                        </div>
+                    </div>
+                    <div class="col-md-4 align-right">
+                        @player.Player.Salary
+                    </div>
+                    <div class="2">
+                        +
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Oponents Line Up</h2>
+            @foreach (var player in @ViewBag.Players)
+            {
+                <div class="col-md-12 player-wrapper">
+                    <div class="col-md-6">
+                        <div>
+                            <img src=@Url.Content(string.Format("~/Content/Media/Images/{0}", player.Player.Photo)) width="50" height="50" />
+                        </div>
+                        <div>
+                            @Html.ActionLink((string)player.Player.Name, "PlayerDetails", new { id = player.Id })
+                        </div>
+                        <div>
+                            @player.Position.PositionName
+                        </div>
+                    </div>
+                    <div class="col-md-4 align-right">
+                        @player.Player.Salary
+                    </div>
+                    <div class="2">
+                        +
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

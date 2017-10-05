@@ -266,6 +266,7 @@
     <Compile Include="Models\ContestToGame.cs" />
     <Compile Include="Models\LineUpToContest.cs" />
     <Compile Include="Models\LineUpToPlayer.cs" />
+    <Compile Include="Models\LineUpMLBViewModel.cs" />
     <Compile Include="Models\LineUpViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MLBPlayer.cs" />
@@ -432,6 +433,11 @@
     <Content Include="Views\Home\PartakeContest.cshtml" />
     <Content Include="Views\Home\CreateContest.cshtml" />
     <Content Include="Views\Home\ContestDetails.cshtml" />
+    <Content Include="Views\Home\TeamDetails.cshtml" />
+    <Content Include="Views\Home\PlayerDetails.cshtml" />
+    <Content Include="Views\Home\MyActiveContest.cshtml" />
+    <Content Include="Views\Home\MyLiveContests.cshtml" />
+    <Content Include="Views\Home\MyLiveContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

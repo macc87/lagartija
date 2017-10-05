@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -123,28 +124,58 @@ namespace website.Controllers
             return View(c);
         }
 
-        // POST: Contest/Create/5
+        // POST: Contest/Partake/5
         [HttpPost]
         public ActionResult PartakeContest(int? id, LineUp l)
         {
-            Contest c = db.Contests.Include("ContestType").Where(d => d.Id == id).First();
-            c.Games = GetGames(c);
-            ViewBag.Contest = c;
-            List<Team> teams = GetTeams(c);
-            ViewBag.Players = GetMLBPlayers(teams);
-            ViewBag.Teams = teams;
-            DateTime nextGame = c.Games.Min(t => t.Scheduled);
-            TimeSpan s = nextGame.Subtract(DateTime.Now);
-            ViewBag.NextContextTime = s;
-            LineUp LUP = new LineUp()
+            // Todo Add Lineupp......
+            try
             {
-                User = UserManager.FindById(User.Identity.GetUserId()),
-                Contests = new List<Contest>
+                /*var user = UserManager.FindById(User.Identity.GetUserId());
+                LineUp lup = new LineUp()
                 {
-                    c
+                    User = user,
+                    Players = new List<Player>(),
+                    Contests = new List<Contest>()
+                };
+                var selectedPlayers = lineupVM.Players.Where(x => x.Checked == true).ToList();
+                var selectedContests = lineupVM.Contests.Where(x => x.Checked == true).ToList();
+                foreach (CheckBoxViewModel item in selectedPlayers)
+                {
+                    Player pl = db.Players.Find(item.Id);
+                    lup.Players.Add(pl);
                 }
-            };
-            ViewBag.LineUp = LUP;
+                foreach (CheckBoxViewModel item in selectedContests)
+                {
+                    Contest c = db.Contests.Find(item.Id);
+                    lup.Contests.Add(c);
+                }
+                db.LineUps.Add(lup);
+                db.SaveChanges();
+                int idLUP = lup.Id;
+                foreach (Player pl in lup.Players)
+                {
+                    db.LineUpToPlayers.Add(new LineUpToPlayer()
+                    {
+                        LineUpId = idLUP,
+                        PlayerId = pl.Id,
+                    });
+                }
+                foreach (Contest c in lup.Contests)
+                {
+                    db.LineUpToContests.Add(new LineUpToContest()
+                    {
+                        LineUpId = idLUP,
+                        ContestId = c.Id,
+                    });
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");*/
+            }
+            catch
+            {
+                return View();
+            }
             return View();
         }
         // GET: Contest/Create
@@ -260,6 +291,210 @@ namespace website.Controllers
             return View(contestViewModel);
         }
 
+        // GET: Team/Details/5
+        public ActionResult TeamDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            Team t = db.Teams.Include("Sport").ToList().Where(s => s.Id == id).First();
+            if (t == null)
+            {
+                return HttpNotFound();
+            }
+            TeamViewModel tView = new TeamViewModel
+            {
+                Id = t.Id,
+                Sports = GetSports(),
+                Name = t.Name,
+                Logo = t.Logo,
+                SelectedSport = t.Sport.Id.ToString(),
+                LogoPath = string.Format("~/Content/Media/Images/{0}", t.Logo)
+            };
+            ViewBag.Players = db.MLBPlayers.Include("Player").Include("Position").Where(y => y.Team.Id == t.Id).ToList();
+            ViewBag.News = db.News.ToList();
+            return View(tView);
+        }
+
+        // GET: MLBPlayer/Details/5
+        public ActionResult PlayerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            MLBPlayer p = db.MLBPlayers.Include("Player").Include("Team").Include("Position").ToList().Where(t => t.Id == id).First();
+            MLBPlayerViewModel pView = new MLBPlayerViewModel()
+            {
+                Id = p.Id,
+                Player = p.Player,
+                Position = p.Position,
+                Team = p.Team,
+                SelectedPosition = p.Position.Id.ToString(),
+                SelectedTeam = p.Team.Id.ToString(),
+                Positions = GetPositions(),
+                Teams = GetTeams(),
+                PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Player.Photo)
+            };
+            ViewBag.News = db.News.ToList();
+            return View(pView);
+        }
+
+
+        public ActionResult MyActiveContest()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            List<LineUpMLBViewModel> LineUpVMs = new List<LineUpMLBViewModel>();
+            List<LineUp> LineUps = db.LineUps.Include("User").Where(t => t.User.Id == user.Id).ToList();
+            foreach (LineUp lp in LineUps)
+            {
+                LineUpMLBViewModel mlbVM = new LineUpMLBViewModel();
+                mlbVM.Lineup = lp;
+                List<LineUpToContest> lu2contest = db.LineUpToContests.Where(t => t.LineUpId == lp.Id).ToList();
+                List<LineUpToPlayer> lu2players = db.LineUpToPlayers.Where(t => t.LineUpId == lp.Id).ToList();
+                mlbVM.Contests = new List<Contest>();
+                mlbVM.Players = new List<MLBPlayer>();
+                foreach (LineUpToContest lu2c in lu2contest)
+                {
+                    Contest c = db.Contests.Include("ContestType").Where(t=>t.Id == lu2c.ContestId).First();
+                    mlbVM.Contests.Add(c);
+                }
+                foreach (LineUpToPlayer l2p in lu2players)
+                {
+                    MLBPlayer p = db.MLBPlayers.Include("Position").Include("Team").Include("Player").Where(t => t.Player.Id == l2p.PlayerId).First();
+                    mlbVM.Players.Add(p);
+                }
+                LineUpVMs.Add(mlbVM);
+            }
+            ViewBag.MLBLineUps = LineUpVMs;
+            return View();
+        }
+
+        // GET: MLBPlayer/Edit/5
+        public ActionResult EditMLBPlayer(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            MLBPlayer mlbp = db.MLBPlayers.Include(t => t.Player).Include(t => t.Team).Include(t => t.Position).ToList().Where(t => t.Id == id).First();
+            MLBPlayerViewModel pView = new MLBPlayerViewModel()
+            {
+                Player = mlbp.Player,
+                Position = mlbp.Position,
+                Team = mlbp.Team,
+                Players = GetPlayers(),
+                Positions = GetPositions(),
+                Teams = GetTeams(),
+                SelectedPlayer = mlbp.Player.Id.ToString(),
+                SelectedPosition = mlbp.Position.Id.ToString(),
+                SelectedTeam = mlbp.Team.Id.ToString(),
+                SportPositionError = "",
+                Id = mlbp.Id,
+                PhotoPath = mlbp.Team.Logo,
+            };
+            return View(pView);
+        }
+
+        // POST: MLBPlayer/Edit/5
+        [HttpPost]
+        public ActionResult EditMLBPlayer(int? id, MLBPlayerViewModel pView)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+                }
+                MLBPlayer mlbp = db.MLBPlayers.Include("Player").Include("Team").Include("Position").ToList().Where(s => s.Id == id).First();
+
+                int idPosition = int.Parse(pView.SelectedPosition);
+                int idTeam = int.Parse(pView.SelectedTeam);
+                int idPlayer = int.Parse(pView.SelectedPlayer);
+                Player p = db.Players.Find(idPlayer);
+                Team t = db.Teams.Find(idTeam);
+                Position pos = db.Positions.Find(idPosition);
+                if (pos.Sport != t.Sport)
+                {
+                    pView.SportPositionError = "The Position on the Team does not Correspond with the selected Sport";
+                    return View(pView);
+                }
+                mlbp.Player = p;
+                mlbp.Position = pos;
+                mlbp.Team = t;
+                db.Entry(mlbp).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(pView);
+            }
+        }
+
+        // GET: MLBPlayer/Delete/5
+        public ActionResult DeleteMLBPlayer(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            MLBPlayer p = db.MLBPlayers.Include("Player").Include("Team").Include("Position").ToList().Where(t => t.Id == id).First();
+            MLBPlayerViewModel pView = new MLBPlayerViewModel()
+            {
+                Id = p.Id,
+                Player = p.Player,
+                Position = p.Position,
+                Team = p.Team,
+                SelectedPosition = p.Position.Id.ToString(),
+                SelectedTeam = p.Team.Id.ToString(),
+                Positions = GetPositions(),
+                Teams = GetTeams(),
+                PhotoPath = string.Format("~/Content/Media/Images/{0}", p.Player.Photo)
+            };
+            return View(pView);
+        }
+
+        public ActionResult MyLiveContests()
+        {
+            List<Contest> contests = db.Contests.Include("ContestType").ToList();
+            //TODO: To Test Lists all contest to deploy must be the actual live contests 
+            return View(contests);
+        }
+
+        public ActionResult MyLiveContest(int? id)
+        {
+            Contest c = db.Contests.Include("ContestType").Where(t => t.Id == id).First();
+            List<LineUpToContest> lup2contest = db.LineUpToContests.Where(t => t.ContestId == id).ToList();
+            List<FantasyUser> FantasyUsers = new List<FantasyUser>();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            List<LineUp> userLineup = new List<LineUp>();
+            foreach (LineUpToContest l2c in lup2contest)
+            {
+                LineUp lp = db.LineUps.Include("User").Where(t => t.Id == l2c.LineUpId).First();
+                FantasyUser fu = db.Users.Where(f => f.Id == lp.User.Id).First();
+                if (user.Id == fu.Id)
+                {
+                    List<LineUpToPlayer> lu2player = db.LineUpToPlayers.Where(y => y.LineUpId == lp.Id).ToList();
+                    List<MLBPlayer> Players = new List<MLBPlayer>();
+                    foreach (var l2p in lu2player)
+                    {
+                        MLBPlayer mlbPl = db.MLBPlayers.Include("Player").Include("Team").Include("Position").Where(t => t.Player.Id == l2p.PlayerId).First();
+                        Players.Add(mlbPl);
+                    }
+                    ViewBag.LineUp = lp;
+                    ViewBag.Players = Players;
+                }
+                FantasyUsers.Add(fu);
+            }
+            ViewBag.Contest = c;
+            ViewBag.Users = FantasyUsers;
+            ViewBag.User = user;
+            
+            return View(c);
+        }
+
         #region AuxiliaryFunctions
         private IEnumerable<SelectListItem> GetContestTypes()
         {
@@ -323,13 +558,53 @@ namespace website.Controllers
             List<MLBPlayer> players = new List<MLBPlayer>();
             foreach (Team t in Teams)
             {
-                List<MLBPlayer> teamPlayer = db.MLBPlayers.Where(r => r.Team.Id == t.Id).ToList();
+                List<MLBPlayer> teamPlayer = db.MLBPlayers.Include("Player").Include("Position").Include("Team").Where(r => r.Team.Id == t.Id).ToList();
                 foreach (MLBPlayer mlb in teamPlayer)
                 {
                     players.Add(mlb);
                 }
             }
             return players;
+        }
+        private IEnumerable<SelectListItem> GetSports()
+        {
+            var types = db.Sports.Select(
+                x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.SportName
+                });
+            return new SelectList(types, "Value", "Text");
+        }
+        private IEnumerable<SelectListItem> GetPositions()
+        {
+            var types = db.Positions.Select(
+                x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.PositionName
+                });
+            return new SelectList(types, "Value", "Text");
+        }
+        private IEnumerable<SelectListItem> GetTeams()
+        {
+            var types = db.Teams.Select(
+                x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                });
+            return new SelectList(types, "Value", "Text");
+        }
+        private IEnumerable<SelectListItem> GetPlayers()
+        {
+            var types = db.Players.Select(
+                x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                });
+            return new SelectList(types, "Value", "Text");
         }
         #endregion
     }

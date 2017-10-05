@@ -7,8 +7,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9"><h3>Invite Your Friends to Play, Create Your Own Contests</h3></div>
-        <div class="col-md-3">@Html.ActionLink("New Contest", "CreateContest")</div>
+        <div class="col-md-9"><h4>Invite Your Friends to Play, Create Your Own Contests</h4></div>
+        <div class="col-md-3"><h4>@Html.ActionLink("New Contest", "CreateContest")</h4></div>
+    </div>
+    <div class="row">
+        <div class="col-md-9"><h4>View The Contests You Are In</h4></div>
+        <div class="col-md-3"><h4>@Html.ActionLink("My Active Contest", "MyActiveContest")</h4></div>
+    </div>
+    <div class="row">
+        <div class="col-md-9"><h4>Live Contests</h4></div>
+        <div class="col-md-3"><h4>@Html.ActionLink("My Live Contests", "MyLiveContests")</h4></div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -57,7 +65,7 @@
             @foreach (var item in @ViewBag.ActiveContest)
             {
                 <tr>
-                    <td>@Html.ActionLink((string)item.Name, "ContestDetails", new { id = item.Id })></td>
+                    <td>@Html.ActionLink((string)item.Name, "ContestDetails", new { id = item.Id })</td>
                     <td>@item.FirstGame</td>
                     <td>@item.SignedUp <span> / </span> @item.MaxCapacity </td>
                     <td>$50000000</td>
