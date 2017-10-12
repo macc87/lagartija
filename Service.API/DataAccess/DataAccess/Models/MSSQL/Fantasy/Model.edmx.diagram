@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f1d42c025ac4ad6916049b718f6dd05" Name="Diagram1">
+        <EntityTypeShape EntityType="FantasyModel.Injury" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantasyModel.InjuryPlayer" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantasyModel.InjuryTeam" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantasyModel.League" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_Injury" ManuallyRouted="false" />
+        <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_InjuryTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="FantasyModel.FK_InjuryTeam_League" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

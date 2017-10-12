@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FantasyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Injury">
+          <Key>
+            <PropertyRef Name="InjuryId" />
+          </Key>
+          <Property Name="InjuryId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Comment" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InjuryPlayer">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PrimaryPosition" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="JerseyNumber" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="PreferredName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InjuryId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="InjuryTeamId" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InjuryTeam">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Abbr" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Market" Type="varchar" MaxLength="20" />
+          <Property Name="LeagueId" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="LeagueId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Alias" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_InjuryPlayer_Injury">
+          <End Role="Injury" Type="Self.Injury" Multiplicity="1" />
+          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Injury">
+              <PropertyRef Name="InjuryId" />
+            </Principal>
+            <Dependent Role="InjuryPlayer">
+              <PropertyRef Name="InjuryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InjuryPlayer_InjuryTeam">
+          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="1" />
+          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InjuryTeam">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="InjuryPlayer">
+              <PropertyRef Name="InjuryTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InjuryTeam_League">
+          <End Role="League" Type="Self.League" Multiplicity="1" />
+          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="InjuryTeam">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FantasyModelStoreContainer">
+          <EntitySet Name="Injury" EntityType="Self.Injury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InjuryPlayer" EntityType="Self.InjuryPlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InjuryTeam" EntityType="Self.InjuryTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="League" EntityType="Self.League" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_InjuryPlayer_Injury" Association="Self.FK_InjuryPlayer_Injury">
+            <End Role="Injury" EntitySet="Injury" />
+            <End Role="InjuryPlayer" EntitySet="InjuryPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InjuryPlayer_InjuryTeam" Association="Self.FK_InjuryPlayer_InjuryTeam">
+            <End Role="InjuryTeam" EntitySet="InjuryTeam" />
+            <End Role="InjuryPlayer" EntitySet="InjuryPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InjuryTeam_League" Association="Self.FK_InjuryTeam_League">
+            <End Role="League" EntitySet="League" />
+            <End Role="InjuryTeam" EntitySet="InjuryTeam" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FantasyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Injury">
+          <Key>
+            <PropertyRef Name="InjuryId" />
+          </Key>
+          <Property Name="InjuryId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="InjuryPlayers" Relationship="Self.FK_InjuryPlayer_Injury" FromRole="Injury" ToRole="InjuryPlayer" />
+        </EntityType>
+        <EntityType Name="InjuryPlayer">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimaryPosition" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JerseyNumber" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PreferredName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InjuryId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InjuryTeamId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Injury" Relationship="Self.FK_InjuryPlayer_Injury" FromRole="InjuryPlayer" ToRole="Injury" />
+          <NavigationProperty Name="InjuryTeam" Relationship="Self.FK_InjuryPlayer_InjuryTeam" FromRole="InjuryPlayer" ToRole="InjuryTeam" />
+        </EntityType>
+        <EntityType Name="InjuryTeam">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Market" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LeagueId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InjuryPlayers" Relationship="Self.FK_InjuryPlayer_InjuryTeam" FromRole="InjuryTeam" ToRole="InjuryPlayer" />
+          <NavigationProperty Name="League" Relationship="Self.FK_InjuryTeam_League" FromRole="InjuryTeam" ToRole="League" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="LeagueId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InjuryTeams" Relationship="Self.FK_InjuryTeam_League" FromRole="League" ToRole="InjuryTeam" />
+        </EntityType>
+        <Association Name="FK_InjuryPlayer_Injury">
+          <End Role="Injury" Type="Self.Injury" Multiplicity="1" />
+          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Injury">
+              <PropertyRef Name="InjuryId" />
+            </Principal>
+            <Dependent Role="InjuryPlayer">
+              <PropertyRef Name="InjuryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InjuryPlayer_InjuryTeam">
+          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="1" />
+          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InjuryTeam">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="InjuryPlayer">
+              <PropertyRef Name="InjuryTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InjuryTeam_League">
+          <End Role="League" Type="Self.League" Multiplicity="1" />
+          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="InjuryTeam">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FantasyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Injuries" EntityType="Self.Injury" />
+          <EntitySet Name="InjuryPlayers" EntityType="Self.InjuryPlayer" />
+          <EntitySet Name="InjuryTeams" EntityType="Self.InjuryTeam" />
+          <EntitySet Name="Leagues" EntityType="Self.League" />
+          <AssociationSet Name="FK_InjuryPlayer_Injury" Association="Self.FK_InjuryPlayer_Injury">
+            <End Role="Injury" EntitySet="Injuries" />
+            <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InjuryPlayer_InjuryTeam" Association="Self.FK_InjuryPlayer_InjuryTeam">
+            <End Role="InjuryTeam" EntitySet="InjuryTeams" />
+            <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InjuryTeam_League" Association="Self.FK_InjuryTeam_League">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="InjuryTeam" EntitySet="InjuryTeams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FantasyModelStoreContainer" CdmEntityContainer="FantasyEntities">
+          <EntitySetMapping Name="Injuries">
+            <EntityTypeMapping TypeName="FantasyModel.Injury">
+              <MappingFragment StoreEntitySet="Injury">
+                <ScalarProperty Name="InjuryId" ColumnName="InjuryId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InjuryPlayers">
+            <EntityTypeMapping TypeName="FantasyModel.InjuryPlayer">
+              <MappingFragment StoreEntitySet="InjuryPlayer">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="PrimaryPosition" ColumnName="PrimaryPosition" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JerseyNumber" ColumnName="JerseyNumber" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
+                <ScalarProperty Name="InjuryId" ColumnName="InjuryId" />
+                <ScalarProperty Name="InjuryTeamId" ColumnName="InjuryTeamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InjuryTeams">
+            <EntityTypeMapping TypeName="FantasyModel.InjuryTeam">
+              <MappingFragment StoreEntitySet="InjuryTeam">
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leagues">
+            <EntityTypeMapping TypeName="FantasyModel.League">
+              <MappingFragment StoreEntitySet="League">
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
