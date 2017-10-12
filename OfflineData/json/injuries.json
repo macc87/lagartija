@@ -1,0 +1,3679 @@
+{
+    "league": {
+        "id": "2fa448bc-fc17-4d3d-be03-e60e080fdc26",
+        "name": "Major League Baseball",
+        "alias": "MLB"
+    },
+    "teams": [{
+        "name": "Astros",
+        "abbr": "HOU",
+        "market": "Houston",
+        "id": "eb21dadd-8f10-4095-8bf3-dfb3b779f107",
+        "players": [{
+            "id": "3259a7ad-0490-4912-bd86-d06bf3ac91e0",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Carlos",
+            "last_name": "Correa",
+            "jersey_number": "1",
+            "preferred_name": "Carlos",
+            "injuries": [{
+                "id": "00b79f76-cda1-4c0a-82d8-55ed242dd7a4",
+                "comment": "Correa is hoping to start swinging a bat again next week, according to Jake Kaplan of the Houston Chronicle. He's hoping to return sometime in early September.",
+                "desc": "Thumb",
+                "status": "D10",
+                "start_date": "2017-07-17",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "e8983395-58d4-47fd-ad60-8f7f97c42239",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Jandel",
+            "last_name": "Gustave",
+            "jersey_number": "61",
+            "preferred_name": "Jandel",
+            "injuries": [{
+                "id": "151c2687-1821-4261-96e8-ba9720ae8f59",
+                "comment": "Gustave had UCL reconstruction surgery on his right elbow and will miss the rest of the season, according to Brian McTaggart of MLB.com.",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-04-20",
+                "update_date": "2017-06-21"
+            }]
+        }, {
+            "id": "76ad7cd2-86ca-4fa6-918b-519321ba62f1",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Tony",
+            "last_name": "Sipp",
+            "jersey_number": "29",
+            "preferred_name": "Tony",
+            "injuries": [{
+                "id": "4306ea58-2fa7-470f-a4fd-50045dc7ef7f",
+                "comment": "The Houston Astros placed LHP Tony Sipp on the 10-day disabled list with right calf soreness.",
+                "desc": "Calf",
+                "status": "D10",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "ab823ce4-655b-4d1d-ba3e-23316d8053dc",
+            "status": "A",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "James",
+            "last_name": "Gattis",
+            "jersey_number": "11",
+            "preferred_name": "Evan",
+            "injuries": [{
+                "id": "6954adc6-14a0-48ef-82bb-0e7608dd0dfc",
+                "comment": "Gattis suffered a concussion when he was hit by the backswing of a bat during Thursday's game (Aug. 3), according to a report from the Houston Chronicle.",
+                "desc": "Concussion",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "7f92278a-91c4-4c25-9e75-eaff3aed89b3",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "George",
+            "last_name": "Springer",
+            "jersey_number": "4",
+            "preferred_name": "George",
+            "injuries": [{
+                "id": "7e9240ca-7f0c-4c90-afd1-252458cf9515",
+                "comment": "Springer will not be activated from the DL when first eligible on Friday (Aug. 4), according to Jake Kaplan of the Houston Chronicle. ",
+                "desc": "Quad",
+                "status": "D10",
+                "start_date": "2017-07-25",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "6299743b-bb6b-4d0a-88ef-016ecafd17aa",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Michael",
+            "last_name": "Feliz",
+            "jersey_number": "45",
+            "preferred_name": "Michael",
+            "injuries": [{
+                "id": "80a566db-78e6-4710-a3b8-42495cf6b0e1",
+                "comment": "Feliz has been placed on the 10-day disabled list with right shoulder discomfort.",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-07-31",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "a788bab0-4d9b-4e90-806c-80736d0221c4",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "William",
+            "last_name": "Harris",
+            "jersey_number": "36",
+            "preferred_name": "Will",
+            "injuries": [{
+                "id": "a18cb1a0-fdc5-4c9a-aa23-c3ae5df93cb3",
+                "comment": "The Houston Astros placed RHP Will Harris on the 10-day disabled list with right shoulder inflammation.",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-07-30",
+                "update_date": "2017-07-30"
+            }]
+        }, {
+            "id": "febfa90b-51c5-4313-a4b4-a1bc40734be1",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Colin",
+            "last_name": "Moran",
+            "jersey_number": "19",
+            "preferred_name": "Colin",
+            "injuries": [{
+                "id": "a77da3b3-372f-453e-8c64-ab6b093a83a9",
+                "comment": "The Houston Astros placed INF Colin Moran on the 10-day disabled list with a facial fracture.",
+                "desc": "Face",
+                "status": "D10",
+                "start_date": "2017-07-22",
+                "update_date": "2017-07-23"
+            }]
+        }, {
+            "id": "fc552e8f-e5e0-4060-b018-6babc108507b",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Lance",
+            "last_name": "McCullers",
+            "jersey_number": "43",
+            "preferred_name": "Lance",
+            "injuries": [{
+                "id": "d119661f-7065-45d7-9c72-490b52649c15",
+                "comment": "The Houston Astros placed RHP Lance McCullers on the 10-day disabled list with back discomfort.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-31",
+                "update_date": "2017-07-31"
+            }]
+        }]
+    }, {
+        "name": "Blue Jays",
+        "abbr": "TOR",
+        "market": "Toronto",
+        "id": "1d678440-b4b1-4954-9b39-70afb3ebbcfa",
+        "players": [{
+            "id": "8dcb75a4-2928-4cd2-bcbd-cd5f79601e41",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Christopher",
+            "last_name": "Coghlan",
+            "jersey_number": "7",
+            "preferred_name": "Chris",
+            "injuries": [{
+                "id": "043cbf56-df4f-466c-949c-b7dfdeca264f",
+                "comment": "Coghlan has been placed on the 10-day disabled list with a left wrist contusion.",
+                "desc": "Wrist",
+                "status": "D10",
+                "start_date": "2017-06-16",
+                "update_date": "2017-06-16"
+            }]
+        }, {
+            "id": "af0e3264-b81b-4601-9f2c-28d477381f56",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Patrick",
+            "last_name": "Schultz",
+            "preferred_name": "Bo",
+            "injuries": [{
+                "id": "1165d85f-8fb5-4435-8397-5810ee44dd94",
+                "comment": "The Blue Jays transferred Schultz from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-04-09"
+            }]
+        }, {
+            "id": "49be9f8e-db22-487e-8487-34c1eb01919b",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Aarón",
+            "last_name": "Sánchez",
+            "jersey_number": "41",
+            "preferred_name": "Aarón",
+            "injuries": [{
+                "id": "31425cd4-45ca-4623-b298-526d03fa97c2",
+                "comment": "The Toronto Blue Jays placed RHP Aaron Sanchez on the 10-day disabled list with a blister on his right middle finger.",
+                "desc": "Finger",
+                "status": "D10",
+                "start_date": "2017-07-19",
+                "update_date": "2017-07-22"
+            }]
+        }, {
+            "id": "d7bb376c-9f2b-449b-b1eb-c6be13aa4886",
+            "status": "D10",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Luke",
+            "last_name": "Maile",
+            "jersey_number": "22",
+            "preferred_name": "Luke",
+            "injuries": [{
+                "id": "463f47c3-e57d-4dc3-b782-30346512b1fb",
+                "comment": "The Toronto Blue Jays placed C Luke Maile on the 10-day disabled list with right knee inflammation.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-04",
+                "update_date": "2017-07-04"
+            }]
+        }, {
+            "id": "f695700e-36bb-46be-aad6-92c68f73e61e",
+            "status": "D10",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Miguel",
+            "last_name": "Montero",
+            "jersey_number": "47",
+            "preferred_name": "Miguel",
+            "injuries": [{
+                "id": "5c6cbd62-be5c-4ce5-a56a-e790fec002be",
+                "comment": "The Toronto Blue Jays placed C Miguel Montero on the 10-day disabled list with a right groin strain.",
+                "desc": "Groin",
+                "status": "D10",
+                "start_date": "2017-08-02",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "9cc5e32a-1dad-4b18-80c8-919ec0dac676",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Troy",
+            "last_name": "Tulowitzki",
+            "jersey_number": "2",
+            "preferred_name": "Troy",
+            "injuries": [{
+                "id": "bf538bf0-7fb7-4ad6-89b2-66876cfca904",
+                "comment": "The Blue Jays announced an MRI revealed ligament damage in Tulowitzki's right ankle.",
+                "desc": "Ankle",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-30"
+            }]
+        }, {
+            "id": "464e26fe-f01d-4e98-9ecf-fca29bbe4996",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Darrell",
+            "last_name": "Ceciliani",
+            "jersey_number": "9",
+            "preferred_name": "Darrell",
+            "injuries": [{
+                "id": "c025586f-a879-4e7b-8fd8-142987ff643e",
+                "comment": "The Toronto Blue Jays transferred OF Darrell Ceciliani from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-18",
+                "update_date": "2017-07-03"
+            }]
+        }, {
+            "id": "e6b6b905-a355-4e85-84ca-db655cc3dce4",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "2B",
+            "first_name": "Devon",
+            "last_name": "Travis",
+            "jersey_number": "29",
+            "preferred_name": "Devon",
+            "injuries": [{
+                "id": "f36435a5-4c35-437c-bfa0-2b78d2ef71e8",
+                "comment": "Travis has begun hitting in the batting cage and will resume running soon, according to Shi Davidi of Sportsnet. ",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-06-04",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "6b8f8b32-4b62-4a90-8749-d9ece15d3a1e",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Dalton",
+            "last_name": "Pompey",
+            "jersey_number": "23",
+            "preferred_name": "Dalton",
+            "injuries": [{
+                "id": "fee4f77d-830e-4138-a2bf-441057d29528",
+                "comment": "The Blue Jays sent Pompey on a rehab assignment.",
+                "desc": "Head",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-06-07"
+            }]
+        }]
+    }, {
+        "name": "Nationals",
+        "abbr": "WSH",
+        "market": "Washington",
+        "id": "d89bed32-3aee-4407-99e3-4103641b999a",
+        "players": [{
+            "id": "2527770b-cf48-42b9-81fa-9323756fb311",
+            "status": "A",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Maxwell",
+            "last_name": "Scherzer",
+            "jersey_number": "31",
+            "preferred_name": "Max",
+            "injuries": [{
+                "id": "0483e5c8-a8ad-4392-b966-163d7c799cea",
+                "comment": "Scherzer plans to throw a bullpen session on Saturday (Aug. 5) and start on Monday (Aug. 7), according to Jorge Castillo of the Washington Post.",
+                "desc": "Neck",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "b1dff8d7-4a08-4a53-bc92-c48c4e841369",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Jayson",
+            "last_name": "Werth",
+            "jersey_number": "28",
+            "preferred_name": "Jayson",
+            "injuries": [{
+                "id": "08cd7f9e-1aed-4d42-8372-685158d4f8b1",
+                "comment": "Werth is slated to take some simulated game at-bats and is working on getting back into shape. He's expected to be with the team next week, according to Jorge Castillo of the Washington Post.",
+                "desc": "Foot",
+                "status": "D60",
+                "start_date": "2017-06-03",
+                "update_date": "2017-08-02"
+            }]
+        }, {
+            "id": "01920ac1-60d3-4592-baec-04336c17105d",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Shawn",
+            "last_name": "Kelley",
+            "jersey_number": "27",
+            "preferred_name": "Shawn",
+            "injuries": [{
+                "id": "5d059607-b799-4fef-9dfa-045705bd5cbf",
+                "comment": "Kelley is slated to start a rehab assignment on Saturday (July 29), according to Jorge Castillo of the Washington Post.",
+                "desc": "Trap",
+                "status": "D10",
+                "start_date": "2017-06-18",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "fc480cce-2f6e-4af0-b33b-36194e714a42",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Ryan",
+            "last_name": "Raburn",
+            "jersey_number": "18",
+            "preferred_name": "Ryan",
+            "injuries": [{
+                "id": "7dde0a2b-c48e-4c87-9744-d8780e336640",
+                "comment": "The Washington Nationals placed OF Ryan Raburn on the 10-day disabled list with a left trapezius strain.",
+                "desc": "Trap",
+                "status": "D10",
+                "start_date": "2017-07-26",
+                "update_date": "2017-07-26"
+            }]
+        }, {
+            "id": "8df4f3bd-61f2-4fbf-8266-80ba7e15dc2d",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Stephen",
+            "last_name": "Strasburg",
+            "jersey_number": "37",
+            "preferred_name": "Stephen",
+            "injuries": [{
+                "id": "8d25b1fc-6a65-41a9-b18d-4de2dbf44fa5",
+                "comment": "A team spokesperson said that Strasburg had nerve impingement which had been alleviated, according to Jorge Castillo of the Washington Post. He's expected just to miss one start.",
+                "desc": "Nerve",
+                "status": "D10",
+                "start_date": "2017-07-23",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "883d9d1d-ca70-4443-a7d7-e6e90a1e1bec",
+            "status": "FA",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Chris",
+            "last_name": "Heisey",
+            "preferred_name": "Chris",
+            "injuries": [{
+                "id": "8f5cea42-4f24-444e-81aa-7cc86efeac3a",
+                "comment": "The Washington Nationals placed OF Chris Heisey on the 10-day disabled list with a strained left groin.",
+                "desc": "Groin",
+                "status": "D10",
+                "start_date": "2017-07-23",
+                "update_date": "2017-07-23"
+            }]
+        }, {
+            "id": "9fd5e31f-8188-48bf-a93b-c9d9dbd29265",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Michael",
+            "last_name": "Taylor",
+            "jersey_number": "3",
+            "preferred_name": "Michael",
+            "injuries": [{
+                "id": "9528c2f7-36de-4488-aab7-7229ee692a3f",
+                "comment": "Taylor is set to start some baseball activities, according to Mark Zuckerman of masnsports.com. There is no timetable for his return.",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-07-07",
+                "update_date": "2017-07-20"
+            }]
+        }, {
+            "id": "4c9f42d0-e2e6-411f-b590-00aafb055de2",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Joseph",
+            "last_name": "Ross",
+            "jersey_number": "41",
+            "preferred_name": "Joe",
+            "injuries": [{
+                "id": "9fb9a697-309a-45ab-9c2f-77864ababf5c",
+                "comment": "Ross had Tommy John surgery and will not play again this season, according to Chelsea Janes of the Washington Post.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-07-09",
+                "update_date": "2017-07-19"
+            }]
+        }, {
+            "id": "67dc86a1-cc03-41ae-ba7d-e5b8434c83e8",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Trea",
+            "last_name": "Turner",
+            "jersey_number": "7",
+            "preferred_name": "Trea",
+            "injuries": [{
+                "id": "c7f34383-6160-4fd4-9d53-53889adfd6e2",
+                "comment": "Turner took grounders at Nationals Park on Tuesday (July 25), according to Mark Zuckerman of CSN. ",
+                "desc": "Wrist",
+                "status": "D10",
+                "start_date": "2017-06-29",
+                "update_date": "2017-07-25"
+            }]
+        }, {
+            "id": "1a0bef4b-f97b-453d-80ed-5fde2c80acc8",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Adam",
+            "last_name": "Eaton",
+            "jersey_number": "2",
+            "preferred_name": "Adam",
+            "injuries": [{
+                "id": "cb07ef04-3a85-4460-9c0c-edd3164f9cd1",
+                "comment": "Eaton had successful surgery to repair his ACL and meniscus tears in his knee, according to Chelsea Janes of the Washington Post. Rehab is expected to take 6-9 months.",
+                "desc": "Leg",
+                "status": "D60",
+                "start_date": "2017-04-28",
+                "update_date": "2017-05-10"
+            }]
+        }, {
+            "id": "9530e38e-cecc-4f33-9c65-12a1daddb059",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Enny",
+            "last_name": "Romero",
+            "jersey_number": "72",
+            "preferred_name": "Enny",
+            "injuries": [{
+                "id": "cfcd706c-9459-4665-9876-5c2336eabcc9",
+                "comment": "The Washington Nationals placed LHP Enny Romero on the 10-day disabled list with a left forearm strain.",
+                "desc": "Forearm",
+                "status": "D10",
+                "start_date": "2017-08-02",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "e2c49a54-87c5-41fe-a4c8-8b7d94285101",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Stephen",
+            "last_name": "Drew",
+            "jersey_number": "10",
+            "preferred_name": "Stephen",
+            "injuries": [{
+                "id": "def72cdc-9355-4a3f-aa0b-41a3c252fea9",
+                "comment": "The Washington Nationals placed INF Stephen Drew on the 10-day disabled list with a left abdominal strain.",
+                "desc": "Abdomin",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-29"
+            }]
+        }, {
+            "id": "f8853f8a-8b57-4ca8-a3c4-875448994a9c",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Koda",
+            "last_name": "Glover",
+            "jersey_number": "30",
+            "preferred_name": "Koda",
+            "injuries": [{
+                "id": "f4d0cc72-2bdd-4cbc-b01a-0c98dc7fb445",
+                "comment": "The Washington Nationals transferred RHP Koda Glover from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Back",
+                "status": "D60",
+                "start_date": "2017-06-10",
+                "update_date": "2017-07-17"
+            }]
+        }]
+    }, {
+        "name": "Angels",
+        "abbr": "LAA",
+        "market": "Los Angeles",
+        "id": "4f735188-37c8-473d-ae32-1f7e34ccf892",
+        "players": [{
+            "id": "0ded07a8-8220-4312-b0f0-99ae751d6e0d",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Nicholas",
+            "last_name": "Tropeano",
+            "jersey_number": "35",
+            "preferred_name": "Nick",
+            "injuries": [{
+                "id": "04c3f1de-d3f4-41a4-836e-0157e05df943",
+                "comment": "The Los Angeles Angels placed  RHP Nick Tropeano on the 60-day disabled list as he recovers from Tommy John surgery late in the 2016 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-04-02"
+            }]
+        }, {
+            "id": "dc69d6ad-e76a-43a2-a8b8-177e0a16c365",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Huston",
+            "last_name": "Street",
+            "jersey_number": "16",
+            "preferred_name": "Huston",
+            "injuries": [{
+                "id": "0ff2b35c-bb03-4333-b881-fe77b2f60bb1",
+                "comment": "A recent MRI revealed a mild rotator cuff strain in Street's right shoulder, according to Jeff Fletcher of the Orange County Register.",
+                "desc": "Adductor/Groin",
+                "status": "D10",
+                "start_date": "2017-07-05",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "be749bfe-5f67-4761-80e0-acb06fc78d73",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Garrett",
+            "last_name": "Richards",
+            "jersey_number": "43",
+            "preferred_name": "Garrett",
+            "injuries": [{
+                "id": "3251b7d4-02d6-44f0-8985-d8b96ad027ef",
+                "comment": "Richards threw 20 pitches off a mound in a bullpen session on Friday (Aug. 4), according to Maria Guardado of MLB.com. He hopes to return before the end of the season.",
+                "desc": "Bicep",
+                "status": "D60",
+                "start_date": "2017-04-07",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "02dee83c-dd03-40bf-ba83-fc9259045210",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Alex",
+            "last_name": "Meyer",
+            "jersey_number": "23",
+            "preferred_name": "Alex",
+            "injuries": [{
+                "id": "41ce904d-6727-45cf-abb6-81bca0beef3f",
+                "comment": "Meyer resumed throwing on Thursday (Aug. 3), according to Pedro Moura of the Los Angeles Times. ",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-07-21",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "a5ae5017-4659-4743-bc21-2ce0ed6bc7cd",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Cameron",
+            "last_name": "Maybin",
+            "jersey_number": "9",
+            "preferred_name": "Cameron",
+            "injuries": [{
+                "id": "69961a41-21f3-4736-839c-43e9e84ec7e2",
+                "comment": "Maybin will begin a rehab assignment with Triple-A Salt Lake on Friday (Aug. 4), according to Pedro Moura of the Los Angeles Times.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-18",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "970d1ba0-93be-4a15-bb0d-70389f8d3d3f",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Andrew",
+            "last_name": "Bailey",
+            "jersey_number": "37",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "7cf0d42b-9cb1-4d4b-94a5-f4a3b148e777",
+                "comment": "Bailey has resumed his rehab assignment, according to a report from the Orange County Register.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-04-12",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "ade46bf9-fcaa-4185-8fc9-79af6d2ec81b",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Andrew",
+            "last_name": "Heaney",
+            "jersey_number": "28",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "aac4c875-e156-4b0c-8c92-43bf62c7b808",
+                "comment": "Heaney is hoping to return sometime this season, according to a report from the Orange County Register. He's recovering from Tommy John surgery, which he had in July of the 2016 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-16",
+                "update_date": "2017-06-18"
+            }]
+        }, {
+            "id": "53cd6286-6aba-4b25-98f9-0caaec4726e6",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Matthew",
+            "last_name": "Shoemaker",
+            "jersey_number": "52",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "ad547f83-8954-45ec-975e-be5d2ad67611",
+                "comment": "The Angels announced that they are considering surgery for Shoemaker as he deals with radial nerve compression.",
+                "desc": "Forearm",
+                "status": "D10",
+                "start_date": "2017-06-14",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "3cf592e7-2129-4bc3-93d2-cb54b4c621c1",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Tyler",
+            "last_name": "Skaggs",
+            "jersey_number": "45",
+            "preferred_name": "Tyler",
+            "injuries": [{
+                "id": "ae38085c-2dfa-44f5-b3c6-a728b116c4e4",
+                "comment": "Skaggs is expected to come off the DL and make his first major league start since late April on Saturday (Aug. 5), according to Pedro Moura of the Los Angeles Times. He's been out as he recovers from a strained oblique.",
+                "desc": "Side",
+                "status": "D60",
+                "start_date": "2017-04-28",
+                "update_date": "2017-08-03"
+            }]
+        }]
+    }, {
+        "name": "Red Sox",
+        "abbr": "BOS",
+        "market": "Boston",
+        "id": "93941372-eb4c-4c40-aced-fe3267174393",
+        "players": [{
+            "id": "bc31cadc-9d1e-4651-bc51-3428445dfc87",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Benjamin",
+            "last_name": "Taylor",
+            "jersey_number": "64",
+            "preferred_name": "Ben",
+            "injuries": [{
+                "id": "0608e0e9-6750-4429-982e-75ec5b06ded0",
+                "comment": "The Boston Red Sox placed RHP Ben Taylor on the 10-day disabled list with a left intervostal strain.",
+                "desc": "Intercostal",
+                "status": "D10",
+                "start_date": "2017-07-26",
+                "update_date": "2017-07-26"
+            }]
+        }, {
+            "id": "e9d2b083-2e0b-45aa-bbd4-4e62435d2a9e",
+            "status": "A",
+            "position": "DH",
+            "primary_position": "DH",
+            "first_name": "Hanley",
+            "last_name": "Ramírez",
+            "jersey_number": "13",
+            "preferred_name": "Hanley",
+            "injuries": [{
+                "id": "2129d999-8e6a-4f8e-945a-4e87eaf02250",
+                "comment": "Ramirez left Friday's game (Aug. 4) early with left oblique soreness, according to Tim Britton of the Providence Journal.",
+                "desc": "Oblique",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "7ec090ea-b43a-4b64-8faa-2e527b88f197",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Joshua",
+            "last_name": "Rutledge",
+            "jersey_number": "32",
+            "preferred_name": "Josh",
+            "injuries": [{
+                "id": "3b7c7f8d-1536-454d-84ce-654028f2b4c3",
+                "comment": "The Boston Red Sox transferred INF Josh Rutledge from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Concussion",
+                "status": "D60",
+                "start_date": "2017-06-24",
+                "update_date": "2017-07-31"
+            }]
+        }, {
+            "id": "40085c05-fa06-4eec-9f41-f0245980f6a0",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "2B",
+            "first_name": "Dustin",
+            "last_name": "Pedroia",
+            "jersey_number": "15",
+            "preferred_name": "Dustin",
+            "injuries": [{
+                "id": "3d3fe5b6-df4c-4c5a-99db-68e83dd1e8db",
+                "comment": "Manager John Ferrell said Pedroia will probably start baseball drills this weekend, according to Pete Abraham of The Boston Globe.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "9fa2c69a-ce97-4c7e-b522-5a58507a2484",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Marco",
+            "last_name": "Hernández",
+            "jersey_number": "40",
+            "preferred_name": "Marco",
+            "injuries": [{
+                "id": "473444e2-d55d-4462-8c57-0d24e156f1e9",
+                "comment": "The Red Sox transferred Hernández from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-03",
+                "update_date": "2017-05-28"
+            }]
+        }, {
+            "id": "875b903a-aabd-424e-b70e-1aa46a7334bc",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "David",
+            "last_name": "Price",
+            "jersey_number": "24",
+            "preferred_name": "David",
+            "injuries": [{
+                "id": "4edbfb9c-8d24-4c24-9d3d-887969cbe606",
+                "comment": "Price is still throwing off of flat ground and may need a rehab assignment before being activated, according to Scott Lauber of ESPN.com.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-07-28",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "7267e527-1ca0-4a94-b5a6-032e4769df48",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Robert",
+            "last_name": "Ross Jr.",
+            "jersey_number": "28",
+            "preferred_name": "Robbie",
+            "injuries": [{
+                "id": "76ef9115-6053-487f-b1b1-e947bc687a12",
+                "comment": "The Boston Red Sox transferred LHP Robbie Ross Jr. from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-06-01",
+                "update_date": "2017-07-24"
+            }]
+        }, {
+            "id": "c2a71506-19e8-4d48-9d5f-d250cd1db862",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Tyler",
+            "last_name": "Thornburg",
+            "jersey_number": "47",
+            "preferred_name": "Tyler",
+            "injuries": [{
+                "id": "7797e73c-8a90-4ba6-9012-dce06999dcca",
+                "comment": "Thornburg will undergo surgery Friday (June 16) to treat thoracic outlet syndrome in his right shoulder, according to Pete Abraham of The Boston Globe. He will not play again this season.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-03-10",
+                "update_date": "2017-06-15"
+            }]
+        }, {
+            "id": "02a38fcb-3bdc-4e2f-be10-0cdd5e0a6f88",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Steven",
+            "last_name": "Wright",
+            "jersey_number": "35",
+            "preferred_name": "Steven",
+            "injuries": [{
+                "id": "a3e3fc5f-e9a6-44aa-83c2-7e4ce8645f32",
+                "comment": "The Red Sox announced that Wright underwent successful surgery on Monday (May 8) to restore cartilage in his left knee.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-05-02",
+                "update_date": "2017-05-18"
+            }]
+        }, {
+            "id": "a575ce77-6104-4c3e-8a5b-4be744a1b1e7",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Carson",
+            "last_name": "Smith",
+            "jersey_number": "39",
+            "preferred_name": "Carson",
+            "injuries": [{
+                "id": "eba9704a-79f2-4907-949a-1ce095b4e1d9",
+                "comment": "Smith is expected to start a rehab assignment on Saturday (Aug. 5), according to Michael Silverman of the Boston Herald. He's expected to need at least a week of rehab games before possibly returning.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-15",
+                "update_date": "2017-08-02"
+            }]
+        }, {
+            "id": "24d057a9-4def-4e9e-be83-3eca01c9c922",
+            "status": "A",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Sandy",
+            "last_name": "León",
+            "jersey_number": "3",
+            "preferred_name": "Sandy",
+            "injuries": [{
+                "id": "f2cf6312-ee76-4816-b01b-73cbd359ae2b",
+                "comment": "Leon is making progress and the plan is for him to return to the lineup on Sunday (Aug. 6), according to a report from the Boston Herald.",
+                "desc": "Knee",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "86877e81-53d7-417d-bb51-308a948ef6a3",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Roenis",
+            "last_name": "Elías",
+            "jersey_number": "29",
+            "preferred_name": "Roenis",
+            "injuries": [{
+                "id": "f39e62d7-aa91-4b9d-8c8a-fdcd9fd9821e",
+                "comment": "The Boston Red Sox transferred LHP Roenis Elías from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Intercostal",
+                "status": "D60",
+                "start_date": "2017-03-11",
+                "update_date": "2017-06-15"
+            }]
+        }]
+    }, {
+        "name": "Diamondbacks",
+        "abbr": "ARI",
+        "market": "Arizona",
+        "id": "25507be1-6a68-4267-bd82-e097d94b359b",
+        "players": [{
+            "id": "9deda06b-1928-4c58-acf0-717538f576f4",
+            "status": "D7",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Robert",
+            "last_name": "Ray",
+            "jersey_number": "38",
+            "preferred_name": "Robbie",
+            "injuries": [{
+                "id": "07e3fc9b-691d-4f2a-8e41-683abb603634",
+                "comment": "The Diamondbacks placed LHP Robbie Ray on the 7-day disabled list with a concussion.",
+                "desc": "Concussion",
+                "status": "D7",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-29"
+            }]
+        }, {
+            "id": "5fb27d81-527a-4e98-b0f3-efdc52f974c8",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Yasmany",
+            "last_name": "Tomás",
+            "jersey_number": "24",
+            "preferred_name": "Yasmany",
+            "injuries": [{
+                "id": "1fc9bd8b-cfc2-48b3-837f-e85cf9693801",
+                "comment": "The Arizona Diamondbacks transferred OF Yasmany Tomás from the 10-day disabled list to the 60-day disabled list as he recovers from right groin tendinitis.",
+                "desc": "Groin",
+                "status": "D60",
+                "start_date": "2017-06-06",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "3e39fe20-6dca-4894-807b-1ce76ff93e29",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Christopher",
+            "last_name": "Owings",
+            "jersey_number": "16",
+            "preferred_name": "Chris",
+            "injuries": [{
+                "id": "1fe8f789-a1c0-4db3-8d4c-342426d2afc7",
+                "comment": "The Arizona Diamondbacks placed INF Chris Owings on the 60-day disabled list with a fractured middle finger.",
+                "desc": "Finger",
+                "status": "D60",
+                "start_date": "2017-07-30",
+                "update_date": "2017-07-31"
+            }]
+        }, {
+            "id": "43944ff4-dec0-4f37-8c8c-fe71123d5cd7",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Nicholas",
+            "last_name": "Ahmed",
+            "jersey_number": "13",
+            "preferred_name": "Nick",
+            "injuries": [{
+                "id": "712aa903-3a69-46d0-84ac-ffa4a6cfb500",
+                "comment": "The Arizona Diamondbacks transferred INF Nick Ahmed from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Hand",
+                "status": "D60",
+                "start_date": "2017-06-27",
+                "update_date": "2017-07-31"
+            }]
+        }, {
+            "id": "10f85217-0625-449f-95bf-31469c887c16",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Reymond",
+            "last_name": "Fuentes",
+            "jersey_number": "14",
+            "preferred_name": "Rey",
+            "injuries": [{
+                "id": "921cc9cb-b056-4b31-93fe-dddc4c5defae",
+                "comment": "The Diamondbacks sent Fuentes on a rehab assignment.",
+                "desc": "Thumb",
+                "status": "D10",
+                "start_date": "2017-07-19",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "f83736c4-6587-438f-af93-bb880f0763c5",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Shelby",
+            "last_name": "Miller",
+            "jersey_number": "26",
+            "preferred_name": "Shelby",
+            "injuries": [{
+                "id": "c4c8d49f-c87b-4f40-9ed8-87068cce9ad2",
+                "comment": "The Diamondbacks announced that Miller had successful Tommy John surgery. He will miss the rest of the 2017 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-23",
+                "update_date": "2017-05-11"
+            }]
+        }, {
+            "id": "f860c341-7f56-4900-8574-98b3ffcf3f60",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Randall",
+            "last_name": "Delgado",
+            "jersey_number": "48",
+            "preferred_name": "Randall",
+            "injuries": [{
+                "id": "df237a31-9ae4-4de7-9aa4-b314f7a2677f",
+                "comment": "Delgado is making progress and is throwing from 75 feet now, according to a report from the Arizona Republic.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-07-16",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "310eeff6-b3b1-4479-8ff2-50f882ad6f15",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Steven",
+            "last_name": "Hathaway",
+            "jersey_number": "32",
+            "preferred_name": "Steve",
+            "injuries": [{
+                "id": "e38d4a67-577c-4322-97fa-a4736dc8984d",
+                "comment": "The Arizona Diamondbacks transferred LHP Steve Hathaway from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-04-01",
+                "update_date": "2017-05-05"
+            }]
+        }]
+    }, {
+        "name": "Braves",
+        "abbr": "ATL",
+        "market": "Atlanta",
+        "id": "12079497-e414-450a-8bf2-29f91de646bf",
+        "players": [{
+            "id": "129e1375-99bd-4c66-bab5-91c5534173be",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Daniel",
+            "last_name": "Winkler",
+            "preferred_name": "Daniel",
+            "injuries": [{
+                "id": "093cfec0-f465-4b65-af12-7a836d951243",
+                "comment": "The Braves sent Winkler out on a rehab assignment.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-08",
+                "update_date": "2017-06-17"
+            }]
+        }, {
+            "id": "223a12e0-a5aa-41ed-8b7f-f99a21d8d59a",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Adonis",
+            "last_name": "Garcia",
+            "jersey_number": "13",
+            "preferred_name": "Adonis",
+            "injuries": [{
+                "id": "1386a13b-b083-4214-be7f-25b641158f28",
+                "comment": "The Braves announced that Garcia had surgery to repair ligament damage in his left ring finger and that he's expected to miss about two months of action.",
+                "desc": "Finger",
+                "status": "D10",
+                "start_date": "2017-06-07",
+                "update_date": "2017-06-14"
+            }]
+        }, {
+            "id": "f4c666e5-2a05-4258-8ddc-da6e0cffdb57",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Matthew",
+            "last_name": "Kemp",
+            "jersey_number": "27",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "543fef29-91c0-480a-9d6f-9323e125177a",
+                "comment": "The Atlanta Braves placed OF Matt Kemp on the 10-day disabled list with a right hamstring strain.",
+                "desc": "Hamstrimg",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-29"
+            }]
+        }, {
+            "id": "9392c990-4a5e-4364-8a85-15c1d8655621",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Armando",
+            "last_name": "Rivero",
+            "jersey_number": "69",
+            "preferred_name": "Armando",
+            "injuries": [{
+                "id": "623899f3-cb09-4f39-9dde-3ce08dd8c7e1",
+                "comment": "The Atlanta Braves transferred RHP Armando Rivero from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-07-17"
+            }]
+        }, {
+            "id": "57943e75-0e1c-4b96-8ded-479db4a6351c",
+            "status": "A",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Julio",
+            "last_name": "Teherán",
+            "jersey_number": "49",
+            "preferred_name": "Julio",
+            "injuries": [{
+                "id": "a5750dcb-24bf-440d-ae83-a234b9b92bd1",
+                "comment": "Teheran said he feels good and should be able to make his next start, according to Mark Bowman of MLB.com.",
+                "desc": "Thigh",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-02",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "01e1aa95-0cf7-4220-8d1c-dc756c6075e1",
+            "status": "A",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Matthew",
+            "last_name": "Adams",
+            "jersey_number": "18",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "b59dc592-6e9c-44a0-9058-7d5d0a3806fb",
+                "comment": "Adams is not in the starting lineup for Thursday's game (Aug. 3) against the Dodgers.",
+                "desc": "Illness",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "d46a1bef-950a-4bd9-90b6-03537cc9bf52",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Ian",
+            "last_name": "Krol",
+            "jersey_number": "46",
+            "preferred_name": "Ian",
+            "injuries": [{
+                "id": "ce2e0b7d-6f88-4fcd-b631-2fdcea994ba1",
+                "comment": "The Atlanta Braves placed LHP Ian Krol on the 10-day disabled list with a strained left oblique.",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "bc1adfc1-d812-4877-ba45-897d7ba00481",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Jacob",
+            "last_name": "Lindgren",
+            "jersey_number": "68",
+            "preferred_name": "Jacob",
+            "injuries": [{
+                "id": "d913afe1-7c29-4574-a4f4-3a67bc331118",
+                "comment": "The Atlanta Braves placed LHP Jacob Lindgren on the 60-day disabled list as he recovers from Tommy John surgery.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-15",
+                "update_date": "2017-02-15"
+            }]
+        }]
+    }, {
+        "name": "Rangers",
+        "abbr": "TEX",
+        "market": "Texas",
+        "id": "d99f919b-1534-4516-8e8a-9cd106c6d8cd",
+        "players": [{
+            "id": "8ad5b50f-e381-4654-8479-583d62e2ff29",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Tyson",
+            "last_name": "Ross",
+            "jersey_number": "44",
+            "preferred_name": "Tyson",
+            "injuries": [{
+                "id": "0afa9f66-8125-4e19-9526-fa282c8a02ec",
+                "comment": "Ross is expected to make a rehab start on Saturday (Aug. 5), according to Jeff Wilson of the Fort Worth Star-Telegram.",
+                "desc": "Finger",
+                "status": "D10",
+                "start_date": "2017-07-24",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "e50ba0dc-3c6c-43e7-ba03-48f3ecef10c5",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Alexander",
+            "last_name": "González",
+            "jersey_number": "21",
+            "preferred_name": "Chi Chi",
+            "injuries": [{
+                "id": "151ce9b1-94d0-43c5-9047-c2e6a9e875e3",
+                "comment": "Gonzalez will have an MRI on Thursday (May 4), according to Stefan Stevenson of the Fort Worth Star-Telegram. The team will then gauge where to go from there.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-18",
+                "update_date": "2017-04-28"
+            }]
+        }, {
+            "id": "17c0c208-3c37-4553-b37f-a99ba885a206",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Hanser",
+            "last_name": "Alberto",
+            "jersey_number": "2",
+            "preferred_name": "Hanser",
+            "injuries": [{
+                "id": "650fd670-fc44-437a-bd5a-3d959af223ed",
+                "comment": "Alberto began a rehab assignment on Thursday (June 1), according to Stefan Stevenson of the Fort Worth Star-Telegram.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-06-01"
+            }]
+        }, {
+            "id": "85d0ebf6-ef39-4fa6-acc9-d8c4a863a6c9",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "DH",
+            "first_name": "Prince",
+            "last_name": "Fielder",
+            "jersey_number": "84",
+            "preferred_name": "Prince",
+            "injuries": [{
+                "id": "aec4b91f-678c-41ce-9e73-926bb7519f9b",
+                "comment": "INF Prince Fielder will be placed on the 60-day disabled list closer to the 2017 regular season. After undergoing a second neck surgery, there is no plans for Fielder to ever play again.",
+                "desc": "Neck",
+                "status": "D60",
+                "start_date": "2016-07-20",
+                "update_date": "2017-02-14"
+            }]
+        }, {
+            "id": "b469052e-5b3b-42fa-bfe5-bdd91c6ccee5",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Jacob",
+            "last_name": "Diekman",
+            "jersey_number": "41",
+            "preferred_name": "Jake",
+            "injuries": [{
+                "id": "db92b607-6bc9-47d4-ad30-579243889c9d",
+                "comment": "Diekman threw a successful bullpen session on Thursday (July 20), according to Evan Grant of the Dallas Morning News.",
+                "desc": "Colon",
+                "status": "D60",
+                "start_date": "2017-01-18",
+                "update_date": "2017-07-20"
+            }]
+        }]
+    }, {
+        "name": "Dodgers",
+        "abbr": "LAD",
+        "market": "Los Angeles",
+        "id": "ef64da7f-cfaf-4300-87b0-9313386b977c",
+        "players": [{
+            "id": "10154eef-8834-48e0-97e7-d7436367534c",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Adrián",
+            "last_name": "González",
+            "jersey_number": "23",
+            "preferred_name": "Adrián",
+            "injuries": [{
+                "id": "0b842c60-9bd3-40fe-afe9-3dbdae78b18f",
+                "comment": "Gonzalez will begin a minor-league rehab assignment with Triple-A Oklahoma City on Thursday (Aug. 3), according to Bill Shaikin of the Los Angeles Times. ",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-06-11",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "79ad0ac3-8b77-4989-b50f-a7ca99c87db6",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Adam",
+            "last_name": "Liberatore",
+            "jersey_number": "36",
+            "preferred_name": "Adam",
+            "injuries": [{
+                "id": "1d99dd7e-3211-4637-8583-6a53fef487e5",
+                "comment": "The Los Angeles Dodgers placed LHP Adam Liberatore on the 60-day disabled list with left forearm tightness.\r\n",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-06-01",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "d3351c6e-12cf-4ab5-b651-ad23d49c4245",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Clayton",
+            "last_name": "Kershaw",
+            "jersey_number": "22",
+            "preferred_name": "Clayton",
+            "injuries": [{
+                "id": "2550e1ab-b044-4b77-b894-e57ad8b2b327",
+                "comment": "Fox Sports' Ken Rosenthal is reporting that Kershaw will miss four-to-six weeks.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-23",
+                "update_date": "2017-07-24"
+            }]
+        }, {
+            "id": "fb365be0-51ac-4b55-9b4f-2d1ef838ad32",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Grant",
+            "last_name": "Dayton",
+            "jersey_number": "75",
+            "preferred_name": "Grant",
+            "injuries": [{
+                "id": "84c84c39-3c3c-41fb-8342-cdcf34166145",
+                "comment": "The Los Angeles Dodgers placed LHP Grant Dayton on the 10-day disabled list.",
+                "desc": "Neck",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-29"
+            }]
+        }, {
+            "id": "eff0cb3e-f6eb-403c-afae-442d71235d5e",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Alvin",
+            "last_name": "Toles",
+            "jersey_number": "60",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "90a44fdf-03f0-4fc9-8863-315892403769",
+                "comment": "The Dodgers announced that Toles tore his right ACL. He's expected to have surgery in the next few weeks.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-05-09",
+                "update_date": "2017-05-10"
+            }]
+        }, {
+            "id": "46d96513-fa0b-4788-8f24-ac9b415ab6d6",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Franklin",
+            "last_name": "Gutiérrez",
+            "jersey_number": "28",
+            "preferred_name": "Franklin",
+            "injuries": [{
+                "id": "97a943e7-ed1c-4805-9f87-6bfbd434dba7",
+                "comment": "The Los Angeles Dodgers transferred OF Franklin Gutiérrez from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Back",
+                "status": "D60",
+                "start_date": "2017-06-25",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "f958ef87-d526-40ee-a386-ae4af18a7e98",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Robert",
+            "last_name": "Segedin",
+            "jersey_number": "25",
+            "preferred_name": "Rob",
+            "injuries": [{
+                "id": "b3255ed2-2ebd-46f9-b061-7a820cbae639",
+                "comment": "Segedin needs surgery on his wrist, according to Andy McCullough of the Los Angeles Times. He's expected to miss at least another four-to-six weeks.",
+                "desc": "Toe",
+                "status": "D60",
+                "start_date": "2017-04-19",
+                "update_date": "2017-05-27"
+            }]
+        }, {
+            "id": "3731cc61-f348-4155-bccc-a46a2a7edbf3",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Yimi",
+            "last_name": "Garcia",
+            "jersey_number": "63",
+            "preferred_name": "Yimi",
+            "injuries": [{
+                "id": "dda00fdb-8276-4643-99be-53a898ae7c76",
+                "comment": "The Los Angeles Dodgers placed RHP Yimi Garcia on the 60-day disabled list. Garcia had Tommy John surgery in October of 2016 and is expected to miss the entire 2017 season.",
+                "desc": "Arm",
+                "status": "D60",
+                "start_date": "2016-12-16",
+                "update_date": "2017-02-15"
+            }]
+        }, {
+            "id": "785c0240-f785-4090-a6ac-9e858f7dc245",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "David",
+            "last_name": "Hatcher",
+            "jersey_number": "41",
+            "preferred_name": "Chris",
+            "injuries": [{
+                "id": "e03035eb-471c-4212-92d1-685062f2cc6f",
+                "comment": "Hatcher will begin a rehab assignment with Triple-A Oklahoma City on Friday (Aug. 4), according to Bill Shaikin of the Los Angeles Times.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-06-23",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "c8488db1-1ad6-4e69-9072-56422bc3f1b1",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Brandon",
+            "last_name": "McCarthy",
+            "jersey_number": "38",
+            "preferred_name": "Brandon",
+            "injuries": [{
+                "id": "f0cf9ce7-0485-4518-a4f0-6a9bcd92271e",
+                "comment": "The Los Angeles Dodgers placed RHP Brandon McCarthy on the 10-day disabled list with a blisters.",
+                "desc": "Finger",
+                "status": "D10",
+                "start_date": "2017-07-24",
+                "update_date": "2017-07-24"
+            }]
+        }, {
+            "id": "421311da-1096-454a-b98e-bf47070d1b8f",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Scott",
+            "last_name": "Kazmir",
+            "jersey_number": "29",
+            "preferred_name": "Scott",
+            "injuries": [{
+                "id": "f188ceac-8aff-405f-9836-cae92df571a7",
+                "comment": "Kazmir is expected to make another rehab start on Saturday (July 8), according to Eric Stephen of truebluela.com. He has not pitched in the majors this season due to an assortment of injuries.",
+                "desc": "Hip",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-07-08"
+            }]
+        }, {
+            "id": "e1a0286d-3b82-4f1e-b98d-74c056c755ca",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Andre",
+            "last_name": "Ethier",
+            "jersey_number": "16",
+            "preferred_name": "Andre",
+            "injuries": [{
+                "id": "f37442f2-10a7-42d9-8513-73c4f692861c",
+                "comment": "Manager Dave Roberts said he doesn't expected Ethier to return until after Sept. 1st when the rosters expand, according to David Vassegh of AM 570 in Los Angeles, CA.",
+                "desc": "Back",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-07-22"
+            }]
+        }]
+    }, {
+        "name": "Cubs",
+        "abbr": "CHC",
+        "market": "Chicago",
+        "id": "55714da8-fcaf-4574-8443-59bfb511a524",
+        "players": [{
+            "id": "408b2324-83a9-4366-a3b4-9883f2c46260",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Addison",
+            "last_name": "Russell",
+            "jersey_number": "27",
+            "preferred_name": "Addison",
+            "injuries": [{
+                "id": "0b9c3357-921b-429b-8a5f-41ca283a76a4",
+                "comment": "The Chicago Cubs placed INF Addison Russell on the 10-day disabled list with a right foot strain.",
+                "desc": "Foot",
+                "status": "D10",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-04"
+            }]
+        }]
+    }, {
+        "name": "Royals",
+        "abbr": "KC",
+        "market": "Kansas City",
+        "id": "833a51a9-0d84-410f-bd77-da08c3e5e26e",
+        "players": [{
+            "id": "03fe9527-5071-4ae1-b521-0a222e41e581",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Paulo",
+            "last_name": "Orlando",
+            "jersey_number": "16",
+            "preferred_name": "Paulo",
+            "injuries": [{
+                "id": "103fadac-c980-4d32-8064-76cf44029f7b",
+                "comment": "Orlando will resume his minor-league rehab assignment on Thursday (Aug. 3) at Double-A Northwest Arkansas, according to Jeffrey Flanagan of MLB.com.",
+                "desc": "Tibia",
+                "status": "D60",
+                "start_date": "2017-06-01",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "77817a36-b646-42ec-94cf-95958b55c641",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Cheslor",
+            "last_name": "Cuthbert",
+            "jersey_number": "19",
+            "preferred_name": "Cheslor",
+            "injuries": [{
+                "id": "4c4792fa-fab5-4370-afaf-d6ef43d15a67",
+                "comment": "Cuthbert has suffered a setback during his rehab stint, according to Jeffrey Flanagan of MLB.com. ",
+                "desc": "Wrist",
+                "status": "D10",
+                "start_date": "2017-06-28",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "c2d29fb1-a45d-4fce-b6ae-9eb49ea1d70d",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Nathan",
+            "last_name": "Karns",
+            "jersey_number": "55",
+            "preferred_name": "Nate",
+            "injuries": [{
+                "id": "9be7c822-3a5b-4ff1-a7df-45e26c5d897a",
+                "comment": "Karns had thoracic outlet syndrome surgery and hopes to be ready by spring training for the 2018 season, according to Jeffrey Flanagan of MLB.com.",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-05-19",
+                "update_date": "2017-07-20"
+            }]
+        }, {
+            "id": "35a8a1b4-88fe-41a7-becb-6fbf97db70f0",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Matthew",
+            "last_name": "Strahm",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "a2b3358a-b4fe-4701-835d-26188c8ac6fc",
+                "comment": "Strahm had season-ending knee surgery to repair a torn patellar tendon in his left knee, according to Rustin Dodd of the Kansas City Star.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-07-01",
+                "update_date": "2017-07-08"
+            }]
+        }, {
+            "id": "9baf07d4-b1cb-4494-8c95-600d9e8de1a9",
+            "status": "A",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Salvador",
+            "last_name": "Pérez",
+            "jersey_number": "13",
+            "preferred_name": "Salvador",
+            "injuries": [{
+                "id": "aeff6e58-ae7c-45a3-9903-acca259b386b",
+                "comment": "Perez will have an MRI on his right side after he was pulled from Friday's game (Aug. 4) early, according to Jeffrey Flanagan of MLB.com.",
+                "desc": "Side",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }]
+    }, {
+        "name": "Phillies",
+        "abbr": "PHI",
+        "market": "Philadelphia",
+        "id": "2142e1ba-3b40-445c-b8bb-f1f8b1054220",
+        "players": [{
+            "id": "4c240273-0fbb-4d5f-a2b1-b4ee48b43c2a",
+            "status": "A",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Andrew",
+            "last_name": "Knapp",
+            "jersey_number": "34",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "13cf3661-0d51-4a5c-a6d9-f25657ababaf",
+                "comment": "Knapp left Thursday's game (Aug. 3) early with a bruised right hand after he took a foul ball off of it, according to Todd Zolecki of MLB.com.",
+                "desc": "Hand",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "a8935d7c-c25e-40f0-b7cc-83a17fb46d20",
+            "status": "A",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Aaron",
+            "last_name": "Altherr",
+            "jersey_number": "23",
+            "preferred_name": "Aaron",
+            "injuries": [{
+                "id": "6f01d901-8495-46c7-911c-71674021b859",
+                "comment": "Altherr has landed on the DL after aggravating his injured hamstring in Friday's game (Aug. 4), according to Matt Gelb of the Philadelphia Inquirer.",
+                "desc": "Hamstring",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "a169e8eb-3e65-4603-bd46-4a293cef9954",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Pedro",
+            "last_name": "Beato",
+            "jersey_number": "47",
+            "preferred_name": "Pedro",
+            "injuries": [{
+                "id": "74371eb3-a0c0-4f09-b25b-babba76766c7",
+                "comment": "The Philadelphia Phillies placed RHP Pedro Beato on the 10-day disabled list with a left hamstring strain.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-07-30",
+                "update_date": "2017-07-30"
+            }]
+        }, {
+            "id": "1da8f60d-0741-4b61-811c-1acca32b4393",
+            "status": "A",
+            "position": "OF",
+            "primary_position": "2B",
+            "first_name": "Howie",
+            "last_name": "Kendrick",
+            "jersey_number": "4",
+            "preferred_name": "Howie",
+            "injuries": [{
+                "id": "74b92d89-8c18-45aa-bba4-9bcaf558630a",
+                "comment": "Kendrick is not in the Phillies' lineup for Friday's (July 28) against the Braves.",
+                "desc": "Hand",
+                "status": "Day-to-Day",
+                "start_date": "2017-07-26",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "17f41dd6-d2e9-41cf-83f3-7e6cd07f3171",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Clay",
+            "last_name": "Buchholz",
+            "jersey_number": "21",
+            "preferred_name": "Clay",
+            "injuries": [{
+                "id": "d902b3c4-ce09-45d4-9a74-191ea54a59d8",
+                "comment": "Buchholz said he hopes to pitch in September, according to Todd Zolecki of MLB.com. ",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-04-12",
+                "update_date": "2017-04-26"
+            }]
+        }, {
+            "id": "913a1c1a-2a80-4a9b-87ed-b623567aa640",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Casey",
+            "last_name": "Fien",
+            "jersey_number": "54",
+            "preferred_name": "Casey",
+            "injuries": [{
+                "id": "faf64923-0085-48f8-96b4-f52dfec4d5df",
+                "comment": "The Philadelphia Phillies transferred RHP Casey Fien from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-06-23",
+                "update_date": "2017-07-10"
+            }]
+        }]
+    }, {
+        "name": "Twins",
+        "abbr": "MIN",
+        "market": "Minnesota",
+        "id": "aa34e0ed-f342-4ec6-b774-c79b47b60e2d",
+        "players": [{
+            "id": "aecc630f-57da-4b23-842b-fd65394e81be",
+            "status": "A",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Miguel",
+            "last_name": "Sano",
+            "jersey_number": "22",
+            "preferred_name": "Miguel",
+            "injuries": [{
+                "id": "1423bcb5-cee1-4940-9ced-865f0dfcf6d0",
+                "comment": "Sano is dealing with a bruised left hand after he was hit by a pitch in Friday's game (Aug. 4), according to Mike Berardino of the St. Paul Pioneer Press.",
+                "desc": "Hand",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "3c0813bf-0d4b-4ec7-9ecb-4a3db0936de4",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Héctor",
+            "last_name": "Santiago",
+            "jersey_number": "53",
+            "preferred_name": "Héctor",
+            "injuries": [{
+                "id": "3bf8e2d3-e809-4f9c-bcd9-b5b3c2d09143",
+                "comment": "Santiago is slated to start a rehab assignment on Tuesday (July 25), according to Mike Berardino of the St. Paul Pioneer Press.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-05",
+                "update_date": "2017-07-22"
+            }]
+        }, {
+            "id": "c182d4ce-7604-47b4-8477-a6392ec357ec",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Glen",
+            "last_name": "Perkins",
+            "jersey_number": "15",
+            "preferred_name": "Glen",
+            "injuries": [{
+                "id": "7fd892c9-b5c9-4f67-a9f2-e70a638cc9db",
+                "comment": "Perkins will shut his rehab down for a week due to a bout of biceps tendinitis, according to a report in the Minneapolis Star-Tribune.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-02-10",
+                "update_date": "2017-06-21"
+            }]
+        }, {
+            "id": "35ce7a31-2143-4062-998f-1d30dc7d45a6",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Trevor",
+            "last_name": "May",
+            "jersey_number": "65",
+            "preferred_name": "Trevor",
+            "injuries": [{
+                "id": "b7b24c8c-ec48-4787-9875-2feb90db1d7f",
+                "comment": "The Minnesota Twins placed RHP Trevor May on the 60-day disabled list. He had Tommy John surgery on his elbow and will miss the 2017 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-11",
+                "update_date": "2017-03-22"
+            }]
+        }, {
+            "id": "29649035-2cea-4842-85e7-7793b2c952ee",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Ryan",
+            "last_name": "O'Rourke",
+            "jersey_number": "61",
+            "preferred_name": "Ryan",
+            "injuries": [{
+                "id": "c3294ab9-bbe6-4414-96e2-2ab59823ebdf",
+                "comment": "The Twins transferred O'Rourke from the 10-day disabled list to the 60-day disabled list. The team announced on April 25 that he has a partially torn UCL in his elbow and will need surgery.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-21",
+                "update_date": "2017-04-25"
+            }]
+        }, {
+            "id": "58c04e67-c521-4331-bad7-262a538b4996",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Justin",
+            "last_name": "Haley",
+            "preferred_name": "Justin",
+            "injuries": [{
+                "id": "d6e22f28-80a0-4e3c-aa61-b9c1c5507bb9",
+                "comment": "Haley has been throwing up to 90 feet without discomfort, according to Mike Berardino of the St. Paul Pioneer Press.",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-05-28",
+                "update_date": "2017-06-08"
+            }]
+        }, {
+            "id": "066fd376-96cb-4504-b531-138d8082a436",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Philip",
+            "last_name": "Hughes",
+            "jersey_number": "45",
+            "preferred_name": "Phil",
+            "injuries": [{
+                "id": "e6f558e3-f6c0-4bbe-b30f-be7391225252",
+                "comment": "Manager Paul Molitor confirmed that Hughes is likely headed for season-ending surgery, according to Mike Berardino of the St. Paul Pioneer Press.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-07-18",
+                "update_date": "2017-08-03"
+            }]
+        }]
+    }, {
+        "name": "Cardinals",
+        "abbr": "STL",
+        "market": "St. Louis",
+        "id": "44671792-dc02-4fdd-a5ad-f5f17edaa9d7",
+        "players": [{
+            "id": "a91b5de2-7809-4c9c-b67a-409835c5f17e",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "William",
+            "last_name": "Fowler",
+            "jersey_number": "25",
+            "preferred_name": "Dexter",
+            "injuries": [{
+                "id": "151f67cc-36e1-48ed-b609-4055aaba5c33",
+                "comment": "The Cardinals placed OF Dexter Fowler on the 10-day disabled list with a left forearm strain.",
+                "desc": "Forearm",
+                "status": "D10",
+                "start_date": "2017-07-25",
+                "update_date": "2017-07-25"
+            }]
+        }, {
+            "id": "c399c961-1b45-430c-858e-f0a33ae0af85",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Adam",
+            "last_name": "Wainwright",
+            "jersey_number": "50",
+            "preferred_name": "Adam",
+            "injuries": [{
+                "id": "8d42ab85-31aa-4bf2-8543-652ef581d7aa",
+                "comment": "Wainwright will return Sunday (Aug. 6) against the Reds, according to Jenifer Langosch of MLB.com. ",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-25",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "51de8401-3d3a-4483-acba-74f3d3395de0",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Álexander",
+            "last_name": "Reyes",
+            "jersey_number": "61",
+            "preferred_name": "Álex",
+            "injuries": [{
+                "id": "9d5d8275-4166-41a8-880b-734253ec35a9",
+                "comment": "Reyes announced that he's started a throwing program. He's missing the entire 2017 season after having Tommy John surgery before the season started.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-15",
+                "update_date": "2017-07-21"
+            }]
+        }, {
+            "id": "b3184a4c-ee13-47b5-a96a-f6b391cd9615",
+            "status": "A",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Kevin",
+            "last_name": "Siegrist",
+            "jersey_number": "46",
+            "preferred_name": "Kevin",
+            "injuries": [{
+                "id": "eca62435-322a-4b5e-8a19-7f9c260b3436",
+                "comment": "President of Baseball Operations John Mozeliak said he's optimistic Siegrist will return next week, according to Jenifer Langosch of MLB.com.",
+                "desc": "Spine",
+                "status": "D10",
+                "start_date": "2017-06-25",
+                "update_date": "2017-06-30"
+            }]
+        }]
+    }, {
+        "name": "Mets",
+        "abbr": "NYM",
+        "market": "New York",
+        "id": "f246a5e5-afdb-479c-9aaa-c68beeda7af6",
+        "players": [{
+            "id": "ca76bc43-cb83-4a81-ac5d-2bef6b5711b5",
+            "status": "A",
+            "position": "IF",
+            "primary_position": "2B",
+            "first_name": "Neil",
+            "last_name": "Walker",
+            "jersey_number": "20",
+            "preferred_name": "Neil",
+            "injuries": [{
+                "id": "16a481f7-07e6-4525-9ea2-87fbecd5c84f",
+                "comment": "Walker has been activated from the 10-day disabled list.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-06-14",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "6e86edc9-b40a-4ab2-b8ec-8b751041bc62",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Tomaso",
+            "last_name": "Milone",
+            "jersey_number": "29",
+            "preferred_name": "Tommy",
+            "injuries": [{
+                "id": "1aafa4e7-ce6f-4d0b-b4bd-0fd988ddbd13",
+                "comment": "The Mets sent Milone on a rehab assignment.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-05-24",
+                "update_date": "2017-07-26"
+            }]
+        }, {
+            "id": "a05b7bca-ea4b-4e56-99de-293371efc979",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Matthew",
+            "last_name": "Harvey",
+            "jersey_number": "33",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "52b17e91-5dbc-4ecc-aa41-a955b603ab22",
+                "comment": "Harvey is slated to throw his first bullpen session on Sunday (Aug. 6), according to Anthony DiComo of MLB.com.",
+                "desc": "Arm",
+                "status": "D10",
+                "start_date": "2017-06-14",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "36b4b6dd-e5e5-4958-bc86-685f5a0db96c",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Thomas",
+            "last_name": "Rivera",
+            "jersey_number": "54",
+            "preferred_name": "T.J.",
+            "injuries": [{
+                "id": "61d81821-34a7-4d40-b176-27718529f955",
+                "comment": "Rivera has been placed on the 10-day disabled list.",
+                "desc": "Arm",
+                "status": "D10",
+                "start_date": "2017-07-27",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "bba23f9e-8aac-454a-b8ca-9373b5d1e5b8",
+            "status": "A",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Brandon",
+            "last_name": "Nimmo",
+            "jersey_number": "9",
+            "preferred_name": "Brandon",
+            "injuries": [{
+                "id": "8f8edb52-30a2-4aaf-a314-36d91da0573b",
+                "comment": "The New York Mets placed OF Brandon Nimmo on the 10-day disabled list with a partially collapsed lung.",
+                "desc": "Lung",
+                "status": "D10",
+                "start_date": "2017-07-08",
+                "update_date": "2017-07-08"
+            }]
+        }, {
+            "id": "a95d91c3-2351-4a3a-8d74-c8e34da329dd",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Robert",
+            "last_name": "Gsellman",
+            "jersey_number": "65",
+            "preferred_name": "Robert",
+            "injuries": [{
+                "id": "9509c179-cb0d-419e-aeeb-93cac89b5ace",
+                "comment": "Gsellman threw three shutout innings in a rehab start on Tuesday (Aug. 1) for Double-A Binghamton. He's due back in a couple weeks.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-06-27",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "0d19def3-bd18-473c-b6f8-5b92b017f27f",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Noah",
+            "last_name": "Syndergaard",
+            "jersey_number": "34",
+            "preferred_name": "Noah",
+            "injuries": [{
+                "id": "9d88f95e-c0da-4f55-9afa-f303fdadb27e",
+                "comment": "Syndergaard is about two weeks from throwing off the slope of a mound, according to Anthony DiComo of MLB.com.",
+                "desc": "Lat",
+                "status": "D60",
+                "start_date": "2017-05-07",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "4f82d295-a42a-4520-9844-35362a25d037",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Jeurys",
+            "last_name": "Familia",
+            "jersey_number": "27",
+            "preferred_name": "Jeurys",
+            "injuries": [{
+                "id": "a5ef74ac-d3ed-43f4-9efa-b05dbd98ba80",
+                "comment": "General Manager Sandy Alderson said Familia could return by the third week in August, according to Anthony DiComo of MLB.com.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-11",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "2206c828-bfb2-4704-ab1f-6d79e965bc1a",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "David",
+            "last_name": "Wright",
+            "jersey_number": "5",
+            "preferred_name": "David",
+            "injuries": [{
+                "id": "a9af6fc6-99c7-4481-9020-53def65f5f16",
+                "comment": "Wright is throwing, hitting and fielding again, according to James Wagner of the New York Times. There is no timetable for his return.",
+                "desc": "Neck",
+                "status": "D60",
+                "start_date": "2017-02-18",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "aacf4eee-3371-4ec4-870a-9012fd69e629",
+            "status": "A",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Hansel",
+            "last_name": "Robles",
+            "jersey_number": "47",
+            "preferred_name": "Hansel",
+            "injuries": [{
+                "id": "bec9e6e7-c94e-4b18-9dbb-051be134dba0",
+                "comment": "Robles said he dealt with numbness in his fingers and a pinched mid-section in Thursday's game (Aug. 3), according to Mike Puma of the New York Post. It's not clear if he will miss any time.",
+                "desc": "Fingers",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "f2c07e82-71e8-4c76-962b-3a7739a11626",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Zachary",
+            "last_name": "Wheeler",
+            "jersey_number": "45",
+            "preferred_name": "Zack",
+            "injuries": [{
+                "id": "c19f3846-03ab-4c24-8a28-26654a51f2a9",
+                "comment": "The New York Mets placed RHP Zack Wheeler on the 10-day disabled list, retroactive to July 23, with a stress reaction in his right arm.",
+                "desc": "Arm",
+                "status": "D10",
+                "start_date": "2017-07-24",
+                "update_date": "2017-07-24"
+            }]
+        }, {
+            "id": "5e835495-61b6-411b-b454-48380d4cd665",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Juan",
+            "last_name": "Lagares",
+            "jersey_number": "12",
+            "preferred_name": "Juan",
+            "injuries": [{
+                "id": "e63dff1e-ea14-42c6-b47f-01c6e03fdc7e",
+                "comment": "Lagares has been placed on the 10-day disabled list with a left thumb fracture.",
+                "desc": "Thumb",
+                "status": "D10",
+                "start_date": "2017-06-16",
+                "update_date": "2017-06-16"
+            }]
+        }, {
+            "id": "fae16ac1-d99d-4626-83c2-0a8e89545a2b",
+            "status": "A",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Christoper",
+            "last_name": "Flexen",
+            "jersey_number": "64",
+            "preferred_name": "Chris",
+            "injuries": [{
+                "id": "e768e525-3edd-401b-8c04-1f985d412413",
+                "comment": "Flexen left Wednesday's game (Aug. 2) early with a blister on his right index finger, according to James Wagner of the New York Times.",
+                "desc": "Finger",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-02",
+                "update_date": "2017-08-03"
+            }]
+        }]
+    }, {
+        "name": "Padres",
+        "abbr": "SD",
+        "market": "San Diego",
+        "id": "d52d5339-cbdd-43f3-9dfa-a42fd588b9a3",
+        "players": [{
+            "id": "cd417c1f-ecec-4a64-907a-bbb2b04d8507",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Colin",
+            "last_name": "Rea",
+            "jersey_number": "29",
+            "preferred_name": "Colin",
+            "injuries": [{
+                "id": "1c39c2a3-1d73-4cf5-befb-04f26f937cb8",
+                "comment": "The Padres placed Rea on the 60-day disabled list.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-19",
+                "update_date": "2017-02-19"
+            }]
+        }, {
+            "id": "0eea494b-6080-4c21-80d7-ddf9ef26f3da",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Robert",
+            "last_name": "Erlin",
+            "jersey_number": "41",
+            "preferred_name": "Robbie",
+            "injuries": [{
+                "id": "22a369e4-2f68-4074-b3ef-4768d62de3b5",
+                "comment": "LHP Robbie Erlin is not expected to return to action until possibly halfway through the 2017 season as he recovers from Tommy John surgery.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2016-04-21",
+                "update_date": "2017-03-30"
+            }]
+        }, {
+            "id": "0e9f44d3-ca05-4e6c-a99f-7c96d3321a3b",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Christian",
+            "last_name": "Friedrich",
+            "jersey_number": "53",
+            "preferred_name": "Christian",
+            "injuries": [{
+                "id": "28fb1ef0-d7fc-4578-bc42-c99dc68cdfa0",
+                "comment": "Friedrich is dealing with elbow tenderness and will get some tests for it, according to AJ Cassavell of MLB.com.",
+                "desc": "Lat",
+                "status": "D60",
+                "start_date": "2017-03-25",
+                "update_date": "2017-07-07"
+            }]
+        }, {
+            "id": "3354b4e8-db91-4217-a89a-5f7d3b96e667",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Miguel",
+            "last_name": "Diaz",
+            "jersey_number": "43",
+            "preferred_name": "Miguel",
+            "injuries": [{
+                "id": "38a1f4d3-ba0a-4443-8002-a0090bb81cf5",
+                "comment": "Diaz will resume a throwing program sometime later this week, according to Jeff Sanders of the San Diego Union-Tribune.",
+                "desc": "Forearm",
+                "status": "D10",
+                "start_date": "2017-06-21",
+                "update_date": "2017-07-02"
+            }]
+        }, {
+            "id": "ad8e25e8-e28a-416e-9952-32088769f0f0",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Alexander",
+            "last_name": "Dickerson",
+            "jersey_number": "24",
+            "preferred_name": "Alex",
+            "injuries": [{
+                "id": "44a40d62-2ec0-4475-86be-56e7306b5896",
+                "comment": "Dickerson had a setback with his back injury, and may be considering season-ending surgery, according to Dennis Lin of the San Diego Union-Tribune.",
+                "desc": "Back",
+                "status": "D60",
+                "start_date": "2017-03-16",
+                "update_date": "2017-06-13"
+            }]
+        }, {
+            "id": "9ebd933f-8400-4f1f-93fd-61d4055237f2",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Erick",
+            "last_name": "Aybar",
+            "jersey_number": "8",
+            "preferred_name": "Erick",
+            "injuries": [{
+                "id": "61cadb50-8258-47a2-a938-1e909b5e4e71",
+                "comment": "The San Diego Padres placed INF Erick Aybar on the 10-day disabled list with a left foot contusion.",
+                "desc": "Foot",
+                "status": "D10",
+                "start_date": "2017-07-22",
+                "update_date": "2017-07-22"
+            }]
+        }, {
+            "id": "e27b8c66-79c6-4291-bf9a-effce3049ed6",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Jered",
+            "last_name": "Weaver",
+            "jersey_number": "27",
+            "preferred_name": "Jered",
+            "injuries": [{
+                "id": "7b5fd11a-de9f-4664-904f-a001774018ec",
+                "comment": "The San Diego Padres transferred RHP Jered Weaver from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Hip",
+                "status": "D60",
+                "start_date": "2017-05-20",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "ef8c2a8f-468b-45e5-8fd0-1f8d7bd70b88",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Jarred",
+            "last_name": "Cosart",
+            "jersey_number": "55",
+            "preferred_name": "Jarred",
+            "injuries": [{
+                "id": "b5109a0c-ee0a-40ee-8937-891be4a020b6",
+                "comment": "Cosart has been transferred to the 60-day disabled list.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-06-06",
+                "update_date": "2017-07-27"
+            }]
+        }]
+    }, {
+        "name": "Rockies",
+        "abbr": "COL",
+        "market": "Colorado",
+        "id": "29dd9a87-5bcc-4774-80c3-7f50d985068b",
+        "players": [{
+            "id": "a920073f-154b-4173-a8ff-aed0b2c22711",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Tyler",
+            "last_name": "Anderson",
+            "jersey_number": "44",
+            "preferred_name": "Tyler",
+            "injuries": [{
+                "id": "20c18b94-2e21-4587-b26b-30c3658ff4da",
+                "comment": "The Colorado Rockies transferred LHP Tyler Anderson from the 10-day disabled list to the 60-day disabled list as he recovers from surgery on his left knee.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-06-25",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "fac92698-ed41-4615-8e1e-cd552612c5cf",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Ian",
+            "last_name": "Desmond",
+            "jersey_number": "20",
+            "preferred_name": "Ian",
+            "injuries": [{
+                "id": "4c7f8356-aa36-4117-baf1-74b9009aa338",
+                "comment": "Desmond is not available for Wednesday's (July 26) game, according to Patrick Saunders of the Denver Post.  ",
+                "desc": "Calf",
+                "status": "Day-to-Day",
+                "start_date": "2017-07-25",
+                "update_date": "2017-07-26"
+            }]
+        }, {
+            "id": "40b8f221-0229-4682-a77f-7b8a7a8fd855",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Jacob",
+            "last_name": "McGee",
+            "jersey_number": "51",
+            "preferred_name": "Jake",
+            "injuries": [{
+                "id": "6b887196-40b9-4932-b620-e73c2ca90268",
+                "comment": "McGee has been throwing and appears close to returning, according to Patrick Saunders of the Denver Post.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-30",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "d96b8771-4fd8-4fbe-ac50-4c5873bdb80e",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Chad",
+            "last_name": "Bettis",
+            "jersey_number": "35",
+            "preferred_name": "Chad",
+            "injuries": [{
+                "id": "8072891e-2c69-4a0f-b741-977e8571f614",
+                "comment": "Bettis is on track at this point to rejoin the Rockies on Aug. 13, according to a report from the Denver Post.",
+                "desc": "Testicular Cancer",
+                "status": "D60",
+                "start_date": "2017-03-10",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "e2081019-8ef0-471d-b6d6-1333a8a45897",
+            "status": "A",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Kyle",
+            "last_name": "Freeland",
+            "jersey_number": "31",
+            "preferred_name": "Kyle",
+            "injuries": [{
+                "id": "93481280-7d08-498b-8a69-b571e0767543",
+                "comment": "The Rockies announced that Freeland left Friday's game (Aug. 4) with a left groin strain.",
+                "desc": "Groin",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }]
+    }, {
+        "name": "White Sox",
+        "abbr": "CWS",
+        "market": "Chicago",
+        "id": "47f490cd-2f58-4ef7-9dfd-2ad6ba6c1ae8",
+        "players": [{
+            "id": "3e0dede1-0a9f-4ce5-b330-bbd49ff234e8",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Charles",
+            "last_name": "Tilson",
+            "jersey_number": "22",
+            "preferred_name": "Charles",
+            "injuries": [{
+                "id": "2124aa8a-5c99-4e0f-96c1-1670c89b4e5e",
+                "comment": "Tilson has been diagnosed with a stress fracture in his right ankle, and now will be shut down for four weeks, according to Scott Merkin of MLB.com.",
+                "desc": "Foot",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-06-30"
+            }]
+        }, {
+            "id": "12ba667b-f15c-4a7a-82ed-163153cb625d",
+            "status": "D7",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Willy",
+            "last_name": "Garcia",
+            "jersey_number": "61",
+            "preferred_name": "Willy",
+            "injuries": [{
+                "id": "2bf804e6-37b6-4508-b4b2-b990a56c7f91",
+                "comment": "The White Sox announced that a CT scan revealed that Garcia is dealing with a fractured right jaw. He's going to have a plate inserted into it and is expected to miss 4-6 weeks.",
+                "desc": "Head",
+                "status": "D7",
+                "start_date": "2017-07-31",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "6361af13-7847-49b4-8eca-98fcb9553422",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Nathan",
+            "last_name": "Jones",
+            "jersey_number": "65",
+            "preferred_name": "Nate",
+            "injuries": [{
+                "id": "309433d9-843a-481c-875d-400639e575f5",
+                "comment": "Jones underwent season-ending surgery on his elbow on Tuesday (July 12), according to MLB.com's Scott Merkin.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-05-04",
+                "update_date": "2017-07-13"
+            }]
+        }, {
+            "id": "abbda8e1-2274-4bf0-931c-691cf8bf24c6",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Avisail",
+            "last_name": "García",
+            "jersey_number": "26",
+            "preferred_name": "Avisail",
+            "injuries": [{
+                "id": "548b06a3-52d9-420f-b380-b1ecf1becbbc",
+                "comment": "The Chicago White Sox placed OF Avisail Garcia on the 10-day disabled list with a sprained right thumb.",
+                "desc": "Thumb",
+                "status": "D10",
+                "start_date": "2017-07-27",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "c1a52191-d693-40be-82a0-a4718b5a349f",
+            "status": "D60",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Geovany",
+            "last_name": "Soto",
+            "jersey_number": "18",
+            "preferred_name": "Geovany",
+            "injuries": [{
+                "id": "61b058d5-24e8-42e2-8f50-581f1e8b9814",
+                "comment": "The White Sox transferred Soto from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-05-09",
+                "update_date": "2017-05-15"
+            }]
+        }, {
+            "id": "7e520a84-4a8c-4aae-963a-8177a91f16cb",
+            "status": "A",
+            "position": "DH",
+            "primary_position": "DH",
+            "first_name": "Matthew",
+            "last_name": "Davidson",
+            "jersey_number": "24",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "75252af8-4a3b-40d6-a8b5-38923e9827e2",
+                "comment": "Davidson is not in the starting lineup for Friday's game (Aug. 4) against the Red Sox. The White Sox are hopeful he will be able to return on Saturday (Aug. 5).",
+                "desc": "Wrist",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "13b09db2-4de1-4452-b533-874d4f595121",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Dylan",
+            "last_name": "Covey",
+            "jersey_number": "68",
+            "preferred_name": "Dylan",
+            "injuries": [{
+                "id": "a18170ef-c851-4d15-a848-a1414da9bd47",
+                "comment": "The Chicago White Sox placed RHP Dylan Covey on the 10-day disabled list with a strained left oblique.",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-05-23",
+                "update_date": "2017-05-26"
+            }]
+        }, {
+            "id": "af556e45-2d40-4388-b07b-f1bbc8ab1f93",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Steven",
+            "last_name": "Putnam",
+            "jersey_number": "57",
+            "preferred_name": "Zach",
+            "injuries": [{
+                "id": "ccc2562b-2d0c-4427-8eed-fadc01d3784e",
+                "comment": "The White Sox announced Putnam underwent Tommy John surgery and will be out for the remainder of the 2017 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-22",
+                "update_date": "2017-06-28"
+            }]
+        }]
+    }, {
+        "name": "Reds",
+        "abbr": "CIN",
+        "market": "Cincinnati",
+        "id": "c874a065-c115-4e7d-b0f0-235584fb0e6f",
+        "players": [{
+            "id": "fd954c64-5a33-43dd-8378-e93b24c12dc5",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Nicholas",
+            "last_name": "Travieso",
+            "jersey_number": "60",
+            "preferred_name": "Nick",
+            "injuries": [{
+                "id": "228f61cf-f282-408b-87ad-2c27fdb5ea27",
+                "comment": "Travieso had shoulder surgery in the last few weeks and there is no timetable for his return, according to Zach Buchanan of the Cincinnati Enquirer.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-06-27"
+            }]
+        }, {
+            "id": "07af23d5-a3b9-4526-9e89-8c7f9f5facb4",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Anthony",
+            "last_name": "DeSclafani",
+            "jersey_number": "28",
+            "preferred_name": "Anthony",
+            "injuries": [{
+                "id": "2e9a3c42-ebf4-48ea-a0a3-7ce7ac23a008",
+                "comment": "DeSclafani is expected to get a second opinion after an MRI showed elbow tendinitis, according Mark Sheldon of MLB.com.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "bca42d39-ba0a-485b-adc2-973f2b43e325",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Nefi",
+            "last_name": "Ogando",
+            "jersey_number": "44",
+            "preferred_name": "Nefi",
+            "injuries": [{
+                "id": "31764587-f3cc-451e-9e02-2821d7c9cdfd",
+                "comment": "The Cincinnati Reds transferred RHP Nefi Ogando from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Hand",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-05-20"
+            }]
+        }, {
+            "id": "99115c76-3d69-47dd-9a8a-f1984811b502",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Scott",
+            "last_name": "Feldman",
+            "jersey_number": "37",
+            "preferred_name": "Scott",
+            "injuries": [{
+                "id": "3ae7bfdb-87a2-455a-8486-1a0ff543d47f",
+                "comment": "Feldman has begun a throwing program, according to Mark Sheldon of MLB.com.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-17",
+                "update_date": "2017-07-25"
+            }]
+        }, {
+            "id": "d3bafaff-56a9-4998-8068-dade411976c6",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Brandon",
+            "last_name": "Finnegan",
+            "jersey_number": "29",
+            "preferred_name": "Brandon",
+            "injuries": [{
+                "id": "57838b7e-7c99-4a98-b106-11f0d78623f3",
+                "comment": "The Reds announced Finnegan had surgery to repair a torn right labrum that he tore off the field.",
+                "desc": "Trap",
+                "status": "D60",
+                "start_date": "2017-06-26",
+                "update_date": "2017-07-07"
+            }]
+        }, {
+            "id": "9a12e609-e9fc-4e7d-b602-2a719206fc55",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Zachary",
+            "last_name": "Cozart",
+            "jersey_number": "2",
+            "preferred_name": "Zack",
+            "injuries": [{
+                "id": "6aac545b-845e-492f-9f25-7f240cb369eb",
+                "comment": "Cozart has been placed on the 10-day disabled list.",
+                "desc": "Quad",
+                "status": "D10",
+                "start_date": "2017-07-25",
+                "update_date": "2017-07-29"
+            }]
+        }, {
+            "id": "53083fd6-8f9f-40d5-a622-49a628f94a51",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Bronson",
+            "last_name": "Arroyo",
+            "jersey_number": "61",
+            "preferred_name": "Bronson",
+            "injuries": [{
+                "id": "d4e89d0e-afc0-4e0f-b375-228c15c830bd",
+                "comment": "The Cincinnati Reds transferred RHP Bronson Arroyo from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-06-19",
+                "update_date": "2017-06-26"
+            }]
+        }, {
+            "id": "18e4c51c-d4f3-40f9-a1d1-b94ee104b2c3",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Scott",
+            "last_name": "Schebler",
+            "jersey_number": "43",
+            "preferred_name": "Scott",
+            "injuries": [{
+                "id": "db6b91b1-3149-43fc-b026-6fd31a27f3ba",
+                "comment": "The MRI on Schebler's shoulder revealed a bruised rotator cuff, according to Mark Sheldon of MLB.com. ",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-08-01",
+                "update_date": "2017-08-02"
+            }]
+        }]
+    }, {
+        "name": "Mariners",
+        "abbr": "SEA",
+        "market": "Seattle",
+        "id": "43a39081-52b4-4f93-ad29-da7f329ea960",
+        "players": [{
+            "id": "e0899ce0-e436-468d-9c94-4b85dd984527",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Shae",
+            "last_name": "Simmons",
+            "jersey_number": "59",
+            "preferred_name": "Shae",
+            "injuries": [{
+                "id": "22bd5182-5646-4c7a-9ab0-979c359932b5",
+                "comment": "Simmons is shooting to return to the big league roster in mid-July, according to Bob Dutton of the Tacoma News Tribune.",
+                "desc": "Flexor",
+                "status": "D60",
+                "start_date": "2017-05-07",
+                "update_date": "2017-07-08"
+            }]
+        }, {
+            "id": "cb40edda-8fa3-4813-888f-0f543f6efeaf",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Hisashi",
+            "last_name": "Iwakuma",
+            "jersey_number": "18",
+            "preferred_name": "Hisashi",
+            "injuries": [{
+                "id": "274b80bc-b0fd-47f7-8d78-ddbd11a5347a",
+                "comment": "The Seattle Mariners transferred RHP Hisashi Iwakuma from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-05-03",
+                "update_date": "2017-07-24"
+            }]
+        }, {
+            "id": "4220939b-becf-447a-bf2e-3431f9be6b7c",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "James",
+            "last_name": "Weber",
+            "jersey_number": "38",
+            "preferred_name": "Ryan",
+            "injuries": [{
+                "id": "36ecd4f8-220d-42ea-99c2-94bac8fba0ec",
+                "comment": "The Seattle Mariners transferred RHP Ryan Weber from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-13",
+                "update_date": "2017-06-02"
+            }]
+        }, {
+            "id": "21b5dbdb-e190-42a6-a03c-43218412debf",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Evan",
+            "last_name": "Scribner",
+            "jersey_number": "58",
+            "preferred_name": "Evan",
+            "injuries": [{
+                "id": "5935e165-c808-4d3e-961a-d6c0dea14943",
+                "comment": "The Seattle Mariners transferred RHP Evan Scribner from the 10-day disabled list to the 60-day disabled list as he recovers from a flexor bundle strain in his right elbow.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-04-29",
+                "update_date": "2017-05-11"
+            }]
+        }, {
+            "id": "ce3ef51a-54c0-4e29-80bc-7a3048036c9a",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Mitchell",
+            "last_name": "Haniger",
+            "jersey_number": "17",
+            "preferred_name": "Mitch",
+            "injuries": [{
+                "id": "f941c027-dfeb-4f1a-a99d-7de15bfe4f9e",
+                "comment": "Haniger has not been cleared to start lifting weights or working out yet, according to a report from the Seattle Times. There is no timetable for his return.",
+                "desc": "Face",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "1c6ebbc7-2df6-432f-960d-0e7162f3dd6d",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Todd",
+            "last_name": "Smyly",
+            "jersey_number": "33",
+            "preferred_name": "Drew",
+            "injuries": [{
+                "id": "f94e09b0-c6d9-433c-8440-6fdf3b3e424c",
+                "comment": "The Mariners announced that Smyly will have Tommy John surgery in the next week or two and will miss the rest of the season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-31",
+                "update_date": "2017-06-28"
+            }]
+        }, {
+            "id": "01eaff59-9b34-47fd-af64-54b2e6f22628",
+            "status": "A",
+            "position": "DH",
+            "primary_position": "DH",
+            "first_name": "Nelson",
+            "last_name": "Cruz",
+            "jersey_number": "23",
+            "preferred_name": "Nelson",
+            "injuries": [{
+                "id": "fe8deb65-9437-49a9-a6a1-3bd8ab8f5c76",
+                "comment": "Cruz was scratched before Friday's game (Aug. 4) due to neck spasms, according to Greg Johns of MLB.com.",
+                "desc": "Neck",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }]
+    }, {
+        "name": "Rays",
+        "abbr": "TB",
+        "market": "Tampa Bay",
+        "id": "bdc11650-6f74-49c4-875e-778aeb7632d9",
+        "players": [{
+            "id": "6dd571bc-b26c-4efc-87da-7b501c96faf1",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Nathan",
+            "last_name": "Eovaldi",
+            "jersey_number": "24",
+            "preferred_name": "Nathan",
+            "injuries": [{
+                "id": "2704e04a-7f9c-46b8-a650-8c32fcc09d47",
+                "comment": "The Tampa Bay Rays placed RHP Nathan Eovaldi on the 60-day disabled list. He's expected to miss the 2017 season as he recovers from Tommy John and flexor tendon surgeries.",
+                "desc": "Elbow/Shoulder",
+                "status": "D60",
+                "start_date": "2017-02-15",
+                "update_date": "2017-03-10"
+            }]
+        }, {
+            "id": "908cf3f8-d7a4-4346-b39e-1f4f66a21864",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Kevin",
+            "last_name": "Kiermaier",
+            "jersey_number": "39",
+            "preferred_name": "Kevin",
+            "injuries": [{
+                "id": "2828defd-dae5-4c0a-9034-b7a6bc9c2f37",
+                "comment": "Kiermaier said he's feeling better, but will not start baseball activities again until he's pain free, according to Roger Mooney of the Tampa Bay Times.",
+                "desc": "Hip",
+                "status": "D60",
+                "start_date": "2017-06-08",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "3f6d6a49-1361-441c-9145-e49f690587b7",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Xavier",
+            "last_name": "Cedeño",
+            "jersey_number": "31",
+            "preferred_name": "Xavier",
+            "injuries": [{
+                "id": "384d6c98-ac37-4dc8-af0b-dba4a4789470",
+                "comment": "The Tampa Bay Rays transferred LHP Xavier Cedeño from the 10-day to the 60-day disabled list.",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-04-22",
+                "update_date": "2017-05-18"
+            }]
+        }, {
+            "id": "2acb215d-2d2a-4b75-89b0-1f9d51093b07",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Jacob",
+            "last_name": "Odorizzi",
+            "jersey_number": "23",
+            "preferred_name": "Jake",
+            "injuries": [{
+                "id": "39f2282e-2038-4abc-a2ab-06c760832419",
+                "comment": "Odorizzi will make a rehab appearance with High-A Charlotte on Friday (Aug. 4), according to Marc Topkin of the Tampa Bay Times. ",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-26",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "ad2422c3-0323-4ac1-b1cf-ddc109c1747b",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Matthew",
+            "last_name": "Andriese",
+            "jersey_number": "35",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "455b6301-6d30-4f62-a8e0-090a019794af",
+                "comment": "The Tampa Bay Rays transferred RHP Matt Andriese from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Hip",
+                "status": "D60",
+                "start_date": "2017-06-10",
+                "update_date": "2017-06-17"
+            }]
+        }, {
+            "id": "c333b8cc-6155-44b2-b56b-5bc2f34d30d8",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Kevin",
+            "last_name": "Gadea",
+            "jersey_number": "54",
+            "preferred_name": "Kevin",
+            "injuries": [{
+                "id": "53000c7b-f1b6-449c-ba19-70dec75c711a",
+                "comment": "The Rays placed Gadea on the 60-day disabled list with elbow tendinitis.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-18",
+                "update_date": "2017-03-26"
+            }]
+        }, {
+            "id": "d710df18-7a1f-4d3e-a614-60cdc4563371",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Shawn",
+            "last_name": "Tolleson",
+            "jersey_number": "38",
+            "preferred_name": "Shawn",
+            "injuries": [{
+                "id": "61a51d34-1604-4066-ad61-9a05e78d53c2",
+                "comment": "Tolleson had Tommy John surgery earlier this week and will not return until next season, according to Marc Topkin of the Tampa Bay Times.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-31",
+                "update_date": "2017-05-19"
+            }]
+        }, {
+            "id": "00856892-9a5a-4161-b979-4335dab399cc",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Matthew",
+            "last_name": "Duffy",
+            "jersey_number": "5",
+            "preferred_name": "Matt",
+            "injuries": [{
+                "id": "77f98682-1a78-40ab-94eb-8e509a8bc279",
+                "comment": "Duffy had surgery to remove some calcium deposit in his heel and the team expects him to return this summer, according to Roger Mooney of the Tampa Bay Times.",
+                "desc": "Heel",
+                "status": "D60",
+                "start_date": "2017-03-08",
+                "update_date": "2017-06-23"
+            }]
+        }]
+    }, {
+        "name": "Brewers",
+        "abbr": "MIL",
+        "market": "Milwaukee",
+        "id": "dcfd5266-00ce-442c-bc09-264cd20cf455",
+        "players": [{
+            "id": "f635d602-eaa9-460e-9c3e-bb1997a7e43d",
+            "status": "D10",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Jett",
+            "last_name": "Bandy",
+            "jersey_number": "47",
+            "preferred_name": "Jett",
+            "injuries": [{
+                "id": "2ce4d20b-60f6-4ad5-bc85-22586132fc74",
+                "comment": "The Milwaukee Brewers placed C Jett Bandy on the 10-day disabled list as he recovers from a fractured rib.",
+                "desc": "Rib",
+                "status": "D10",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "4bdcd59e-2cd5-4d1e-8058-588a72a1f8ae",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Robert",
+            "last_name": "Anderson",
+            "jersey_number": "57",
+            "preferred_name": "Chase",
+            "injuries": [{
+                "id": "5b69a023-d8e5-485c-b591-5f8eafa108d7",
+                "comment": "Anderson is likely to start a rehab assignment next week and will next probably three starts before returning to the big league club, according to Todd Rosiak of Milwaukee Journal Sentinel.",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-06-28",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "33ebc6ed-4c4a-45d5-9367-8ecd36581e8b",
+            "status": "D10",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Stephen",
+            "last_name": "Vogt",
+            "jersey_number": "12",
+            "preferred_name": "Stephen",
+            "injuries": [{
+                "id": "cceb0e8a-541b-49a4-b840-912ad79987d7",
+                "comment": "Vogt has been placed on the 10-day disabled list with a left knee sprain.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-18",
+                "update_date": "2017-07-18"
+            }]
+        }]
+    }, {
+        "name": "Giants",
+        "abbr": "SF",
+        "market": "San Francisco",
+        "id": "a7723160-10b7-4277-a309-d8dd95a8ae65",
+        "players": [{
+            "id": "1a574c70-eb33-4202-ab97-548645a4d15e",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Johnny",
+            "last_name": "Cueto",
+            "jersey_number": "47",
+            "preferred_name": "Johnny",
+            "injuries": [{
+                "id": "381c5fef-fc64-4ed4-9bed-59fe952c9ad0",
+                "comment": "Cueto was diagnosed with a mild flexor strain, according to Andrew Baggarly of the San Jose Mercury News. There's a chance he may not pitch again this season.",
+                "desc": "Fingers",
+                "status": "D10",
+                "start_date": "2017-07-14",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "01982903-301b-41eb-8a8d-b88a7b3070d0",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Mark",
+            "last_name": "Melancon",
+            "jersey_number": "41",
+            "preferred_name": "Mark",
+            "injuries": [{
+                "id": "598d6b32-61a2-4bdb-b6a4-615ed55b65d7",
+                "comment": "The Giants sent Melancon on a rehab assignment.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-06-28",
+                "update_date": "2017-08-02"
+            }]
+        }, {
+            "id": "19a3dd28-85dd-4ae0-969e-f4f33419ea5b",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "William",
+            "last_name": "Smith",
+            "jersey_number": "13",
+            "preferred_name": "Will",
+            "injuries": [{
+                "id": "638c945f-9c83-4e4b-b55a-7f666def6578",
+                "comment": "Smith had Tommy John surgery and the hope is that he returns in May of the 2018 season, according to Alex Pavlovic of CSN Bay Area.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-02-22",
+                "update_date": "2017-04-02"
+            }]
+        }, {
+            "id": "36ee970b-0cff-4d50-b8ac-9bd16fae2dd1",
+            "status": "A",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Brandon",
+            "last_name": "Belt",
+            "jersey_number": "9",
+            "preferred_name": "Brandon",
+            "injuries": [{
+                "id": "6ba4f525-8bf7-4b1d-b021-878e6685f43d",
+                "comment": "Belt left Friday's game (Aug. 4) early after being hit in the helmet by a pitch, according to Alex Pavlovic of CSN Bay Area.",
+                "desc": "Head",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "cd96e2b1-a72b-4c93-9cfe-fc62c367096b",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Michael",
+            "last_name": "Morse",
+            "jersey_number": "38",
+            "preferred_name": "Michael",
+            "injuries": [{
+                "id": "7c819c9c-899a-495f-a582-a2130ba0f852",
+                "comment": "Morse is still dealing with concussion symptoms, according to John Shea of the San Francisco Chronicle.",
+                "desc": "Concussion",
+                "status": "D10",
+                "start_date": "2017-05-30",
+                "update_date": "2017-06-10"
+            }]
+        }, {
+            "id": "a94f3112-28dc-4fb4-a6d1-a73b5c738621",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "LF",
+            "first_name": "Austin",
+            "last_name": "Slater",
+            "jersey_number": "53",
+            "preferred_name": "Austin",
+            "injuries": [{
+                "id": "ea2f2962-6518-417f-acec-5ddec1ea2b27",
+                "comment": "The San Francisco Giants placed OF Austin Slater on the 10-day disabled list with a right groin strain.",
+                "desc": "Hip",
+                "status": "D10",
+                "start_date": "2017-07-07",
+                "update_date": "2017-07-08"
+            }]
+        }]
+    }, {
+        "name": "Yankees",
+        "abbr": "NYY",
+        "market": "New York",
+        "id": "a09ec676-f887-43dc-bbb3-cf4bbaee9a18",
+        "players": [{
+            "id": "1881391a-a184-4410-af54-13007f989e74",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Gregory",
+            "last_name": "Bird",
+            "jersey_number": "33",
+            "preferred_name": "Greg",
+            "injuries": [{
+                "id": "430a5229-b758-4c08-a652-bf5e83a602b5",
+                "comment": "Bird is having surgery Monday (July 17) to remove excess bone growth from his right ankle, according to Bryan Hoch of MLB.com.",
+                "desc": "Ankle",
+                "status": "D60",
+                "start_date": "2017-05-02",
+                "update_date": "2017-07-17"
+            }]
+        }, {
+            "id": "6d9e52f8-7a4d-46b1-856e-05a2faa70c3d",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Christopher",
+            "last_name": "Austin",
+            "jersey_number": "26",
+            "preferred_name": "Tyler",
+            "injuries": [{
+                "id": "4a935209-8ba4-4c05-a951-f5f6d44b3ed9",
+                "comment": "The Yankees sent Austin on a rehab assignment.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-06-28",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "4ea710f8-d2b5-42d4-ba58-5cb6e4517dfa",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Aaron",
+            "last_name": "Hicks",
+            "jersey_number": "31",
+            "preferred_name": "Aaron",
+            "injuries": [{
+                "id": "abb55040-a109-47f7-9a7a-c86282b5f587",
+                "comment": "Hicks will not resume baseball activities until at least July 25, according to a report from the New York Daily News.",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-06-25",
+                "update_date": "2017-07-10"
+            }]
+        }, {
+            "id": "fb9520f8-ca5d-4af7-8b2c-73825d2999fd",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Michael",
+            "last_name": "Pineda",
+            "jersey_number": "35",
+            "preferred_name": "Michael",
+            "injuries": [{
+                "id": "b8b8c869-1e1a-4e44-921d-c6f5ab5a618c",
+                "comment": "Pineda will undergo Tommy John surgery on Tuesday (July 18). ",
+                "desc": "UCL",
+                "status": "D60",
+                "start_date": "2017-07-14",
+                "update_date": "2017-07-17"
+            }]
+        }, {
+            "id": "5bf2b7fe-19db-41e7-927a-1898dd249be4",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "2B",
+            "first_name": "Starlin",
+            "last_name": "Castro",
+            "jersey_number": "14",
+            "preferred_name": "Starlin",
+            "injuries": [{
+                "id": "e4b3ec6a-28ce-4f44-9d06-61e5cbd32e5a",
+                "comment": "The New York Yankees placed INF Starlin Castro on the 10-day disabled list, retroactive to July 22, with a right hamstring strain.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-07-23",
+                "update_date": "2017-07-23"
+            }]
+        }, {
+            "id": "9310b401-a4ac-40c0-b358-44f8f5e95ab2",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Dustin",
+            "last_name": "Fowler",
+            "preferred_name": "Dustin",
+            "injuries": [{
+                "id": "e90d7ac5-6d05-4328-98d2-150097da4d55",
+                "comment": "The New York Yankees transferred OF Dustin Fowler from the 10-day disabled list to the 60-day disabled list.",
+                "desc": "Knee",
+                "status": "D60",
+                "start_date": "2017-06-29",
+                "update_date": "2017-07-01"
+            }]
+        }]
+    }, {
+        "name": "Tigers",
+        "abbr": "DET",
+        "market": "Detroit",
+        "id": "575c19b7-4052-41c2-9f0a-1c5813d02f99",
+        "players": [{
+            "id": "83417a46-4c33-4026-8113-aad285d27346",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Daniel",
+            "last_name": "Norris",
+            "jersey_number": "44",
+            "preferred_name": "Daniel",
+            "injuries": [{
+                "id": "44dfc77d-92d7-4a34-be77-a459d4eb462a",
+                "comment": "Norris played catch up to 120 feet on Tuesday (Aug. 1), according to Jason Beck of MLB.com. There is no timetable for his return.",
+                "desc": "Groin",
+                "status": "D10",
+                "start_date": "2017-07-06",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "ec504c95-8a64-46ad-91ae-850c6e7350db",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Michael",
+            "last_name": "Fulmer",
+            "jersey_number": "32",
+            "preferred_name": "Michael",
+            "injuries": [{
+                "id": "5e0c9382-68f5-4333-a143-d213f317228b",
+                "comment": "Fulmer hopes to return to throwing in 10-12 days, according to Mandy Bell of MLB.com.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-08-03",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "4ddfcbb7-5133-4d67-a540-8e92060c640d",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Alexander",
+            "last_name": "Presley",
+            "jersey_number": "14",
+            "preferred_name": "Alex",
+            "injuries": [{
+                "id": "5e5b813b-a485-46b2-89b7-b6e543213ee2",
+                "comment": "The Detroit Tigers placed OF Alex Presley on the 10-day disabled list.",
+                "desc": "Hip",
+                "status": "D10",
+                "start_date": "2017-07-29",
+                "update_date": "2017-07-29"
+            }]
+        }]
+    }, {
+        "name": "Athletics",
+        "abbr": "OAK",
+        "market": "Oakland",
+        "id": "27a59d3b-ff7c-48ea-b016-4798f560f5e1",
+        "players": [{
+            "id": "d1387a94-a423-48fa-985e-6fe70f562be9",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Jacob",
+            "last_name": "Smolinski",
+            "jersey_number": "5",
+            "preferred_name": "Jake",
+            "injuries": [{
+                "id": "44f45e7c-c2b0-42c6-be00-923c0fc658fa",
+                "comment": "Smolinski has been hitting off a tee, according to Susan Slusser of the San Francisco Chronicle.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-03-18",
+                "update_date": "2017-06-15"
+            }]
+        }, {
+            "id": "2d37ebb9-a1ca-4749-8e53-ed566f9ec82f",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Robert",
+            "last_name": "Wahl",
+            "jersey_number": "63",
+            "preferred_name": "Bobby",
+            "injuries": [{
+                "id": "4517e60e-6aab-49aa-8c15-62eadd577212",
+                "comment": "Wahl has been placed on the 60-day disabled list.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-24",
+                "update_date": "2017-07-25"
+            }]
+        }, {
+            "id": "fbf1fc80-99f9-428b-87b9-70a75d4ce9ac",
+            "status": "D10",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Joshua",
+            "last_name": "Phegley",
+            "jersey_number": "19",
+            "preferred_name": "Josh",
+            "injuries": [{
+                "id": "cc925b05-0ff7-43bc-b816-beeacd99d6c0",
+                "comment": "Phegley has been placed on the 10-day disabled list with an oblique strain.",
+                "desc": "Qblique",
+                "status": "D10",
+                "start_date": "2017-07-26",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "1a2638a3-28df-46b3-9cca-0f8eb29b581f",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Andrew",
+            "last_name": "Triggs",
+            "jersey_number": "60",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "f4edf0d8-b079-41dc-b72a-e8f62a263e43",
+                "comment": "Triggs would need hip surgery if he doesn't respond to treatment in the next month, according to a report from the San Francisco Chronicle.",
+                "desc": "Hip",
+                "status": "D60",
+                "start_date": "2017-06-10",
+                "update_date": "2017-07-01"
+            }]
+        }]
+    }, {
+        "name": "Marlins",
+        "abbr": "MIA",
+        "market": "Miami",
+        "id": "03556285-bdbb-4576-a06d-42f71f46ddc5",
+        "players": [{
+            "id": "933a0bc9-26c0-478e-982c-01fd8ffe0614",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Martín",
+            "last_name": "Prado",
+            "jersey_number": "14",
+            "preferred_name": "Martín",
+            "injuries": [{
+                "id": "5b5fc62d-86a3-4f9f-a2ef-3dccc4bbd8df",
+                "comment": "Prado had surgery on his right knee and is expected to take 3-5 weeks to recover, according to Clark Spencer of the Miami Herald.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-17",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "a95413e8-7755-433e-ba97-5756488b5d67",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Justin",
+            "last_name": "Bour",
+            "jersey_number": "41",
+            "preferred_name": "Justin",
+            "injuries": [{
+                "id": "678a0453-e305-41e1-b216-c57845d6240d",
+                "comment": "Bour is still three weeks away from resuming baseball activities, according to Joe Frisaro of MLB.com. ",
+                "desc": "Oblique",
+                "status": "D10",
+                "start_date": "2017-07-25",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "eb3d13ba-4372-4b52-8bc8-9e5566c67149",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Kyle",
+            "last_name": "Barraclough",
+            "jersey_number": "46",
+            "preferred_name": "Kyle",
+            "injuries": [{
+                "id": "687c38a6-8cd3-47a0-92ef-814abab38c79",
+                "comment": "The Miami Marlins placed RHP Kyle Barraclough on the 10-day disabled list with a right shoulder impingement.",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-07-26",
+                "update_date": "2017-07-26"
+            }]
+        }, {
+            "id": "3966975b-216b-41c7-85ba-c01129e65ac2",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Wei-Yin",
+            "last_name": "Chen",
+            "jersey_number": "54",
+            "preferred_name": "Wei-Yin",
+            "injuries": [{
+                "id": "7574c3ba-dd6f-47c1-a53e-9fd8be925f2e",
+                "comment": "Chen is hoping to start throwing batting practice next week, according to a report from the South Florida Sun-Sentinel.",
+                "desc": "Arm",
+                "status": "D10",
+                "start_date": "2017-05-05",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "2908a4de-32a6-4a08-a864-7f3eb311c931",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Nicholas",
+            "last_name": "Wittgren",
+            "jersey_number": "64",
+            "preferred_name": "Nick",
+            "injuries": [{
+                "id": "9684eadf-bcf2-41d1-b55a-5293316f6c00",
+                "comment": "The Marlins placed RHP Nick Wittgren on the 10-day disabled list with a right elbow strain.",
+                "desc": "Elbow",
+                "status": "D10",
+                "start_date": "2017-07-28",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "dd1f91f1-84fd-4fe1-8bab-727d73a3fd2e",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "Joshua",
+            "last_name": "Riddle",
+            "jersey_number": "39",
+            "preferred_name": "J.T.",
+            "injuries": [{
+                "id": "ef432f22-6b36-4154-b0a9-e66eaab0a60a",
+                "comment": "Riddle has been placed on the 10-day disabled list with left biceps tendinitis.",
+                "desc": "Shoulder",
+                "status": "D10",
+                "start_date": "2017-07-22",
+                "update_date": "2017-07-25"
+            }]
+        }, {
+            "id": "ffac4f57-30d8-44f7-888f-80188a62b99d",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Edinson",
+            "last_name": "Vólquez",
+            "jersey_number": "36",
+            "preferred_name": "Edinson",
+            "injuries": [{
+                "id": "f9004abd-7123-4749-902f-b973e3cdfca5",
+                "comment": "Volquez is slated to have Tommy John surgery later this week, according to a report from Tim Healey of South Florida Sun-Sentinel.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-07-05",
+                "update_date": "2017-08-02"
+            }]
+        }]
+    }, {
+        "name": "Indians",
+        "abbr": "CLE",
+        "market": "Cleveland",
+        "id": "80715d0d-0d2a-450f-a970-1b9a3b18c7e7",
+        "players": [{
+            "id": "3a29bbbe-f5b6-429e-9979-7aab01210c82",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "SP",
+            "first_name": "Joshua",
+            "last_name": "Tomlin",
+            "jersey_number": "43",
+            "preferred_name": "Josh",
+            "injuries": [{
+                "id": "6ee1d91e-532c-493e-9ccd-23dbdbb3ec32",
+                "comment": "Tomlin is dealing with a mild-to-moderate left hamstring tendon strain and is expected to miss the next six weeks, according to Jordan Bastian of MLB.com.",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-07-30",
+                "update_date": "2017-08-02"
+            }]
+        }, {
+            "id": "38586e69-6520-4a45-bac7-42ff2f2add31",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Cody",
+            "last_name": "Anderson",
+            "jersey_number": "56",
+            "preferred_name": "Cody",
+            "injuries": [{
+                "id": "a5413495-799b-40d4-a3f5-4970ea2949c1",
+                "comment": "Anderson had Tommy John surgery and will miss the 2017 season.",
+                "desc": "Elbow",
+                "status": "D60",
+                "start_date": "2017-03-10",
+                "update_date": "2017-04-02"
+            }]
+        }, {
+            "id": "36e2d90c-1756-4d71-8db3-9f7ba6eb6793",
+            "status": "D10",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Andrew",
+            "last_name": "Miller",
+            "jersey_number": "24",
+            "preferred_name": "Andrew",
+            "injuries": [{
+                "id": "c2b49102-da3a-4b58-9459-7784e0212859",
+                "comment": "The Cleveland Indians placed LHP Andrew Miller on the 10-day disabled list with right knee patella tendinitis.",
+                "desc": "Knee",
+                "status": "D10",
+                "start_date": "2017-08-02",
+                "update_date": "2017-08-02"
+            }]
+        }, {
+            "id": "07aa2ada-6d34-4eca-8396-eca25d733e74",
+            "status": "D10",
+            "position": "IF",
+            "primary_position": "2B",
+            "first_name": "Jason",
+            "last_name": "Kipnis",
+            "jersey_number": "22",
+            "preferred_name": "Jason",
+            "injuries": [{
+                "id": "cc7eda6f-7dc7-476b-bda8-6849ba1524f7",
+                "comment": "The Indians announced that Kipnis will start a rehab assignment on Friday (Aug. 4) and if everything goes to plan he will be activated on Sunday (Aug. 6).",
+                "desc": "Hamstring",
+                "status": "D10",
+                "start_date": "2017-07-08",
+                "update_date": "2017-08-03"
+            }]
+        }, {
+            "id": "48fde7de-5a08-4fbe-b141-1086d6bee4b0",
+            "status": "D60",
+            "position": "P",
+            "primary_position": "RP",
+            "first_name": "Boone",
+            "last_name": "Logan",
+            "jersey_number": "48",
+            "preferred_name": "Boone",
+            "injuries": [{
+                "id": "d34a5716-24e4-448d-b3f4-3175cfda8dad",
+                "comment": "Logan will not have surgery, but is likely done for the season, according Jordan Bastian of MLB.com.",
+                "desc": "Lat",
+                "status": "D60",
+                "start_date": "2017-07-19",
+                "update_date": "2017-08-04"
+            }]
+        }, {
+            "id": "7a8633ea-0824-4164-b0b1-e4394da6fc43",
+            "status": "D10",
+            "position": "OF",
+            "primary_position": "RF",
+            "first_name": "Lonnie",
+            "last_name": "Chisenhall",
+            "jersey_number": "8",
+            "preferred_name": "Lonnie",
+            "injuries": [{
+                "id": "e97662ef-9f58-445a-95fa-342d9a16e568",
+                "comment": "Chisenhall has not been cleared yet for game action, according to a report from the Cleveland Plain Dealer.",
+                "desc": "Calf",
+                "status": "D10",
+                "start_date": "2017-07-09",
+                "update_date": "2017-08-04"
+            }]
+        }]
+    }, {
+        "name": "Orioles",
+        "abbr": "BAL",
+        "market": "Baltimore",
+        "id": "75729d34-bca7-4a0f-b3df-6f26c6ad3719",
+        "players": [{
+            "id": "d4bc8879-c7dc-430f-bcb8-e932b21a2e7c",
+            "status": "D60",
+            "position": "OF",
+            "primary_position": "CF",
+            "first_name": "Anthony",
+            "last_name": "Santander",
+            "jersey_number": "54",
+            "preferred_name": "Anthony",
+            "injuries": [{
+                "id": "8ee6acdc-a25b-4c6c-90e8-83086351859b",
+                "comment": "The Orioles sent Santander on a rehab assignment.",
+                "desc": "Forearm",
+                "status": "D60",
+                "start_date": "2017-04-02",
+                "update_date": "2017-07-28"
+            }]
+        }, {
+            "id": "e26d31f5-1199-4edf-a154-a8ed209ac971",
+            "status": "A",
+            "position": "IF",
+            "primary_position": "1B",
+            "first_name": "Joseph",
+            "last_name": "Mancini",
+            "jersey_number": "16",
+            "preferred_name": "Trey",
+            "injuries": [{
+                "id": "a7be54ca-75b5-4d33-b3cf-3e5d43d02f76",
+                "comment": "The X-rays on Mancini came back negative and it's not clear if he will play in Saturday's game (Aug. 5), according to Dan Connolly of the Baltimore Sun.",
+                "desc": "Knee",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "63e4a9d8-c3ba-4ed9-9d88-6191b6013f77",
+            "status": "A",
+            "position": "C",
+            "primary_position": "C",
+            "first_name": "Caleb",
+            "last_name": "Joseph",
+            "jersey_number": "36",
+            "preferred_name": "Caleb",
+            "injuries": [{
+                "id": "b02b1281-c71c-4b7a-a792-e1cc84ffd2cc",
+                "comment": "The X-rays on Joseph's wrist came back negative and it's not clear if he will play in Saturday's game (Aug. 5), according to Dan Connolly of the Baltimore Sun.",
+                "desc": "Wrist",
+                "status": "Day-to-Day",
+                "start_date": "2017-08-04",
+                "update_date": "2017-08-05"
+            }]
+        }, {
+            "id": "ad7041d5-524a-4492-bd9a-aec13b7ba562",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "SS",
+            "first_name": "James",
+            "last_name": "Hardy",
+            "jersey_number": "2",
+            "preferred_name": "J.J.",
+            "injuries": [{
+                "id": "b3b582b5-695d-469c-8681-ea3d506ff4bb",
+                "comment": "The Orioles expect Hardy to return when first eligible on Aug. 18, according to Roch Kubatko of MASN.",
+                "desc": "Wrist",
+                "status": "D60",
+                "start_date": "2017-06-18",
+                "update_date": "2017-08-01"
+            }]
+        }, {
+            "id": "e5227d77-89fe-4512-86ff-f9d13ff43afa",
+            "status": "D60",
+            "position": "IF",
+            "primary_position": "3B",
+            "first_name": "Ryan",
+            "last_name": "Flaherty",
+            "jersey_number": "3",
+            "preferred_name": "Ryan",
+            "injuries": [{
+                "id": "f5821a59-6062-4992-8a4e-de198bbe7add",
+                "comment": "The Orioles sent Flaherty on a rehab assignment.",
+                "desc": "Shoulder",
+                "status": "D60",
+                "start_date": "2017-05-21",
+                "update_date": "2017-07-27"
+            }]
+        }, {
+            "id": "aff8ce97-4a84-43db-bdaf-3517b6b5fa88",
+            "status": "D10",
+            "position": "DH",
+            "primary_position": "DH",
+            "first_name": "Mark",
+            "last_name": "Trumbo",
+            "jersey_number": "45",
+            "preferred_name": "Mark",
+            "injuries": [{
+                "id": "fcef573f-1d6b-425f-b6ec-d54b927870f4",
+                "comment": "Trumbo may be able to return from the disabled list when first eligible, according to Roch Kubatko of MASN.",
+                "desc": "Back",
+                "status": "D10",
+                "start_date": "2017-07-30",
+                "update_date": "2017-08-01"
+            }]
+        }]
+    }],
+    "_comment": "Generation started @ 2017-08-05 16:52:30 UTC ended @ 2017-08-05 16:52:31 UTC"
+}

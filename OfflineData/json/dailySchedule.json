@@ -1,0 +1,570 @@
+{
+    "date": "2017-08-09",
+    "league": {
+        "id": "2fa448bc-fc17-4d3d-be03-e60e080fdc26",
+        "name": "Major League Baseball",
+        "alias": "MLB"
+    },
+    "games": [{
+        "id": "33995576-9c27-43d7-8aad-034378da7a00",
+        "status": "inprogress",
+        "coverage": "full",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-10T00:10:00+00:00",
+        "home_team": "47f490cd-2f58-4ef7-9dfd-2ad6ba6c1ae8",
+        "away_team": "eb21dadd-8f10-4095-8bf3-dfb3b779f107",
+        "venue": {
+            "id": "4a550fc1-c03d-4294-b63a-30ff197bedc4",
+            "name": "Guaranteed Rate Field",
+            "market": "Chicago",
+            "capacity": 40615,
+            "surface": "grass",
+            "address": "333 West 35th Street",
+            "city": "Chicago",
+            "state": "IL",
+            "zip": "60616",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "CSN-CH"
+        },
+        "home": {
+            "name": "White Sox",
+            "market": "Chicago",
+            "abbr": "CWS",
+            "id": "47f490cd-2f58-4ef7-9dfd-2ad6ba6c1ae8"
+        },
+        "away": {
+            "name": "Astros",
+            "market": "Houston",
+            "abbr": "HOU",
+            "id": "eb21dadd-8f10-4095-8bf3-dfb3b779f107"
+        }
+    }, {
+        "id": "dfe66f69-e072-4381-8fb7-638a99f1a166",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 14989,
+        "duration": "2:58",
+        "game_number": 1,
+        "day_night": "D",
+        "scheduled": "2017-08-09T19:35:00+00:00",
+        "home_team": "27a59d3b-ff7c-48ea-b016-4798f560f5e1",
+        "away_team": "43a39081-52b4-4f93-ad29-da7f329ea960",
+        "venue": {
+            "id": "48cbd35a-d932-4a75-beab-067bfbacfc26",
+            "name": "Oakland-Alameda County Coliseum",
+            "market": "Oakland",
+            "capacity": 37090,
+            "surface": "grass",
+            "address": "7000 Coliseum Way",
+            "city": "Oakland",
+            "state": "CA",
+            "zip": "94621",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "MLBN"
+        },
+        "home": {
+            "name": "Athletics",
+            "market": "Oakland",
+            "abbr": "OAK",
+            "id": "27a59d3b-ff7c-48ea-b016-4798f560f5e1"
+        },
+        "away": {
+            "name": "Mariners",
+            "market": "Seattle",
+            "abbr": "SEA",
+            "id": "43a39081-52b4-4f93-ad29-da7f329ea960"
+        }
+    }, {
+        "id": "f2957adf-8d68-4a6b-8664-6c7e2ae32ecc",
+        "status": "inprogress",
+        "coverage": "full",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-10T00:10:00+00:00",
+        "home_team": "dcfd5266-00ce-442c-bc09-264cd20cf455",
+        "away_team": "aa34e0ed-f342-4ec6-b774-c79b47b60e2d",
+        "venue": {
+            "id": "3d13c8a7-283f-482b-ade1-441e25b6465d",
+            "name": "Miller Park",
+            "market": "Milwaukee",
+            "capacity": 41900,
+            "surface": "grass",
+            "address": "One Brewers Way",
+            "city": "Milwaukee",
+            "state": "WI",
+            "zip": "53214",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-WI"
+        },
+        "home": {
+            "name": "Brewers",
+            "market": "Milwaukee",
+            "abbr": "MIL",
+            "id": "dcfd5266-00ce-442c-bc09-264cd20cf455"
+        },
+        "away": {
+            "name": "Twins",
+            "market": "Minnesota",
+            "abbr": "MIN",
+            "id": "aa34e0ed-f342-4ec6-b774-c79b47b60e2d"
+        }
+    }, {
+        "id": "39e956d7-5696-41e8-947c-383760f785a5",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 41099,
+        "duration": "2:50",
+        "game_number": 1,
+        "day_night": "D",
+        "scheduled": "2017-08-09T19:45:00+00:00",
+        "home_team": "a7723160-10b7-4277-a309-d8dd95a8ae65",
+        "away_team": "55714da8-fcaf-4574-8443-59bfb511a524",
+        "venue": {
+            "id": "2d7542f5-7b80-49f7-9b24-c53ffdc75af6",
+            "name": "AT&T Park",
+            "market": "San Francisco",
+            "capacity": 41915,
+            "surface": "grass",
+            "address": "24 Willie Mays Plaza",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip": "94107",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "CSN-BA"
+        },
+        "home": {
+            "name": "Giants",
+            "market": "San Francisco",
+            "abbr": "SF",
+            "id": "a7723160-10b7-4277-a309-d8dd95a8ae65"
+        },
+        "away": {
+            "name": "Cubs",
+            "market": "Chicago",
+            "abbr": "CHC",
+            "id": "55714da8-fcaf-4574-8443-59bfb511a524"
+        }
+    }, {
+        "id": "b6288bc2-084e-4297-888f-b67cbd3ec15d",
+        "status": "inprogress",
+        "coverage": "full",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:07:00+00:00",
+        "home_team": "1d678440-b4b1-4954-9b39-70afb3ebbcfa",
+        "away_team": "a09ec676-f887-43dc-bbb3-cf4bbaee9a18",
+        "venue": {
+            "id": "84d72338-2173-4a90-9d25-99adc6c86f4b",
+            "name": "Rogers Centre",
+            "market": "Toronto",
+            "capacity": 49282,
+            "surface": "turf",
+            "address": "One Blue Jays Way",
+            "city": "Toronto",
+            "state": "ON",
+            "zip": "M5V1J3",
+            "country": "CANADA"
+        },
+        "broadcast": {
+            "network": "YES"
+        },
+        "home": {
+            "name": "Blue Jays",
+            "market": "Toronto",
+            "abbr": "TOR",
+            "id": "1d678440-b4b1-4954-9b39-70afb3ebbcfa"
+        },
+        "away": {
+            "name": "Yankees",
+            "market": "New York",
+            "abbr": "NYY",
+            "id": "a09ec676-f887-43dc-bbb3-cf4bbaee9a18"
+        }
+    }, {
+        "id": "8a082cf9-79db-45be-a841-03da1ef28e9e",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 25539,
+        "duration": "3:59",
+        "game_number": 1,
+        "day_night": "D",
+        "scheduled": "2017-08-09T16:10:00+00:00",
+        "home_team": "80715d0d-0d2a-450f-a970-1b9a3b18c7e7",
+        "away_team": "29dd9a87-5bcc-4774-80c3-7f50d985068b",
+        "venue": {
+            "id": "2b0ccd49-4d87-4996-ac4d-27ffc7ee4c16",
+            "name": "Progressive Field",
+            "market": "Cleveland",
+            "capacity": 35051,
+            "surface": "grass",
+            "address": "2401 Ontario Street",
+            "city": "Cleveland",
+            "state": "OH",
+            "zip": "44115",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "SportsTime Ohio"
+        },
+        "home": {
+            "name": "Indians",
+            "market": "Cleveland",
+            "abbr": "CLE",
+            "id": "80715d0d-0d2a-450f-a970-1b9a3b18c7e7"
+        },
+        "away": {
+            "name": "Rockies",
+            "market": "Colorado",
+            "abbr": "COL",
+            "id": "29dd9a87-5bcc-4774-80c3-7f50d985068b"
+        }
+    }, {
+        "id": "9c9da776-2ab4-4ff3-9bd8-ad7d7d838e25",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 34222,
+        "duration": "3:07",
+        "game_number": 1,
+        "day_night": "D",
+        "scheduled": "2017-08-09T16:10:00+00:00",
+        "home_team": "f246a5e5-afdb-479c-9aaa-c68beeda7af6",
+        "away_team": "d99f919b-1534-4516-8e8a-9cd106c6d8cd",
+        "venue": {
+            "id": "265c7d6c-427a-4b8a-8def-392c41954bec",
+            "name": "Citi Field",
+            "market": "New York",
+            "capacity": 41922,
+            "surface": "grass",
+            "address": "123-01 Roosevelt Avenue",
+            "city": "Flushing, Queens",
+            "state": "NY",
+            "zip": "11368",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-SW"
+        },
+        "home": {
+            "name": "Mets",
+            "market": "New York",
+            "abbr": "NYM",
+            "id": "f246a5e5-afdb-479c-9aaa-c68beeda7af6"
+        },
+        "away": {
+            "name": "Rangers",
+            "market": "Texas",
+            "abbr": "TEX",
+            "id": "d99f919b-1534-4516-8e8a-9cd106c6d8cd"
+        }
+    }, {
+        "id": "3344d659-230d-4645-bd43-25ed2edd6671",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 28902,
+        "duration": "3:03",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:10:00+00:00",
+        "home_team": "575c19b7-4052-41c2-9f0a-1c5813d02f99",
+        "away_team": "481dfe7e-5dab-46ab-a49f-9dcc2b6e2cfd",
+        "venue": {
+            "id": "ef9a5eef-06c6-4963-ac70-7fd02c8c8d42",
+            "name": "Comerica Park",
+            "market": "Detroit",
+            "capacity": 41681,
+            "surface": "grass",
+            "address": "2100 Woodward Avenue",
+            "city": "Detroit",
+            "state": "MI",
+            "zip": "48226",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-D"
+        },
+        "home": {
+            "name": "Tigers",
+            "market": "Detroit",
+            "abbr": "DET",
+            "id": "575c19b7-4052-41c2-9f0a-1c5813d02f99"
+        },
+        "away": {
+            "name": "Pirates",
+            "market": "Pittsburgh",
+            "abbr": "PIT",
+            "id": "481dfe7e-5dab-46ab-a49f-9dcc2b6e2cfd"
+        }
+    }, {
+        "id": "c29d5509-9217-4284-a322-e13fcc99a12b",
+        "status": "inprogress",
+        "coverage": "full",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-10T01:40:00+00:00",
+        "home_team": "25507be1-6a68-4267-bd82-e097d94b359b",
+        "away_team": "ef64da7f-cfaf-4300-87b0-9313386b977c",
+        "venue": {
+            "id": "bf05de0d-7ced-4a19-8e17-2bbd985f8a92",
+            "name": "Chase Field",
+            "market": "Arizona",
+            "capacity": 48633,
+            "surface": "grass",
+            "address": "401 East Jefferson Street",
+            "city": "Phoenix",
+            "state": "AZ",
+            "zip": "85004",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-AZ"
+        },
+        "home": {
+            "name": "Diamondbacks",
+            "market": "Arizona",
+            "abbr": "ARI",
+            "id": "25507be1-6a68-4267-bd82-e097d94b359b"
+        },
+        "away": {
+            "name": "Dodgers",
+            "market": "Los Angeles",
+            "abbr": "LAD",
+            "id": "ef64da7f-cfaf-4300-87b0-9313386b977c"
+        }
+    }, {
+        "id": "e01b6129-e77a-4143-87b5-6d8b9f61aab4",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 25951,
+        "duration": "3:02",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:05:00+00:00",
+        "home_team": "d89bed32-3aee-4407-99e3-4103641b999a",
+        "away_team": "03556285-bdbb-4576-a06d-42f71f46ddc5",
+        "venue": {
+            "id": "bb062fb1-e268-412e-b3d2-2ddb6acc1822",
+            "name": "Nationals Park",
+            "market": "Washington",
+            "capacity": 41418,
+            "surface": "grass",
+            "address": "1500 South Capitol Street SE",
+            "city": "Washington",
+            "state": "DC",
+            "zip": "20003",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-FL"
+        },
+        "home": {
+            "name": "Nationals",
+            "market": "Washington",
+            "abbr": "WSH",
+            "id": "d89bed32-3aee-4407-99e3-4103641b999a"
+        },
+        "away": {
+            "name": "Marlins",
+            "market": "Miami",
+            "abbr": "MIA",
+            "id": "03556285-bdbb-4576-a06d-42f71f46ddc5"
+        }
+    }, {
+        "id": "06e51cdc-a047-49ad-91b7-d028820387e2",
+        "status": "inprogress",
+        "coverage": "full",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-10T00:15:00+00:00",
+        "home_team": "44671792-dc02-4fdd-a5ad-f5f17edaa9d7",
+        "away_team": "833a51a9-0d84-410f-bd77-da08c3e5e26e",
+        "venue": {
+            "id": "83cc591a-1096-4383-a6ca-e2bd6f8db629",
+            "name": "Busch Stadium",
+            "market": "St. Louis",
+            "capacity": 43975,
+            "surface": "grass",
+            "address": "700 Clark Street",
+            "city": "St. Louis",
+            "state": "MO",
+            "zip": "63102",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-MW"
+        },
+        "home": {
+            "name": "Cardinals",
+            "market": "St. Louis",
+            "abbr": "STL",
+            "id": "44671792-dc02-4fdd-a5ad-f5f17edaa9d7"
+        },
+        "away": {
+            "name": "Royals",
+            "market": "Kansas City",
+            "abbr": "KC",
+            "id": "833a51a9-0d84-410f-bd77-da08c3e5e26e"
+        }
+    }, {
+        "id": "afd569e1-64c4-4ec5-a2ae-117028e680aa",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 22776,
+        "duration": "2:55",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:35:00+00:00",
+        "home_team": "12079497-e414-450a-8bf2-29f91de646bf",
+        "away_team": "2142e1ba-3b40-445c-b8bb-f1f8b1054220",
+        "venue": {
+            "id": "3ca8b577-5844-42ed-81a5-bd5d5cbe350c",
+            "name": "SunTrust Park",
+            "market": "Atlanta",
+            "capacity": 41500,
+            "surface": "grass",
+            "address": "755 Battery Avenue",
+            "city": "Atlanta",
+            "state": "GA",
+            "zip": "30339",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-SE"
+        },
+        "home": {
+            "name": "Braves",
+            "market": "Atlanta",
+            "abbr": "ATL",
+            "id": "12079497-e414-450a-8bf2-29f91de646bf"
+        },
+        "away": {
+            "name": "Phillies",
+            "market": "Philadelphia",
+            "abbr": "PHI",
+            "id": "2142e1ba-3b40-445c-b8bb-f1f8b1054220"
+        }
+    }, {
+        "id": "d0b23816-ceb2-4a36-85a6-286a4122fd9f",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 11853,
+        "duration": "2:59",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:10:00+00:00",
+        "home_team": "bdc11650-6f74-49c4-875e-778aeb7632d9",
+        "away_team": "93941372-eb4c-4c40-aced-fe3267174393",
+        "venue": {
+            "id": "3aaaf4af-0f8c-49c1-8bf1-1780bb5a5f5c",
+            "name": "Tropicana Field",
+            "market": "Tampa Bay",
+            "capacity": 31042,
+            "surface": "turf",
+            "address": "One Tropicana Drive",
+            "city": "St. Petersburg",
+            "state": "FL",
+            "zip": "33705",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "SUN"
+        },
+        "home": {
+            "name": "Rays",
+            "market": "Tampa Bay",
+            "abbr": "TB",
+            "id": "bdc11650-6f74-49c4-875e-778aeb7632d9"
+        },
+        "away": {
+            "name": "Red Sox",
+            "market": "Boston",
+            "abbr": "BOS",
+            "id": "93941372-eb4c-4c40-aced-fe3267174393"
+        }
+    }, {
+        "id": "d4255efe-aa93-4ee6-8812-518f127f9769",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 36202,
+        "duration": "3:06",
+        "game_number": 1,
+        "day_night": "D",
+        "scheduled": "2017-08-09T19:37:00+00:00",
+        "home_team": "4f735188-37c8-473d-ae32-1f7e34ccf892",
+        "away_team": "75729d34-bca7-4a0f-b3df-6f26c6ad3719",
+        "venue": {
+            "id": "60732da9-ad03-4feb-9a36-aee3e98c7a2b",
+            "name": "Angel Stadium of Anaheim",
+            "market": "Los Angeles",
+            "capacity": 43250,
+            "surface": "grass",
+            "address": "2000 Gene Autry Way",
+            "city": "Anaheim",
+            "state": "CA",
+            "zip": "92806",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-W"
+        },
+        "home": {
+            "name": "Angels",
+            "market": "Los Angeles",
+            "abbr": "LAA",
+            "id": "4f735188-37c8-473d-ae32-1f7e34ccf892"
+        },
+        "away": {
+            "name": "Orioles",
+            "market": "Baltimore",
+            "abbr": "BAL",
+            "id": "75729d34-bca7-4a0f-b3df-6f26c6ad3719"
+        }
+    }, {
+        "id": "c1ab6717-cfce-40da-9da4-dc89bc2ed4ee",
+        "status": "closed",
+        "coverage": "full",
+        "attendance": 15450,
+        "duration": "2:59",
+        "game_number": 1,
+        "day_night": "N",
+        "scheduled": "2017-08-09T23:10:00+00:00",
+        "home_team": "c874a065-c115-4e7d-b0f0-235584fb0e6f",
+        "away_team": "d52d5339-cbdd-43f3-9dfa-a42fd588b9a3",
+        "venue": {
+            "id": "f102d8fb-de67-4b86-9053-8b55f578d45c",
+            "name": "Great American Ball Park",
+            "market": "Cincinnati",
+            "capacity": 42319,
+            "surface": "grass",
+            "address": "100 Joe Nuxhall Way",
+            "city": "Cincinnati",
+            "state": "OH",
+            "zip": "45202",
+            "country": "USA"
+        },
+        "broadcast": {
+            "network": "FS-OH"
+        },
+        "home": {
+            "name": "Reds",
+            "market": "Cincinnati",
+            "abbr": "CIN",
+            "id": "c874a065-c115-4e7d-b0f0-235584fb0e6f"
+        },
+        "away": {
+            "name": "Padres",
+            "market": "San Diego",
+            "abbr": "SD",
+            "id": "d52d5339-cbdd-43f3-9dfa-a42fd588b9a3"
+        }
+    }],
+    "_comment": "Generation started @ 2017-08-10 02:38:11 UTC ended @ 2017-08-10 02:38:11 UTC"
+}
