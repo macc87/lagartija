@@ -78,6 +78,37 @@
     <Compile Include="DbContexts\BaseContext.cs" />
     <Compile Include="DbContexts\FakeDbSet.cs" />
     <Compile Include="DbContexts\IDbContext.cs" />
+    <Compile Include="Models\DummyModel\AccountViewModels.cs" />
+    <Compile Include="Models\DummyModel\Action.cs" />
+    <Compile Include="Models\DummyModel\CheckBoxViewModel.cs" />
+    <Compile Include="Models\DummyModel\ClimaConditions.cs" />
+    <Compile Include="Models\DummyModel\Contest.cs" />
+    <Compile Include="Models\DummyModel\ContestToGame.cs" />
+    <Compile Include="Models\DummyModel\ContestType.cs" />
+    <Compile Include="Models\DummyModel\ContestViewModel.cs" />
+    <Compile Include="Models\DummyModel\Game.cs" />
+    <Compile Include="Models\DummyModel\GameViewModel.cs" />
+    <Compile Include="Models\DummyModel\IdentityModels.cs" />
+    <Compile Include="Models\DummyModel\LineUp.cs" />
+    <Compile Include="Models\DummyModel\LineUpMLBViewModel.cs" />
+    <Compile Include="Models\DummyModel\LineUpToContest.cs" />
+    <Compile Include="Models\DummyModel\LineUpToPlayer.cs" />
+    <Compile Include="Models\DummyModel\LineUpViewModel.cs" />
+    <Compile Include="Models\DummyModel\ManageViewModels.cs" />
+    <Compile Include="Models\DummyModel\MLBPlayer.cs" />
+    <Compile Include="Models\DummyModel\MLBPlayerViewModel.cs" />
+    <Compile Include="Models\DummyModel\News.cs" />
+    <Compile Include="Models\DummyModel\Notification.cs" />
+    <Compile Include="Models\DummyModel\Player.cs" />
+    <Compile Include="Models\DummyModel\PlayerViewModel.cs" />
+    <Compile Include="Models\DummyModel\Position.cs" />
+    <Compile Include="Models\DummyModel\PositionViewModel.cs" />
+    <Compile Include="Models\DummyModel\PromoCode.cs" />
+    <Compile Include="Models\DummyModel\Promotion.cs" />
+    <Compile Include="Models\DummyModel\Sport.cs" />
+    <Compile Include="Models\DummyModel\Stadium.cs" />
+    <Compile Include="Models\DummyModel\Team.cs" />
+    <Compile Include="Models\DummyModel\TeamViewModel.cs" />
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

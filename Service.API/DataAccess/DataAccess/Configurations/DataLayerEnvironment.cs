@@ -116,6 +116,9 @@ namespace DataAccess.Configurations
                 case "emer":
                     envElement = atts.Where(x => x.Value == DbEnvironments.prod.ToString()).Select(att => att.Parent).First();
                     break;
+                case "offline":
+                    envElement = atts.Where(x => x.Value == DbEnvironments.offline.ToString()).Select(att => att.Parent).First();
+                    break;
                 default:
                     throw new Exception("Unable to determine server environment.");
 
@@ -129,7 +132,7 @@ namespace DataAccess.Configurations
         private void ParseEnvironmentElements(XContainer element)
         {
             SportsRadarProperties = SportsRadarProperties.ParseSportsRadarPropertiesFromXElement(element.Descendants("sportsRadar").First());
-            FantasyMssqlProperties = MssqlProperties.ParseMssqlPropertiesFromXElement(element.Descendants("fantasyMssql").First());
+            FantasyMssqlProperties = MssqlProperties.ParseMssqlPropertiesFromXElement(element.Descendants("fantasyMssql").First());            
         }
       
         #endregion
