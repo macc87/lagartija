@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>DataAccess</id>
+    <id>Fantasy.API.DataAccess</id>
     <version>$version$</version>
     <title>Data Access</title>
     <authors>Fantasy game</authors>

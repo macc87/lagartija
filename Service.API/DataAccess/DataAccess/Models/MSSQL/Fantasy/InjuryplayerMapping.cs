@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models.MSSQL.Fantasy
+namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
     using System;
     using System.Collections.Generic;
