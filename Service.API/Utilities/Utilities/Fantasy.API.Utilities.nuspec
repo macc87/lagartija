@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Utilities</id>
+    <id>Fantasy.API.Utilities</id>
     <version>$version$</version>
-    <title>Utilities</title>
+    <title>Fantasy.API.Utilities</title>
     <authors>Fantasy game</authors>
     <owners>Fantasy game</owners>
     <copyright>Copyright 2017</copyright>
