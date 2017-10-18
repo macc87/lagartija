@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace website.Models
+namespace DataAccess.Models.DummyModel
 {
     public class ContestViewModel
     {

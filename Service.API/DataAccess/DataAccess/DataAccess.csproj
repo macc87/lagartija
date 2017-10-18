@@ -108,6 +108,7 @@
     <Compile Include="Configurations\OracleProperties.cs" />
     <Compile Include="Configurations\SmtpProperties.cs" />
     <Compile Include="Configurations\SportsRadarProperties.cs" />
+    <Compile Include="DbContexts\ApplicationDbContext.cs" />
     <Compile Include="DbContexts\BaseContext.cs" />
     <Compile Include="DbContexts\FakeDbSet.cs" />
     <Compile Include="DbContexts\IDbContext.cs" />

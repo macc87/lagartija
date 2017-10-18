@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace website.Models
+namespace DataAccess.Models.DummyModel
 {
     public class GameViewModel
     {
