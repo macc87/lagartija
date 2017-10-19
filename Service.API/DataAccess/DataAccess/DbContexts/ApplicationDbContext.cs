@@ -30,7 +30,7 @@ namespace DataAccess.DbContexts
         public DbSet<News> News { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
-        public DbSet<Action> Actions { get; set; }
+        public DbSet<DataAccess.Models.DummyModel.Action> Actions { get; set; }
         public DbSet<ClimaConditions> ClimaConditions { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
         public DbSet<Player> Players { get; set; }
