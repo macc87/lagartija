@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Formatting;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
     internal sealed class MediaTypeFormatterCollection : ReadOnlyCollection<MediaTypeFormatter>
     {

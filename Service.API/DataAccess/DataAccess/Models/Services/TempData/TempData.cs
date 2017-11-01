@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Models.Services.TempData
+namespace Fantasy.API.DataAccess.Models.Services.TempData
 {
     class TempData
     {

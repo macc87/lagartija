@@ -13,8 +13,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     using System.Collections.Generic;
     
     using System.Data.Entity.ModelConfiguration;
-    using DataAccess.Configurations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using global::Fantasy.API.DataAccess.Configurations;
+
     internal sealed class InjuryplayerMapping : EntityTypeConfiguration<InjuryPlayer>
     {
                 public InjuryplayerMapping()

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Utilities.ServicesHandler
+namespace Fantasy.API.Utilities.ServicesHandler
 {
     public class UserInfo
     {

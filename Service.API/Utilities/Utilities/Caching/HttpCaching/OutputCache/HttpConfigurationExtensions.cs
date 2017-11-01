@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     /// <summary>
     /// 

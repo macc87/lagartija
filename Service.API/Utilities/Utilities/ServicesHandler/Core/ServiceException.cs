@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 
-namespace Utilities.ServicesHandler.Core
+namespace Fantasy.API.Utilities.ServicesHandler.Core
 {
     public class ServiceException : Exception
     {

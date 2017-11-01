@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Caching.HttpCaching.Core.Time
+namespace Fantasy.API.Utilities.Caching.HttpCaching.Core.Time
 {
     public class ShortTime : IModelQuery<DateTime, CacheTime>
     {

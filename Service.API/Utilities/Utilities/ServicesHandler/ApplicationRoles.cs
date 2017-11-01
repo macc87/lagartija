@@ -1,4 +1,4 @@
-﻿namespace Utilities.ServicesHandler
+﻿namespace Fantasy.API.Utilities.ServicesHandler
 {
     public static class ApplicationRoles
     {

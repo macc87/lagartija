@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Validation
+namespace Fantasy.API.Utilities.Validation
 {
     public class Check
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Utilities.Validation;
+using Fantasy.API.Utilities.Validation;
 using log4net;
 using log4net.Appender;
 using log4net.Core;
@@ -11,7 +11,7 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Utilities.LogError
+namespace Fantasy.API.Utilities.LogError
 {
     /// <summary>
     /// \\msp0nvnc01.cead.prd\ICSTEST\Logs\Web

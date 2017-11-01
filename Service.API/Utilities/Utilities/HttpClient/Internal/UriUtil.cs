@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Utilities.HttpClient.Internal
+namespace Fantasy.API.Utilities.HttpClient.Internal
 {
 
     internal static class UriUtil

@@ -7,7 +7,7 @@ using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Utilities.HttpClient.Helper
+namespace Fantasy.API.Utilities.HttpClient.Helper
 {
     // <summary>
     // Helpers for safely using Task libraries. 

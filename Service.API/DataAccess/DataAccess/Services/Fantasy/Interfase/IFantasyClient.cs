@@ -1,12 +1,12 @@
-﻿using DataAccess.Models.Services.FantasyData;
+﻿using Fantasy.API.DataAccess.Models.Services.FantasyData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.ServicesHandler.Core;
 
-namespace DataAccess.Services.Fantasy.Interfase
+namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
 {
     public interface IFantasyClient : IDisposable
     {

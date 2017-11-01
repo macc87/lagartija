@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace DataAccess.DbContexts
+namespace Fantasy.API.DataAccess.DbContexts
 {
     public interface IDbContext : IDisposable
     {

@@ -1,4 +1,4 @@
-﻿using Utilities.Caching.HttpCaching.Core.Cache;
+﻿using Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Web.Http;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     public class CacheOutputConfiguration
     {

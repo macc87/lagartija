@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Utilities.HttpClient;
-using Utilities.HttpClient.ResponseMessage;
+using Fantasy.API.Utilities.HttpClient;
+using Fantasy.API.Utilities.HttpClient.ResponseMessage;
 using Newtonsoft.Json;
-using Utilities.Validation;
+using Fantasy.API.Utilities.Validation;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
     public class Response
     {

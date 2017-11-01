@@ -1,13 +1,13 @@
-﻿using DataAccess.Configurations;
-using DataAccess.Models.Services.FantasyData;
+﻿using Fantasy.API.DataAccess.Configurations;
+using Fantasy.API.DataAccess.Models.Services.FantasyData;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Utilities.HttpClient;
-using Utilities.ServicesHandler;
-using Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.HttpClient;
+using Fantasy.API.Utilities.ServicesHandler;
+using Fantasy.API.Utilities.ServicesHandler.Core;
 
-namespace DataAccess.Services.Fantasy.Core
+namespace Fantasy.API.DataAccess.Services.Fantasy.Core
 {
     public class SportsRadarCore : BaseService, IDisposable
     {

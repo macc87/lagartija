@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using Utilities.HttpClient;
-using DataAccess.Configurations;
-using DataAccess.Services.Fantasy.Core;
+using Fantasy.API.Utilities.HttpClient;
+using Fantasy.API.DataAccess.Configurations;
+using Fantasy.API.DataAccess.Services.Fantasy.Core;
 
-namespace DataAccess.Services
+namespace Fantasy.API.DataAccess.Services
 {
     public sealed class ExternalServiceContext
     {

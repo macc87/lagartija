@@ -1,11 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{0AC50011-25ED-4218-92AB-2F4CB010D60C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Domain", "Domain\Fantasy.API.Domain.csproj", "{0AC50011-25ED-4218-92AB-2F4CB010D60C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{6F08029D-0BFA-4A98-A11C-8043804C15E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Domain.Tests", "Domain.Tests\Fantasy.API.Domain.Tests.csproj", "{6F08029D-0BFA-4A98-A11C-8043804C15E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{177128BB-220A-4E21-A08C-66853D68CE9E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +32,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://ihferrero.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Domain.Tests\\Domain.Tests.csproj
-		SccProjectName1 = Domain.Tests
-		SccLocalPath1 = Domain.Tests
-		SccProjectUniqueName2 = Domain\\Domain.csproj
-		SccProjectName2 = Domain
-		SccLocalPath2 = Domain
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BF3A452-DD2E-4816-B1CF-16F0DC114108}
 	EndGlobalSection
 EndGlobal

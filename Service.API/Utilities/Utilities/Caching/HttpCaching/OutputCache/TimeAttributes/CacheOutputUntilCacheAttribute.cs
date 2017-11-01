@@ -1,6 +1,6 @@
-using Utilities.Caching.HttpCaching.Core.Time;
+using Fantasy.API.Utilities.Caching.HttpCaching.Core.Time;
 
-namespace Utilities.Caching.HttpCaching.OutputCache.TimeAttributes
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache.TimeAttributes
 {
     public class CacheOutputUntilAttribute : CacheOutputAttribute
     {

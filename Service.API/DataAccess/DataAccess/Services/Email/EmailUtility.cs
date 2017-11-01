@@ -3,10 +3,10 @@ using System.Configuration;
 using System.IO;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Utilities.ServicesHandler;
-using Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.ServicesHandler;
+using Fantasy.API.Utilities.ServicesHandler.Core;
 
-namespace DataAccess.Services.Email
+namespace Fantasy.API.DataAccess.Services.Email
 {
     public class EmailUtility : BaseService, IEmailUtility
     {

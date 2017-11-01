@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 
-namespace Utilities.Extensions
+namespace Fantasy.API.Utilities.Extensions
 {
     public static class XDocumentExtension
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DataAccess.Models.Services.Survey
+namespace Fantasy.API.DataAccess.Models.Services.Survey
 {
     public class Token
     {

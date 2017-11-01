@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using Utilities.HttpClient;
+using Fantasy.API.Utilities.HttpClient;
 
-namespace DataAccess.Services.Fantasy.Core
+namespace Fantasy.API.DataAccess.Services.Fantasy.Core
 {
     public class HttpClientFantasy : HttpApiClient
     {

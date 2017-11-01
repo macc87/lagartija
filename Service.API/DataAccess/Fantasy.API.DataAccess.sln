@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6CDAF0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.DataAccess.Tests", "Fantasy.API.DataAccess.Tests\Fantasy.API.DataAccess.Tests.csproj", "{F4EB5AF6-6E70-4801-8E3D-BD4359530D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{A61B45BC-1AA5-4219-A65D-0DC94948A52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A61B45BC-1AA5-4219-A65D-0DC94948A52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A61B45BC-1AA5-4219-A65D-0DC94948A52F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EB5AF6-6E70-4801-8E3D-BD4359530D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EB5AF6-6E70-4801-8E3D-BD4359530D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EB5AF6-6E70-4801-8E3D-BD4359530D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EB5AF6-6E70-4801-8E3D-BD4359530D11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

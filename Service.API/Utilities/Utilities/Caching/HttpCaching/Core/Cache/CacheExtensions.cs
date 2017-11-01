@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Caching.HttpCaching.Core.Cache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache
 {
     public static class CacheExtensions
     {

@@ -9,12 +9,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
-using Utilities.HttpClient;
-using Utilities.LogError;
-using Utilities.ServicesHandler.Core;
-using Utilities.Validation;
+using Fantasy.API.Utilities.HttpClient;
+using Fantasy.API.Utilities.LogError;
+using Fantasy.API.Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.Validation;
 
-namespace Utilities.ServicesHandler
+namespace Fantasy.API.Utilities.ServicesHandler
 {
     public class BaseService
     {

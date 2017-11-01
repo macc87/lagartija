@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace Utilities.HttpClient.ResponseMessage
+namespace Fantasy.API.Utilities.HttpClient.ResponseMessage
 {
 
     public class HttpApiResponseMessage<TModel> : HttpApiResponseMessage

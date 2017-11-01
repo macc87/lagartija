@@ -1,4 +1,4 @@
-using Domain.Mapping.FantasyService;
+using Fantasy.API.Domain.Mapping.FantasyService;
 
 namespace Assurant.ASP.Api.Domain.Mapping
 {

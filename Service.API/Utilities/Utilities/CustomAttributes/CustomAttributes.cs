@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Http;
 
-namespace Utilities.CustomAttributes
+namespace Fantasy.API.Utilities.CustomAttributes
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public sealed class EnumAuthorizeAttribute : AuthorizeAttribute
