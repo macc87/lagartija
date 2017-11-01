@@ -1,5 +1,4 @@
 ﻿using Assurant.ASP.Api.Domain.Mapping;
-using Fantasy.API.DataAccess.Services.Fantasy;
 using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
 using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
 using Fantasy.API.Utilities.ServicesHandler;
@@ -12,7 +11,12 @@ namespace Fantasy.API.Domain.Services.FantasyService.Core
     public class FantasyServiceCore : BaseService, IDisposable
     {
         private bool _disposed;
-        private readonly IFantasyClient FantasyClient = new SportsRadarClient();
+        private readonly IFantasyClient FantasyClient;
+
+        public FantasyServiceCore(IFantasyClient fantasyClient)
+        {
+            FantasyClient = fantasyClient;
+        }
 
         internal async Task<ServiceResult<InjuriesBO>> GetInjuriesAsync()
         {

@@ -2,7 +2,7 @@
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    class InjuryDto
+    public class InjuryDto
     {
         public LeagueDto League { get; set; }
         public IEnumerable<InjuriesTeamDto> teams { get; set; }

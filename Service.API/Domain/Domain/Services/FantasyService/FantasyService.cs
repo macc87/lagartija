@@ -1,4 +1,5 @@
-﻿using Fantasy.API.DataAccess.UnitOfWork;
+﻿using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
+using Fantasy.API.DataAccess.UnitOfWork;
 using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
 using Fantasy.API.Domain.Services.FantasyService.Core;
 using Fantasy.API.Utilities.ServicesHandler;
@@ -14,9 +15,10 @@ namespace Fantasy.API.Domain.Services.FantasyService
         private bool _disposed;
         private readonly FantasyServiceCore _fantasyServiceCore;
 
-        public FantasyService()
+        public FantasyService(IFantasyClient client)
         {
-            _fantasyServiceCore = new FantasyServiceCore();
+            Check.NotNull(client, "client");
+            _fantasyServiceCore = new FantasyServiceCore(client);
         }
 
         public async Task<ServiceResult<InjuriesBO>> GetInjuriesAsync()
