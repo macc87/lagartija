@@ -263,3 +263,4 @@ website/Media
 website/Content/Media
 
 *.orig
+Service.API/DataAccess/.nuget/*
