@@ -266,3 +266,4 @@ website/Content/Media
 Service.API/DataAccess/.nuget/*
 Service.API/DataAccess/packages/*
 Service.API/Domain/packages/*
+Service.API/Utilities/.nuget/*
