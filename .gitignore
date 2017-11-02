@@ -264,3 +264,4 @@ website/Content/Media
 
 *.orig
 Service.API/DataAccess/.nuget/*
+Service.API/DataAccess/packages/*
