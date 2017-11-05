@@ -1,48 +1,38 @@
-﻿using System;
+﻿using Assurant.ASP.Api.Domain.Mapping;
+using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
+using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
+using Fantasy.API.Utilities.ServicesHandler;
+using Fantasy.API.Utilities.ServicesHandler.Core;
+using System;
 using System.Threading.Tasks;
-using Domain.BussinessObjects.FantasyBOs;
-using Utilities.ServicesHandler.Core;
-using Utilities.ServicesHandler;
-using DataAccess.UnitOfWork;
-using Utilities.Validation;
-using DataAccess.Repository;
-using DataAccess.Models.Claim.Services.FantasyData;
-using DataAccess.Models.Claim.MSSQL.Fantasy;
-using System.Linq;
-using System.Data.Entity;
 
-namespace Domain.Services.FantasyService.Core
+namespace Fantasy.API.Domain.Services.FantasyService.Core
 {
     public class FantasyServiceCore : BaseService, IDisposable
     {
         private bool _disposed;
-        private UserInfo _userInfo;
-        private IUnitOfWork _unitOfWorkSql;
-        internal readonly IRepository<InjuryPlayer> InjuriesRepository;
+        private readonly IFantasyClient FantasyClient;
 
-        public FantasyServiceCore(IUnitOfWork unitOfWorkSql, UserInfo userInfo)
+        public FantasyServiceCore(IFantasyClient fantasyClient)
         {
-            Check.NotNull(unitOfWorkSql, "unitOfWorkMsSql");
-            InjuriesRepository = new Repository<InjuryPlayer>(unitOfWorkSql);
-            _unitOfWorkSql = unitOfWorkSql;
-            _userInfo = userInfo;
+            FantasyClient = fantasyClient;
         }
 
         internal async Task<ServiceResult<InjuriesBO>> GetInjuriesAsync()
         {
             try
             {
-                var injuries = _unitOfWorkSql.Context.Set<InjuryPlayer>()
-                             .Include(x => x.Injury)
-                             .Include(x => x.InjuryTeam);
-                             
-
-
-                if (injuries == null)
-                    throw new Exception("No injuries found");
-                var result = new InjuriesBO();
-
-                return await ServiceOkAsync(result);
+                var result = await FantasyClient.GetInjuriesAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get injured players");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await ModelFactories.ModelFactoryFantasy.Create(result.Result);
+                return await ServiceOkAsync(resultMapping);
             }
             catch (Exception exception)
             {
@@ -63,7 +53,7 @@ namespace Domain.Services.FantasyService.Core
             {
                 if (disposing)
                 {
-                    InjuriesRepository.Dispose();
+                    FantasyClient.Dispose();
                 }
             }
             _disposed = true;

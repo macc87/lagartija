@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Utilities.Extensions
+namespace Fantasy.API.Utilities.Extensions
 {
 
     ///<summary>

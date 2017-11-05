@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace DataAccess.Configurations
+namespace Fantasy.API.DataAccess.Configurations
 {
     /// <summary>
     /// Class represents a data layer environment 

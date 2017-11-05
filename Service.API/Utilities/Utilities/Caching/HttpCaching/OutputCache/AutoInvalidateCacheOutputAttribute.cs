@@ -8,7 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class AutoInvalidateCacheOutputAttribute : BaseCacheAttribute

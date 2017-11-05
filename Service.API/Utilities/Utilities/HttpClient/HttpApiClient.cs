@@ -4,11 +4,11 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
-using Utilities.HttpClient.Formating;
-using Utilities.HttpClient.Internal;
-using Utilities.HttpClient.ResponseMessage;
+using Fantasy.API.Utilities.HttpClient.Formating;
+using Fantasy.API.Utilities.HttpClient.Internal;
+using Fantasy.API.Utilities.HttpClient.ResponseMessage;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
 
     /// <summary>

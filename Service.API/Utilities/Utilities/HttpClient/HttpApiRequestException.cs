@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Http;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
 
     [Serializable]

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace DataAccess.DbContexts
+namespace Fantasy.API.DataAccess.DbContexts
 {
     public class FakeDbSet<T> : IDbSet<T> where T : class
     {

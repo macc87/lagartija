@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
     public sealed class ApiMultipleClientContext
     {

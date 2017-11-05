@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
-using Utilities.HttpClient.Helper;
+using Fantasy.API.Utilities.HttpClient.Helper;
 
-namespace Utilities.HttpClient.ResponseMessage
+namespace Fantasy.API.Utilities.HttpClient.ResponseMessage
 {
 
     [EditorBrowsable(EditorBrowsableState.Never)]

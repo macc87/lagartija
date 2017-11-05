@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace DataAccess.Models.MSSQL.Fantasy
+namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
     public class InjuryPlayer
     {

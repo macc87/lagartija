@@ -1,5 +1,5 @@
 ﻿
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
 
     internal static class ErrorMessages

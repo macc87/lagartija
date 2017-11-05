@@ -8,10 +8,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Utilities.Extensions.Core;
-using Utilities.Validation;
+using Fantasy.API.Utilities.Extensions.Core;
+using Fantasy.API.Utilities.Validation;
 
-namespace Utilities.Extensions
+namespace Fantasy.API.Utilities.Extensions
 {
     public static class StringExtension
     {

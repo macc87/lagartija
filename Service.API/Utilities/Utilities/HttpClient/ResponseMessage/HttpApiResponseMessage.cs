@@ -1,8 +1,8 @@
-﻿using Utilities.Validation;
+﻿using Fantasy.API.Utilities.Validation;
 using System;
 using System.Net.Http;
 
-namespace Utilities.HttpClient.ResponseMessage
+namespace Fantasy.API.Utilities.HttpClient.ResponseMessage
 {
 
     public class HttpApiResponseMessage : IDisposable

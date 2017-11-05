@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Utilities.Caching.HttpCaching.Core.Cache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache
 {
     public interface IApiOutputCache
     {

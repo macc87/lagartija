@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using DataAccess.UnitOfWork;
+using Fantasy.API.DataAccess.UnitOfWork;
 
-namespace DataAccess.Repository
+namespace Fantasy.API.DataAccess.Repository
 {
 
     /// <summary>

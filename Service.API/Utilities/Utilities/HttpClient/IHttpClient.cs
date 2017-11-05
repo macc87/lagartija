@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Utilities.HttpClient.ResponseMessage;
+using Fantasy.API.Utilities.HttpClient.ResponseMessage;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
     public interface IHttpClient : IDisposable
     {

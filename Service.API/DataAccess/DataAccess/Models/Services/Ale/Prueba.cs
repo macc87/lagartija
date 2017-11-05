@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Models.Services.Ale
+namespace Fantasy.API.DataAccess.Models.Services.Ale
 {
 
     public class Rootobject

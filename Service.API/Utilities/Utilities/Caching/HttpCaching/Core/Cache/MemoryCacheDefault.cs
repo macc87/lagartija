@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Caching;
 
-namespace Utilities.Caching.HttpCaching.Core.Cache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache
 {
     public class MemoryCacheDefault : IApiOutputCache
     {

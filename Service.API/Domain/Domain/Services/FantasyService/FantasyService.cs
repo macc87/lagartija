@@ -1,27 +1,24 @@
-﻿using Domain.Services.FantasyService.Core;
+﻿using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
+using Fantasy.API.DataAccess.UnitOfWork;
+using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
+using Fantasy.API.Domain.Services.FantasyService.Core;
+using Fantasy.API.Utilities.ServicesHandler;
+using Fantasy.API.Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.Validation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Domain.BussinessObjects.FantasyBOs;
-using Utilities.ServicesHandler.Core;
-using Utilities.ServicesHandler;
-using DataAccess.UnitOfWork;
-using Utilities.Validation;
 
-namespace Domain.Services.FantasyService
+namespace Fantasy.API.Domain.Services.FantasyService
 {
     public class FantasyService : IFantasyService
     {
         private bool _disposed;
         private readonly FantasyServiceCore _fantasyServiceCore;
 
-        public FantasyService(IUnitOfWork unitOfWorkSql, UserInfo userInfo)
+        public FantasyService(IFantasyClient client)
         {
-            Check.NotNull(unitOfWorkSql, "unitOfWorkSql");
-            Check.NotNull(userInfo, "userInfo");
-            _fantasyServiceCore = new FantasyServiceCore(unitOfWorkSql, userInfo);
+            Check.NotNull(client, "client");
+            _fantasyServiceCore = new FantasyServiceCore(client);
         }
 
         public async Task<ServiceResult<InjuriesBO>> GetInjuriesAsync()

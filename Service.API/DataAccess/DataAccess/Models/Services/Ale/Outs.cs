@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models.Services.Ale
+﻿namespace Fantasy.API.DataAccess.Models.Services.Ale
 {
     public class Outs
     {

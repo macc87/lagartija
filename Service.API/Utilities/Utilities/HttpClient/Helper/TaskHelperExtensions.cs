@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
 using System.Reflection;
-using Utilities.HttpClient.Helper;
+using Fantasy.API.Utilities.HttpClient.Helper;
 
 namespace System.Threading.Tasks
 {

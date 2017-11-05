@@ -2,7 +2,7 @@
 using System.Net;
 using Newtonsoft.Json;
 
-namespace Utilities.ServicesHandler.Core
+namespace Fantasy.API.Utilities.ServicesHandler.Core
 {
     public class ServiceResult
     {

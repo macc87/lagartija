@@ -1,12 +1,9 @@
-﻿using Domain.BussinessObjects.FantasyBOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
-using Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.ServicesHandler.Core;
+using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
 
-namespace Domain.Services.FantasyService
+namespace Fantasy.API.Domain.Services.FantasyService
 {
     public interface IFantasyService : IDisposable
     {

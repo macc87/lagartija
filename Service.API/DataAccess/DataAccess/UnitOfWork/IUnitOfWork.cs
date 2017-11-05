@@ -2,9 +2,9 @@
 using System.Data;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using DataAccess.DbContexts;
+using Fantasy.API.DataAccess.DbContexts;
 
-namespace DataAccess.UnitOfWork
+namespace Fantasy.API.DataAccess.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

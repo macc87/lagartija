@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Utilities.Caching.HttpCaching.Core;
-using Utilities.Caching.HttpCaching.Core.Cache;
-using Utilities.Caching.HttpCaching.Core.Time;
+using Fantasy.API.Utilities.Caching.HttpCaching.Core;
+using Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache;
+using Fantasy.API.Utilities.Caching.HttpCaching.Core.Time;
 using System;
 using System.Linq;
 using System.Net;
@@ -16,7 +16,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class CacheOutputAttribute : FilterAttribute, IActionFilter

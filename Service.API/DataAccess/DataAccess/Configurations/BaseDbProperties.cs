@@ -1,4 +1,4 @@
-namespace DataAccess.Configurations
+namespace Fantasy.API.DataAccess.Configurations
 {
 
 

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Net.Http.Formatting;
 
-namespace Utilities.HttpClient.Formating
+namespace Fantasy.API.Utilities.HttpClient.Formating
 {
 
     internal sealed class DefaultMediaTypeFormatterCollection : ReadOnlyCollection<MediaTypeFormatter>

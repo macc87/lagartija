@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models.Services.FantasyData
+﻿namespace Fantasy.API.DataAccess.Models.Services.FantasyData
 {
     public class PitcherStatistics
     {

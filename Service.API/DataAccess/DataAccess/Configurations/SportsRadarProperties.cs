@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
-namespace DataAccess.Configurations
+namespace Fantasy.API.DataAccess.Configurations
 {
     public class SportsRadarProperties
     {

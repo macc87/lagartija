@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Utilities.HttpClient
+namespace Fantasy.API.Utilities.HttpClient
 {
 
     public class ApiClientConfigurationExpression

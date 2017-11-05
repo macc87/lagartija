@@ -1,9 +1,9 @@
-﻿using Utilities.Caching.HttpCaching.Core.Cache;
+﻿using Fantasy.API.Utilities.Caching.HttpCaching.Core.Cache;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Filters;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     public abstract class BaseCacheAttribute : ActionFilterAttribute
     {

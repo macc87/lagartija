@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Web.Http.Filters;
 
-namespace Utilities.Caching.HttpCaching.OutputCache
+namespace Fantasy.API.Utilities.Caching.HttpCaching.OutputCache
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public sealed class InvalidateCacheOutputAttribute : BaseCacheAttribute

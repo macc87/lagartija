@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DataAccess.DbContexts;
+using Fantasy.API.DataAccess.DbContexts;
 
-namespace DataAccess.UnitOfWork
+namespace Fantasy.API.DataAccess.UnitOfWork
 {
     public class EfUnitOfWork : IUnitOfWork
     {

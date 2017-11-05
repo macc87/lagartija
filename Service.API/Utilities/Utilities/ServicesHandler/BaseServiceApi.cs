@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
-using Utilities.LogError;
-using Utilities.ServicesHandler.Core;
+using Fantasy.API.Utilities.LogError;
+using Fantasy.API.Utilities.ServicesHandler.Core;
 
-namespace Utilities.ServicesHandler
+namespace Fantasy.API.Utilities.ServicesHandler
 {
     public abstract class BaseServiceApi : ApiController
     {

@@ -1,4 +1,4 @@
-namespace Utilities.ServicesHandler.Core
+namespace Fantasy.API.Utilities.ServicesHandler.Core
 {
     public class ErrorMesssage
     {

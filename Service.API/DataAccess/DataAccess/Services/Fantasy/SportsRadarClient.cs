@@ -1,11 +1,11 @@
-﻿using DataAccess.Services.Fantasy.Interfase;
+﻿using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
 using System;
 using System.Threading.Tasks;
-using DataAccess.Models.Services.FantasyData;
-using Utilities.ServicesHandler.Core;
-using DataAccess.Services.Fantasy.Core;
+using Fantasy.API.DataAccess.Models.Services.FantasyData;
+using Fantasy.API.Utilities.ServicesHandler.Core;
+using Fantasy.API.DataAccess.Services.Fantasy.Core;
 
-namespace DataAccess.Services.Fantasy
+namespace Fantasy.API.DataAccess.Services.Fantasy
 {
     public class SportsRadarClient : IFantasyClient
     {

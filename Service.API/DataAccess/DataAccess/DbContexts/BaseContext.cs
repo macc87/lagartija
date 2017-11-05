@@ -1,4 +1,4 @@
-﻿using Utilities.Extensions;
+﻿using Fantasy.API.Utilities.Extensions;
 using System;
 using System.Configuration;
 using System.Data.Common;
@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 
-namespace DataAccess.DbContexts
+namespace Fantasy.API.DataAccess.DbContexts
 {
 
 	/// <summary>

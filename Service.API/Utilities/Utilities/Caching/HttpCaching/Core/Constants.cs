@@ -1,4 +1,4 @@
-﻿namespace Utilities.Caching.HttpCaching.Core
+﻿namespace Fantasy.API.Utilities.Caching.HttpCaching.Core
 {
     public sealed class Constants
     {

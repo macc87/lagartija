@@ -7,9 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Utilities.Validation;
+using Fantasy.API.Utilities.Validation;
 
-namespace Utilities.Extensions
+namespace Fantasy.API.Utilities.Extensions
 {
     public static class ObjectExtension
     {
