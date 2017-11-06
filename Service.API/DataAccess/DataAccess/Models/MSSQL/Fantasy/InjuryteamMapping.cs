@@ -9,10 +9,12 @@
 
 namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
-
+    using System;
+    using System.Collections.Generic;
+    
     using System.Data.Entity.ModelConfiguration;
     using global::Fantasy.API.DataAccess.Configurations;
-
+    using System.ComponentModel.DataAnnotations.Schema;
     internal sealed class InjuryteamMapping : EntityTypeConfiguration<InjuryTeam>
     {
                 public InjuryteamMapping()

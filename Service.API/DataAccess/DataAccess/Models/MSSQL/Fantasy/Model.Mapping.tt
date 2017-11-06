@@ -34,7 +34,7 @@ foreach (EntityType entity in typeMapper.GetItemsToGenerate<EntityType>(itemColl
 #>
 <#=codeStringGenerator.UsingDirectives(false,true)#>
 using System.Data.Entity.ModelConfiguration;
-using Fantasy.API.DataAccess.Configurations;
+using global::Fantasy.API.DataAccess.Configurations;
 using System.ComponentModel.DataAnnotations.Schema;
 internal sealed class <#=className#><#=String.Format(" : EntityTypeConfiguration<{0}>", code.Escape(entity))#>
 {
