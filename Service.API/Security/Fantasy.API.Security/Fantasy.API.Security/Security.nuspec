@@ -13,7 +13,12 @@
     </description>
     <dependencies>
       <group targetFramework="net45">
-        <!--<dependency id="Fantasy.API.DataAccess"/>-->
+        <dependency id="Fantasy.API.DataAccess"/>
+        <dependency id="Microsoft.Owin"/>
+        <dependency id="Microsoft.Owin.Security"/>
+        <dependency id="Microsoft.Owin.Security.Cookies"/>
+        <dependency id="Microsoft.Owin.Security.OAuth"/>
+        <dependency id="Owin"/>
       </group>
     </dependencies>
   </metadata>

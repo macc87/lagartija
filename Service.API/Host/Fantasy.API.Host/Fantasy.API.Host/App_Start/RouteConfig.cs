@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ClaimManagementCenter
+namespace Fantasy.API.Host
 {
     public class RouteConfig
     {
@@ -18,7 +18,7 @@ namespace ClaimManagementCenter
                 "Default",
                "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new string[] { "ClaimManagementCenter.Controllers" }
+                new string[] { "Fantasy.API.Host.Controllers" }
             );
         }
     }

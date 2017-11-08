@@ -1,6 +1,6 @@
-﻿using Assurant.ASP.Api.Security.STSMicrosoft;
-using Assurant.ASP.Api.Security.STSMicrosoft.OIM;
-using ClaimManagementCenter.Filter;
+﻿using Fantasy.API.Host.Filter;
+using Fantasy.API.Security.STSMicrosoft;
+using Fantasy.API.Security.STSMicrosoft.OIM;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Extensions;
@@ -13,11 +13,12 @@ using System.Collections.Concurrent;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-[assembly: OwinStartup(typeof(ClaimManagementCenter.Startup))]
-namespace ClaimManagementCenter
+[assembly: OwinStartup(typeof(Fantasy.API.Host.Startup))]
+namespace Fantasy.API.Host
 {
     public partial class Startup
     {
+        private const string CookieName = "FANTASYAPI0594332211230";
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
@@ -30,7 +31,6 @@ namespace ClaimManagementCenter
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-               // Provider = new ResourceOwnerOAuthProvider(ldapUtilityextended, ldapUtility, unitOfWorkSql),
                 Provider = new ResourceOwnerOAuthProvider(),
                 RefreshTokenProvider = new RefreshTokenProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(24),
@@ -59,7 +59,7 @@ namespace ClaimManagementCenter
                 AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
                 LoginPath = new PathString("/Account/Login"),
                 LogoutPath = new PathString("/Account/Login"),
-                CookieName = "ACCAPI0594332211230",
+                CookieName = CookieName,
                 ExpireTimeSpan = TimeSpan.FromHours(24),
                 Provider = new CookieAuthenticationProvider { OnValidateIdentity = MyCustomValidateIdentity }
             });
@@ -71,7 +71,7 @@ namespace ClaimManagementCenter
         private static Task MyCustomValidateIdentity(CookieValidateIdentityContext context)
         {
             var error = context.OwinContext.Request.Cookies["_error"];
-            var user = context.OwinContext.Request.Cookies["ACCAPI0594332211230"];
+            var user = context.OwinContext.Request.Cookies[CookieName];
 
             var identity = context.Identity;
             if (!identity.HasClaim(c => c.Type == ClaimTypes.Expiration)) return Task.FromResult(0);
@@ -95,7 +95,6 @@ namespace ClaimManagementCenter
             {
                 context.RejectIdentity();
             }
-
             return Task.FromResult(0);
         }
 
@@ -126,7 +125,5 @@ namespace ClaimManagementCenter
         {
             context.DeserializeTicket( context.Token );
         }
-
-     
     }
 }
