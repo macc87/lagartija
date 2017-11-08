@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Fantasy.API.Security</id>
+    <version>$version$</version>
+    <title>Security</title>
+    <authors>Fantasy game</authors>
+    <owners>Fantasy game</owners>
+    <copyright>Copyright 2017</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Initial security module
+    </description>
+    <dependencies>
+      <group targetFramework="net45">
+        <!--<dependency id="Fantasy.API.DataAccess"/>-->
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Debug\*.pdb" target="lib\net45" />
+  </files>
+</package>
