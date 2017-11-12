@@ -79,6 +79,13 @@
     <Compile Include="DbContexts\BaseContext.cs" />
     <Compile Include="DbContexts\FakeDbSet.cs" />
     <Compile Include="DbContexts\IDbContext.cs" />
+    <Compile Include="DbContexts\MSSQL\FantasyData\FantasyContext.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\Account.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\AccountMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -174,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DbContexts\DB2\" />
-    <Folder Include="DbContexts\MSSQL\" />
     <Folder Include="DbContexts\ORA\" />
     <Folder Include="Models\MSSQL\Fantasy\Extensions\" />
   </ItemGroup>

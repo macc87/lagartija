@@ -12,6 +12,7 @@
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_Injury" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_InjuryTeam" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryTeam_League" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="7.5" PointY="1.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
