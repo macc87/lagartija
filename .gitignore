@@ -268,3 +268,9 @@ Service.API/DataAccess/packages/*
 Service.API/Domain/packages/*
 Service.API/Utilities/.nuget/*
 Service.API/Utilities/packages/*
+Service.API/Domain/.nuget/packages/*
+Service.API/DataAccess/.nuget/*
+Service.API/Domain/Domain/Fantasy.API.Domain.csproj
+Service.API/DataAccess/.nuget/*
+Service.API/DataAccess/.nuget/NuGet.Config
+*.csproj
