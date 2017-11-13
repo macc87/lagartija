@@ -274,3 +274,4 @@ Service.API/Domain/Domain/Fantasy.API.Domain.csproj
 Service.API/DataAccess/.nuget/*
 Service.API/DataAccess/.nuget/NuGet.Config
 *.csproj
+Service.API/Utilities/.nuget/*
