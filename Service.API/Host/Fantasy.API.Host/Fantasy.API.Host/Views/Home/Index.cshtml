@@ -1,31 +1,67 @@
-﻿@{
+﻿@using System.Security.Claims
+@using Microsoft.AspNet.Identity
+@using MvcSiteMapProvider.Web.Html
+@using Fantasy.API.Utilities.ServicesHandler
+@{
+    Layout = "../Shared/_Layout.cshtml";
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="container adjusted">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <div class="panel-title"><i class="glyphicon glyphicon-home"></i><span class="text-capitalize"> Welcome,  @User.Identity.GetUserName()</span> </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6 col-md-offset-3">
+                <br />
+                @{
+                    var rolesEnumerable = ClaimsPrincipal.Current.HasClaim(x => x.Type == ClaimTypes.Role) ? ClaimsPrincipal.Current.FindAll(ClaimTypes.Role) : null;
+                    if (rolesEnumerable != null)
+                    {
+                        var roles = rolesEnumerable.ToList();
+                        var isItAdmin = roles.FirstOrDefault(x => x.Value == ApplicationRoles.ItAdmin) != null;
+                        if (isItAdmin)
+                        {
+                            @*<a type="button" class="btn btn-block btn-primary action" href="Mailbox" title=" Mailbox">
+                                <span class="glyphicon glyphicon-envelope action"></span> Mailbox
+                            </a>*@
+                            <a type="button" class="btn btn-block btn-primary action" href="Help" title="  Help">
+                                <span class="glyphicon glyphicon-question-sign action"></span>  Help
+                            </a>
+                            @*<a type="button" class="btn btn-block btn-primary action" href="LogBrowser" title=" Browse Logs">
+                                <span class="glyphicon glyphicon-search action"></span> Browse Logs
+                            </a>*@
+                        }
+                        @*else
+                        {
+                            foreach (var role in roles.ToList())
+                            {
+                                switch (role.Value)
+                                {
+                                    case "ICSMailbox":
+                                        {
+                                            <a type="button" class="btn btn-block btn-primary action" href="Mailbox" title=" Mailbox">
+                                                <span class="glyphicon glyphicon-envelope action"></span> Mailbox
+                                            </a>
+                                            break;
+                                        }
+                                    case "ICSApiHelp":
+                                        {
+                                            <a type="button" class="btn btn-block btn-primary action" href="Help" title="  Help">
+                                                <span class="glyphicon glyphicon-question-sign action"></span>  Help
+                                            </a>
+                                            break;
+                                        }
+                                }
+                            }
+
+                        }*@
+                    }
+}
+            </div>
+        </div>
     </div>
 </div>

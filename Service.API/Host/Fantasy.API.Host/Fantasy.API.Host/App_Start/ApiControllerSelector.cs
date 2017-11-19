@@ -111,9 +111,5 @@ namespace Fantasy.API.Host
             }
             return "1";
         }
-
-
-
-
     }
 }

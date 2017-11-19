@@ -41,9 +41,11 @@ namespace Fantasy.API.Security.STSMicrosoft.OIM.Flows
 
                     oAuthIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, _context.UserName));
                     oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, ApplicationRoles.ItAdmin));
-                    oAuthIdentity.AddClaim(new Claim(ClaimTypes.Email, "cws_it_support@assurant.com"));
+                    oAuthIdentity.AddClaim(new Claim(ClaimTypes.Email, currentUser.Email));
                     oAuthIdentity.AddClaim(new Claim("ApplicationName", Applications.Fantasy));
+                    oAuthIdentity.AddClaim(new Claim("ApplicationId", Applications.Fantasy));
                     oAuthIdentity.AddClaim(new Claim("CompanyName", "Fantasy"));
+
                     oAuthIdentity.AddClaim(new Claim("CompanyId", Applications.Fantasy));
 
                     Dictionary<string, string> userProperties = new Dictionary<string, string>()
@@ -67,7 +69,7 @@ namespace Fantasy.API.Security.STSMicrosoft.OIM.Flows
                     return;
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 throw;
             }            

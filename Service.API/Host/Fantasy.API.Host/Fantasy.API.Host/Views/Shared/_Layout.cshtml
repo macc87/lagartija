@@ -1,42 +1,153 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using System.Collections.Concurrent
+@using System.Security.Claims
+@using Microsoft.AspNet.Identity
+@using Microsoft.Owin
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/dataTables/css")*@
+    @*@Styles.Render("~/Content/themes/base/jquery.ui.all.css")*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="body">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li><a href="~/">Hello, @User.Identity.GetUserName()</a></li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i> Menu <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu ">
+                                    <li><a href="@Url.Action("Index", "Home", new {area = ""})" class="action"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                    @*@Html.MvcSiteMap().SiteMapTitle()*@
+                                    @{
+                        var rolesEnumerable = ClaimsPrincipal.Current.HasClaim(x => x.Type == ClaimTypes.Role) ? ClaimsPrincipal.Current.FindAll(ClaimTypes.Role) : null;
+                        if (rolesEnumerable != null)
+                        {
+                            var roles = rolesEnumerable.ToList();
+                            var isItAdmin = roles.FirstOrDefault(x => x.Value == "ICSDevelopers") != null;
+                            if (isItAdmin)
+                            {
+                                <li>
+                                    <a href="Mailbox" title="Mailbox" class=" action">
+                                        <span class="glyphicon glyphicon-envelope action"></span>
+                                        Mailbox
+                                    </a>
+                                </li>
+                                        <li>
+                                            <a href="Help" title="  Help" class="action">
+                                                <span class="glyphicon glyphicon-question-sign action"></span>   Help
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="LogBrowser" title=" Browse Logs" class="action">
+                                                <span class="glyphicon glyphicon-search action"></span>  Browse Logs
+                                            </a>
+                                        </li>
+                            }
+                            else
+                            {
+                                foreach (var role in roles)
+                                {
+                                    switch (role.Value)
+                                    {
+                                        case "ICSMailbox":
+                                            {
+                                                <li>
+                                                    <a href="Mailbox" title="Mailbox" class=" action">
+                                                        <span class="glyphicon glyphicon-envelope action"></span>
+                                                        Mailbox
+                                                    </a>
+                                                </li>
+
+                                                break;
+                                            }
+                                        case "ICSApiHelp":
+                                            {
+                                                <li>
+                                                    <a href="Help" title="  Help" class="action">
+                                                        <span class="glyphicon glyphicon-question-sign action"></span>   Help
+                                                    </a>
+                                                </li>
+                                                break;
+                                            }
+                                    }
+                                }
+                            }
+
+
+                        }
+
+}
+
+
+                                </ul>
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="action"><i class="fa fa-sign-out"></i> Log off</a></li>
+
+                        </ul>
+                    }
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="main-wrapper mainbody">
+            <div class="site-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <span class="claims-msg ">
+                                    Fantasy - Web API v1.0<br />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+            @RenderBody()
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-center">Copyright @DateTime.Now.Year Fantasy (to be determine) All Rights Reserved. <a class="white-color" href="">Legal Notice</a> | <a class="white-color" href="">Privacy Policy</a> </p>
+            </div>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/Scripts/jquery-ui.min.js")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@using (Html.BeginRouteForm("LogOffRoute", FormMethod.Post, new { @id = "logoutForm", @class = "hidden" }))
+{
+
+    @Html.AntiForgeryToken()
+}

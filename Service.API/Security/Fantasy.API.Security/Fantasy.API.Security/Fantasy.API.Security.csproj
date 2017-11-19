@@ -36,11 +36,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fantasy.API.DataAccess.1.0.0.5\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
+    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.7\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Utilities, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fantasy.API.Utilities.1.0.0.2\lib\net452\Fantasy.API.Utilities.dll</HintPath>
+    <Reference Include="Fantasy.API.Utilities, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.3\lib\net452\Fantasy.API.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -91,7 +91,9 @@
     <Compile Include="STSMicrosoft\RefreshTokenProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Security.nuspec" />
   </ItemGroup>

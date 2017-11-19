@@ -22,7 +22,7 @@
   </connectionStrings>
   <connectionStrings>
     <add name="FantasyDev" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
-    <add name="FantasyDev" xdt:Transform="Insert" connectionString="" providerName="System.Data.SqlClient" />
+    <add name="FantasyDev" xdt:Transform="Insert" connectionString="Data Source=localhost;Initial Catalog=Fantasy;User ID=fantasyUser;Password=fantasypass;Max Pool Size=100;Min Pool Size=5;Connection Lifetime=60;" providerName="System.Data.SqlClient" />
     <add name="FantasyModl" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
     <add name="FantasyModl" xdt:Transform="Insert" connectionString="" providerName="System.Data.SqlClient" />
     <add name="FantasyProd" xdt:Transform="Remove" xdt:Locator="Match(name)"/>

@@ -39,10 +39,6 @@ namespace Fantasy.API.Host
                         "~/Scripts/dataTables.bootstrap.min.js"
             ));
 
-            bundles.Add(new ScriptBundle("~/bundles/LogBrowser").Include(
-                        "~/Scripts/LogBrowser.js"
-            ));
-
             BundleTable.EnableOptimizations = true;
         }
     }

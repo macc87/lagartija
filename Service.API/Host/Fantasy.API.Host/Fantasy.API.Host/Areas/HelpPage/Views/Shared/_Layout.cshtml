@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+
+    <div class="main-wrapper mainbody">
+        <div class="site-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <span class="claims-msg ">
+                                Fantasy Log Browser <br />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>
