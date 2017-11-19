@@ -14,7 +14,7 @@
     <dependencies>
       <group targetFramework="net45">
         <dependency id="Microsoft.Web.Services3" version="3.0.0.0" />
-        <dependency id="Utilities"/>
+        <dependency id="Fantasy.API.DataAccess"/>
         <dependency id="EntityFramework" version="5.0.0" />
       </group>
     </dependencies>

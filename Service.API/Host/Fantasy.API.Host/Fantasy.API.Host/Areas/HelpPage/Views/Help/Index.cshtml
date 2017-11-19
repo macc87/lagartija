@@ -1,0 +1,58 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using  Fantasy.API.Host.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Web API Collection Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    
+</header>
+<div id="body" class="container">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1>Introduction</h1>
+            <p>
+                Following are the list of all claims related APIs.
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            <div class="panel-body panel-body-details">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+
+                                        @{
+                                            var groupCopy = group;
+                                        }
+                                        @Html.DisplayFor(m => groupCopy, "ApiGroup", new { @class = "col-sm-3 control-label" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+    </section>
+</div>

@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Security", "Fantasy.API.Security\Fantasy.API.Security.csproj", "{75FC48D2-E472-478C-9303-228A6485A28B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Security", "Fantasy.API.Security\Fantasy.API.Security.csproj", "{582C3196-7E1D-47A8-881E-6F10AE994D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Security.Tests", "Fantasy.API.Security.Tests\Fantasy.API.Security.Tests.csproj", "{132D172E-72CE-4543-B37E-6A2AD780EE99}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9A161E7C-904F-4D5C-9231-6DD07F1F90D0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy.API.Security.Tests", "Fantasy.API.Security.Tests\Fantasy.API.Security.Tests.csproj", "{59DC631F-72F3-43BC-A740-F300A75EFF32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +20,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{75FC48D2-E472-478C-9303-228A6485A28B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75FC48D2-E472-478C-9303-228A6485A28B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75FC48D2-E472-478C-9303-228A6485A28B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75FC48D2-E472-478C-9303-228A6485A28B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{132D172E-72CE-4543-B37E-6A2AD780EE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{132D172E-72CE-4543-B37E-6A2AD780EE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{132D172E-72CE-4543-B37E-6A2AD780EE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{132D172E-72CE-4543-B37E-6A2AD780EE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{582C3196-7E1D-47A8-881E-6F10AE994D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582C3196-7E1D-47A8-881E-6F10AE994D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582C3196-7E1D-47A8-881E-6F10AE994D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582C3196-7E1D-47A8-881E-6F10AE994D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DC631F-72F3-43BC-A740-F300A75EFF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DC631F-72F3-43BC-A740-F300A75EFF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DC631F-72F3-43BC-A740-F300A75EFF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DC631F-72F3-43BC-A740-F300A75EFF32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4B4A8400-94CC-4A1A-A4E8-0CAE4B16282A}
+		SolutionGuid = {53EE50E3-1573-43C2-82F3-31FE8D616E18}
 	EndGlobalSection
 EndGlobal

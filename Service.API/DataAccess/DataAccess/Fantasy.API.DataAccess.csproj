@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\.nuget\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\.nuget\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Utilities, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.2\lib\net452\Fantasy.API.Utilities.dll</HintPath>
@@ -79,6 +79,13 @@
     <Compile Include="DbContexts\BaseContext.cs" />
     <Compile Include="DbContexts\FakeDbSet.cs" />
     <Compile Include="DbContexts\IDbContext.cs" />
+    <Compile Include="DbContexts\MSSQL\FantasyData\FantasyContext.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\Account.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\AccountMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -166,7 +173,9 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <Content Include="Web.config.install.xdt" />
+    <Content Include="Web.config.install.xdt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config.uninstall.xdt" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DbContexts\DB2\" />
-    <Folder Include="DbContexts\MSSQL\" />
     <Folder Include="DbContexts\ORA\" />
     <Folder Include="Models\MSSQL\Fantasy\Extensions\" />
   </ItemGroup>

@@ -1,0 +1,67 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNet.Identity
+@using MvcSiteMapProvider.Web.Html
+@using Fantasy.API.Utilities.ServicesHandler
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container adjusted">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <div class="panel-title"><i class="glyphicon glyphicon-home"></i><span class="text-capitalize"> Welcome,  @User.Identity.GetUserName()</span> </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6 col-md-offset-3">
+                <br />
+                @{
+                    var rolesEnumerable = ClaimsPrincipal.Current.HasClaim(x => x.Type == ClaimTypes.Role) ? ClaimsPrincipal.Current.FindAll(ClaimTypes.Role) : null;
+                    if (rolesEnumerable != null)
+                    {
+                        var roles = rolesEnumerable.ToList();
+                        var isItAdmin = roles.FirstOrDefault(x => x.Value == ApplicationRoles.ItAdmin) != null;
+                        if (isItAdmin)
+                        {
+                            @*<a type="button" class="btn btn-block btn-primary action" href="Mailbox" title=" Mailbox">
+                                <span class="glyphicon glyphicon-envelope action"></span> Mailbox
+                            </a>*@
+                            <a type="button" class="btn btn-block btn-primary action" href="Help" title="  Help">
+                                <span class="glyphicon glyphicon-question-sign action"></span>  Help
+                            </a>
+                            @*<a type="button" class="btn btn-block btn-primary action" href="LogBrowser" title=" Browse Logs">
+                                <span class="glyphicon glyphicon-search action"></span> Browse Logs
+                            </a>*@
+                        }
+                        @*else
+                        {
+                            foreach (var role in roles.ToList())
+                            {
+                                switch (role.Value)
+                                {
+                                    case "ICSMailbox":
+                                        {
+                                            <a type="button" class="btn btn-block btn-primary action" href="Mailbox" title=" Mailbox">
+                                                <span class="glyphicon glyphicon-envelope action"></span> Mailbox
+                                            </a>
+                                            break;
+                                        }
+                                    case "ICSApiHelp":
+                                        {
+                                            <a type="button" class="btn btn-block btn-primary action" href="Help" title="  Help">
+                                                <span class="glyphicon glyphicon-question-sign action"></span>  Help
+                                            </a>
+                                            break;
+                                        }
+                                }
+                            }
+
+                        }*@
+                    }
+}
+            </div>
+        </div>
+    </div>
+</div>

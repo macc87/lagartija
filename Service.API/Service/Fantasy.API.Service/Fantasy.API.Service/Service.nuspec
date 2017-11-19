@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Fantasy.API.Service</id>
+    <version>$version$</version>
+    <title>Service</title>
+    <authors>Fantasy game</authors>
+    <owners>Fantasy game</owners>
+    <copyright>Copyright 2017</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Initial data access module
+    </description>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Fantasy.API.Domain"/>
+        <dependency id="Fantasy.API.Dtos"/>
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Debug\*.pdb" target="lib\net45" />
+    <file src="bin\Debug\Fantasy.API.Service.XML" target="Content\App_Data" />
+  </files>
+</package>

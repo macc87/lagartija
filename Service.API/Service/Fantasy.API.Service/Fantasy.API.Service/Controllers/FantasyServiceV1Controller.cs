@@ -65,6 +65,13 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Get current injured players
+        /// </summary>
+        /// <returns>Returns a list of injured players from MLB</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
         [HttpGet]
         [Route("injuries", Name = "GetInjuriesV1")]
         [ResponseType(typeof(ServiceResult<InjuryDto>))]
