@@ -11,8 +11,8 @@ namespace Fantasy.API.Utilities.CustomAttributes
         {
             if (!userProfilesRequired.Any())
                 throw new ArgumentException("role is required");
-            var rolse = string.Join(",", userProfilesRequired);
-            Roles = rolse;
+            var roles = string.Join(",", userProfilesRequired);
+            Roles = roles;
         }
     }
 

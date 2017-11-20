@@ -64,26 +64,8 @@ namespace Fantasy.API.Security.STSMicrosoft.OIM
             IAuthenticationFlow authenticationFlow = null;
             switch (_requestClientId.ToUpper())
             {
-                case Applications.Acc:
-                    authenticationFlow = new AccAuthenticationFlow(context);
-                    break;
-                case Applications.Ice:
-                    authenticationFlow = new IceAuthenticationFlow(context);
-                    break;
-                case Applications.Chase:
-                    authenticationFlow = new ChaseAuthenticationFlow(context);
-                    break;
-                case Applications.FloodSolutions:
-                    authenticationFlow = new FloodSolutionsAuthenticationFlow(context);
-                    break;
-                case Applications.ClientLetter:
-                    authenticationFlow = new ClientLetterAuthenticationFlow(context);
-                    break;
-                case Applications.EFTBatch:
-                    authenticationFlow = new EftAuthenticationFlow(context);
-                    break;
-                case Applications.EFTClient:
-                    authenticationFlow = new EftClientAuthenticationFlow(context);
+                case Applications.Fantasy:
+                    authenticationFlow = new FantasyUserAuthenticationFlow(context);
                     break;
                 default:
                     context.Rejected();
