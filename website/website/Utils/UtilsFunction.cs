@@ -74,9 +74,10 @@ namespace website.Utils
             List<Tuple<int, double>> result = new List<Tuple<int, double>>();
             double moneyToSplit = CalculateTotalWinnings(Contest.EntryFee, Contest.MaxCapacity, SitePercentage);
             double moneyToPay = moneyToSplit / winnerAmount;
+
             for (int i = 1; i < winnerAmount; i++)
             {
-
+                // Step between money is 1/2 of the previous
             }
             result.Add(new Tuple<int, double>(winnerAmount, moneyToPay));
             return result;
