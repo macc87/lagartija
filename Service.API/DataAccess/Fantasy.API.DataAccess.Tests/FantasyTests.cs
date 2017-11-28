@@ -14,7 +14,7 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task GetSchedule_Successful()
         {
-            var result = await fantasyClient.GetDailyScheduleAsync(DateTime.Today);
+            var result = await fantasyClient.GetDailyScheduleAsync(DateTime.Today.AddMonths(-3));
             Assert.IsFalse(result.HasError);
         }
 

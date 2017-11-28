@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing">
+  </configSections>
+  <appSettings xdt:Transform="InsertIfMissing">
+  </appSettings>
+  <appSettings>
+  </appSettings>
+  <connectionStrings xdt:Transform="InsertIfMissing">
+  </connectionStrings>
+  <connectionStrings>
+  </connectionStrings>
+  <DataLayerEnvironment xdt:Transform="Remove">
+  </DataLayerEnvironment>
+   <DataLayerEnvironment xdt:Transform="InsertIfMissing">
+    <environments>
+      <environment id="test">
+      </environment>
+      <environment id="modl">
+      </environment>
+      <environment id="prod">
+      </environment>
+    </environments>
+  </DataLayerEnvironment>
+</configuration>

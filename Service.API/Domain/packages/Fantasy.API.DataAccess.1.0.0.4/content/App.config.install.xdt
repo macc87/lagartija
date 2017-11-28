@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing">  
+    <section name="DataLayerEnvironment" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+    <section name="DataLayerEnvironment" xdt:Locator="Match(name)" xdt:Transform="Replace" type="DataAccess.Configurations.DataLayerEnvironmentSettings" requirePermission="false" />
+      <sectionGroup name="applicationSettings" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing">
+      <section name="DataAccess.Properties.Settings" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
+    </sectionGroup>
+    <sectionGroup name="applicationSettings" xdt:Locator="Match(name)" xdt:Transform="Replace" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="DataAccess.Properties.Settings" xdt:Locator="Match(name)" xdt:Transform="Replace" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <appSettings xdt:Transform="InsertIfMissing">
+    <add key="noticeByEnvironment" xdt:Locator="Match(key)" xdt:Transform="Remove"/>
+    <add key="noticeByEnvironment" xdt:Transform="Insert"  value="test,modl,local" />    
+    <add key="Environment" xdt:Locator="Match(key)" xdt:Transform="Remove" />
+    <add key="Environment" xdt:Transform="Insert"  value="local" />
+  </appSettings>
+  <appSettings>
+  </appSettings>
+  <connectionStrings xdt:Transform="InsertIfMissing">
+  </connectionStrings>
+  <connectionStrings>
+    <add name="FantasyDev" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+    <add name="FantasyDev" xdt:Transform="Insert" connectionString="" providerName="System.Data.SqlClient" />
+    <add name="FantasyModl" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+    <add name="FantasyModl" xdt:Transform="Insert" connectionString="" providerName="System.Data.SqlClient" />
+    <add name="FantasyProd" xdt:Transform="Remove" xdt:Locator="Match(name)"/>
+    <add name="FantasyProd" xdt:Transform="Insert" connectionString="" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <DataLayerEnvironment xdt:Transform="Remove">
+  </DataLayerEnvironment>
+  <DataLayerEnvironment xdt:Transform="InsertIfMissing">
+    <environments>
+      <environment id="test">
+        <fantasyMssql name="FantasyDev" schema="" />
+        <sportsRadar name="sportsRadarDev" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+      </environment>
+      <environment id="modl">
+        <fantasyMssql name="FantasyModl" schema="" />
+        <sportsRadar name="sportsRadarModl" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+      </environment>
+      <environment id="prod">
+        <fantasyMssql name="FantasyProd" schema="" />
+        <sportsRadar name="sportsRadarProd" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+      </environment>
+    </environments>
+  </DataLayerEnvironment>
+</configuration>
