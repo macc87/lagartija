@@ -39,22 +39,22 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public int VenueVenueId
+        public int VenueId
         {
-    get { return _venueVenueId; }
+    get { return _venueId; }
             set
             {
-                if (_venueVenueId != value)
+                if (_venueId != value)
                 {
                     if (Venue != null && Venue.VenueId != value)
                     {
                         Venue = null;
                     }
-                    _venueVenueId = value;
+                    _venueId = value;
                 }
             }
         }
-        private int _venueVenueId;
+        private int _venueId;
 
         #endregion
 
@@ -151,6 +151,21 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Contest> _contests;
+    
+        public GameWinner GameWinner
+        {
+            get { return _gameWinner; }
+            set
+            {
+                if (!ReferenceEquals(_gameWinner, value))
+                {
+                    var previousValue = _gameWinner;
+                    _gameWinner = value;
+                    FixupGameWinner(previousValue);
+                }
+            }
+        }
+        private GameWinner _gameWinner;
 
         #endregion
 
@@ -211,9 +226,25 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 {
                     Venue.Games.Add(this);
                 }
-                if (VenueVenueId != Venue.VenueId)
+                if (VenueId != Venue.VenueId)
                 {
-                    VenueVenueId = Venue.VenueId;
+                    VenueId = Venue.VenueId;
+                }
+            }
+        }
+    
+        private void FixupGameWinner(GameWinner previousValue)
+        {
+            if (previousValue != null && previousValue.Games.Contains(this))
+            {
+                previousValue.Games.Remove(this);
+            }
+    
+            if (GameWinner != null)
+            {
+                if (!GameWinner.Games.Contains(this))
+                {
+                    GameWinner.Games.Add(this);
                 }
             }
         }

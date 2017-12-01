@@ -116,6 +116,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Game> _games;
+    
+        public ICollection<LineUp> LineUps
+        {
+            get
+            {
+                if (_lineUps == null)
+                {
+                    var newCollection = new FixupCollection<LineUp>();
+                    newCollection.CollectionChanged += FixupLineUps;
+                    _lineUps = newCollection;
+                }
+                return _lineUps;
+            }
+            set
+            {
+                if (!ReferenceEquals(_lineUps, value))
+                {
+                    var previousValue = _lineUps as FixupCollection<LineUp>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupLineUps;
+                    }
+                    _lineUps = value;
+                    var newValue = value as FixupCollection<LineUp>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupLineUps;
+                    }
+                }
+            }
+        }
+        private ICollection<LineUp> _lineUps;
 
         #endregion
 
@@ -157,6 +189,31 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (Game item in e.OldItems)
+                {
+                    if (item.Contests.Contains(this))
+                    {
+                        item.Contests.Remove(this);
+                    }
+                }
+            }
+        }
+    
+        private void FixupLineUps(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (LineUp item in e.NewItems)
+                {
+                    if (!item.Contests.Contains(this))
+                    {
+                        item.Contests.Add(this);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (LineUp item in e.OldItems)
                 {
                     if (item.Contests.Contains(this))
                     {
