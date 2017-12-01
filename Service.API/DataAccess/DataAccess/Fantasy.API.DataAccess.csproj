@@ -86,6 +86,12 @@
     <Compile Include="Models\MSSQL\Fantasy\AccountMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ClimaConditions.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ClimaconditionsMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -110,6 +116,12 @@
     <Compile Include="Models\MSSQL\Fantasy\LeagueMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\MLBPlayer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\MlbplayerMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -124,6 +136,30 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Notification.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NotificationMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Player.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\PlayerMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Sport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\SportMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Venue.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\VenueMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Services\Ale\Outs.cs" />
     <Compile Include="Models\Services\Ale\Prueba.cs" />
