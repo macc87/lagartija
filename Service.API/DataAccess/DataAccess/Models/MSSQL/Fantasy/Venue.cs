@@ -46,5 +46,67 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 
         #endregion
 
+        #region Navigation Properties
+    
+        public ICollection<Game> Games
+        {
+            get
+            {
+                if (_games == null)
+                {
+                    var newCollection = new FixupCollection<Game>();
+                    newCollection.CollectionChanged += FixupGames;
+                    _games = newCollection;
+                }
+                return _games;
+            }
+            set
+            {
+                if (!ReferenceEquals(_games, value))
+                {
+                    var previousValue = _games as FixupCollection<Game>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupGames;
+                    }
+                    _games = value;
+                    var newValue = value as FixupCollection<Game>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupGames;
+                    }
+                }
+            }
+        }
+        private ICollection<Game> _games;
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupGames(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Game item in e.NewItems)
+                {
+                    item.Venue = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Game item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Venue, this))
+                    {
+                        item.Venue = null;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

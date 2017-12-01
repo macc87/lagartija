@@ -39,9 +39,154 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public string Number
+        public int TeamId
+        {
+    get { return _teamId; }
+            set
+            {
+                if (_teamId != value)
+                {
+                    if (Team != null && Team.TeamId != value)
+                    {
+                        Team = null;
+                    }
+                    _teamId = value;
+                }
+            }
+        }
+        private int _teamId;
+    
+        public int PositionId
+        {
+    get { return _positionId; }
+            set
+            {
+                if (_positionId != value)
+                {
+                    if (Position != null && Position.PositionId != value)
+                    {
+                        Position = null;
+                    }
+                    _positionId = value;
+                }
+            }
+        }
+        private int _positionId;
+    
+        public double Salary
         {
             get; set;
+        }
+    
+        public string Photo
+        {
+            get; set;
+        }
+
+        #endregion
+
+        #region Navigation Properties
+    
+        public Team Team
+        {
+            get { return _team; }
+            set
+            {
+                if (!ReferenceEquals(_team, value))
+                {
+                    var previousValue = _team;
+                    _team = value;
+                    FixupTeam(previousValue);
+                }
+            }
+        }
+        private Team _team;
+    
+        public Sport Sport
+        {
+            get { return _sport; }
+            set
+            {
+                if (!ReferenceEquals(_sport, value))
+                {
+                    var previousValue = _sport;
+                    _sport = value;
+                    FixupSport(previousValue);
+                }
+            }
+        }
+        private Sport _sport;
+    
+        public Position Position
+        {
+            get { return _position; }
+            set
+            {
+                if (!ReferenceEquals(_position, value))
+                {
+                    var previousValue = _position;
+                    _position = value;
+                    FixupPosition(previousValue);
+                }
+            }
+        }
+        private Position _position;
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupTeam(Team previousValue)
+        {
+            if (previousValue != null && previousValue.Players.Contains(this))
+            {
+                previousValue.Players.Remove(this);
+            }
+    
+            if (Team != null)
+            {
+                if (!Team.Players.Contains(this))
+                {
+                    Team.Players.Add(this);
+                }
+                if (TeamId != Team.TeamId)
+                {
+                    TeamId = Team.TeamId;
+                }
+            }
+        }
+    
+        private void FixupSport(Sport previousValue)
+        {
+            if (previousValue != null && ReferenceEquals(previousValue.Player, this))
+            {
+                previousValue.Player = null;
+            }
+    
+            if (Sport != null)
+            {
+                Sport.Player = this;
+            }
+        }
+    
+        private void FixupPosition(Position previousValue)
+        {
+            if (previousValue != null && previousValue.Players.Contains(this))
+            {
+                previousValue.Players.Remove(this);
+            }
+    
+            if (Position != null)
+            {
+                if (!Position.Players.Contains(this))
+                {
+                    Position.Players.Add(this);
+                }
+                if (PositionId != Position.PositionId)
+                {
+                    PositionId = Position.PositionId;
+                }
+            }
         }
 
         #endregion
