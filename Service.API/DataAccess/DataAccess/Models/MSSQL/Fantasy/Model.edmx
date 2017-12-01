@@ -220,6 +220,11 @@
             <End Role="InjuryTeam" EntitySet="InjuryTeams" />
           </AssociationSet>
           <EntitySet Name="Accounts" EntityType="FantasyModel.Account" />
+          <EntitySet Name="Sports" EntityType="FantasyModel.Sport" />
+          <EntitySet Name="Notifications" EntityType="FantasyModel.Notification" />
+          <EntitySet Name="ClimaConditions" EntityType="FantasyModel.ClimaConditions" />
+          <EntitySet Name="Venues" EntityType="FantasyModel.Venue" />
+          <EntitySet Name="Players" EntityType="FantasyModel.Player" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -228,6 +233,53 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="SportId" />
+          </Key>
+          <Property Name="SportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="InitialDate" Type="DateTime" Nullable="false" />
+          <Property Name="FinalDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClimaConditions">
+          <Key>
+            <PropertyRef Name="ClimaId" />
+          </Key>
+          <Property Name="ClimaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Condition" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="VenueId" />
+          </Key>
+          <Property Name="VenueId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+          <Property Name="Surface" Nullable="false" Type="String" />
+          <Property Name="State" Nullable="false" Type="String" />
+          <Property Name="Country" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="PreferredName" Type="String" Nullable="false" />
+          <Property Name="Number" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MLBPlayer" BaseType="FantasyModel.Player" >
+          <Property Name="Property1" Type="String" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
