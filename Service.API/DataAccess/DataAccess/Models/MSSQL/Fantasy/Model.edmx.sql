@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/30/2017 23:47:34
+-- Date Created: 12/01/2017 01:33:13
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -18,33 +18,54 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_InjuryPlayer_Injury]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryPlayer] DROP CONSTRAINT [FK_InjuryPlayer_Injury];
+    ALTER TABLE [dbo].[InjuryPlayers] DROP CONSTRAINT [FK_InjuryPlayer_Injury];
 GO
 IF OBJECT_ID(N'[dbo].[FK_InjuryPlayer_InjuryTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryPlayer] DROP CONSTRAINT [FK_InjuryPlayer_InjuryTeam];
+    ALTER TABLE [dbo].[InjuryPlayers] DROP CONSTRAINT [FK_InjuryPlayer_InjuryTeam];
 GO
 IF OBJECT_ID(N'[dbo].[FK_InjuryTeam_League]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryTeam] DROP CONSTRAINT [FK_InjuryTeam_League];
+    ALTER TABLE [dbo].[InjuryTeams] DROP CONSTRAINT [FK_InjuryTeam_League];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MLBPlayer_inherits_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players_MLBPlayer] DROP CONSTRAINT [FK_MLBPlayer_inherits_Player];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Account]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Account];
+IF OBJECT_ID(N'[dbo].[Injuries]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Injuries];
 GO
-IF OBJECT_ID(N'[dbo].[Injury]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Injury];
+IF OBJECT_ID(N'[dbo].[InjuryPlayers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[InjuryPlayers];
 GO
-IF OBJECT_ID(N'[dbo].[InjuryPlayer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[InjuryPlayer];
+IF OBJECT_ID(N'[dbo].[InjuryTeams]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[InjuryTeams];
 GO
-IF OBJECT_ID(N'[dbo].[InjuryTeam]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[InjuryTeam];
+IF OBJECT_ID(N'[dbo].[Leagues]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Leagues];
 GO
-IF OBJECT_ID(N'[dbo].[League]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[League];
+IF OBJECT_ID(N'[dbo].[Accounts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts];
+GO
+IF OBJECT_ID(N'[dbo].[Sports]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Sports];
+GO
+IF OBJECT_ID(N'[dbo].[Notifications]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Notifications];
+GO
+IF OBJECT_ID(N'[dbo].[ClimaConditions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ClimaConditions];
+GO
+IF OBJECT_ID(N'[dbo].[Venues]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Venues];
+GO
+IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Players];
+GO
+IF OBJECT_ID(N'[dbo].[Players_MLBPlayer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Players_MLBPlayer];
 GO
 
 -- --------------------------------------------------
@@ -142,14 +163,29 @@ CREATE TABLE [dbo].[Players] (
     [PlayerId] int IDENTITY(1,1) NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
-    [PreferredName] nvarchar(max)  NOT NULL,
-    [Number] nvarchar(max)  NOT NULL
+    [PreferredName] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Positions'
+CREATE TABLE [dbo].[Positions] (
+    [PositionId] int IDENTITY(1,1) NOT NULL,
+    [PositionName] nvarchar(max)  NOT NULL,
+    [SportId] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Teams'
+CREATE TABLE [dbo].[Teams] (
+    [TeamId] int IDENTITY(1,1) NOT NULL,
+    [TeamName] nvarchar(max)  NOT NULL,
+    [TeamLogo] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Players_MLBPlayer'
 CREATE TABLE [dbo].[Players_MLBPlayer] (
-    [Property1] nvarchar(max)  NOT NULL,
+    [Number] int  NOT NULL,
     [PlayerId] int  NOT NULL
 );
 GO
@@ -216,6 +252,18 @@ GO
 ALTER TABLE [dbo].[Players]
 ADD CONSTRAINT [PK_Players]
     PRIMARY KEY CLUSTERED ([PlayerId] ASC);
+GO
+
+-- Creating primary key on [PositionId] in table 'Positions'
+ALTER TABLE [dbo].[Positions]
+ADD CONSTRAINT [PK_Positions]
+    PRIMARY KEY CLUSTERED ([PositionId] ASC);
+GO
+
+-- Creating primary key on [TeamId] in table 'Teams'
+ALTER TABLE [dbo].[Teams]
+ADD CONSTRAINT [PK_Teams]
+    PRIMARY KEY CLUSTERED ([TeamId] ASC);
 GO
 
 -- Creating primary key on [PlayerId] in table 'Players_MLBPlayer'
