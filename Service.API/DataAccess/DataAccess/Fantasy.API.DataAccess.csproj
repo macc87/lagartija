@@ -92,6 +92,30 @@
     <Compile Include="Models\MSSQL\Fantasy\ClimaconditionsMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Contest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ContestMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ContestType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ContesttypeMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Game.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\GameMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\GameWinner.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\GamewinnerMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -116,10 +140,10 @@
     <Compile Include="Models\MSSQL\Fantasy\LeagueMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\MLBPlayer.cs">
+    <Compile Include="Models\MSSQL\Fantasy\LineUp.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\MlbplayerMapping.cs">
+    <Compile Include="Models\MSSQL\Fantasy\LineupMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
@@ -149,10 +173,28 @@
     <Compile Include="Models\MSSQL\Fantasy\PlayerMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Position.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\PositionMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Promotion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\PromotionMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Sport.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\SportMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Team.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\TeamMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Venue.cs">
@@ -209,6 +251,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <Content Include="Models\MSSQL\Fantasy\Model.edmx.sql" />
     <Content Include="Web.config.install.xdt">
       <SubType>Designer</SubType>
     </Content>
