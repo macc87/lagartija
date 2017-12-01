@@ -12,7 +12,7 @@
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_Injury" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_InjuryTeam" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryTeam_League" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="9.125" PointY="0.5" />
+        <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="8.375" PointY="6.625" />
         <EntityTypeShape EntityType="FantasyModel.Sport" Width="1.5" PointX="2.625" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.Notification" Width="1.5" PointX="0.5" PointY="4.5" />
         <EntityTypeShape EntityType="FantasyModel.ClimaConditions" Width="1.5" PointX="0.5" PointY="7.75" />
@@ -35,6 +35,13 @@
         </AssociationConnector>
         <AssociationConnector Association="FantasyModel.VenueGame" />
         <AssociationConnector Association="FantasyModel.ContestGame" />
+        <EntityTypeShape EntityType="FantasyModel.GameWinner" Width="1.5" PointX="0.5" PointY="12.375" />
+        <AssociationConnector Association="FantasyModel.GameWinnerGame" />
+        <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="4.375" PointY="12.875" />
+        <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="12.625" />
+        <AssociationConnector Association="FantasyModel.AccountLineUp" />
+        <AssociationConnector Association="FantasyModel.LineUpPlayer" />
+        <AssociationConnector Association="FantasyModel.LineUpContest" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
