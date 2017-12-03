@@ -66,7 +66,7 @@ namespace Fantasy.API.Host
                 routeData.Values["MS_SubRoutes"] = filteredSubRoutes.ToArray();
                 return controllerDescriptor;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
