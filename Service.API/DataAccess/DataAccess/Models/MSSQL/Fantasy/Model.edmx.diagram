@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f1d42c025ac4ad6916049b718f6dd05" Name="Diagram1">
+      <Diagram DiagramId="7f1d42c025ac4ad6916049b718f6dd05" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="FantasyModel.Injury" Width="1.5" PointX="7.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.InjuryPlayer" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.InjuryTeam" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
@@ -36,7 +36,7 @@
         <AssociationConnector Association="FantasyModel.VenueGame" />
         <AssociationConnector Association="FantasyModel.ContestGame" />
         <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="4.625" PointY="13.375" />
-        <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="12.625" />
+        <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="13.125" />
         <AssociationConnector Association="FantasyModel.AccountLineUp" />
         <AssociationConnector Association="FantasyModel.LineUpPlayer" />
         <AssociationConnector Association="FantasyModel.LineUpContest" />
