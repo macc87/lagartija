@@ -23,6 +23,6 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
         public double SalaryCap { get; set; }
 
         public IEnumerable<GameBO> Games { get; set;}
-        public IEnumerable<LineupBO> LineUpsDto { get; set; }
+        public IEnumerable<LineupBO> LineUpsBO { get; set; }
     }
 }
