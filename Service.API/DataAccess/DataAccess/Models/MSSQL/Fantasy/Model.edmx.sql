@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/01/2017 02:56:17
+-- Date Created: 12/03/2017 16:34:44
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -25,6 +25,57 @@ IF OBJECT_ID(N'[dbo].[FK_InjuryPlayer_InjuryTeam]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_InjuryTeam_League]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[InjuryTeams] DROP CONSTRAINT [FK_InjuryTeam_League];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Position_Sport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sports] DROP CONSTRAINT [FK_Position_Sport];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Sport_Team]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Teams] DROP CONSTRAINT [FK_Sport_Team];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_TeamPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Player_Sport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_Sport];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Position_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Position_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ContestType_Contest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contests] DROP CONSTRAINT [FK_ContestType_Contest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Game_AwayTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Game_AwayTeam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClimaConditionsGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_ClimaConditionsGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ContestGame_Contest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestGame] DROP CONSTRAINT [FK_ContestGame_Contest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ContestGame_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestGame] DROP CONSTRAINT [FK_ContestGame_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AccountLineUp]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineUps] DROP CONSTRAINT [FK_AccountLineUp];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_LineUp]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineUpPlayer] DROP CONSTRAINT [FK_LineUpPlayer_LineUp];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineUpPlayer] DROP CONSTRAINT [FK_LineUpPlayer_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineUpContest_LineUp]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineUpContest] DROP CONSTRAINT [FK_LineUpContest_LineUp];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineUpContest_Contest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LineUpContest] DROP CONSTRAINT [FK_LineUpContest_Contest];
 GO
 
 -- --------------------------------------------------
@@ -66,6 +117,30 @@ IF OBJECT_ID(N'[dbo].[Positions]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Teams]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Teams];
+GO
+IF OBJECT_ID(N'[dbo].[ContestTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ContestTypes];
+GO
+IF OBJECT_ID(N'[dbo].[Contests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contests];
+GO
+IF OBJECT_ID(N'[dbo].[Games]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Games];
+GO
+IF OBJECT_ID(N'[dbo].[Promotions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Promotions];
+GO
+IF OBJECT_ID(N'[dbo].[LineUps]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LineUps];
+GO
+IF OBJECT_ID(N'[dbo].[ContestGame]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ContestGame];
+GO
+IF OBJECT_ID(N'[dbo].[LineUpPlayer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LineUpPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[LineUpContest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LineUpContest];
 GO
 
 -- --------------------------------------------------
@@ -218,14 +293,7 @@ CREATE TABLE [dbo].[Games] (
     [VenueId] int  NOT NULL,
     [AwayTeam_TeamId] int  NOT NULL,
     [HomeTeam_TeamId] int  NOT NULL,
-    [ClimaCondition_ClimaId] int  NOT NULL,
-    [GameWinner_WinnerId] int  NOT NULL
-);
-GO
-
--- Creating table 'GameWinners'
-CREATE TABLE [dbo].[GameWinners] (
-    [WinnerId] int IDENTITY(1,1) NOT NULL
+    [ClimaCondition_ClimaId] int  NOT NULL
 );
 GO
 
@@ -358,12 +426,6 @@ GO
 ALTER TABLE [dbo].[Games]
 ADD CONSTRAINT [PK_Games]
     PRIMARY KEY CLUSTERED ([GameId] ASC);
-GO
-
--- Creating primary key on [WinnerId] in table 'GameWinners'
-ALTER TABLE [dbo].[GameWinners]
-ADD CONSTRAINT [PK_GameWinners]
-    PRIMARY KEY CLUSTERED ([WinnerId] ASC);
 GO
 
 -- Creating primary key on [PromoId] in table 'Promotions'
@@ -617,21 +679,6 @@ GO
 CREATE INDEX [IX_FK_ContestGame_Game]
 ON [dbo].[ContestGame]
     ([Games_GameId]);
-GO
-
--- Creating foreign key on [GameWinner_WinnerId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_GameWinnerGame]
-    FOREIGN KEY ([GameWinner_WinnerId])
-    REFERENCES [dbo].[GameWinners]
-        ([WinnerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GameWinnerGame'
-CREATE INDEX [IX_FK_GameWinnerGame]
-ON [dbo].[Games]
-    ([GameWinner_WinnerId]);
 GO
 
 -- Creating foreign key on [AccountLogin] in table 'LineUps'
