@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    class LineupDto
+    class UserDto
     {
-        public int LineUpId { get; set; }
-        public IEnumerable<PlayerDto> Players { get; set; }
-        public UserDto User { get; set; }
+        public string Login { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
     }
 }
