@@ -21,7 +21,6 @@
     <EntitySet Name="ContestTypes" EntityType="FantasyModel.Store.ContestTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contests" EntityType="FantasyModel.Store.Contests" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Games" EntityType="FantasyModel.Store.Games" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="GameWinners" EntityType="FantasyModel.Store.GameWinners" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Promotions" EntityType="FantasyModel.Store.Promotions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LineUps" EntityType="FantasyModel.Store.LineUps" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContestGame" EntityType="FantasyModel.Store.ContestGame" store:Type="Tables" Schema="dbo" />
@@ -86,10 +85,6 @@
     <AssociationSet Name="FK_ContestGame_Game" Association="FantasyModel.Store.FK_ContestGame_Game">
       <End Role="Game" EntitySet="Games" />
       <End Role="ContestGame" EntitySet="ContestGame" />
-    </AssociationSet>
-    <AssociationSet Name="GameWinnerGame" Association="FantasyModel.Store.GameWinnerGame">
-      <End Role="GameWinner" EntitySet="GameWinners" />
-      <End Role="Game" EntitySet="Games" />
     </AssociationSet>
     <AssociationSet Name="AccountLineUp" Association="FantasyModel.Store.AccountLineUp">
       <End Role="Account" EntitySet="Accounts" />
@@ -262,12 +257,6 @@
     <Property Name="HomeTeam_TeamId" Type="int" Nullable="false" />
     <Property Name="ClimaCondition_ClimaId" Type="int" Nullable="false" />
     <Property Name="GameWinner_WinnerId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GameWinners">
-    <Key>
-      <PropertyRef Name="WinnerId" />
-    </Key>
-    <Property Name="WinnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Promotions">
     <Key>
@@ -462,18 +451,6 @@
       </Principal>
       <Dependent Role="Game">
         <PropertyRef Name="VenueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="GameWinnerGame">
-    <End Role="GameWinner" Type="FantasyModel.Store.GameWinners" Multiplicity="1" />
-    <End Role="Game" Type="FantasyModel.Store.Games" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GameWinner">
-        <PropertyRef Name="WinnerId" />
-      </Principal>
-      <Dependent Role="Game">
-        <PropertyRef Name="GameWinner_WinnerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -723,11 +700,6 @@
             <End Role="Contest" EntitySet="Contests" />
             <End Role="Game" EntitySet="Games" />
           </AssociationSet>
-          <EntitySet Name="GameWinners" EntityType="FantasyModel.GameWinner" />
-          <AssociationSet Name="GameWinnerGame" Association="FantasyModel.GameWinnerGame">
-            <End Role="GameWinner" EntitySet="GameWinners" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
           <EntitySet Name="Promotions" EntityType="FantasyModel.Promotion" />
           <EntitySet Name="LineUps" EntityType="FantasyModel.LineUp" />
           <AssociationSet Name="AccountLineUp" Association="FantasyModel.AccountLineUp">
@@ -933,7 +905,6 @@
           <NavigationProperty Name="Venue" Relationship="FantasyModel.VenueGame" FromRole="Game" ToRole="Venue" />
           <Property Name="VenueId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contests" Relationship="FantasyModel.ContestGame" FromRole="Game" ToRole="Contest" />
-          <NavigationProperty Name="GameWinner" Relationship="FantasyModel.GameWinnerGame" FromRole="Game" ToRole="GameWinner" />
         </EntityType>
         <Association Name="FK_Game_AwayTeam">
           <End Type="FantasyModel.Game" Role="Game" Multiplicity="1" />
@@ -961,17 +932,6 @@
         </Association>
         <Association Name="ContestGame">
           <End Type="FantasyModel.Contest" Role="Contest" Multiplicity="*" />
-          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
-        </Association>
-        <EntityType Name="GameWinner">
-          <Key>
-            <PropertyRef Name="WinnerId" />
-          </Key>
-          <Property Name="WinnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Games" Relationship="FantasyModel.GameWinnerGame" FromRole="GameWinner" ToRole="Game" />
-        </EntityType>
-        <Association Name="GameWinnerGame">
-          <End Type="FantasyModel.GameWinner" Role="GameWinner" Multiplicity="1" />
           <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
         </Association>
         <EntityType Name="Promotion">
@@ -1180,13 +1140,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="GameWinners">
-      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.GameWinner)">
-        <MappingFragment StoreEntitySet="GameWinners">
-          <ScalarProperty Name="WinnerId" ColumnName="WinnerId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Promotions">
       <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Promotion)">
         <MappingFragment StoreEntitySet="Promotions">
@@ -1243,14 +1196,6 @@
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="GameId" ColumnName="Games_GameId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="GameWinnerGame" TypeName="FantasyModel.GameWinnerGame" StoreEntitySet="Games">
-      <EndProperty Name="GameWinner">
-        <ScalarProperty Name="WinnerId" ColumnName="GameWinner_WinnerId" />
-      </EndProperty>
-      <EndProperty Name="Game">
-        <ScalarProperty Name="GameId" ColumnName="GameId" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="LineUpPlayer" TypeName="FantasyModel.LineUpPlayer" StoreEntitySet="LineUpPlayer">

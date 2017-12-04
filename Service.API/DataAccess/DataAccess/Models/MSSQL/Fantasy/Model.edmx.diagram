@@ -35,8 +35,6 @@
         </AssociationConnector>
         <AssociationConnector Association="FantasyModel.VenueGame" />
         <AssociationConnector Association="FantasyModel.ContestGame" />
-        <EntityTypeShape EntityType="FantasyModel.GameWinner" Width="1.5" PointX="0.5" PointY="12.375" />
-        <AssociationConnector Association="FantasyModel.GameWinnerGame" />
         <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="4.375" PointY="12.875" />
         <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="12.625" />
         <AssociationConnector Association="FantasyModel.AccountLineUp" />

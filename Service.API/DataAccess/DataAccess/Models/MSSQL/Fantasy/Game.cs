@@ -151,21 +151,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Contest> _contests;
-    
-        public GameWinner GameWinner
-        {
-            get { return _gameWinner; }
-            set
-            {
-                if (!ReferenceEquals(_gameWinner, value))
-                {
-                    var previousValue = _gameWinner;
-                    _gameWinner = value;
-                    FixupGameWinner(previousValue);
-                }
-            }
-        }
-        private GameWinner _gameWinner;
 
         #endregion
 
@@ -229,22 +214,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 if (VenueId != Venue.VenueId)
                 {
                     VenueId = Venue.VenueId;
-                }
-            }
-        }
-    
-        private void FixupGameWinner(GameWinner previousValue)
-        {
-            if (previousValue != null && previousValue.Games.Contains(this))
-            {
-                previousValue.Games.Remove(this);
-            }
-    
-            if (GameWinner != null)
-            {
-                if (!GameWinner.Games.Contains(this))
-                {
-                    GameWinner.Games.Add(this);
                 }
             }
         }

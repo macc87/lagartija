@@ -110,12 +110,6 @@
     <Compile Include="Models\MSSQL\Fantasy\GameMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\GameWinner.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\GamewinnerMapping.cs">
-      <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
