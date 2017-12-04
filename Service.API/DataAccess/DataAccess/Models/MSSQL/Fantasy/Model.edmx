@@ -256,7 +256,6 @@
     <Property Name="AwayTeam_TeamId" Type="int" Nullable="false" />
     <Property Name="HomeTeam_TeamId" Type="int" Nullable="false" />
     <Property Name="ClimaCondition_ClimaId" Type="int" Nullable="false" />
-    <Property Name="GameWinner_WinnerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Promotions">
     <Key>
