@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/03/2017 22:31:07
+-- Date Created: 12/04/2017 02:33:25
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -57,25 +57,25 @@ IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ContestGame_Contest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestGame] DROP CONSTRAINT [FK_ContestGame_Contest];
+    ALTER TABLE [dbo].[FK_Contest_Game] DROP CONSTRAINT [FK_ContestGame_Contest];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ContestGame_Game]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestGame] DROP CONSTRAINT [FK_ContestGame_Game];
+    ALTER TABLE [dbo].[FK_Contest_Game] DROP CONSTRAINT [FK_ContestGame_Game];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AccountLineUp]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LineUps] DROP CONSTRAINT [FK_AccountLineUp];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_LineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineUpPlayer] DROP CONSTRAINT [FK_LineUpPlayer_LineUp];
+    ALTER TABLE [dbo].[FK_LineUp_Player] DROP CONSTRAINT [FK_LineUpPlayer_LineUp];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineUpPlayer] DROP CONSTRAINT [FK_LineUpPlayer_Player];
+    ALTER TABLE [dbo].[FK_LineUp_Player] DROP CONSTRAINT [FK_LineUpPlayer_Player];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LineUpContest_LineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineUpContest] DROP CONSTRAINT [FK_LineUpContest_LineUp];
+    ALTER TABLE [dbo].[FK_LineUp_Contest] DROP CONSTRAINT [FK_LineUpContest_LineUp];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LineUpContest_Contest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineUpContest] DROP CONSTRAINT [FK_LineUpContest_Contest];
+    ALTER TABLE [dbo].[FK_LineUp_Contest] DROP CONSTRAINT [FK_LineUpContest_Contest];
 GO
 
 -- --------------------------------------------------
@@ -133,14 +133,14 @@ GO
 IF OBJECT_ID(N'[dbo].[LineUps]', 'U') IS NOT NULL
     DROP TABLE [dbo].[LineUps];
 GO
-IF OBJECT_ID(N'[dbo].[ContestGame]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ContestGame];
+IF OBJECT_ID(N'[dbo].[FK_Contest_Game]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FK_Contest_Game];
 GO
-IF OBJECT_ID(N'[dbo].[LineUpPlayer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LineUpPlayer];
+IF OBJECT_ID(N'[dbo].[FK_LineUp_Player]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FK_LineUp_Player];
 GO
-IF OBJECT_ID(N'[dbo].[LineUpContest]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LineUpContest];
+IF OBJECT_ID(N'[dbo].[FK_LineUp_Contest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FK_LineUp_Contest];
 GO
 
 -- --------------------------------------------------
@@ -252,7 +252,7 @@ GO
 CREATE TABLE [dbo].[Positions] (
     [PositionId] int IDENTITY(1,1) NOT NULL,
     [PositionName] nvarchar(max)  NOT NULL,
-    [SportId] nvarchar(max)  NOT NULL
+    [SportId] int  NOT NULL
 );
 GO
 

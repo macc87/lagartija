@@ -214,7 +214,7 @@
     </Key>
     <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PositionName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SportId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SportId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Teams">
     <Key>
@@ -786,7 +786,7 @@
           </Key>
           <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" Nullable="false" />
-          <Property Name="SportId" Type="String" Nullable="false" />
+          <Property Name="SportId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sports" Relationship="FantasyModel.FK_Position_Sport" FromRole="Position" ToRole="Sport" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.FK_Position_Player" FromRole="Position" ToRole="Player" />
         </EntityType>
