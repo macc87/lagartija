@@ -43,8 +43,20 @@
     <Compile Include="ModelClient\IPaginatedDto.cs" />
     <Compile Include="ModelClient\PaginatedDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\FantasyData\ClimaConditionsDto.cs" />
+    <Compile Include="Response\FantasyData\ContestDto.cs" />
+    <Compile Include="Response\FantasyData\ContestTypeDto.cs" />
+    <Compile Include="Response\FantasyData\GameDto.cs" />
     <Compile Include="Response\FantasyData\InjuryDto.cs" />
     <Compile Include="Response\FantasyData\LeagueDto.cs" />
+    <Compile Include="Response\FantasyData\LineupDto.cs" />
+    <Compile Include="Response\FantasyData\PlayerDto.cs" />
+    <Compile Include="Response\FantasyData\PositionDto.cs" />
+    <Compile Include="Response\FantasyData\PromotionDto.cs" />
+    <Compile Include="Response\FantasyData\SportDto.cs" />
+    <Compile Include="Response\FantasyData\TeamDto.cs" />
+    <Compile Include="Response\FantasyData\UserDto.cs" />
+    <Compile Include="Response\FantasyData\VenueDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fantasy.Api.Dtos.nuspec" />
