@@ -37,6 +37,28 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             return await Task.FromResult(result);
         }
 
+        public async Task<PositionBO> Create(Position position)
+        {
+            var result = new PositionBO
+            {
+                PositionId = position.PositionId,
+                PositionName = position.PositionName
+            };
+            result.Sport = await Create(position.Sp)
+            return await Task.FromResult(result);
+        }
+
+        public async Task<SportBO> Create(Sport sport)
+        {
+            
+            var result = new SportBO
+            {
+                SportId = sport.SportId,
+                Name = sport.Name,
+            };
+            return await Task.FromResult(result);
+        }
+
         public async Task<IEnumerable<InjuriesTeamBO>> Create(TeamInjury[] teams)
         {
             var result = new List<InjuriesTeamBO>();
