@@ -23,9 +23,9 @@
     <EntitySet Name="Games" EntityType="FantasyModel.Store.Games" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Promotions" EntityType="FantasyModel.Store.Promotions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LineUps" EntityType="FantasyModel.Store.LineUps" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ContestGame" EntityType="FantasyModel.Store.ContestGame" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="LineUpPlayer" EntityType="FantasyModel.Store.LineUpPlayer" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="LineUpContest" EntityType="FantasyModel.Store.LineUpContest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FK_Contest_Game" EntityType="FantasyModel.Store.ContestGame" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FK_LineUp_Player" EntityType="FantasyModel.Store.LineUpPlayer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FK_LineUp_Contest" EntityType="FantasyModel.Store.LineUpContest" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
       <End Role="Injury" EntitySet="Injuries" />
       <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
@@ -38,7 +38,7 @@
       <End Role="League" EntitySet="Leagues" />
       <End Role="InjuryTeam" EntitySet="InjuryTeams" />
     </AssociationSet>
-    <AssociationSet Name="PositionSport" Association="FantasyModel.Store.FK_Position_Sport">
+    <AssociationSet Name="FK_Position_Sport" Association="FantasyModel.Store.FK_Position_Sport">
       <End Role="Position" EntitySet="Positions" />
       <End Role="Sport" EntitySet="Sports" />
     </AssociationSet>
@@ -46,11 +46,11 @@
       <End Role="Sport" EntitySet="Sports" />
       <End Role="Team" EntitySet="Teams" />
     </AssociationSet>
-    <AssociationSet Name="TeamPlayer" Association="FantasyModel.Store.TeamPlayer">
+    <AssociationSet Name="FK_Team_Player" Association="FantasyModel.Store.TeamPlayer">
       <End Role="Team" EntitySet="Teams" />
       <End Role="Player" EntitySet="Players" />
     </AssociationSet>
-    <AssociationSet Name="PlayerSport" Association="FantasyModel.Store.FK_Player_Sport">
+    <AssociationSet Name="FK_Player_Sport" Association="FantasyModel.Store.FK_Player_Sport">
       <End Role="Player" EntitySet="Players" />
       <End Role="Sport" EntitySet="Sports" />
     </AssociationSet>
@@ -66,45 +66,45 @@
       <End Role="Game" EntitySet="Games" />
       <End Role="Team" EntitySet="Teams" />
     </AssociationSet>
-    <AssociationSet Name="GameTeam" Association="FantasyModel.Store.GameTeam">
+    <AssociationSet Name="FK_Game_HomeTeam" Association="FantasyModel.Store.GameTeam">
       <End Role="Game" EntitySet="Games" />
       <End Role="Team" EntitySet="Teams" />
     </AssociationSet>
-    <AssociationSet Name="ClimaConditionsGame" Association="FantasyModel.Store.ClimaConditionsGame">
+    <AssociationSet Name="FK_ClimaConditions_Game" Association="FantasyModel.Store.ClimaConditionsGame">
       <End Role="ClimaConditions" EntitySet="ClimaConditions" />
       <End Role="Game" EntitySet="Games" />
     </AssociationSet>
-    <AssociationSet Name="VenueGame" Association="FantasyModel.Store.VenueGame">
+    <AssociationSet Name="FK_Venue_Game" Association="FantasyModel.Store.VenueGame">
       <End Role="Venue" EntitySet="Venues" />
       <End Role="Game" EntitySet="Games" />
     </AssociationSet>
-    <AssociationSet Name="FK_ContestGame_Contest" Association="FantasyModel.Store.FK_ContestGame_Contest">
+    <AssociationSet Name="FK_FK_Contest_Game_Contest" Association="FantasyModel.Store.FK_ContestGame_Contest">
       <End Role="Contest" EntitySet="Contests" />
-      <End Role="ContestGame" EntitySet="ContestGame" />
+      <End Role="ContestGame" EntitySet="FK_Contest_Game" />
     </AssociationSet>
-    <AssociationSet Name="FK_ContestGame_Game" Association="FantasyModel.Store.FK_ContestGame_Game">
+    <AssociationSet Name="FK_FK_Contest_Game_Game" Association="FantasyModel.Store.FK_ContestGame_Game">
       <End Role="Game" EntitySet="Games" />
-      <End Role="ContestGame" EntitySet="ContestGame" />
+      <End Role="ContestGame" EntitySet="FK_Contest_Game" />
     </AssociationSet>
-    <AssociationSet Name="AccountLineUp" Association="FantasyModel.Store.AccountLineUp">
+    <AssociationSet Name="FK_Account_LineUp" Association="FantasyModel.Store.AccountLineUp">
       <End Role="Account" EntitySet="Accounts" />
       <End Role="LineUp" EntitySet="LineUps" />
     </AssociationSet>
-    <AssociationSet Name="FK_LineUpPlayer_LineUp" Association="FantasyModel.Store.FK_LineUpPlayer_LineUp">
+    <AssociationSet Name="FK_FK_LineUp_Player_LineUp" Association="FantasyModel.Store.FK_LineUpPlayer_LineUp">
       <End Role="LineUp" EntitySet="LineUps" />
-      <End Role="LineUpPlayer" EntitySet="LineUpPlayer" />
+      <End Role="LineUpPlayer" EntitySet="FK_LineUp_Player" />
     </AssociationSet>
-    <AssociationSet Name="FK_LineUpPlayer_Player" Association="FantasyModel.Store.FK_LineUpPlayer_Player">
+    <AssociationSet Name="FK_FK_LineUp_Player_Player" Association="FantasyModel.Store.FK_LineUpPlayer_Player">
       <End Role="Player" EntitySet="Players" />
-      <End Role="LineUpPlayer" EntitySet="LineUpPlayer" />
+      <End Role="LineUpPlayer" EntitySet="FK_LineUp_Player" />
     </AssociationSet>
-    <AssociationSet Name="FK_LineUpContest_LineUp" Association="FantasyModel.Store.FK_LineUpContest_LineUp">
+    <AssociationSet Name="FK_FK_LineUp_Contest_LineUp" Association="FantasyModel.Store.FK_LineUpContest_LineUp">
       <End Role="LineUp" EntitySet="LineUps" />
-      <End Role="LineUpContest" EntitySet="LineUpContest" />
+      <End Role="LineUpContest" EntitySet="FK_LineUp_Contest" />
     </AssociationSet>
-    <AssociationSet Name="FK_LineUpContest_Contest" Association="FantasyModel.Store.FK_LineUpContest_Contest">
+    <AssociationSet Name="FK_FK_LineUp_Contest_Contest" Association="FantasyModel.Store.FK_LineUpContest_Contest">
       <End Role="Contest" EntitySet="Contests" />
-      <End Role="LineUpContest" EntitySet="LineUpContest" />
+      <End Role="LineUpContest" EntitySet="FK_LineUp_Contest" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
@@ -652,7 +652,7 @@
           <EntitySet Name="Players" EntityType="FantasyModel.Player" />
           <EntitySet Name="Positions" EntityType="FantasyModel.Position" />
           <EntitySet Name="Teams" EntityType="FantasyModel.Team" />
-          <AssociationSet Name="PositionSport" Association="FantasyModel.FK_Position_Sport">
+          <AssociationSet Name="FK_Position_Sport" Association="FantasyModel.FK_Position_Sport">
             <End Role="Position" EntitySet="Positions" />
             <End Role="Sport" EntitySet="Sports" />
           </AssociationSet>
@@ -660,11 +660,11 @@
             <End Role="Sport" EntitySet="Sports" />
             <End Role="Team" EntitySet="Teams" />
           </AssociationSet>
-          <AssociationSet Name="TeamPlayer" Association="FantasyModel.TeamPlayer">
+          <AssociationSet Name="FK_Team_Player" Association="FantasyModel.TeamPlayer">
             <End Role="Team" EntitySet="Teams" />
             <End Role="Player" EntitySet="Players" />
           </AssociationSet>
-          <AssociationSet Name="PlayerSport" Association="FantasyModel.FK_Player_Sport">
+          <AssociationSet Name="FK_Player_Sport" Association="FantasyModel.FK_Player_Sport">
             <End Role="Player" EntitySet="Players" />
             <End Role="Sport" EntitySet="Sports" />
           </AssociationSet>
@@ -683,33 +683,33 @@
             <End Role="Game" EntitySet="Games" />
             <End Role="Team" EntitySet="Teams" />
           </AssociationSet>
-          <AssociationSet Name="GameTeam" Association="FantasyModel.GameTeam">
+          <AssociationSet Name="FK_Game_HomeTeam" Association="FantasyModel.GameTeam">
             <End Role="Game" EntitySet="Games" />
             <End Role="Team" EntitySet="Teams" />
           </AssociationSet>
-          <AssociationSet Name="ClimaConditionsGame" Association="FantasyModel.ClimaConditionsGame">
+          <AssociationSet Name="FK_ClimaConditions_Game" Association="FantasyModel.ClimaConditionsGame">
             <End Role="ClimaConditions" EntitySet="ClimaConditions" />
             <End Role="Game" EntitySet="Games" />
           </AssociationSet>
-          <AssociationSet Name="VenueGame" Association="FantasyModel.VenueGame">
+          <AssociationSet Name="FK_Venue_Game" Association="FantasyModel.VenueGame">
             <End Role="Venue" EntitySet="Venues" />
             <End Role="Game" EntitySet="Games" />
           </AssociationSet>
-          <AssociationSet Name="ContestGame" Association="FantasyModel.ContestGame">
+          <AssociationSet Name="FK_Contest_Game" Association="FantasyModel.ContestGame">
             <End Role="Contest" EntitySet="Contests" />
             <End Role="Game" EntitySet="Games" />
           </AssociationSet>
           <EntitySet Name="Promotions" EntityType="FantasyModel.Promotion" />
           <EntitySet Name="LineUps" EntityType="FantasyModel.LineUp" />
-          <AssociationSet Name="AccountLineUp" Association="FantasyModel.AccountLineUp">
+          <AssociationSet Name="FK_Account_LineUp" Association="FantasyModel.AccountLineUp">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="LineUp" EntitySet="LineUps" />
           </AssociationSet>
-          <AssociationSet Name="LineUpPlayer" Association="FantasyModel.LineUpPlayer">
+          <AssociationSet Name="FK_LineUp_Player" Association="FantasyModel.LineUpPlayer">
             <End Role="LineUp" EntitySet="LineUps" />
             <End Role="Player" EntitySet="Players" />
           </AssociationSet>
-          <AssociationSet Name="LineUpContest" Association="FantasyModel.LineUpContest">
+          <AssociationSet Name="FK_LineUp_Contest" Association="FantasyModel.LineUpContest">
             <End Role="LineUp" EntitySet="LineUps" />
             <End Role="Contest" EntitySet="Contests" />
           </AssociationSet>
@@ -1157,7 +1157,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="PlayerSport" TypeName="FantasyModel.FK_Player_Sport" StoreEntitySet="Players">
+    <AssociationSetMapping Name="FK_Player_Sport" TypeName="FantasyModel.FK_Player_Sport" StoreEntitySet="Players">
       <EndProperty Name="Sport">
         <ScalarProperty Name="SportId" ColumnName="Sport_SportId" />
       </EndProperty>
@@ -1173,7 +1173,7 @@
         <ScalarProperty Name="GameId" ColumnName="GameId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="GameTeam" TypeName="FantasyModel.GameTeam" StoreEntitySet="Games">
+    <AssociationSetMapping Name="FK_Game_HomeTeam" TypeName="FantasyModel.GameTeam" StoreEntitySet="Games">
       <EndProperty Name="Team">
         <ScalarProperty Name="TeamId" ColumnName="HomeTeam_TeamId" />
       </EndProperty>
@@ -1181,7 +1181,7 @@
         <ScalarProperty Name="GameId" ColumnName="GameId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ClimaConditionsGame" TypeName="FantasyModel.ClimaConditionsGame" StoreEntitySet="Games">
+    <AssociationSetMapping Name="FK_ClimaConditions_Game" TypeName="FantasyModel.ClimaConditionsGame" StoreEntitySet="Games">
       <EndProperty Name="ClimaConditions">
         <ScalarProperty Name="ClimaId" ColumnName="ClimaCondition_ClimaId" />
       </EndProperty>
@@ -1189,7 +1189,7 @@
         <ScalarProperty Name="GameId" ColumnName="GameId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ContestGame" TypeName="FantasyModel.ContestGame" StoreEntitySet="ContestGame">
+    <AssociationSetMapping Name="FK_Contest_Game" TypeName="FantasyModel.ContestGame" StoreEntitySet="FK_Contest_Game">
       <EndProperty Name="Contest">
         <ScalarProperty Name="ContestId" ColumnName="Contests_ContestId" />
       </EndProperty>
@@ -1197,7 +1197,7 @@
         <ScalarProperty Name="GameId" ColumnName="Games_GameId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="LineUpPlayer" TypeName="FantasyModel.LineUpPlayer" StoreEntitySet="LineUpPlayer">
+    <AssociationSetMapping Name="FK_LineUp_Player" TypeName="FantasyModel.LineUpPlayer" StoreEntitySet="FK_LineUp_Player">
       <EndProperty Name="LineUp">
         <ScalarProperty Name="LineUpId" ColumnName="LineUps_LineUpId" />
       </EndProperty>
@@ -1205,7 +1205,7 @@
         <ScalarProperty Name="PlayerId" ColumnName="Players_PlayerId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="LineUpContest" TypeName="FantasyModel.LineUpContest" StoreEntitySet="LineUpContest">
+    <AssociationSetMapping Name="FK_LineUp_Contest" TypeName="FantasyModel.LineUpContest" StoreEntitySet="FK_LineUp_Contest">
       <EndProperty Name="LineUp">
         <ScalarProperty Name="LineUpId" ColumnName="LineUps_LineUpId" />
       </EndProperty>
