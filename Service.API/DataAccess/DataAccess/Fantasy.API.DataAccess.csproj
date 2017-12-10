@@ -98,6 +98,7 @@
     <Compile Include="Models\MSSQL\Fantasy\ContestMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\ContestResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\ContestType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -227,9 +228,12 @@
     <Compile Include="Services\Email\EmailUtility.cs" />
     <Compile Include="Services\Email\IEmailUtility.cs" />
     <Compile Include="Services\ExternalServiceContext.cs" />
+    <Compile Include="Services\Fantasy\Core\DatabaseCore.cs" />
     <Compile Include="Services\Fantasy\Core\SportsRadarCore.cs" />
     <Compile Include="Services\Fantasy\Core\HttpClientFantasy.cs" />
+    <Compile Include="Services\Fantasy\Interfase\IFantasyDataClient.cs" />
     <Compile Include="Services\Fantasy\Interfase\IFantasyClient.cs" />
+    <Compile Include="Services\Fantasy\DatabaseClient.cs" />
     <Compile Include="Services\Fantasy\SportsRadarClient.cs" />
     <Compile Include="UnitOfWork\EfUnitOfWork.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
