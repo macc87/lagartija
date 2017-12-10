@@ -1,4 +1,5 @@
 ﻿using Fantasy.API.DataAccess.Models.Services.FantasyData;
+using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
