@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
-    class TeamBO
+    public class TeamBO
     {
         public int TeamId { get; set; }
 

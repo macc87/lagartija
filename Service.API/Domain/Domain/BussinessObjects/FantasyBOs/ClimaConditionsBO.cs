@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
-    class ClimaConditionsBO
+    public class ClimaConditionsBO
     {
         public int ClimaId { get; set; }
 
