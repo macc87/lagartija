@@ -81,6 +81,29 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             result.LineUps = await Create(lineup);
             return await Task.FromResult(result);
         }
+        public async Task<List<ContestBO>> Create(List<Contest> contests)
+        {
+            List<ContestBO> result = new List<ContestBO>();
+            foreach (Contest contest in contests)
+            {
+                int Cid = contest.ContestId;
+                var res = new ContestBO
+                {
+                    ContestId = contest.ContestId,
+                    EntryFee = contest.EntryFee,
+                    MaxCapacity = contest.MaxCapacity,
+                    Name = contest.Name,
+                    SalaryCap = contest.SalaryCap,
+                    SignedUp = contest.SignedUp,
+                };
+                Game[] games = fContext.Games.Include("Venue").Include("ClimaCondition").Include("AwayTeam").Include("HomeTeam").Where(x => x.Contests.Contains(contest)).ToArray();
+                res.Games = await Create(games);
+                LineUp[] lineup = fContext.LineUps.Include("Account").Where(x => x.Contests.Contains(contest)).ToArray();
+                res.LineUps = await Create(lineup);
+                result.Add(res);
+            }
+            return await Task.FromResult(result);
+        }
         public async Task<IEnumerable<GameBO>> Create(Game[] games)
         {
             var result = new List<GameBO>();
