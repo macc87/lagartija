@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-  <configSections xdt:Transform="InsertIfMissing">
+  <configSections xdt:Transform="InsertIfMissing">  
     <section name="DataLayerEnvironment" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
     <section name="DataLayerEnvironment" xdt:Locator="Match(name)" xdt:Transform="Replace" type="DataAccess.Configurations.DataLayerEnvironmentSettings" requirePermission="false" />
-    <sectionGroup name="applicationSettings" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing">
+      <sectionGroup name="applicationSettings" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing">
       <section name="DataAccess.Properties.Settings" xdt:Locator="Match(name)" xdt:Transform="InsertIfMissing" />
     </sectionGroup>
     <sectionGroup name="applicationSettings" xdt:Locator="Match(name)" xdt:Transform="Replace" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -12,7 +12,7 @@
   </configSections>
   <appSettings xdt:Transform="InsertIfMissing">
     <add key="noticeByEnvironment" xdt:Locator="Match(key)" xdt:Transform="Remove"/>
-    <add key="noticeByEnvironment" xdt:Transform="Insert"  value="test,modl,local" />
+    <add key="noticeByEnvironment" xdt:Transform="Insert"  value="test,modl,local" />    
     <add key="Environment" xdt:Locator="Match(key)" xdt:Transform="Remove" />
     <add key="Environment" xdt:Transform="Insert"  value="local" />
   </appSettings>
@@ -34,15 +34,15 @@
     <environments>
       <environment id="test">
         <fantasyMssql name="FantasyDev" schema="" />
-        <sportsRadar name="sportsRadarDev" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+        <sportsRadar name="sportsRadarDev" url="http://api.sportradar.us/" api_key="cwbp62jue2csyqw57f2efatq" />
       </environment>
       <environment id="modl">
         <fantasyMssql name="FantasyModl" schema="" />
-        <sportsRadar name="sportsRadarModl" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+        <sportsRadar name="sportsRadarModl" url="http://api.sportradar.us/" api_key="cwbp62jue2csyqw57f2efatq" />
       </environment>
       <environment id="prod">
         <fantasyMssql name="FantasyProd" schema="" />
-        <sportsRadar name="sportsRadarProd" url="http://api.sportradar.us/" api_key="pmmb9scvnpew2drzms5u82jy" />
+        <sportsRadar name="sportsRadarProd" url="http://api.sportradar.us/" api_key="cwbp62jue2csyqw57f2efatq" />
       </environment>
     </environments>
   </DataLayerEnvironment>
