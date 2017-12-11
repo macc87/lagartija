@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    class SportDto
+    public class SportDto
     {
         public int SportId { get; set; }
 

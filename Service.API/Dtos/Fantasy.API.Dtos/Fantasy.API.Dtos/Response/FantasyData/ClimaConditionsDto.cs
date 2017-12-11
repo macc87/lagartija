@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    class ClimaConditionsDto
+    public class ClimaConditionsDto
     {
         public int ClimaId { get; set; }
 
