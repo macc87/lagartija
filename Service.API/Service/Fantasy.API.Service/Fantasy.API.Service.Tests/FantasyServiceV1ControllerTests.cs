@@ -32,7 +32,7 @@ namespace Fantasy.API.Service.Tests
                 Guid = "4f4a0123e5ab4c3eb8fd7e28c67d2c00" //Guid.NewGuid().ToString("N").Substring(0, 32)
             };
 
-            _controller = new FantasyServiceV1Controller(new SportsRadarClient(), userInfo);
+            _controller = new FantasyServiceV1Controller(new SportsRadarClient(), new DatabaseClient(), userInfo);
         }
 
         [TestMethod]
