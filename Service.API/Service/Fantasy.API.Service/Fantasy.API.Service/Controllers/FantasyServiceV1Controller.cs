@@ -14,6 +14,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Fantasy.API.Dtos.Response.FantasyData;
 using Fantasy.API.Service.Mapping;
+using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
+
 
 namespace Fantasy.API.Service.Controllers
 {
@@ -25,19 +27,30 @@ namespace Fantasy.API.Service.Controllers
     public class FantasyServiceV1Controller :  BaseServiceApi
     {
         private IFantasyService _fantasyService;
+        private IFantasyDataService _fantasyDataService;
         private UserInfo _currentUser;
 
+        /// <summary>
+        /// Construct a default controller for the Fantasy Service
+        /// </summary>
         public FantasyServiceV1Controller()
         {
         }
-
-        public FantasyServiceV1Controller(IFantasyClient fantasyClient, UserInfo currentUser)
+        /// <summary>
+        /// Construct a controller for the Fantasy Service
+        /// </summary>
+        /// <param name="fantasyClient">Client of the Sport Radar Service</param>
+        /// <param name="fantasyDataClient">Client of the Database Entities</param>
+        /// <param name="currentUser">User of the service</param>
+        public FantasyServiceV1Controller(IFantasyClient fantasyClient, IFantasyDataClient fantasyDataClient,  UserInfo currentUser)
         {
             Check.NotNull(fantasyClient, "fantasyClient");
+            Check.NotNull(fantasyDataClient, "fantasyDataClient");
             Check.NotNull(currentUser, "currentUser");
 
             _currentUser = currentUser;
             _fantasyService = new FantasyService(fantasyClient);
+            _fantasyDataService = new FantasyDataService(fantasyDataClient);
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -62,6 +75,20 @@ namespace Fantasy.API.Service.Controllers
                 _fantasyService = new FantasyService(new SportsRadarClient());
 
                 return _fantasyService;
+            }
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        private IFantasyDataService FantasyDataService
+        {
+            get
+            {
+                if (_fantasyService != null) return _fantasyDataService;
+
+                var currentUser = GetPrincipalUser();
+                _fantasyDataService = new FantasyDataService(new DatabaseClient());
+
+                return _fantasyDataService;
             }
         }
 
@@ -98,6 +125,45 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Get contests
+        /// </summary>
+        /// <returns>Returns a list of contest from MLB</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("contests", Name = "GetContestsV1")]
+        [ResponseType(typeof(ServiceResult<InjuryDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetContestsAsync()
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetContestsAsync();
+
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+                var resultDto = new List<Task<ContestDto>>();
+                foreach (ContestBO contest in resultBO.Result)
+                {
+                    var contestDto = await DtoFactories.DtoFactoryResponse.Create(contest);
+                }
+                
+                var result = await ResponseHandler.ServiceOkAsync(resultDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<InjuryDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Eliminates the Database and Sport Radar Services
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -106,6 +172,11 @@ namespace Fantasy.API.Service.Controllers
                 {
                     _fantasyService.Dispose();
                     _fantasyService = null;
+                }
+                if (_fantasyDataService != null)
+                {
+                    _fantasyDataService.Dispose();
+                    _fantasyDataService = null;
                 }
             }
             base.Dispose(disposing);
