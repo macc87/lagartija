@@ -179,9 +179,9 @@
   </EntityType>
   <EntityType Name="ClimaConditions">
     <Key>
-      <PropertyRef Name="ClimaId" />
+      <PropertyRef Name="ClimaConditionsId" />
     </Key>
-    <Property Name="ClimaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClimaConditionsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Condition" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Venues">
@@ -255,13 +255,13 @@
     <Property Name="VenueId" Type="int" Nullable="false" />
     <Property Name="AwayTeam_TeamId" Type="int" Nullable="false" />
     <Property Name="HomeTeam_TeamId" Type="int" Nullable="false" />
-    <Property Name="ClimaCondition_ClimaId" Type="int" Nullable="false" />
+    <Property Name="ClimaCondition_ClimaConditionsId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Promotions">
     <Key>
-      <PropertyRef Name="PromoId" />
+      <PropertyRef Name="PromotionId" />
     </Key>
-    <Property Name="PromoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PromotionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
@@ -434,10 +434,10 @@
     <End Role="Game" Type="FantasyModel.Store.Games" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ClimaConditions">
-        <PropertyRef Name="ClimaId" />
+        <PropertyRef Name="ClimaConditionsId" />
       </Principal>
       <Dependent Role="Game">
-        <PropertyRef Name="ClimaCondition_ClimaId" />
+        <PropertyRef Name="ClimaCondition_ClimaConditionsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -746,9 +746,9 @@
         </EntityType>
         <EntityType Name="ClimaConditions">
           <Key>
-            <PropertyRef Name="ClimaId" />
+            <PropertyRef Name="ClimaConditionsId" />
           </Key>
-          <Property Name="ClimaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClimaConditionsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Condition" Type="String" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="FantasyModel.ClimaConditionsGame" FromRole="ClimaConditions" ToRole="Game" />
         </EntityType>
@@ -935,9 +935,9 @@
         </Association>
         <EntityType Name="Promotion">
           <Key>
-            <PropertyRef Name="PromoId" />
+            <PropertyRef Name="PromotionId" />
           </Key>
-          <Property Name="PromoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromotionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" />
@@ -1058,7 +1058,7 @@
     <EntitySetMapping Name="ClimaConditions">
       <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.ClimaConditions)">
         <MappingFragment StoreEntitySet="ClimaConditions">
-          <ScalarProperty Name="ClimaId" ColumnName="ClimaId" />
+          <ScalarProperty Name="ClimaConditionsId" ColumnName="ClimaConditionsId" />
           <ScalarProperty Name="Condition" ColumnName="Condition" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1142,7 +1142,7 @@
     <EntitySetMapping Name="Promotions">
       <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Promotion)">
         <MappingFragment StoreEntitySet="Promotions">
-          <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+          <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Code" ColumnName="Code" />
@@ -1183,7 +1183,7 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="FK_ClimaConditions_Game" TypeName="FantasyModel.ClimaConditionsGame" StoreEntitySet="Games">
       <EndProperty Name="ClimaConditions">
-        <ScalarProperty Name="ClimaId" ColumnName="ClimaCondition_ClimaId" />
+        <ScalarProperty Name="ClimaConditionsId" ColumnName="ClimaCondition_ClimaConditionsId" />
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="GameId" ColumnName="GameId" />

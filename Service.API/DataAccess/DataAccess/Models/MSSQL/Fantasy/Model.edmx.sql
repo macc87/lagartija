@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/04/2017 02:33:25
+-- Date Created: 12/19/2017 15:03:37
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -219,7 +219,7 @@ GO
 
 -- Creating table 'ClimaConditions'
 CREATE TABLE [dbo].[ClimaConditions] (
-    [ClimaId] int IDENTITY(1,1) NOT NULL,
+    [ClimaConditionsId] int IDENTITY(1,1) NOT NULL,
     [Condition] nvarchar(max)  NOT NULL
 );
 GO
@@ -293,13 +293,13 @@ CREATE TABLE [dbo].[Games] (
     [VenueId] int  NOT NULL,
     [AwayTeam_TeamId] int  NOT NULL,
     [HomeTeam_TeamId] int  NOT NULL,
-    [ClimaCondition_ClimaId] int  NOT NULL
+    [ClimaCondition_ClimaConditionsId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Promotions'
 CREATE TABLE [dbo].[Promotions] (
-    [PromoId] int IDENTITY(1,1) NOT NULL,
+    [PromotionId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [Code] nvarchar(max)  NOT NULL
@@ -380,10 +380,10 @@ ADD CONSTRAINT [PK_Notifications]
     PRIMARY KEY CLUSTERED ([NotificationId] ASC);
 GO
 
--- Creating primary key on [ClimaId] in table 'ClimaConditions'
+-- Creating primary key on [ClimaConditionsId] in table 'ClimaConditions'
 ALTER TABLE [dbo].[ClimaConditions]
 ADD CONSTRAINT [PK_ClimaConditions]
-    PRIMARY KEY CLUSTERED ([ClimaId] ASC);
+    PRIMARY KEY CLUSTERED ([ClimaConditionsId] ASC);
 GO
 
 -- Creating primary key on [VenueId] in table 'Venues'
@@ -428,10 +428,10 @@ ADD CONSTRAINT [PK_Games]
     PRIMARY KEY CLUSTERED ([GameId] ASC);
 GO
 
--- Creating primary key on [PromoId] in table 'Promotions'
+-- Creating primary key on [PromotionId] in table 'Promotions'
 ALTER TABLE [dbo].[Promotions]
 ADD CONSTRAINT [PK_Promotions]
-    PRIMARY KEY CLUSTERED ([PromoId] ASC);
+    PRIMARY KEY CLUSTERED ([PromotionId] ASC);
 GO
 
 -- Creating primary key on [LineUpId] in table 'LineUps'
@@ -627,19 +627,19 @@ ON [dbo].[Games]
     ([HomeTeam_TeamId]);
 GO
 
--- Creating foreign key on [ClimaCondition_ClimaId] in table 'Games'
+-- Creating foreign key on [ClimaCondition_ClimaConditionsId] in table 'Games'
 ALTER TABLE [dbo].[Games]
 ADD CONSTRAINT [FK_ClimaConditionsGame]
-    FOREIGN KEY ([ClimaCondition_ClimaId])
+    FOREIGN KEY ([ClimaCondition_ClimaConditionsId])
     REFERENCES [dbo].[ClimaConditions]
-        ([ClimaId])
+        ([ClimaConditionsId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ClimaConditionsGame'
 CREATE INDEX [IX_FK_ClimaConditionsGame]
 ON [dbo].[Games]
-    ([ClimaCondition_ClimaId]);
+    ([ClimaCondition_ClimaConditionsId]);
 GO
 
 -- Creating foreign key on [VenueId] in table 'Games'
