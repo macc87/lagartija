@@ -10,6 +10,8 @@ namespace Fantasy.API.DataAccess.Tests
     public class FantasyTests
     {
         readonly IFantasyClient fantasyClient = new SportsRadarClient();
+        readonly IFantasyDataClient fantasyDatClient = new DatabaseClient();
+
 
         [TestMethod]
         public async Task GetSchedule_Successful()
@@ -22,6 +24,13 @@ namespace Fantasy.API.DataAccess.Tests
         public async Task GetInjuries_Successful()
         {
             var result = await fantasyClient.GetInjuriesAsync();
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetContests_Successful()
+        {
+            var result = await fantasyDatClient.GetContestsAsync();
             Assert.IsFalse(result.HasError);
         }
 
