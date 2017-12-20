@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int ClimaId
+        public int ClimaConditionsId
         {
             get; set;
         }

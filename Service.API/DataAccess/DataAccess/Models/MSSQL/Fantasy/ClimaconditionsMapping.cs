@@ -20,9 +20,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 public ClimaconditionsMapping()
                 {
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
-    		            this.HasKey(t => t.ClimaId);	
+    		            this.HasKey(t => t.ClimaConditionsId);	
     		            this.ToTable("ClimaConditions",dbSchema);
-                        this.Property(t => t.ClimaId).HasColumnName("ClimaId");
+                        this.Property(t => t.ClimaConditionsId).HasColumnName("ClimaConditionsId");
     
                 }
     }

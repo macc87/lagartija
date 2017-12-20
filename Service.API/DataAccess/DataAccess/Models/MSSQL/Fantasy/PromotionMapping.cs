@@ -20,9 +20,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 public PromotionMapping()
                 {
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
-    		            this.HasKey(t => t.PromoId);	
+    		            this.HasKey(t => t.PromotionId);	
     		            this.ToTable("Promotion",dbSchema);
-                        this.Property(t => t.PromoId).HasColumnName("PromoId");
+                        this.Property(t => t.PromotionId).HasColumnName("PromotionId");
     
                 }
     }
