@@ -29,7 +29,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 ContestResponse result = new ContestResponse()
                 {
-                    Contests = dbContest.Contests.Include("ContestType").Include("Games").Include("LineUps").ToList()
+                    Contests = dbContest.Contests.ToList()
                 };
                 if (result != null)
                     return await ServiceOkAsync(result);
