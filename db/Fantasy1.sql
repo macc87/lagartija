@@ -1,8 +1,8 @@
 
--- --------------------------------------------------
+--- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/19/2017 15:03:37
+-- Date Created: 12/20/2017 00:52:58
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -243,8 +243,7 @@ CREATE TABLE [dbo].[Players] (
     [TeamId] int  NOT NULL,
     [PositionId] int  NOT NULL,
     [Salary] float  NOT NULL,
-    [Photo] nvarchar(max)  NOT NULL,
-    [Sport_SportId] int  NOT NULL
+    [Photo] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -552,21 +551,6 @@ ON [dbo].[Players]
     ([TeamId]);
 GO
 
--- Creating foreign key on [Sport_SportId] in table 'Players'
-ALTER TABLE [dbo].[Players]
-ADD CONSTRAINT [FK_Player_Sport]
-    FOREIGN KEY ([Sport_SportId])
-    REFERENCES [dbo].[Sports]
-        ([SportId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Player_Sport'
-CREATE INDEX [IX_FK_Player_Sport]
-ON [dbo].[Players]
-    ([Sport_SportId]);
-GO
-
 -- Creating foreign key on [PositionId] in table 'Players'
 ALTER TABLE [dbo].[Players]
 ADD CONSTRAINT [FK_Position_Player]
@@ -743,10 +727,6 @@ CREATE INDEX [IX_FK_LineUpContest_Contest]
 ON [dbo].[FK_LineUp_Contest]
     ([Contests_ContestId]);
 GO
-
--- --------------------------------------------------
--- Script has ended
--- --------------------------------------------------
 -- ----------------------------
 -- Records of Account
 -- ----------------------------

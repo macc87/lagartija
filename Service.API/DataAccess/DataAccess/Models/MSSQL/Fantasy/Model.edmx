@@ -50,10 +50,6 @@
       <End Role="Team" EntitySet="Teams" />
       <End Role="Player" EntitySet="Players" />
     </AssociationSet>
-    <AssociationSet Name="FK_Player_Sport" Association="FantasyModel.Store.FK_Player_Sport">
-      <End Role="Player" EntitySet="Players" />
-      <End Role="Sport" EntitySet="Sports" />
-    </AssociationSet>
     <AssociationSet Name="FK_Position_Player" Association="FantasyModel.Store.FK_Position_Player">
       <End Role="Position" EntitySet="Positions" />
       <End Role="Player" EntitySet="Players" />
@@ -206,7 +202,6 @@
     <Property Name="PositionId" Type="int" Nullable="false" />
     <Property Name="Salary" Type="float" Nullable="false" />
     <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Sport_SportId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Positions">
     <Key>
@@ -366,18 +361,6 @@
       </Principal>
       <Dependent Role="Player">
         <PropertyRef Name="TeamId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Player_Sport">
-    <End Role="Player" Type="FantasyModel.Store.Players" Multiplicity="*" />
-    <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Sport">
-        <PropertyRef Name="SportId" />
-      </Principal>
-      <Dependent Role="Player">
-        <PropertyRef Name="Sport_SportId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -664,10 +647,6 @@
             <End Role="Team" EntitySet="Teams" />
             <End Role="Player" EntitySet="Players" />
           </AssociationSet>
-          <AssociationSet Name="FK_Player_Sport" Association="FantasyModel.FK_Player_Sport">
-            <End Role="Player" EntitySet="Players" />
-            <End Role="Sport" EntitySet="Sports" />
-          </AssociationSet>
           <AssociationSet Name="FK_Position_Player" Association="FantasyModel.FK_Position_Player">
             <End Role="Position" EntitySet="Positions" />
             <End Role="Player" EntitySet="Players" />
@@ -732,7 +711,6 @@
           <NavigationProperty Name="Position" Relationship="FantasyModel.FK_Position_Sport" FromRole="Sport" ToRole="Position" />
           <Property Name="PositionId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Teams" Relationship="FantasyModel.FK_Sport_Team" FromRole="Sport" ToRole="Team" />
-          <NavigationProperty Name="Player" Relationship="FantasyModel.FK_Player_Sport" FromRole="Sport" ToRole="Player" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -773,7 +751,6 @@
           <Property Name="PreferredName" Type="String" Nullable="false" />
           <NavigationProperty Name="Team" Relationship="FantasyModel.TeamPlayer" FromRole="Player" ToRole="Team" />
           <Property Name="TeamId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sport" Relationship="FantasyModel.FK_Player_Sport" FromRole="Player" ToRole="Sport" />
           <NavigationProperty Name="Position" Relationship="FantasyModel.FK_Position_Player" FromRole="Player" ToRole="Position" />
           <Property Name="PositionId" Type="Int32" Nullable="false" />
           <Property Name="Salary" Type="Double" Nullable="false" />
@@ -838,10 +815,6 @@
               <PropertyRef Name="TeamId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Player_Sport">
-          <End Type="FantasyModel.Player" Role="Player" Multiplicity="1" />
-          <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
         </Association>
         <Association Name="FK_Position_Player">
           <End Type="FantasyModel.Position" Role="Position" Multiplicity="1" />
@@ -1157,14 +1130,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FK_Player_Sport" TypeName="FantasyModel.FK_Player_Sport" StoreEntitySet="Players">
-      <EndProperty Name="Sport">
-        <ScalarProperty Name="SportId" ColumnName="Sport_SportId" />
-      </EndProperty>
-      <EndProperty Name="Player">
-        <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="FK_Game_AwayTeam" TypeName="FantasyModel.FK_Game_AwayTeam" StoreEntitySet="Games">
       <EndProperty Name="Team">
         <ScalarProperty Name="TeamId" ColumnName="AwayTeam_TeamId" />

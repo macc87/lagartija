@@ -23,7 +23,6 @@
         <AssociationConnector Association="FantasyModel.FK_Position_Sport" />
         <AssociationConnector Association="FantasyModel.FK_Sport_Team" />
         <AssociationConnector Association="FantasyModel.TeamPlayer" />
-        <AssociationConnector Association="FantasyModel.FK_Player_Sport" />
         <AssociationConnector Association="FantasyModel.FK_Position_Player" />
         <EntityTypeShape EntityType="FantasyModel.ContestType" Width="1.5" PointX="6.625" PointY="6.625" />
         <EntityTypeShape EntityType="FantasyModel.Contest" Width="1.5" PointX="6.5" PointY="9.25" />

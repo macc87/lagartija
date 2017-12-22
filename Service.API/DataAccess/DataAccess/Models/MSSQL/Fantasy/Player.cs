@@ -102,21 +102,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private Team _team;
     
-        public Sport Sport
-        {
-            get { return _sport; }
-            set
-            {
-                if (!ReferenceEquals(_sport, value))
-                {
-                    var previousValue = _sport;
-                    _sport = value;
-                    FixupSport(previousValue);
-                }
-            }
-        }
-        private Sport _sport;
-    
         public Position Position
         {
             get { return _position; }
@@ -185,19 +170,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 {
                     TeamId = Team.TeamId;
                 }
-            }
-        }
-    
-        private void FixupSport(Sport previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.Player, this))
-            {
-                previousValue.Player = null;
-            }
-    
-            if (Sport != null)
-            {
-                Sport.Player = this;
             }
         }
     
