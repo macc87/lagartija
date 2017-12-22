@@ -14,7 +14,7 @@ namespace Fantasy.API.DataAccess.Tests
     {
         readonly IFantasyDataClient fantasyDatClient = new DatabaseClient();
 
-        [TestMethod]
+        [TestMethod()]
         public async Task GetContests_Successful()
         {
             var result = await fantasyDatClient.GetContestsAsync();

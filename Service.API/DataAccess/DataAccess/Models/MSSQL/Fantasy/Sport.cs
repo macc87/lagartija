@@ -96,21 +96,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Team> _teams;
-    
-        public Player Player
-        {
-            get { return _player; }
-            set
-            {
-                if (!ReferenceEquals(_player, value))
-                {
-                    var previousValue = _player;
-                    _player = value;
-                    FixupPlayer(previousValue);
-                }
-            }
-        }
-        private Player _player;
 
         #endregion
 
@@ -133,19 +118,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 {
                     PositionId = Position.PositionId;
                 }
-            }
-        }
-    
-        private void FixupPlayer(Player previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.Sport, this))
-            {
-                previousValue.Sport = null;
-            }
-    
-            if (Player != null)
-            {
-                Player.Sport = this;
             }
         }
     
