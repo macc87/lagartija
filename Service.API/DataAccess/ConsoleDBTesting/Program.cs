@@ -1,4 +1,6 @@
 ﻿using Fantasy.API.DataAccess.DbContexts.MSSQL.FantasyData;
+using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
+using Fantasy.API.DataAccess.Services.Fantasy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +14,12 @@ namespace ConsoleDBTesting
     {
         static void Main(string[] args)
         {
-            FantasyContext dbContest = new FantasyContext();
-
+            FantasyContext dbContext = new FantasyContext();
+            ContestResponse result = new ContestResponse()
+            {
+                Contests = dbContext.Contests.Include("ContestGame").Include("LineUps").Include("ContestType").ToList()
+            };
+            Console.WriteLine("end");
         }
 }
 }
