@@ -34,6 +34,12 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
+        public async Task GetPlayersFromTeam_Successful()
+        {
+            var result = await fantasyDatClient.GetPlayersFromTeamAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
+
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{
