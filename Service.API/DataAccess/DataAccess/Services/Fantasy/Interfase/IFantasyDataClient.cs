@@ -12,5 +12,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
     public interface IFantasyDataClient : IDisposable
     {
         Task<ServiceResult<ContestResponse>> GetContestsAsync();
+
+        Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId);
     }
 }
