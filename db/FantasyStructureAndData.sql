@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2017-12-23 13:34:01
+Date: 2017-12-23 13:33:40
 */
 
 
@@ -30,6 +30,13 @@ CREATE TABLE [dbo].[Account] (
 GO
 
 -- ----------------------------
+-- Records of Account
+-- ----------------------------
+INSERT INTO [dbo].[Account] ([Login], [Email], [Password]) VALUES (N'admin', N'admin@admins.com', N'password')
+GO
+GO
+
+-- ----------------------------
 -- Table structure for Accounts
 -- ----------------------------
 DROP TABLE [dbo].[Accounts]
@@ -42,6 +49,10 @@ CREATE TABLE [dbo].[Accounts] (
 
 
 GO
+
+-- ----------------------------
+-- Records of Accounts
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for ClimaConditions
@@ -57,6 +68,14 @@ CREATE TABLE [dbo].[ClimaConditions] (
 GO
 
 -- ----------------------------
+-- Records of ClimaConditions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ClimaConditions] ON
+GO
+SET IDENTITY_INSERT [dbo].[ClimaConditions] OFF
+GO
+
+-- ----------------------------
 -- Table structure for ContestGame
 -- ----------------------------
 DROP TABLE [dbo].[ContestGame]
@@ -68,6 +87,10 @@ CREATE TABLE [dbo].[ContestGame] (
 
 
 GO
+
+-- ----------------------------
+-- Records of ContestGame
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for Contests
@@ -88,6 +111,14 @@ CREATE TABLE [dbo].[Contests] (
 GO
 
 -- ----------------------------
+-- Records of Contests
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Contests] ON
+GO
+SET IDENTITY_INSERT [dbo].[Contests] OFF
+GO
+
+-- ----------------------------
 -- Table structure for ContestTypes
 -- ----------------------------
 DROP TABLE [dbo].[ContestTypes]
@@ -98,6 +129,14 @@ CREATE TABLE [dbo].[ContestTypes] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of ContestTypes
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ContestTypes] ON
+GO
+SET IDENTITY_INSERT [dbo].[ContestTypes] OFF
 GO
 
 -- ----------------------------
@@ -120,6 +159,14 @@ CREATE TABLE [dbo].[Games] (
 GO
 
 -- ----------------------------
+-- Records of Games
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Games] ON
+GO
+SET IDENTITY_INSERT [dbo].[Games] OFF
+GO
+
+-- ----------------------------
 -- Table structure for Injuries
 -- ----------------------------
 DROP TABLE [dbo].[Injuries]
@@ -135,6 +182,10 @@ CREATE TABLE [dbo].[Injuries] (
 
 
 GO
+
+-- ----------------------------
+-- Records of Injuries
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for InjuryPlayers
@@ -158,6 +209,10 @@ CREATE TABLE [dbo].[InjuryPlayers] (
 GO
 
 -- ----------------------------
+-- Records of InjuryPlayers
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for InjuryTeams
 -- ----------------------------
 DROP TABLE [dbo].[InjuryTeams]
@@ -174,6 +229,10 @@ CREATE TABLE [dbo].[InjuryTeams] (
 GO
 
 -- ----------------------------
+-- Records of InjuryTeams
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for Leagues
 -- ----------------------------
 DROP TABLE [dbo].[Leagues]
@@ -186,6 +245,10 @@ CREATE TABLE [dbo].[Leagues] (
 
 
 GO
+
+-- ----------------------------
+-- Records of Leagues
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for LineUpContest
@@ -201,6 +264,10 @@ CREATE TABLE [dbo].[LineUpContest] (
 GO
 
 -- ----------------------------
+-- Records of LineUpContest
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for LineUpPlayer
 -- ----------------------------
 DROP TABLE [dbo].[LineUpPlayer]
@@ -214,6 +281,10 @@ CREATE TABLE [dbo].[LineUpPlayer] (
 GO
 
 -- ----------------------------
+-- Records of LineUpPlayer
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for LineUps
 -- ----------------------------
 DROP TABLE [dbo].[LineUps]
@@ -224,6 +295,14 @@ CREATE TABLE [dbo].[LineUps] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of LineUps
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[LineUps] ON
+GO
+SET IDENTITY_INSERT [dbo].[LineUps] OFF
 GO
 
 -- ----------------------------
@@ -240,6 +319,14 @@ CREATE TABLE [dbo].[Notifications] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of Notifications
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Notifications] ON
+GO
+SET IDENTITY_INSERT [dbo].[Notifications] OFF
 GO
 
 -- ----------------------------
@@ -263,6 +350,14 @@ CREATE TABLE [dbo].[Players] (
 GO
 
 -- ----------------------------
+-- Records of Players
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Players] ON
+GO
+SET IDENTITY_INSERT [dbo].[Players] OFF
+GO
+
+-- ----------------------------
 -- Table structure for Positions
 -- ----------------------------
 DROP TABLE [dbo].[Positions]
@@ -274,6 +369,14 @@ CREATE TABLE [dbo].[Positions] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of Positions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Positions] ON
+GO
+SET IDENTITY_INSERT [dbo].[Positions] OFF
 GO
 
 -- ----------------------------
@@ -292,6 +395,14 @@ CREATE TABLE [dbo].[Promotions] (
 GO
 
 -- ----------------------------
+-- Records of Promotions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Promotions] ON
+GO
+SET IDENTITY_INSERT [dbo].[Promotions] OFF
+GO
+
+-- ----------------------------
 -- Table structure for Sports
 -- ----------------------------
 DROP TABLE [dbo].[Sports]
@@ -303,6 +414,14 @@ CREATE TABLE [dbo].[Sports] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of Sports
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Sports] ON
+GO
+SET IDENTITY_INSERT [dbo].[Sports] OFF
 GO
 
 -- ----------------------------
@@ -321,6 +440,14 @@ CREATE TABLE [dbo].[Teams] (
 GO
 
 -- ----------------------------
+-- Records of Teams
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Teams] ON
+GO
+SET IDENTITY_INSERT [dbo].[Teams] OFF
+GO
+
+-- ----------------------------
 -- Table structure for Venues
 -- ----------------------------
 DROP TABLE [dbo].[Venues]
@@ -334,6 +461,14 @@ CREATE TABLE [dbo].[Venues] (
 )
 
 
+GO
+
+-- ----------------------------
+-- Records of Venues
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Venues] ON
+GO
+SET IDENTITY_INSERT [dbo].[Venues] OFF
 GO
 
 -- ----------------------------
