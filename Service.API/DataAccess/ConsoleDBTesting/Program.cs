@@ -17,9 +17,14 @@ namespace ConsoleDBTesting
             FantasyContext dbContext = new FantasyContext();
             ContestResponse result = new ContestResponse()
             {
-                Contests = dbContext.Contests.Include("ContestGame").Include("LineUps").Include("ContestType").ToList()
+                Contests = dbContext.Contests.Include("ContestType").ToList()
             };
-            Console.WriteLine("end");
+            //foreach (Contest c in result.Contests)
+            //{
+            //    dbContext.F
+            //}
+            Console.WriteLine("The end");
+            Console.ReadLine();
         }
 }
 }
