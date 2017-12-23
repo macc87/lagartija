@@ -16,6 +16,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
         private bool _disposed = false;
         private readonly Response _response = new Response();
         private readonly IHttpClient _httpClientDatabase;
+        // macc: should be dbContext instead of dbContest?
         private readonly FantasyContext dbContest = new FantasyContext();
 
         public DatabaseCore(IHttpClient httpClient = null)
@@ -29,7 +30,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 ContestResponse result = new ContestResponse()
                 {
-                    Contests = dbContest.Contests.Include("ContestType").Include("Games").Include("LineUps").ToList()
+                    Contests = dbContest.Contests.ToList()
                 };
                 if (result != null)
                     return await ServiceOkAsync(result);
@@ -40,6 +41,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             catch (Exception ex)
             {
                 return ExceptionHandler<ContestResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId)
+        {            
+            try
+            {
+                var result = new PlayersResponse()
+                {
+                    Players = dbContest.Players.Where(x => x.TeamId == teamId).ToList()
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Players from Team " + teamId);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayersResponse>(ex);
             }
         }
 

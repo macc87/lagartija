@@ -36,6 +36,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayersFromTeamAsync(teamId);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
+            }
+        }
+
         #region [Dispose]
 
         public void Dispose()
