@@ -31,8 +31,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 ContestResponse result = new ContestResponse();                
                 List<Contest> list;                
-                dbContest.Configuration.ProxyCreationEnabled = false;
-                var dbQuery = dbContest.Set<Contest>();
+                dbContext.Configuration.ProxyCreationEnabled = false;
+                var dbQuery = dbContext.Set<Contest>();
                 dbQuery.Include(x => x.Games);
                 list = dbQuery.ToList();
                 result.Contests = list;                
