@@ -635,10 +635,6 @@
           <EntitySet Name="Players" EntityType="FantasyModel.Player" />
           <EntitySet Name="Positions" EntityType="FantasyModel.Position" />
           <EntitySet Name="Teams" EntityType="FantasyModel.Team" />
-          <AssociationSet Name="FK_Position_Sport" Association="FantasyModel.FK_Position_Sport">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="Sport" EntitySet="Sports" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sport_Team" Association="FantasyModel.FK_Sport_Team">
             <End Role="Sport" EntitySet="Sports" />
             <End Role="Team" EntitySet="Teams" />
@@ -692,6 +688,10 @@
             <End Role="LineUp" EntitySet="LineUps" />
             <End Role="Contest" EntitySet="Contests" />
           </AssociationSet>
+          <AssociationSet Name="SportPosition" Association="FantasyModel.SportPosition">
+            <End Role="Sport" EntitySet="Sports" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -708,9 +708,8 @@
           </Key>
           <Property Name="SportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
-          <NavigationProperty Name="Position" Relationship="FantasyModel.FK_Position_Sport" FromRole="Sport" ToRole="Position" />
-          <Property Name="PositionId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Teams" Relationship="FantasyModel.FK_Sport_Team" FromRole="Sport" ToRole="Team" />
+          <NavigationProperty Name="Positions" Relationship="FantasyModel.SportPosition" FromRole="Sport" ToRole="Position" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -763,9 +762,9 @@
           </Key>
           <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" Nullable="false" />
-          <Property Name="SportId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sports" Relationship="FantasyModel.FK_Position_Sport" FromRole="Position" ToRole="Sport" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.FK_Position_Player" FromRole="Position" ToRole="Player" />
+          <NavigationProperty Name="Sport" Relationship="FantasyModel.SportPosition" FromRole="Position" ToRole="Sport" />
+          <Property Name="SportId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -780,18 +779,6 @@
           <NavigationProperty Name="AwayGame" Relationship="FantasyModel.FK_Game_AwayTeam" FromRole="Team" ToRole="Game" />
           <NavigationProperty Name="HomeGame" Relationship="FantasyModel.GameTeam" FromRole="Team" ToRole="Game" />
         </EntityType>
-        <Association Name="FK_Position_Sport">
-          <End Type="FantasyModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="PositionId" />
-            </Principal>
-            <Dependent Role="Sport">
-              <PropertyRef Name="PositionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sport_Team">
           <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
           <End Type="FantasyModel.Team" Role="Team" Multiplicity="*" />
@@ -945,6 +932,18 @@
           <End Type="FantasyModel.LineUp" Role="LineUp" Multiplicity="*" />
           <End Type="FantasyModel.Contest" Role="Contest" Multiplicity="*" />
         </Association>
+        <Association Name="SportPosition">
+          <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
+          <End Type="FantasyModel.Position" Role="Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="SportId" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="SportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1013,7 +1012,6 @@
         <MappingFragment StoreEntitySet="Sports">
           <ScalarProperty Name="SportId" ColumnName="SportId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1066,7 +1064,6 @@
         <MappingFragment StoreEntitySet="Positions">
           <ScalarProperty Name="PositionId" ColumnName="PositionId" />
           <ScalarProperty Name="PositionName" ColumnName="PositionName" />
-          <ScalarProperty Name="SportId" ColumnName="SportId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

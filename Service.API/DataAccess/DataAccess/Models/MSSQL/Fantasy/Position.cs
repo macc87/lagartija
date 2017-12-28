@@ -31,44 +31,24 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     
         public int SportId
         {
-            get; set;
+    get { return _sportId; }
+            set
+            {
+                if (_sportId != value)
+                {
+                    if (Sport != null && Sport.SportId != value)
+                    {
+                        Sport = null;
+                    }
+                    _sportId = value;
+                }
+            }
         }
+        private int _sportId;
 
         #endregion
 
         #region Navigation Properties
-    
-        public ICollection<Sport> Sports
-        {
-            get
-            {
-                if (_sports == null)
-                {
-                    var newCollection = new FixupCollection<Sport>();
-                    newCollection.CollectionChanged += FixupSports;
-                    _sports = newCollection;
-                }
-                return _sports;
-            }
-            set
-            {
-                if (!ReferenceEquals(_sports, value))
-                {
-                    var previousValue = _sports as FixupCollection<Sport>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupSports;
-                    }
-                    _sports = value;
-                    var newValue = value as FixupCollection<Sport>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupSports;
-                    }
-                }
-            }
-        }
-        private ICollection<Sport> _sports;
     
         public ICollection<Player> Players
         {
@@ -101,29 +81,42 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Player> _players;
+    
+        public Sport Sport
+        {
+            get { return _sport; }
+            set
+            {
+                if (!ReferenceEquals(_sport, value))
+                {
+                    var previousValue = _sport;
+                    _sport = value;
+                    FixupSport(previousValue);
+                }
+            }
+        }
+        private Sport _sport;
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupSports(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupSport(Sport previousValue)
         {
-            if (e.NewItems != null)
+            if (previousValue != null && previousValue.Positions.Contains(this))
             {
-                foreach (Sport item in e.NewItems)
-                {
-                    item.Position = this;
-                }
+                previousValue.Positions.Remove(this);
             }
     
-            if (e.OldItems != null)
+            if (Sport != null)
             {
-                foreach (Sport item in e.OldItems)
+                if (!Sport.Positions.Contains(this))
                 {
-                    if (ReferenceEquals(item.Position, this))
-                    {
-                        item.Position = null;
-                    }
+                    Sport.Positions.Add(this);
+                }
+                if (SportId != Sport.SportId)
+                {
+                    SportId = Sport.SportId;
                 }
             }
         }
