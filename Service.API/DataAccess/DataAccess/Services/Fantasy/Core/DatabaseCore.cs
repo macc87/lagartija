@@ -18,8 +18,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
         private bool _disposed = false;
         private readonly Response _response = new Response();
         private readonly IHttpClient _httpClientDatabase;
-        // macc: should be dbContext instead of dbContest?
-        private readonly FantasyContext dbContest = new FantasyContext();
+        private readonly FantasyContext dbContext = new FantasyContext();
 
         public DatabaseCore(IHttpClient httpClient = null)
         {
@@ -55,7 +54,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 var result = new PlayersResponse()
                 {
-                    Players = dbContest.Players.Where(x => x.TeamId == teamId).ToList()
+                    Players = dbContext.Players.Where(x => x.TeamId == teamId).ToList()
                 };
                 if (result != null)
                     return await ServiceOkAsync(result);
