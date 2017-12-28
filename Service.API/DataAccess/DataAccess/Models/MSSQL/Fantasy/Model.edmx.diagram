@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="FantasyModel.Player" Width="1.5" PointX="4.625" PointY="7" />
         <EntityTypeShape EntityType="FantasyModel.Position" Width="1.5" PointX="4.625" PointY="4.5" />
         <EntityTypeShape EntityType="FantasyModel.Team" Width="1.5" PointX="2.625" PointY="7" />
-        <AssociationConnector Association="FantasyModel.FK_Position_Sport" />
         <AssociationConnector Association="FantasyModel.FK_Sport_Team" />
         <AssociationConnector Association="FantasyModel.TeamPlayer" />
         <AssociationConnector Association="FantasyModel.FK_Position_Player" />
@@ -39,6 +38,7 @@
         <AssociationConnector Association="FantasyModel.AccountLineUp" />
         <AssociationConnector Association="FantasyModel.LineUpPlayer" />
         <AssociationConnector Association="FantasyModel.LineUpContest" />
+        <AssociationConnector Association="FantasyModel.SportPosition" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
