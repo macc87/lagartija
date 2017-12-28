@@ -21,7 +21,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 {
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
     		            this.HasKey(t => t.Login);	
-    		            this.ToTable("Accounts",dbSchema);
+    		            this.ToTable("Account",dbSchema);
                         this.Property(t => t.Login).HasColumnName("Login").IsRequired().HasMaxLength(50);
     
                 }

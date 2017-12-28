@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/20/2017 00:52:58
--- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
+-- Date Created: 12/28/2017 01:40:14
+-- Generated from EDMX file: C:\Data\Develop\Projects\fantasyleague\src\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -34,9 +34,6 @@ IF OBJECT_ID(N'[dbo].[FK_Sport_Team]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_TeamPlayer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_TeamPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_Sport]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_Sport];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Position_Player]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Position_Player];
@@ -202,8 +199,7 @@ GO
 -- Creating table 'Sports'
 CREATE TABLE [dbo].[Sports] (
     [SportId] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(100)  NOT NULL,
-    [PositionId] int  NOT NULL
+    [Name] nvarchar(100)  NOT NULL
 );
 GO
 
@@ -506,21 +502,6 @@ ON [dbo].[InjuryTeams]
     ([LeagueId]);
 GO
 
--- Creating foreign key on [PositionId] in table 'Sports'
-ALTER TABLE [dbo].[Sports]
-ADD CONSTRAINT [FK_Position_Sport]
-    FOREIGN KEY ([PositionId])
-    REFERENCES [dbo].[Positions]
-        ([PositionId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Position_Sport'
-CREATE INDEX [IX_FK_Position_Sport]
-ON [dbo].[Sports]
-    ([PositionId]);
-GO
-
 -- Creating foreign key on [SportId] in table 'Teams'
 ALTER TABLE [dbo].[Teams]
 ADD CONSTRAINT [FK_Sport_Team]
@@ -726,6 +707,21 @@ GO
 CREATE INDEX [IX_FK_LineUpContest_Contest]
 ON [dbo].[FK_LineUp_Contest]
     ([Contests_ContestId]);
+GO
+
+-- Creating foreign key on [SportId] in table 'Positions'
+ALTER TABLE [dbo].[Positions]
+ADD CONSTRAINT [FK_SportPosition]
+    FOREIGN KEY ([SportId])
+    REFERENCES [dbo].[Sports]
+        ([SportId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SportPosition'
+CREATE INDEX [IX_FK_SportPosition]
+ON [dbo].[Positions]
+    ([SportId]);
 GO
 
 -- --------------------------------------------------
