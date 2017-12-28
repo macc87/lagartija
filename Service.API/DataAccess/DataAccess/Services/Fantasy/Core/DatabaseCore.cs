@@ -8,6 +8,8 @@ using Fantasy.API.Utilities.ServicesHandler;
 using Fantasy.API.Utilities.ServicesHandler.Core;
 using Fantasy.API.DataAccess.DbContexts.MSSQL.FantasyData;
 using System.Linq;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace Fantasy.API.DataAccess.Services.Fantasy.Core
 {
@@ -28,10 +30,13 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
         {
             try
             {
-                ContestResponse result = new ContestResponse()
-                {
-                    Contests = dbContest.Contests.ToList()
-                };
+                ContestResponse result = new ContestResponse();                
+                List<Contest> list;                
+                dbContest.Configuration.ProxyCreationEnabled = false;
+                var dbQuery = dbContest.Set<Contest>();
+                dbQuery.Include(x => x.Games);
+                list = dbQuery.ToList();
+                result.Contests = list;                
                 if (result != null)
                     return await ServiceOkAsync(result);
 

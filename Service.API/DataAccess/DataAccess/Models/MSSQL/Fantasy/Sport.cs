@@ -28,42 +28,10 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
-    
-        public int PositionId
-        {
-    get { return _positionId; }
-            set
-            {
-                if (_positionId != value)
-                {
-                    if (Position != null && Position.PositionId != value)
-                    {
-                        Position = null;
-                    }
-                    _positionId = value;
-                }
-            }
-        }
-        private int _positionId;
 
         #endregion
 
         #region Navigation Properties
-    
-        public Position Position
-        {
-            get { return _position; }
-            set
-            {
-                if (!ReferenceEquals(_position, value))
-                {
-                    var previousValue = _position;
-                    _position = value;
-                    FixupPosition(previousValue);
-                }
-            }
-        }
-        private Position _position;
     
         public ICollection<Team> Teams
         {
@@ -96,30 +64,42 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Team> _teams;
+    
+        public ICollection<Position> Positions
+        {
+            get
+            {
+                if (_positions == null)
+                {
+                    var newCollection = new FixupCollection<Position>();
+                    newCollection.CollectionChanged += FixupPositions;
+                    _positions = newCollection;
+                }
+                return _positions;
+            }
+            set
+            {
+                if (!ReferenceEquals(_positions, value))
+                {
+                    var previousValue = _positions as FixupCollection<Position>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupPositions;
+                    }
+                    _positions = value;
+                    var newValue = value as FixupCollection<Position>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupPositions;
+                    }
+                }
+            }
+        }
+        private ICollection<Position> _positions;
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupPosition(Position previousValue)
-        {
-            if (previousValue != null && previousValue.Sports.Contains(this))
-            {
-                previousValue.Sports.Remove(this);
-            }
-    
-            if (Position != null)
-            {
-                if (!Position.Sports.Contains(this))
-                {
-                    Position.Sports.Add(this);
-                }
-                if (PositionId != Position.PositionId)
-                {
-                    PositionId = Position.PositionId;
-                }
-            }
-        }
     
         private void FixupTeams(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -134,6 +114,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (Team item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Sport, this))
+                    {
+                        item.Sport = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupPositions(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Position item in e.NewItems)
+                {
+                    item.Sport = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Position item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Sport, this))
                     {
