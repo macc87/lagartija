@@ -247,8 +247,8 @@
     <Property Name="Humidity" Type="float" Nullable="false" />
     <Property Name="Temperture" Type="float" Nullable="false" />
     <Property Name="VenueId" Type="bigint" Nullable="false" />
-    <Property Name="AwayTeam_TeamId" Type="bigint" Nullable="false" />
-    <Property Name="HomeTeam_TeamId" Type="bigint" Nullable="false" />
+    <Property Name="AwayTeamId" Type="bigint" Nullable="false" />
+    <Property Name="HomeTeamId" Type="bigint" Nullable="false" />
     <Property Name="ClimaCondition_ClimaConditionsId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Promotions">
@@ -271,9 +271,11 @@
     <Key>
       <PropertyRef Name="ContestId" />
       <PropertyRef Name="GameId" />
+      <PropertyRef Name="ContestGameId" />
     </Key>
     <Property Name="ContestId" Type="bigint" Nullable="false" />
     <Property Name="GameId" Type="bigint" Nullable="false" />
+    <Property Name="ContestGameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="LineUpPlayer">
     <Key>
@@ -383,7 +385,7 @@
         <PropertyRef Name="TeamId" />
       </Principal>
       <Dependent Role="Game">
-        <PropertyRef Name="AwayTeam_TeamId" />
+        <PropertyRef Name="AwayTeamId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -395,7 +397,7 @@
         <PropertyRef Name="TeamId" />
       </Principal>
       <Dependent Role="Game">
-        <PropertyRef Name="HomeTeam_TeamId" />
+        <PropertyRef Name="HomeTeamId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -868,14 +870,32 @@
           <NavigationProperty Name="ContestGames" Relationship="FantasyModel.ContestGameGame" FromRole="Game" ToRole="ContestGame" />
           <NavigationProperty Name="Venue" Relationship="FantasyModel.VenueGame" FromRole="Game" ToRole="Venue" />
           <Property Name="VenueId" Type="Int64" Nullable="false" />
+          <Property Name="AwayTeamId" Type="Int64" Nullable="false" />
+          <Property Name="HomeTeamId" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="FK_Game_AwayTeam">
-          <End Type="FantasyModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
           <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="AwayTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="GameTeam">
-          <End Type="FantasyModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
           <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="HomeTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="ClimaConditionsGame">
           <End Type="FantasyModel.ClimaConditions" Role="ClimaConditions" Multiplicity="1" />
@@ -936,11 +956,13 @@
           <Key>
             <PropertyRef Name="ContestId" />
             <PropertyRef Name="GameId" />
+            <PropertyRef Name="ContestGameId" />
           </Key>
           <NavigationProperty Name="Contests" Relationship="FantasyModel.ContestGameContest" FromRole="ContestGame" ToRole="Contest" />
           <NavigationProperty Name="Game" Relationship="FantasyModel.ContestGameGame" FromRole="ContestGame" ToRole="Game" />
           <Property Name="ContestId" Type="Int64" Nullable="false" />
           <Property Name="GameId" Type="Int64" Nullable="false" />
+          <Property Name="ContestGameId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="ContestGameContest">
           <End Type="FantasyModel.ContestGame" Role="ContestGame" Multiplicity="*" />
@@ -1141,6 +1163,8 @@
           <ScalarProperty Name="Humidity" ColumnName="Humidity" />
           <ScalarProperty Name="Temperture" ColumnName="Temperture" />
           <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+          <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+          <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1167,25 +1191,10 @@
         <MappingFragment StoreEntitySet="ContestGames">
           <ScalarProperty Name="ContestId" ColumnName="ContestId" />
           <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="ContestGameId" ColumnName="ContestGameId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FK_Game_AwayTeam" TypeName="FantasyModel.FK_Game_AwayTeam" StoreEntitySet="Games">
-      <EndProperty Name="Team">
-        <ScalarProperty Name="TeamId" ColumnName="AwayTeam_TeamId" />
-      </EndProperty>
-      <EndProperty Name="Game">
-        <ScalarProperty Name="GameId" ColumnName="GameId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_Game_HomeTeam" TypeName="FantasyModel.GameTeam" StoreEntitySet="Games">
-      <EndProperty Name="Team">
-        <ScalarProperty Name="TeamId" ColumnName="HomeTeam_TeamId" />
-      </EndProperty>
-      <EndProperty Name="Game">
-        <ScalarProperty Name="GameId" ColumnName="GameId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="FK_ClimaConditions_Game" TypeName="FantasyModel.ClimaConditionsGame" StoreEntitySet="Games">
       <EndProperty Name="ClimaConditions">
         <ScalarProperty Name="ClimaConditionsId" ColumnName="ClimaCondition_ClimaConditionsId" />

@@ -31,7 +31,7 @@
         <AssociationConnector Association="FantasyModel.GameTeam" />
         <AssociationConnector Association="FantasyModel.ClimaConditionsGame" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="0.5" PointY="12.25" />
         <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="13.125" />
         <AssociationConnector Association="FantasyModel.AccountLineUp" />
         <AssociationConnector Association="FantasyModel.LineUpPlayer" />
@@ -40,11 +40,9 @@
         <EntityTypeShape EntityType="FantasyModel.ContestGame" Width="1.5" PointX="3.75" PointY="14.375" />
         <AssociationConnector Association="FantasyModel.ContestGameContest" ManuallyRouted="true" >
           <ConnectorPoint PointX="4.4375" PointY="14.375" />
-          <ConnectorPoint PointX="4.4375" PointY="11.883302543516685" />
-          <ConnectorPoint PointX="5.4826041666666674" PointY="11.883302543516685" />
-          <ConnectorPoint PointX="5.6492708333333335" PointY="11.883302543516685" />
-          <ConnectorPoint PointX="5.819375" PointY="11.883302543516685" />
-          <ConnectorPoint PointX="5.819375" PointY="10.317047526041666" />
+          <ConnectorPoint PointX="4.4375" PointY="10.317047526041666" />
+          <ConnectorPoint PointX="5.635416666666667" PointY="10.317047526041666" />
+          <ConnectorPoint PointX="5.802083333333333" PointY="10.317047526041666" />
           <ConnectorPoint PointX="6.5" PointY="10.317047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="FantasyModel.ContestGameGame" />

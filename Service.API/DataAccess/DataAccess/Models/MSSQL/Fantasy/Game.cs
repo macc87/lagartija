@@ -55,6 +55,40 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private long _venueId;
+    
+        public long AwayTeamId
+        {
+    get { return _awayTeamId; }
+            set
+            {
+                if (_awayTeamId != value)
+                {
+                    if (AwayTeam != null && AwayTeam.TeamId != value)
+                    {
+                        AwayTeam = null;
+                    }
+                    _awayTeamId = value;
+                }
+            }
+        }
+        private long _awayTeamId;
+    
+        public long HomeTeamId
+        {
+    get { return _homeTeamId; }
+            set
+            {
+                if (_homeTeamId != value)
+                {
+                    if (HomeTeam != null && HomeTeam.TeamId != value)
+                    {
+                        HomeTeam = null;
+                    }
+                    _homeTeamId = value;
+                }
+            }
+        }
+        private long _homeTeamId;
 
         #endregion
 
@@ -158,27 +192,41 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     
         private void FixupAwayTeam(Team previousValue)
         {
-            if (previousValue != null && ReferenceEquals(previousValue.AwayGame, this))
+            if (previousValue != null && previousValue.AwayGame.Contains(this))
             {
-                previousValue.AwayGame = null;
+                previousValue.AwayGame.Remove(this);
             }
     
             if (AwayTeam != null)
             {
-                AwayTeam.AwayGame = this;
+                if (!AwayTeam.AwayGame.Contains(this))
+                {
+                    AwayTeam.AwayGame.Add(this);
+                }
+                if (AwayTeamId != AwayTeam.TeamId)
+                {
+                    AwayTeamId = AwayTeam.TeamId;
+                }
             }
         }
     
         private void FixupHomeTeam(Team previousValue)
         {
-            if (previousValue != null && ReferenceEquals(previousValue.HomeGame, this))
+            if (previousValue != null && previousValue.HomeGame.Contains(this))
             {
-                previousValue.HomeGame = null;
+                previousValue.HomeGame.Remove(this);
             }
     
             if (HomeTeam != null)
             {
-                HomeTeam.HomeGame = this;
+                if (!HomeTeam.HomeGame.Contains(this))
+                {
+                    HomeTeam.HomeGame.Add(this);
+                }
+                if (HomeTeamId != HomeTeam.TeamId)
+                {
+                    HomeTeamId = HomeTeam.TeamId;
+                }
             }
         }
     

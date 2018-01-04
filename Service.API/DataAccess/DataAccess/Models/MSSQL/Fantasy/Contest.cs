@@ -17,6 +17,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
     public class Contest
     {
+
+        public List<Game> Games { get; set; }
+
         #region Primitive Properties
     
         public long ContestId
