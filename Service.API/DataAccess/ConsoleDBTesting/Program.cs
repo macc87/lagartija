@@ -19,10 +19,6 @@ namespace ConsoleDBTesting
             {
                 Contests = dbContext.Contests.Include("ContestType").ToList()
             };
-            //foreach (Contest c in result.Contests)
-            //{
-            //    dbContext.F
-            //}
             Console.WriteLine("The end");
             Console.ReadLine();
         }
