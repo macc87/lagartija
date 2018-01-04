@@ -19,12 +19,12 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int ContestId
+        public long ContestId
         {
             get; set;
         }
     
-        public int ContestTypeId
+        public long ContestTypeId
         {
     get { return _contestTypeId; }
             set
@@ -39,7 +39,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _contestTypeId;
+        private long _contestTypeId;
     
         public string Name
         {
@@ -85,38 +85,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private ContestType _contestType;
     
-        public ICollection<Game> Games
-        {
-            get
-            {
-                if (_games == null)
-                {
-                    var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupGames;
-                    _games = newCollection;
-                }
-                return _games;
-            }
-            set
-            {
-                if (!ReferenceEquals(_games, value))
-                {
-                    var previousValue = _games as FixupCollection<Game>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupGames;
-                    }
-                    _games = value;
-                    var newValue = value as FixupCollection<Game>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupGames;
-                    }
-                }
-            }
-        }
-        private ICollection<Game> _games;
-    
         public ICollection<LineUp> LineUps
         {
             get
@@ -148,6 +116,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<LineUp> _lineUps;
+    
+        public ICollection<ContestGame> ContestGame
+        {
+            get
+            {
+                if (_contestGame == null)
+                {
+                    var newCollection = new FixupCollection<ContestGame>();
+                    newCollection.CollectionChanged += FixupContestGame;
+                    _contestGame = newCollection;
+                }
+                return _contestGame;
+            }
+            set
+            {
+                if (!ReferenceEquals(_contestGame, value))
+                {
+                    var previousValue = _contestGame as FixupCollection<ContestGame>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupContestGame;
+                    }
+                    _contestGame = value;
+                    var newValue = value as FixupCollection<ContestGame>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupContestGame;
+                    }
+                }
+            }
+        }
+        private ICollection<ContestGame> _contestGame;
 
         #endregion
 
@@ -173,31 +173,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupGames(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Game item in e.NewItems)
-                {
-                    if (!item.Contests.Contains(this))
-                    {
-                        item.Contests.Add(this);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Game item in e.OldItems)
-                {
-                    if (item.Contests.Contains(this))
-                    {
-                        item.Contests.Remove(this);
-                    }
-                }
-            }
-        }
-    
         private void FixupLineUps(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -218,6 +193,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                     if (item.Contests.Contains(this))
                     {
                         item.Contests.Remove(this);
+                    }
+                }
+            }
+        }
+    
+        private void FixupContestGame(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ContestGame item in e.NewItems)
+                {
+                    item.Contests = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ContestGame item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Contests, this))
+                    {
+                        item.Contests = null;
                     }
                 }
             }
