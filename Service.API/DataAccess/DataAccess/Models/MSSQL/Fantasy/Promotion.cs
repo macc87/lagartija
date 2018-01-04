@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int PromotionId
+        public long PromotionId
         {
             get; set;
         }
