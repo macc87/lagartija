@@ -23,7 +23,7 @@
     <EntitySet Name="Games" EntityType="FantasyModel.Store.Games" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Promotions" EntityType="FantasyModel.Store.Promotions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LineUps" EntityType="FantasyModel.Store.LineUps" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FK_Contest_Game" EntityType="FantasyModel.Store.ContestGame" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContestGames" EntityType="FantasyModel.Store.ContestGames" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FK_LineUp_Player" EntityType="FantasyModel.Store.LineUpPlayer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FK_LineUp_Contest" EntityType="FantasyModel.Store.LineUpContest" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
@@ -37,10 +37,6 @@
     <AssociationSet Name="FK_InjuryTeam_League" Association="FantasyModel.Store.FK_InjuryTeam_League">
       <End Role="League" EntitySet="Leagues" />
       <End Role="InjuryTeam" EntitySet="InjuryTeams" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Position_Sport" Association="FantasyModel.Store.FK_Position_Sport">
-      <End Role="Position" EntitySet="Positions" />
-      <End Role="Sport" EntitySet="Sports" />
     </AssociationSet>
     <AssociationSet Name="FK_Sport_Team" Association="FantasyModel.Store.FK_Sport_Team">
       <End Role="Sport" EntitySet="Sports" />
@@ -70,18 +66,6 @@
       <End Role="ClimaConditions" EntitySet="ClimaConditions" />
       <End Role="Game" EntitySet="Games" />
     </AssociationSet>
-    <AssociationSet Name="FK_Venue_Game" Association="FantasyModel.Store.VenueGame">
-      <End Role="Venue" EntitySet="Venues" />
-      <End Role="Game" EntitySet="Games" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FK_Contest_Game_Contest" Association="FantasyModel.Store.FK_ContestGame_Contest">
-      <End Role="Contest" EntitySet="Contests" />
-      <End Role="ContestGame" EntitySet="FK_Contest_Game" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FK_Contest_Game_Game" Association="FantasyModel.Store.FK_ContestGame_Game">
-      <End Role="Game" EntitySet="Games" />
-      <End Role="ContestGame" EntitySet="FK_Contest_Game" />
-    </AssociationSet>
     <AssociationSet Name="FK_Account_LineUp" Association="FantasyModel.Store.AccountLineUp">
       <End Role="Account" EntitySet="Accounts" />
       <End Role="LineUp" EntitySet="LineUps" />
@@ -101,6 +85,22 @@
     <AssociationSet Name="FK_FK_LineUp_Contest_Contest" Association="FantasyModel.Store.FK_LineUpContest_Contest">
       <End Role="Contest" EntitySet="Contests" />
       <End Role="LineUpContest" EntitySet="FK_LineUp_Contest" />
+    </AssociationSet>
+    <AssociationSet Name="SportPosition" Association="FantasyModel.Store.SportPosition">
+      <End Role="Sport" EntitySet="Sports" />
+      <End Role="Position" EntitySet="Positions" />
+    </AssociationSet>
+    <AssociationSet Name="ContestGameContest" Association="FantasyModel.Store.ContestGameContest">
+      <End Role="ContestGame" EntitySet="ContestGames" />
+      <End Role="Contest" EntitySet="Contests" />
+    </AssociationSet>
+    <AssociationSet Name="ContestGameGame" Association="FantasyModel.Store.ContestGameGame">
+      <End Role="ContestGame" EntitySet="ContestGames" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="VenueGame" Association="FantasyModel.Store.VenueGame">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="Game" EntitySet="Games" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
@@ -159,15 +159,14 @@
     <Key>
       <PropertyRef Name="SportId" />
     </Key>
-    <Property Name="SportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="PositionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Notifications">
     <Key>
       <PropertyRef Name="NotificationId" />
     </Key>
-    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InitialDate" Type="datetime" Nullable="false" />
@@ -177,14 +176,14 @@
     <Key>
       <PropertyRef Name="ClimaConditionsId" />
     </Key>
-    <Property Name="ClimaConditionsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClimaConditionsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Condition" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Venues">
     <Key>
       <PropertyRef Name="VenueId" />
     </Key>
-    <Property Name="VenueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VenueId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Surface" Type="nvarchar(max)" Nullable="false" />
     <Property Name="State" Type="nvarchar(max)" Nullable="false" />
@@ -194,12 +193,12 @@
     <Key>
       <PropertyRef Name="PlayerId" />
     </Key>
-    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PreferredName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TeamId" Type="int" Nullable="false" />
-    <Property Name="PositionId" Type="int" Nullable="false" />
+    <Property Name="TeamId" Type="bigint" Nullable="false" />
+    <Property Name="PositionId" Type="bigint" Nullable="false" />
     <Property Name="Salary" Type="float" Nullable="false" />
     <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -207,32 +206,32 @@
     <Key>
       <PropertyRef Name="PositionId" />
     </Key>
-    <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PositionName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SportId" Type="int" Nullable="false" />
+    <Property Name="SportId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Teams">
     <Key>
       <PropertyRef Name="TeamId" />
     </Key>
-    <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TeamName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TeamLogo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="SportId" Type="int" Nullable="false" />
+    <Property Name="SportId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="ContestTypes">
     <Key>
       <PropertyRef Name="ContestTypeId" />
     </Key>
-    <Property Name="ContestTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContestTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Contests">
     <Key>
       <PropertyRef Name="ContestId" />
     </Key>
-    <Property Name="ContestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ContestTypeId" Type="int" Nullable="false" />
+    <Property Name="ContestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContestTypeId" Type="bigint" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SignedUp" Type="int" Nullable="false" />
     <Property Name="MaxCapacity" Type="int" Nullable="false" />
@@ -243,20 +242,20 @@
     <Key>
       <PropertyRef Name="GameId" />
     </Key>
-    <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Scheduled" Type="datetime" Nullable="false" />
     <Property Name="Humidity" Type="float" Nullable="false" />
     <Property Name="Temperture" Type="float" Nullable="false" />
-    <Property Name="VenueId" Type="int" Nullable="false" />
-    <Property Name="AwayTeam_TeamId" Type="int" Nullable="false" />
-    <Property Name="HomeTeam_TeamId" Type="int" Nullable="false" />
-    <Property Name="ClimaCondition_ClimaConditionsId" Type="int" Nullable="false" />
+    <Property Name="VenueId" Type="bigint" Nullable="false" />
+    <Property Name="AwayTeam_TeamId" Type="bigint" Nullable="false" />
+    <Property Name="HomeTeam_TeamId" Type="bigint" Nullable="false" />
+    <Property Name="ClimaCondition_ClimaConditionsId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Promotions">
     <Key>
       <PropertyRef Name="PromotionId" />
     </Key>
-    <Property Name="PromotionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PromotionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
@@ -265,32 +264,32 @@
     <Key>
       <PropertyRef Name="LineUpId" />
     </Key>
-    <Property Name="LineUpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LineUpId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
-  <EntityType Name="ContestGame">
+  <EntityType Name="ContestGames">
     <Key>
-      <PropertyRef Name="Contests_ContestId" />
-      <PropertyRef Name="Games_GameId" />
+      <PropertyRef Name="ContestId" />
+      <PropertyRef Name="GameId" />
     </Key>
-    <Property Name="Contests_ContestId" Type="int" Nullable="false" />
-    <Property Name="Games_GameId" Type="int" Nullable="false" />
+    <Property Name="ContestId" Type="bigint" Nullable="false" />
+    <Property Name="GameId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="LineUpPlayer">
     <Key>
       <PropertyRef Name="LineUps_LineUpId" />
       <PropertyRef Name="Players_PlayerId" />
     </Key>
-    <Property Name="LineUps_LineUpId" Type="int" Nullable="false" />
-    <Property Name="Players_PlayerId" Type="int" Nullable="false" />
+    <Property Name="LineUps_LineUpId" Type="bigint" Nullable="false" />
+    <Property Name="Players_PlayerId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="LineUpContest">
     <Key>
       <PropertyRef Name="LineUps_LineUpId" />
       <PropertyRef Name="Contests_ContestId" />
     </Key>
-    <Property Name="LineUps_LineUpId" Type="int" Nullable="false" />
-    <Property Name="Contests_ContestId" Type="int" Nullable="false" />
+    <Property Name="LineUps_LineUpId" Type="bigint" Nullable="false" />
+    <Property Name="Contests_ContestId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="FK_InjuryPlayer_Injury">
     <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="1" />
@@ -325,18 +324,6 @@
       </Principal>
       <Dependent Role="InjuryTeam">
         <PropertyRef Name="LeagueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Position_Sport">
-    <End Role="Position" Type="FantasyModel.Store.Positions" Multiplicity="1" />
-    <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Position">
-        <PropertyRef Name="PositionId" />
-      </Principal>
-      <Dependent Role="Sport">
-        <PropertyRef Name="PositionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -424,18 +411,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="VenueGame">
-    <End Role="Venue" Type="FantasyModel.Store.Venues" Multiplicity="1" />
-    <End Role="Game" Type="FantasyModel.Store.Games" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Venue">
-        <PropertyRef Name="VenueId" />
-      </Principal>
-      <Dependent Role="Game">
-        <PropertyRef Name="VenueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="AccountLineUp">
     <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
     <End Role="LineUp" Type="FantasyModel.Store.LineUps" Multiplicity="*" />
@@ -448,27 +423,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ContestGame_Contest">
+  <Association Name="SportPosition">
+    <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="1" />
+    <End Role="Position" Type="FantasyModel.Store.Positions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sport">
+        <PropertyRef Name="SportId" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="SportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContestGameContest">
+    <End Role="ContestGame" Type="FantasyModel.Store.ContestGames" Multiplicity="*" />
     <End Role="Contest" Type="FantasyModel.Store.Contests" Multiplicity="1" />
-    <End Role="ContestGame" Type="FantasyModel.Store.ContestGame" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Contest">
         <PropertyRef Name="ContestId" />
       </Principal>
       <Dependent Role="ContestGame">
-        <PropertyRef Name="Contests_ContestId" />
+        <PropertyRef Name="ContestId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ContestGame_Game">
-    <End Role="ContestGame" Type="FantasyModel.Store.ContestGame" Multiplicity="*" />
+  <Association Name="ContestGameGame">
+    <End Role="ContestGame" Type="FantasyModel.Store.ContestGames" Multiplicity="*" />
     <End Role="Game" Type="FantasyModel.Store.Games" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Game">
         <PropertyRef Name="GameId" />
       </Principal>
       <Dependent Role="ContestGame">
-        <PropertyRef Name="Games_GameId" />
+        <PropertyRef Name="GameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VenueGame">
+    <End Role="Venue" Type="FantasyModel.Store.Venues" Multiplicity="1" />
+    <End Role="Game" Type="FantasyModel.Store.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="VenueId" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="VenueId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -666,14 +665,6 @@
             <End Role="ClimaConditions" EntitySet="ClimaConditions" />
             <End Role="Game" EntitySet="Games" />
           </AssociationSet>
-          <AssociationSet Name="FK_Venue_Game" Association="FantasyModel.VenueGame">
-            <End Role="Venue" EntitySet="Venues" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contest_Game" Association="FantasyModel.ContestGame">
-            <End Role="Contest" EntitySet="Contests" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
           <EntitySet Name="Promotions" EntityType="FantasyModel.Promotion" />
           <EntitySet Name="LineUps" EntityType="FantasyModel.LineUp" />
           <AssociationSet Name="FK_Account_LineUp" Association="FantasyModel.AccountLineUp">
@@ -692,6 +683,19 @@
             <End Role="Sport" EntitySet="Sports" />
             <End Role="Position" EntitySet="Positions" />
           </AssociationSet>
+          <EntitySet Name="ContestGames" EntityType="FantasyModel.ContestGame" />
+          <AssociationSet Name="ContestGameContest" Association="FantasyModel.ContestGameContest">
+            <End Role="ContestGame" EntitySet="ContestGames" />
+            <End Role="Contest" EntitySet="Contests" />
+          </AssociationSet>
+          <AssociationSet Name="ContestGameGame" Association="FantasyModel.ContestGameGame">
+            <End Role="ContestGame" EntitySet="ContestGames" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="VenueGame" Association="FantasyModel.VenueGame">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -706,7 +710,7 @@
           <Key>
             <PropertyRef Name="SportId" />
           </Key>
-          <Property Name="SportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SportId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
           <NavigationProperty Name="Teams" Relationship="FantasyModel.FK_Sport_Team" FromRole="Sport" ToRole="Team" />
           <NavigationProperty Name="Positions" Relationship="FantasyModel.SportPosition" FromRole="Sport" ToRole="Position" />
@@ -715,7 +719,7 @@
           <Key>
             <PropertyRef Name="NotificationId" />
           </Key>
-          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <Property Name="InitialDate" Type="DateTime" Nullable="false" />
@@ -725,7 +729,7 @@
           <Key>
             <PropertyRef Name="ClimaConditionsId" />
           </Key>
-          <Property Name="ClimaConditionsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClimaConditionsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Condition" Type="String" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="FantasyModel.ClimaConditionsGame" FromRole="ClimaConditions" ToRole="Game" />
         </EntityType>
@@ -733,7 +737,7 @@
           <Key>
             <PropertyRef Name="VenueId" />
           </Key>
-          <Property Name="VenueId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="VenueId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
           <Property Name="Name" Nullable="false" Type="String" />
           <Property Name="Surface" Nullable="false" Type="String" />
           <Property Name="State" Nullable="false" Type="String" />
@@ -744,14 +748,14 @@
           <Key>
             <PropertyRef Name="PlayerId" />
           </Key>
-          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="PreferredName" Type="String" Nullable="false" />
           <NavigationProperty Name="Team" Relationship="FantasyModel.TeamPlayer" FromRole="Player" ToRole="Team" />
-          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Position" Relationship="FantasyModel.FK_Position_Player" FromRole="Player" ToRole="Position" />
-          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int64" Nullable="false" />
           <Property Name="Salary" Type="Double" Nullable="false" />
           <Property Name="Photo" Type="String" Nullable="false" />
           <NavigationProperty Name="LineUps" Relationship="FantasyModel.LineUpPlayer" FromRole="Player" ToRole="LineUp" />
@@ -760,21 +764,21 @@
           <Key>
             <PropertyRef Name="PositionId" />
           </Key>
-          <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" Nullable="false" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.FK_Position_Player" FromRole="Position" ToRole="Player" />
           <NavigationProperty Name="Sport" Relationship="FantasyModel.SportPosition" FromRole="Position" ToRole="Sport" />
-          <Property Name="SportId" Type="Int32" Nullable="false" />
+          <Property Name="SportId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="TeamId" />
           </Key>
-          <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TeamName" Type="String" Nullable="false" />
           <Property Name="TeamLogo" Type="String" Nullable="false" />
           <NavigationProperty Name="Sport" Relationship="FantasyModel.FK_Sport_Team" FromRole="Team" ToRole="Sport" />
-          <Property Name="SportId" Type="Int32" Nullable="false" />
+          <Property Name="SportId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.TeamPlayer" FromRole="Team" ToRole="Player" />
           <NavigationProperty Name="AwayGame" Relationship="FantasyModel.FK_Game_AwayTeam" FromRole="Team" ToRole="Game" />
           <NavigationProperty Name="HomeGame" Relationship="FantasyModel.GameTeam" FromRole="Team" ToRole="Game" />
@@ -819,7 +823,7 @@
           <Key>
             <PropertyRef Name="ContestTypeId" />
           </Key>
-          <Property Name="ContestTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContestTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" Nullable="false" />
           <NavigationProperty Name="Contests" Relationship="FantasyModel.FK_ContestType_Contest" FromRole="ContestType" ToRole="Contest" />
         </EntityType>
@@ -827,16 +831,16 @@
           <Key>
             <PropertyRef Name="ContestId" />
           </Key>
-          <Property Name="ContestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="ContestType" Relationship="FantasyModel.FK_ContestType_Contest" FromRole="Contest" ToRole="ContestType" />
-          <Property Name="ContestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ContestTypeId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="SignedUp" Type="Int32" Nullable="false" />
           <Property Name="MaxCapacity" Type="Int32" Nullable="false" />
           <Property Name="EntryFee" Type="Double" Nullable="false" />
           <Property Name="SalaryCap" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Games" Relationship="FantasyModel.ContestGame" FromRole="Contest" ToRole="Game" />
           <NavigationProperty Name="LineUps" Relationship="FantasyModel.LineUpContest" FromRole="Contest" ToRole="LineUp" />
+          <NavigationProperty Name="ContestGame" Relationship="FantasyModel.ContestGameContest" FromRole="Contest" ToRole="ContestGame" />
         </EntityType>
         <Association Name="FK_ContestType_Contest">
           <End Type="FantasyModel.ContestType" Role="ContestType" Multiplicity="1" />
@@ -854,16 +858,16 @@
           <Key>
             <PropertyRef Name="GameId" />
           </Key>
-          <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Scheduled" Type="DateTime" Nullable="false" />
           <Property Name="Humidity" Type="Double" Nullable="false" />
           <Property Name="Temperture" Type="Double" Nullable="false" />
           <NavigationProperty Name="AwayTeam" Relationship="FantasyModel.FK_Game_AwayTeam" FromRole="Game" ToRole="Team" />
           <NavigationProperty Name="HomeTeam" Relationship="FantasyModel.GameTeam" FromRole="Game" ToRole="Team" />
           <NavigationProperty Name="ClimaCondition" Relationship="FantasyModel.ClimaConditionsGame" FromRole="Game" ToRole="ClimaConditions" />
+          <NavigationProperty Name="ContestGames" Relationship="FantasyModel.ContestGameGame" FromRole="Game" ToRole="ContestGame" />
           <NavigationProperty Name="Venue" Relationship="FantasyModel.VenueGame" FromRole="Game" ToRole="Venue" />
-          <Property Name="VenueId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Contests" Relationship="FantasyModel.ContestGame" FromRole="Game" ToRole="Contest" />
+          <Property Name="VenueId" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="FK_Game_AwayTeam">
           <End Type="FantasyModel.Game" Role="Game" Multiplicity="1" />
@@ -877,27 +881,11 @@
           <End Type="FantasyModel.ClimaConditions" Role="ClimaConditions" Multiplicity="1" />
           <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
         </Association>
-        <Association Name="VenueGame">
-          <End Type="FantasyModel.Venue" Role="Venue" Multiplicity="1" />
-          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Venue">
-              <PropertyRef Name="VenueId" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="VenueId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ContestGame">
-          <End Type="FantasyModel.Contest" Role="Contest" Multiplicity="*" />
-          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
-        </Association>
         <EntityType Name="Promotion">
           <Key>
             <PropertyRef Name="PromotionId" />
           </Key>
-          <Property Name="PromotionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromotionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" />
@@ -906,7 +894,7 @@
           <Key>
             <PropertyRef Name="LineUpId" />
           </Key>
-          <Property Name="LineUpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LineUpId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Account" Relationship="FantasyModel.AccountLineUp" FromRole="LineUp" ToRole="Account" />
           <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.LineUpPlayer" FromRole="LineUp" ToRole="Player" />
@@ -941,6 +929,52 @@
             </Principal>
             <Dependent Role="Position">
               <PropertyRef Name="SportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContestGame" >
+          <Key>
+            <PropertyRef Name="ContestId" />
+            <PropertyRef Name="GameId" />
+          </Key>
+          <NavigationProperty Name="Contests" Relationship="FantasyModel.ContestGameContest" FromRole="ContestGame" ToRole="Contest" />
+          <NavigationProperty Name="Game" Relationship="FantasyModel.ContestGameGame" FromRole="ContestGame" ToRole="Game" />
+          <Property Name="ContestId" Type="Int64" Nullable="false" />
+          <Property Name="GameId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="ContestGameContest">
+          <End Type="FantasyModel.ContestGame" Role="ContestGame" Multiplicity="*" />
+          <End Type="FantasyModel.Contest" Role="Contest" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Contest">
+              <PropertyRef Name="ContestId" />
+            </Principal>
+            <Dependent Role="ContestGame">
+              <PropertyRef Name="ContestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ContestGameGame">
+          <End Type="FantasyModel.ContestGame" Role="ContestGame" Multiplicity="*" />
+          <End Type="FantasyModel.Game" Role="Game" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameId" />
+            </Principal>
+            <Dependent Role="ContestGame">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VenueGame">
+          <End Type="FantasyModel.Venue" Role="Venue" Multiplicity="1" />
+          <End Type="FantasyModel.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="VenueId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="VenueId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1064,6 +1098,7 @@
         <MappingFragment StoreEntitySet="Positions">
           <ScalarProperty Name="PositionId" ColumnName="PositionId" />
           <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+          <ScalarProperty Name="SportId" ColumnName="SportId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1127,6 +1162,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ContestGames">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.ContestGame)">
+        <MappingFragment StoreEntitySet="ContestGames">
+          <ScalarProperty Name="ContestId" ColumnName="ContestId" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="FK_Game_AwayTeam" TypeName="FantasyModel.FK_Game_AwayTeam" StoreEntitySet="Games">
       <EndProperty Name="Team">
         <ScalarProperty Name="TeamId" ColumnName="AwayTeam_TeamId" />
@@ -1149,14 +1192,6 @@
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="GameId" ColumnName="GameId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK_Contest_Game" TypeName="FantasyModel.ContestGame" StoreEntitySet="FK_Contest_Game">
-      <EndProperty Name="Contest">
-        <ScalarProperty Name="ContestId" ColumnName="Contests_ContestId" />
-      </EndProperty>
-      <EndProperty Name="Game">
-        <ScalarProperty Name="GameId" ColumnName="Games_GameId" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="FK_LineUp_Player" TypeName="FantasyModel.LineUpPlayer" StoreEntitySet="FK_LineUp_Player">
