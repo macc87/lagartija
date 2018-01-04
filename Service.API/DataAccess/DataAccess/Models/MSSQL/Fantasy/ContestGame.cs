@@ -52,6 +52,11 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private long _gameId;
+    
+        public long ContestGameId
+        {
+            get; set;
+        }
 
         #endregion
 
