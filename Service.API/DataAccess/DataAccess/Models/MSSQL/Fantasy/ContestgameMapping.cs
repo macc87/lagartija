@@ -20,10 +20,11 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 public ContestgameMapping()
                 {
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
-    		            this.HasKey(t => new {t.ContestId, t.GameId});	
+    		            this.HasKey(t => new {t.ContestId, t.GameId, t.ContestGameId});	
     		            this.ToTable("ContestGame",dbSchema);
                         this.Property(t => t.ContestId).HasColumnName("ContestId").HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
                         this.Property(t => t.GameId).HasColumnName("GameId").HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                        this.Property(t => t.ContestGameId).HasColumnName("ContestGameId").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
     
                 }
     }
