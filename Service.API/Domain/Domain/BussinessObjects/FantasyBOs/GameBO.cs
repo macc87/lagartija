@@ -8,7 +8,7 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
     public class GameBO
     {
-        public int GameId { get; set; }
+        public long GameId { get; set; }
 
         public System.DateTime Scheduled { get; set; }
 

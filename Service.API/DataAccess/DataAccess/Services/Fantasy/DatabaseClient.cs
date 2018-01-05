@@ -54,6 +54,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetTeamAsync(teamId);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamResponse>(exception);
+            }
+        }
+
         #region [Dispose]
 
         public void Dispose()
@@ -78,9 +96,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
             _disposed = true;
         }
-
-        
-
         #endregion
     }
 }

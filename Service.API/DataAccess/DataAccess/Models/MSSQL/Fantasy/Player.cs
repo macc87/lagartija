@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int PlayerId
+        public long PlayerId
         {
             get; set;
         }
@@ -39,7 +39,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public int TeamId
+        public long TeamId
         {
     get { return _teamId; }
             set
@@ -54,9 +54,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _teamId;
+        private long _teamId;
     
-        public int PositionId
+        public long PositionId
         {
     get { return _positionId; }
             set
@@ -71,7 +71,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _positionId;
+        private long _positionId;
     
         public double Salary
         {
@@ -117,37 +117,37 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private Position _position;
     
-        public ICollection<LineUp> LineUps
+        public ICollection<PlayerLineup> PlayerLineups
         {
             get
             {
-                if (_lineUps == null)
+                if (_playerLineups == null)
                 {
-                    var newCollection = new FixupCollection<LineUp>();
-                    newCollection.CollectionChanged += FixupLineUps;
-                    _lineUps = newCollection;
+                    var newCollection = new FixupCollection<PlayerLineup>();
+                    newCollection.CollectionChanged += FixupPlayerLineups;
+                    _playerLineups = newCollection;
                 }
-                return _lineUps;
+                return _playerLineups;
             }
             set
             {
-                if (!ReferenceEquals(_lineUps, value))
+                if (!ReferenceEquals(_playerLineups, value))
                 {
-                    var previousValue = _lineUps as FixupCollection<LineUp>;
+                    var previousValue = _playerLineups as FixupCollection<PlayerLineup>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupLineUps;
+                        previousValue.CollectionChanged -= FixupPlayerLineups;
                     }
-                    _lineUps = value;
-                    var newValue = value as FixupCollection<LineUp>;
+                    _playerLineups = value;
+                    var newValue = value as FixupCollection<PlayerLineup>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupLineUps;
+                        newValue.CollectionChanged += FixupPlayerLineups;
                     }
                 }
             }
         }
-        private ICollection<LineUp> _lineUps;
+        private ICollection<PlayerLineup> _playerLineups;
 
         #endregion
 
@@ -193,26 +193,23 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupLineUps(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupPlayerLineups(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (LineUp item in e.NewItems)
+                foreach (PlayerLineup item in e.NewItems)
                 {
-                    if (!item.Players.Contains(this))
-                    {
-                        item.Players.Add(this);
-                    }
+                    item.Player = this;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (LineUp item in e.OldItems)
+                foreach (PlayerLineup item in e.OldItems)
                 {
-                    if (item.Players.Contains(this))
+                    if (ReferenceEquals(item.Player, this))
                     {
-                        item.Players.Remove(this);
+                        item.Player = null;
                     }
                 }
             }

@@ -7,6 +7,17 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
 {
     public class DtoFactoryResponse
     {
+
+        /// <summary>
+        /// Service part
+        /// </summary>
+
+
+        /// <summary>
+        /// Create a Task with a Injury Dto 
+        /// </summary>
+        /// <param name="poco">Injuries Bussiness Object</param>
+        /// <returns>Contest Dto</returns>
         public async Task<InjuryDto> Create(InjuriesBO poco)
         {
             var result = new InjuryDto
@@ -25,6 +36,11 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
             return await Task.FromResult(result);
         }
 
+        /// <summary>
+        /// Create a Task with a League Dto 
+        /// </summary>
+        /// <param name="league">League Bussiness Object</param>
+        /// <returns>Contest Dto</returns>
         public async Task<LeagueDto> Create(LeagueBO league)
         {
             var result = new LeagueDto

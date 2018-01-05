@@ -14,7 +14,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
         {
             var result = new ClimaConditionsBO
             {
-                ClimaId = clima.ClimaId,
+                ClimaId = clima.ClimaConditionsId,
                 Condition = clima.Condition
             };
             return await Task.FromResult(result);
@@ -32,7 +32,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
         {
             var result = new PromotionBO
             {
-                PromoId = promo.PromoId,
+                PromoId = promo.PromotionId,
                 Code = promo.Code,
                 Content = promo.Content,
                 Name = promo.Name
@@ -65,7 +65,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
         }
         public async Task<ContestBO> Create(Contest contest)
         {
-            int Cid = contest.ContestId;
+            long Cid = contest.ContestId;
             var result = new ContestBO
             {
                 ContestId = contest.ContestId,
@@ -75,9 +75,23 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SalaryCap = contest.SalaryCap,
                 SignedUp = contest.SignedUp,
             };
-            Game[] games = fContext.Games.Include("Venue").Include("ClimaCondition").Include("AwayTeam").Include("HomeTeam").Where(x => x.Contests.Contains(contest)).ToArray();
+            List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
+            List<Game> gameList = new List<Game>();
+            foreach (ContestGame cg in cgames)
+            {
+                Game g = fContext.Games.Include("Venue").Include("ClimaCondition").First(x => x.GameId == cg.GameId);
+                gameList.Add(g);
+            }
+            Game[] games = gameList.ToArray();
             result.Games = await Create(games);
-            LineUp[] lineup = fContext.LineUps.Include("Account").Where(x => x.Contests.Contains(contest)).ToArray();
+            List<ContestLineup> clineup = fContext.ContestLineups.Where(x => x.ContestId == Cid).ToList();
+            List<LineUp> lineupList = new List<LineUp>();
+            foreach (ContestLineup cl in clineup)
+            {
+                LineUp g = fContext.LineUps.Include("Account").First(x => x.LineUpId == cl.LineUpId);
+                lineupList.Add(g);
+            }
+            LineUp[] lineup = lineupList.ToArray();
             result.LineUps = await Create(lineup);
             return await Task.FromResult(result);
         }
@@ -86,7 +100,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             List<ContestBO> result = new List<ContestBO>();
             foreach (Contest contest in contests)
             {
-                int Cid = contest.ContestId;
+                long Cid = contest.ContestId;
                 var res = new ContestBO
                 {
                     ContestId = contest.ContestId,
@@ -96,9 +110,23 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                     SalaryCap = contest.SalaryCap,
                     SignedUp = contest.SignedUp,
                 };
-                Game[] games = fContext.Games.Include("Venue").Include("ClimaCondition").Include("AwayTeam").Include("HomeTeam").Where(x => x.Contests.Contains(contest)).ToArray();
+                List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
+                List<Game> gameList = new List<Game>();
+                foreach (ContestGame cg in cgames)
+                {
+                    Game g = fContext.Games.Include("Venue").Include("ClimaCondition").First(x => x.GameId == cg.GameId);
+                    gameList.Add(g);
+                }
+                Game[] games = gameList.ToArray();
                 res.Games = await Create(games);
-                LineUp[] lineup = fContext.LineUps.Include("Account").Where(x => x.Contests.Contains(contest)).ToArray();
+                List<ContestLineup> clineup = fContext.ContestLineups.Where(x => x.ContestId == Cid).ToList();
+                List<LineUp> lineupList = new List<LineUp>();
+                foreach (ContestLineup cl in clineup)
+                {
+                    LineUp g = fContext.LineUps.Include("Account").First(x => x.LineUpId == cl.LineUpId);
+                    lineupList.Add(g);
+                }
+                LineUp[] lineup = lineupList.ToArray();
                 res.LineUps = await Create(lineup);
                 result.Add(res);
             }
@@ -109,17 +137,18 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             var result = new List<GameBO>();
             foreach (Game g in games)
             {
-                result.Add(new GameBO
+                GameBO gbo = new GameBO
                 {
                     GameId = g.GameId,
                     ClimaCondition = await Create(g.ClimaCondition),
-                    AwayTeam = await Create(g.AwayTeam),
-                    HomeTeam = await Create(g.HomeTeam),
                     Humidity = g.Humidity,
                     Scheduled = g.Scheduled,
                     Temperture = g.Temperture,
                     Venue = await Create(g.Venue)
-                });
+                };
+                gbo.HomeTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId));
+                gbo.AwayTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId1));
+                result.Add(gbo);
             }
             return await Task.FromResult(result);
         }
@@ -135,7 +164,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             };
             return await Task.FromResult(result);
         }
-        public async Task<IEnumerable<PlayerBO>> Create(Player[] players)
+        public async Task<List<PlayerBO>> Create(List<Player> players)
         {
             var result = new List<PlayerBO>();
             foreach (Player p in players)

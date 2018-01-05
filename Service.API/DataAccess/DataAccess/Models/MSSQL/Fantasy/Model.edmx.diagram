@@ -12,7 +12,7 @@
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_Injury" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryPlayer_InjuryTeam" ManuallyRouted="false" />
         <AssociationConnector Association="FantasyModel.FK_InjuryTeam_League" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="8.375" PointY="6.625" />
+        <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="7.875" PointY="15.125" />
         <EntityTypeShape EntityType="FantasyModel.Sport" Width="1.5" PointX="2.625" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.Notification" Width="1.5" PointX="0.5" PointY="4.5" />
         <EntityTypeShape EntityType="FantasyModel.ClimaConditions" Width="1.5" PointX="0.5" PointY="7.75" />
@@ -26,19 +26,33 @@
         <EntityTypeShape EntityType="FantasyModel.ContestType" Width="1.5" PointX="6.625" PointY="6.625" />
         <EntityTypeShape EntityType="FantasyModel.Contest" Width="1.5" PointX="6.5" PointY="9.25" />
         <AssociationConnector Association="FantasyModel.FK_ContestType_Contest" />
-        <EntityTypeShape EntityType="FantasyModel.Game" Width="1.5" PointX="2.75" PointY="10.5" />
-        <AssociationConnector Association="FantasyModel.FK_Game_AwayTeam" />
-        <AssociationConnector Association="FantasyModel.GameTeam" />
+        <EntityTypeShape EntityType="FantasyModel.Game" Width="1.5" PointX="2.5" PointY="10.5" />
         <AssociationConnector Association="FantasyModel.ClimaConditionsGame" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="FantasyModel.VenueGame" />
-        <AssociationConnector Association="FantasyModel.ContestGame" />
-        <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="4.625" PointY="13.375" />
-        <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="6.625" PointY="13.125" />
+        <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="0.5" PointY="12.25" />
+        <EntityTypeShape EntityType="FantasyModel.LineUp" Width="1.5" PointX="8.625" PointY="12.375" />
         <AssociationConnector Association="FantasyModel.AccountLineUp" />
-        <AssociationConnector Association="FantasyModel.LineUpPlayer" />
-        <AssociationConnector Association="FantasyModel.LineUpContest" />
         <AssociationConnector Association="FantasyModel.SportPosition" />
+        <EntityTypeShape EntityType="FantasyModel.ContestGame" Width="1.5" PointX="3.75" PointY="14.375" />
+        <AssociationConnector Association="FantasyModel.ContestGameContest" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.3125" PointY="14.375" />
+          <ConnectorPoint PointX="4.3125" PointY="10.247295941090025" />
+          <ConnectorPoint PointX="5.2604174166666668" PointY="10.247295941090025" />
+          <ConnectorPoint PointX="5.4270840833333329" PointY="10.247295941090025" />
+          <ConnectorPoint PointX="6.5" PointY="10.247295941090025" />
+        </AssociationConnector>
+        <AssociationConnector Association="FantasyModel.ContestGameGame" />
+        <AssociationConnector Association="FantasyModel.VenueGame" />
+        <AssociationConnector Association="FantasyModel.GameTeam" />
+        <AssociationConnector Association="FantasyModel.GameTeam1" />
+        <EntityTypeShape EntityType="FantasyModel.PlayerLineup" Width="1.5" PointX="5.875" PointY="12.375" />
+        <AssociationConnector Association="FantasyModel.PlayerLineupLineUp" />
+        <AssociationConnector Association="FantasyModel.PlayerLineupPlayer" />
+        <EntityTypeShape EntityType="FantasyModel.ContestLineup" Width="1.5" PointX="8.875" PointY="9.625" />
+        <AssociationConnector Association="FantasyModel.ContestLineupContest" />
+        <AssociationConnector Association="FantasyModel.LineUpContestLineup" />
+        <EntityTypeShape EntityType="FantasyModel.Goal" Width="1.5" PointX="7.625" PointY="3.875" />
+        <AssociationConnector Association="FantasyModel.GoalSport" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
