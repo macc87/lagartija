@@ -40,14 +40,14 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<ContestBO>>(exception);
             }
         }
-        /*internal async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
+        internal async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
         {
             try
             {
                 var result = await FantasyClient.GetPlayersFromTeamAsync(teamId);
                 if (result == null)
                 {
-                    throw new ServiceException(message: "Unable to get players from team");
+                    throw new ServiceException(message: "Unable to get players from team " + teamId);
                 }
                 if (result.HasError)
                 {
@@ -60,7 +60,31 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
             {
                 return ExceptionHandler<List<PlayerBO>>(exception);
             }
-        }*/
+        }
+
+        internal async Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = await FantasyClient.GetTeamAsync(teamId);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get team "+ teamId.ToString());
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Team);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<TeamBO>(exception);
+            }
+
+        }
+
 
         #region [Disposing]
 
