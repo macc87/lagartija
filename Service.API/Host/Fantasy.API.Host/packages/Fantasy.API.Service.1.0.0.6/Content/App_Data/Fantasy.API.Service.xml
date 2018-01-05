@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fantasy.API.Service</name>
+    </assembly>
+    <members>
+        <member name="T:Fantasy.API.Service.Controllers.FantasyServiceV1Controller">
+            <summary>
+            Fantasy Data Services
+            </summary>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.#ctor">
+            <summary>
+            Construct a default controller for the Fantasy Service
+            </summary>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.#ctor(Fantasy.API.DataAccess.Services.Fantasy.Interfase.IFantasyClient,Fantasy.API.DataAccess.Services.Fantasy.Interfase.IFantasyDataClient,Fantasy.API.Utilities.ServicesHandler.UserInfo)">
+            <summary>
+            Construct a controller for the Fantasy Service
+            </summary>
+            <param name="fantasyClient">Client of the Sport Radar Service</param>
+            <param name="fantasyDataClient">Client of the Database Entities</param>
+            <param name="currentUser">User of the service</param>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.GetInjuriesAsync">
+            <summary>
+            Get current injured players
+            </summary>
+            <returns>Returns a list of injured players from MLB</returns>
+            <remarks>Used by applications:
+            Fantasy apps
+            </remarks>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.GetContestsAsync">
+            <summary>
+            Get contests
+            </summary>
+            <returns>Returns a list of contest from MLB</returns>
+            <remarks>Used by applications:
+            Fantasy apps
+            </remarks>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.GetPlayersFromTeamAsync(System.Int32)">
+            <summary>
+            Get Players From Team Id
+            </summary>
+            <returns>Returns a list of Players from a MLB Team</returns>
+            <remarks>Used by applications:
+            Fantasy apps
+            </remarks>
+        </member>
+        <member name="M:Fantasy.API.Service.Controllers.FantasyServiceV1Controller.Dispose(System.Boolean)">
+            <summary>
+            Eliminates the Database and Sport Radar Services
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.InjuriesBO)">
+            <summary>
+            Service part
+            </summary>
+            <summary>
+            Create a Task with a Injury Dto 
+            </summary>
+            <param name="poco">Injuries Bussiness Object</param>
+            <returns>Contest Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.LeagueBO)">
+            <summary>
+            Create a Task with a League Dto 
+            </summary>
+            <param name="league">League Bussiness Object</param>
+            <returns>Contest Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.ContestBO)">
+            <summary>
+            DB part
+            </summary>
+            <summary>
+            Create a Task with a Contest Dto 
+            </summary>
+            <param name="poco">Contest Bussiness Object</param>
+            <returns>Contest Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(System.Collections.Generic.IEnumerable{Fantasy.API.Domain.BussinessObjects.FantasyBOs.GameBO})">
+            <summary>
+            Create a Task with a list of Games Dto's 
+            </summary>
+            <param name="poco">List of Game Bussiness Object</param>
+            <returns>List of Games Dto's</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(System.Collections.Generic.IEnumerable{Fantasy.API.Domain.BussinessObjects.FantasyBOs.LineupBO})">
+            <summary>
+            Create a Task with a list of Lineups Dto's 
+            </summary>
+            <param name="poco">List of Lineup Bussiness Object</param>
+            <returns>List of Lineups Dto's</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.ContestTypeBO)">
+            <summary>
+            Create a Task with a Contest Type Dto
+            </summary>
+            <param name="cType">Contest Type Bussiness Object</param>
+            <returns>Contest Type Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.VenueBO)">
+            <summary>
+            Create a Task with a Venue Dto
+            </summary>
+            <param name="poco">Venue Bussiness Object</param>
+            <returns>Venue Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.ClimaConditionsBO)">
+            <summary>
+            Create a Task with a Clima Condition Dto
+            </summary>
+            <param name="poco">Clima Condition Bussiness Object</param>
+            <returns>Clima Condition Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.TeamBO)">
+            <summary>
+            Create a Task with a Team Dto
+            </summary>
+            <param name="poco">Team Bussiness Object</param>
+            <returns>Team Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.SportBO)">
+            <summary>
+            Create a Task with a Sport Dto
+            </summary>
+            <param name="poco">Sport Bussiness Object</param>
+            <returns>Sport Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.PositionBO)">
+            <summary>
+            Create a Task with a Position Dto
+            </summary>
+            <param name="poco">Position Bussiness Object</param>
+            <returns>Position Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(Fantasy.API.Domain.BussinessObjects.FantasyBOs.PlayerBO)">
+            <summary>
+            Create a Task with a Player Dto
+            </summary>
+            <param name="poco">Player Bussiness Object</param>
+            <returns>Player Dto</returns>
+        </member>
+        <member name="M:Fantasy.API.Service.Mapping.ResponseMapping.DtoFactoryResponse.Create(System.Collections.Generic.IEnumerable{Fantasy.API.Domain.BussinessObjects.FantasyBOs.PlayerBO})">
+            <summary>
+            Create a Task with a list of Games Dto's 
+            </summary>
+            <param name="poco">List of Game Bussiness Object</param>
+            <returns>List of Games Dto's</returns>
+        </member>
+    </members>
+</doc>
