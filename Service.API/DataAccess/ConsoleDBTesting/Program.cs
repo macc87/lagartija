@@ -16,19 +16,19 @@ namespace ConsoleDBTesting
         {
 
             FantasyContext dbContext = new FantasyContext();
-            //var gms = dbContext.Games.ToList();
+            var gms = dbContext.Games.ToList();
             ContestResponse result = new ContestResponse()
             {
                 Contests = dbContext.Contests.Include("ContestType").Include("ContestGame").ToList()
             };
             foreach (Contest c in result.Contests)
             {
-                c.Games = new List<Game>();
+               // c.Games = new List<Game>();
                 foreach (ContestGame cg in c.ContestGame)
                 {
                     Game g = dbContext.Games.Include("Venue").Include("AwayTeam").Include("HomeTeam").Include("ClimaCondition").First(x => x.GameId == cg.GameId);
                     //
-                    c.Games.Add(g);
+                   // c.Games.Add(g);
                 }
             }
             Console.WriteLine("The end");

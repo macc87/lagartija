@@ -102,69 +102,69 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private ICollection<Player> _players;
     
-        public ICollection<Game> AwayGame
+        public ICollection<Game> Games
         {
             get
             {
-                if (_awayGame == null)
+                if (_games == null)
                 {
                     var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupAwayGame;
-                    _awayGame = newCollection;
+                    newCollection.CollectionChanged += FixupGames;
+                    _games = newCollection;
                 }
-                return _awayGame;
+                return _games;
             }
             set
             {
-                if (!ReferenceEquals(_awayGame, value))
+                if (!ReferenceEquals(_games, value))
                 {
-                    var previousValue = _awayGame as FixupCollection<Game>;
+                    var previousValue = _games as FixupCollection<Game>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupAwayGame;
+                        previousValue.CollectionChanged -= FixupGames;
                     }
-                    _awayGame = value;
+                    _games = value;
                     var newValue = value as FixupCollection<Game>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupAwayGame;
+                        newValue.CollectionChanged += FixupGames;
                     }
                 }
             }
         }
-        private ICollection<Game> _awayGame;
+        private ICollection<Game> _games;
     
-        public ICollection<Game> HomeGame
+        public ICollection<Game> Games1
         {
             get
             {
-                if (_homeGame == null)
+                if (_games1 == null)
                 {
                     var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupHomeGame;
-                    _homeGame = newCollection;
+                    newCollection.CollectionChanged += FixupGames1;
+                    _games1 = newCollection;
                 }
-                return _homeGame;
+                return _games1;
             }
             set
             {
-                if (!ReferenceEquals(_homeGame, value))
+                if (!ReferenceEquals(_games1, value))
                 {
-                    var previousValue = _homeGame as FixupCollection<Game>;
+                    var previousValue = _games1 as FixupCollection<Game>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupHomeGame;
+                        previousValue.CollectionChanged -= FixupGames1;
                     }
-                    _homeGame = value;
+                    _games1 = value;
                     var newValue = value as FixupCollection<Game>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupHomeGame;
+                        newValue.CollectionChanged += FixupGames1;
                     }
                 }
             }
         }
-        private ICollection<Game> _homeGame;
+        private ICollection<Game> _games1;
 
         #endregion
 
@@ -212,13 +212,13 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupAwayGame(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupGames(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (Game item in e.NewItems)
                 {
-                    item.AwayTeam = this;
+                    item.Team = this;
                 }
             }
     
@@ -226,21 +226,21 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             {
                 foreach (Game item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.AwayTeam, this))
+                    if (ReferenceEquals(item.Team, this))
                     {
-                        item.AwayTeam = null;
+                        item.Team = null;
                     }
                 }
             }
         }
     
-        private void FixupHomeGame(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupGames1(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (Game item in e.NewItems)
                 {
-                    item.HomeTeam = this;
+                    item.Team1 = this;
                 }
             }
     
@@ -248,9 +248,9 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             {
                 foreach (Game item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.HomeTeam, this))
+                    if (ReferenceEquals(item.Team1, this))
                     {
-                        item.HomeTeam = null;
+                        item.Team1 = null;
                     }
                 }
             }

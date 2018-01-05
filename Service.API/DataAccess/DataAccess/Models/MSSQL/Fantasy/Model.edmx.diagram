@@ -26,9 +26,7 @@
         <EntityTypeShape EntityType="FantasyModel.ContestType" Width="1.5" PointX="6.625" PointY="6.625" />
         <EntityTypeShape EntityType="FantasyModel.Contest" Width="1.5" PointX="6.5" PointY="9.25" />
         <AssociationConnector Association="FantasyModel.FK_ContestType_Contest" />
-        <EntityTypeShape EntityType="FantasyModel.Game" Width="1.5" PointX="2.75" PointY="10.5" />
-        <AssociationConnector Association="FantasyModel.FK_Game_AwayTeam" />
-        <AssociationConnector Association="FantasyModel.GameTeam" />
+        <EntityTypeShape EntityType="FantasyModel.Game" Width="1.5" PointX="2.5" PointY="10.5" />
         <AssociationConnector Association="FantasyModel.ClimaConditionsGame" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="FantasyModel.Promotion" Width="1.5" PointX="0.5" PointY="12.25" />
@@ -39,14 +37,16 @@
         <AssociationConnector Association="FantasyModel.SportPosition" />
         <EntityTypeShape EntityType="FantasyModel.ContestGame" Width="1.5" PointX="3.75" PointY="14.375" />
         <AssociationConnector Association="FantasyModel.ContestGameContest" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.4375" PointY="14.375" />
-          <ConnectorPoint PointX="4.4375" PointY="10.317047526041666" />
+          <ConnectorPoint PointX="4.375" PointY="14.375" />
+          <ConnectorPoint PointX="4.375" PointY="10.317047526041666" />
           <ConnectorPoint PointX="5.635416666666667" PointY="10.317047526041666" />
           <ConnectorPoint PointX="5.802083333333333" PointY="10.317047526041666" />
           <ConnectorPoint PointX="6.5" PointY="10.317047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="FantasyModel.ContestGameGame" />
         <AssociationConnector Association="FantasyModel.VenueGame" />
+        <AssociationConnector Association="FantasyModel.TeamGame" />
+        <AssociationConnector Association="FantasyModel.GameTeam" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

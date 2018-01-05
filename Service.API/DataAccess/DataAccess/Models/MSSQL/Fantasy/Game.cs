@@ -56,73 +56,26 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private long _venueId;
     
-        public long AwayTeamId
+        public long ClimaConditionsId
         {
-    get { return _awayTeamId; }
+    get { return _climaConditionsId; }
             set
             {
-                if (_awayTeamId != value)
+                if (_climaConditionsId != value)
                 {
-                    if (AwayTeam != null && AwayTeam.TeamId != value)
+                    if (ClimaCondition != null && ClimaCondition.ClimaConditionsId != value)
                     {
-                        AwayTeam = null;
+                        ClimaCondition = null;
                     }
-                    _awayTeamId = value;
+                    _climaConditionsId = value;
                 }
             }
         }
-        private long _awayTeamId;
-    
-        public long HomeTeamId
-        {
-    get { return _homeTeamId; }
-            set
-            {
-                if (_homeTeamId != value)
-                {
-                    if (HomeTeam != null && HomeTeam.TeamId != value)
-                    {
-                        HomeTeam = null;
-                    }
-                    _homeTeamId = value;
-                }
-            }
-        }
-        private long _homeTeamId;
+        private long _climaConditionsId;
 
         #endregion
 
         #region Navigation Properties
-    
-        public Team AwayTeam
-        {
-            get { return _awayTeam; }
-            set
-            {
-                if (!ReferenceEquals(_awayTeam, value))
-                {
-                    var previousValue = _awayTeam;
-                    _awayTeam = value;
-                    FixupAwayTeam(previousValue);
-                }
-            }
-        }
-        private Team _awayTeam;
-    
-        public Team HomeTeam
-        {
-            get { return _homeTeam; }
-            set
-            {
-                if (!ReferenceEquals(_homeTeam, value))
-                {
-                    var previousValue = _homeTeam;
-                    _homeTeam = value;
-                    FixupHomeTeam(previousValue);
-                }
-            }
-        }
-        private Team _homeTeam;
     
         public ClimaConditions ClimaCondition
         {
@@ -185,50 +138,40 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private Venue _venue;
+    
+        public Team Team
+        {
+            get { return _team; }
+            set
+            {
+                if (!ReferenceEquals(_team, value))
+                {
+                    var previousValue = _team;
+                    _team = value;
+                    FixupTeam(previousValue);
+                }
+            }
+        }
+        private Team _team;
+    
+        public Team Team1
+        {
+            get { return _team1; }
+            set
+            {
+                if (!ReferenceEquals(_team1, value))
+                {
+                    var previousValue = _team1;
+                    _team1 = value;
+                    FixupTeam1(previousValue);
+                }
+            }
+        }
+        private Team _team1;
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupAwayTeam(Team previousValue)
-        {
-            if (previousValue != null && previousValue.AwayGame.Contains(this))
-            {
-                previousValue.AwayGame.Remove(this);
-            }
-    
-            if (AwayTeam != null)
-            {
-                if (!AwayTeam.AwayGame.Contains(this))
-                {
-                    AwayTeam.AwayGame.Add(this);
-                }
-                if (AwayTeamId != AwayTeam.TeamId)
-                {
-                    AwayTeamId = AwayTeam.TeamId;
-                }
-            }
-        }
-    
-        private void FixupHomeTeam(Team previousValue)
-        {
-            if (previousValue != null && previousValue.HomeGame.Contains(this))
-            {
-                previousValue.HomeGame.Remove(this);
-            }
-    
-            if (HomeTeam != null)
-            {
-                if (!HomeTeam.HomeGame.Contains(this))
-                {
-                    HomeTeam.HomeGame.Add(this);
-                }
-                if (HomeTeamId != HomeTeam.TeamId)
-                {
-                    HomeTeamId = HomeTeam.TeamId;
-                }
-            }
-        }
     
         private void FixupClimaCondition(ClimaConditions previousValue)
         {
@@ -242,6 +185,10 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 if (!ClimaCondition.Games.Contains(this))
                 {
                     ClimaCondition.Games.Add(this);
+                }
+                if (ClimaConditionsId != ClimaCondition.ClimaConditionsId)
+                {
+                    ClimaConditionsId = ClimaCondition.ClimaConditionsId;
                 }
             }
         }
@@ -262,6 +209,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 if (VenueId != Venue.VenueId)
                 {
                     VenueId = Venue.VenueId;
+                }
+            }
+        }
+    
+        private void FixupTeam(Team previousValue)
+        {
+            if (previousValue != null && previousValue.Games.Contains(this))
+            {
+                previousValue.Games.Remove(this);
+            }
+    
+            if (Team != null)
+            {
+                if (!Team.Games.Contains(this))
+                {
+                    Team.Games.Add(this);
+                }
+            }
+        }
+    
+        private void FixupTeam1(Team previousValue)
+        {
+            if (previousValue != null && previousValue.Games1.Contains(this))
+            {
+                previousValue.Games1.Remove(this);
+            }
+    
+            if (Team1 != null)
+            {
+                if (!Team1.Games1.Contains(this))
+                {
+                    Team1.Games1.Add(this);
                 }
             }
         }

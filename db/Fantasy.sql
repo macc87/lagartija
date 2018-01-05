@@ -1,7 +1,8 @@
+
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/04/2018 02:24:42
+-- Date Created: 01/05/2018 00:51:44
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -37,12 +38,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ContestType_Contest]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Contests] DROP CONSTRAINT [FK_ContestType_Contest];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Game_AwayTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Game_AwayTeam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ClimaConditionsGame]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_ClimaConditionsGame];
 GO
@@ -72,6 +67,12 @@ IF OBJECT_ID(N'[dbo].[FK_ContestGameGame]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_TeamGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
 GO
 
 -- --------------------------------------------------
@@ -285,9 +286,9 @@ CREATE TABLE [dbo].[Games] (
     [Humidity] float  NOT NULL,
     [Temperture] float  NOT NULL,
     [VenueId] bigint  NOT NULL,
-    [AwayTeamId] bigint  NOT NULL,
-    [HomeTeamId] bigint  NOT NULL,
-    [ClimaCondition_ClimaConditionsId] bigint  NOT NULL
+    [ClimaConditionsId] bigint  NOT NULL,
+    [Team_TeamId] bigint  NOT NULL,
+    [Team1_TeamId] bigint  NOT NULL
 );
 GO
 
@@ -562,40 +563,10 @@ ON [dbo].[Contests]
     ([ContestTypeId]);
 GO
 
--- Creating foreign key on [AwayTeamId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_Game_AwayTeam]
-    FOREIGN KEY ([AwayTeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Game_AwayTeam'
-CREATE INDEX [IX_FK_Game_AwayTeam]
-ON [dbo].[Games]
-    ([AwayTeamId]);
-GO
-
--- Creating foreign key on [HomeTeamId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_GameTeam]
-    FOREIGN KEY ([HomeTeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam'
-CREATE INDEX [IX_FK_GameTeam]
-ON [dbo].[Games]
-    ([HomeTeamId]);
-GO
-
--- Creating foreign key on [ClimaCondition_ClimaConditionsId] in table 'Games'
+-- Creating foreign key on [ClimaConditionsId] in table 'Games'
 ALTER TABLE [dbo].[Games]
 ADD CONSTRAINT [FK_ClimaConditionsGame]
-    FOREIGN KEY ([ClimaCondition_ClimaConditionsId])
+    FOREIGN KEY ([ClimaConditionsId])
     REFERENCES [dbo].[ClimaConditions]
         ([ClimaConditionsId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -604,7 +575,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_ClimaConditionsGame'
 CREATE INDEX [IX_FK_ClimaConditionsGame]
 ON [dbo].[Games]
-    ([ClimaCondition_ClimaConditionsId]);
+    ([ClimaConditionsId]);
 GO
 
 -- Creating foreign key on [AccountLogin] in table 'LineUps'
@@ -722,6 +693,36 @@ GO
 CREATE INDEX [IX_FK_VenueGame]
 ON [dbo].[Games]
     ([VenueId]);
+GO
+
+-- Creating foreign key on [Team_TeamId] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_TeamGame]
+    FOREIGN KEY ([Team_TeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamGame'
+CREATE INDEX [IX_FK_TeamGame]
+ON [dbo].[Games]
+    ([Team_TeamId]);
+GO
+
+-- Creating foreign key on [Team1_TeamId] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_GameTeam]
+    FOREIGN KEY ([Team1_TeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam'
+CREATE INDEX [IX_FK_GameTeam]
+ON [dbo].[Games]
+    ([Team1_TeamId]);
 GO
 
 -- --------------------------------------------------
@@ -857,13 +858,13 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Games] ON
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeamId], [HomeTeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'1', N'2018-01-17 23:34:30.000', N'90', N'30', N'1', N'3', N'2', N'1')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [Team_TeamId], [Team1_TeamId], [ClimaConditionsId]) VALUES (N'1', N'2018-01-17 23:34:30.000', N'90', N'30', N'1', N'3', N'2', N'1')
 GO
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeamId], [HomeTeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'2', N'2018-01-17 23:34:40.000', N'50', N'45', N'3', N'5', N'4', N'2')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [Team_TeamId], [Team1_TeamId], [ClimaConditionsId]) VALUES (N'2', N'2018-01-17 23:34:40.000', N'50', N'45', N'3', N'5', N'4', N'2')
 GO
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeamId], [HomeTeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'3', N'2018-01-17 23:36:24.000', N'40', N'37', N'5', N'8', N'6', N'3')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [Team_TeamId], [Team1_TeamId], [ClimaConditionsId]) VALUES (N'3', N'2018-01-17 23:36:24.000', N'40', N'37', N'5', N'8', N'6', N'3')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Games] OFF
