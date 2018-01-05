@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/05/2018 00:51:44
+-- Date Created: 01/05/2018 01:25:49
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -287,8 +287,8 @@ CREATE TABLE [dbo].[Games] (
     [Temperture] float  NOT NULL,
     [VenueId] bigint  NOT NULL,
     [ClimaConditionsId] bigint  NOT NULL,
-    [Team_TeamId] bigint  NOT NULL,
-    [Team1_TeamId] bigint  NOT NULL
+    [TeamTeamId] bigint  NOT NULL,
+    [TeamTeamId1] bigint  NOT NULL
 );
 GO
 
@@ -695,25 +695,10 @@ ON [dbo].[Games]
     ([VenueId]);
 GO
 
--- Creating foreign key on [Team_TeamId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_TeamGame]
-    FOREIGN KEY ([Team_TeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TeamGame'
-CREATE INDEX [IX_FK_TeamGame]
-ON [dbo].[Games]
-    ([Team_TeamId]);
-GO
-
--- Creating foreign key on [Team1_TeamId] in table 'Games'
+-- Creating foreign key on [TeamTeamId] in table 'Games'
 ALTER TABLE [dbo].[Games]
 ADD CONSTRAINT [FK_GameTeam]
-    FOREIGN KEY ([Team1_TeamId])
+    FOREIGN KEY ([TeamTeamId])
     REFERENCES [dbo].[Teams]
         ([TeamId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -722,7 +707,22 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam'
 CREATE INDEX [IX_FK_GameTeam]
 ON [dbo].[Games]
-    ([Team1_TeamId]);
+    ([TeamTeamId]);
+GO
+
+-- Creating foreign key on [TeamTeamId1] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_GameTeam1]
+    FOREIGN KEY ([TeamTeamId1])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam1'
+CREATE INDEX [IX_FK_GameTeam1]
+ON [dbo].[Games]
+    ([TeamTeamId1]);
 GO
 
 -- --------------------------------------------------

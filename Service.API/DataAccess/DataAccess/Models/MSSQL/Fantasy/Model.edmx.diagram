@@ -37,16 +37,16 @@
         <AssociationConnector Association="FantasyModel.SportPosition" />
         <EntityTypeShape EntityType="FantasyModel.ContestGame" Width="1.5" PointX="3.75" PointY="14.375" />
         <AssociationConnector Association="FantasyModel.ContestGameContest" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.375" PointY="14.375" />
-          <ConnectorPoint PointX="4.375" PointY="10.317047526041666" />
+          <ConnectorPoint PointX="4.3125" PointY="14.375" />
+          <ConnectorPoint PointX="4.3125" PointY="10.317047526041666" />
           <ConnectorPoint PointX="5.635416666666667" PointY="10.317047526041666" />
           <ConnectorPoint PointX="5.802083333333333" PointY="10.317047526041666" />
           <ConnectorPoint PointX="6.5" PointY="10.317047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="FantasyModel.ContestGameGame" />
         <AssociationConnector Association="FantasyModel.VenueGame" />
-        <AssociationConnector Association="FantasyModel.TeamGame" />
         <AssociationConnector Association="FantasyModel.GameTeam" />
+        <AssociationConnector Association="FantasyModel.GameTeam1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -72,6 +72,16 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private long _climaConditionsId;
+    
+        public long TeamTeamId
+        {
+            get; set;
+        }
+    
+        public long TeamTeamId1
+        {
+            get; set;
+        }
 
         #endregion
 
@@ -138,36 +148,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private Venue _venue;
-    
-        public Team Team
-        {
-            get { return _team; }
-            set
-            {
-                if (!ReferenceEquals(_team, value))
-                {
-                    var previousValue = _team;
-                    _team = value;
-                    FixupTeam(previousValue);
-                }
-            }
-        }
-        private Team _team;
-    
-        public Team Team1
-        {
-            get { return _team1; }
-            set
-            {
-                if (!ReferenceEquals(_team1, value))
-                {
-                    var previousValue = _team1;
-                    _team1 = value;
-                    FixupTeam1(previousValue);
-                }
-            }
-        }
-        private Team _team1;
 
         #endregion
 
@@ -209,38 +189,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 if (VenueId != Venue.VenueId)
                 {
                     VenueId = Venue.VenueId;
-                }
-            }
-        }
-    
-        private void FixupTeam(Team previousValue)
-        {
-            if (previousValue != null && previousValue.Games.Contains(this))
-            {
-                previousValue.Games.Remove(this);
-            }
-    
-            if (Team != null)
-            {
-                if (!Team.Games.Contains(this))
-                {
-                    Team.Games.Add(this);
-                }
-            }
-        }
-    
-        private void FixupTeam1(Team previousValue)
-        {
-            if (previousValue != null && previousValue.Games1.Contains(this))
-            {
-                previousValue.Games1.Remove(this);
-            }
-    
-            if (Team1 != null)
-            {
-                if (!Team1.Games1.Contains(this))
-                {
-                    Team1.Games1.Add(this);
                 }
             }
         }

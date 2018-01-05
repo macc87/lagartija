@@ -101,70 +101,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Player> _players;
-    
-        public ICollection<Game> Games
-        {
-            get
-            {
-                if (_games == null)
-                {
-                    var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupGames;
-                    _games = newCollection;
-                }
-                return _games;
-            }
-            set
-            {
-                if (!ReferenceEquals(_games, value))
-                {
-                    var previousValue = _games as FixupCollection<Game>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupGames;
-                    }
-                    _games = value;
-                    var newValue = value as FixupCollection<Game>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupGames;
-                    }
-                }
-            }
-        }
-        private ICollection<Game> _games;
-    
-        public ICollection<Game> Games1
-        {
-            get
-            {
-                if (_games1 == null)
-                {
-                    var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupGames1;
-                    _games1 = newCollection;
-                }
-                return _games1;
-            }
-            set
-            {
-                if (!ReferenceEquals(_games1, value))
-                {
-                    var previousValue = _games1 as FixupCollection<Game>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupGames1;
-                    }
-                    _games1 = value;
-                    var newValue = value as FixupCollection<Game>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupGames1;
-                    }
-                }
-            }
-        }
-        private ICollection<Game> _games1;
 
         #endregion
 
@@ -207,50 +143,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                     if (ReferenceEquals(item.Team, this))
                     {
                         item.Team = null;
-                    }
-                }
-            }
-        }
-    
-        private void FixupGames(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Game item in e.NewItems)
-                {
-                    item.Team = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Game item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Team, this))
-                    {
-                        item.Team = null;
-                    }
-                }
-            }
-        }
-    
-        private void FixupGames1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Game item in e.NewItems)
-                {
-                    item.Team1 = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Game item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Team1, this))
-                    {
-                        item.Team1 = null;
                     }
                 }
             }
