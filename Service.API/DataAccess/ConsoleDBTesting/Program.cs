@@ -17,11 +17,14 @@ namespace ConsoleDBTesting
 
             FantasyContext dbContext = new FantasyContext();
             var gms = dbContext.Games.ToList();
-            var players = dbContext.Players.ToList();
             var lineups = dbContext.LineUps.ToList();
             var liupPlayers = dbContext.PlayerLineups.ToList();
             var contestLineups = dbContext.ContestLineups.ToList();
 
+            PlayersResponse plresult = new PlayersResponse
+            {
+                Players = dbContext.Players.ToList()
+            };
             ContestResponse result = new ContestResponse()
             {
                 Contests = dbContext.Contests.Include("ContestType").Include("ContestGame").ToList()
