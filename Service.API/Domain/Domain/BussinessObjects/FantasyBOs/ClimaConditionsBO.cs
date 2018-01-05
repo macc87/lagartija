@@ -8,7 +8,7 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
     public class ClimaConditionsBO
     {
-        public int ClimaId { get; set; }
+        public long ClimaId { get; set; }
 
         public string Condition { get; set; }
     }
