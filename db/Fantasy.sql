@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/20/2017 00:52:58
+-- Date Created: 01/05/2018 10:46:43
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -26,17 +26,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_InjuryTeam_League]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[InjuryTeams] DROP CONSTRAINT [FK_InjuryTeam_League];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Position_Sport]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Sports] DROP CONSTRAINT [FK_Position_Sport];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Sport_Team]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Teams] DROP CONSTRAINT [FK_Sport_Team];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TeamPlayer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_TeamPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Player_Sport]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Player_Sport];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Position_Player]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Position_Player];
@@ -44,38 +38,41 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ContestType_Contest]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Contests] DROP CONSTRAINT [FK_ContestType_Contest];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Game_AwayTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_Game_AwayTeam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ClimaConditionsGame]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_ClimaConditionsGame];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestGame_Contest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_Contest_Game] DROP CONSTRAINT [FK_ContestGame_Contest];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestGame_Game]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_Contest_Game] DROP CONSTRAINT [FK_ContestGame_Game];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AccountLineUp]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LineUps] DROP CONSTRAINT [FK_AccountLineUp];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_LineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_LineUp_Player] DROP CONSTRAINT [FK_LineUpPlayer_LineUp];
+IF OBJECT_ID(N'[dbo].[FK_SportPosition]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Positions] DROP CONSTRAINT [FK_SportPosition];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUpPlayer_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_LineUp_Player] DROP CONSTRAINT [FK_LineUpPlayer_Player];
+IF OBJECT_ID(N'[dbo].[FK_ContestGameContest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestGames] DROP CONSTRAINT [FK_ContestGameContest];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUpContest_LineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_LineUp_Contest] DROP CONSTRAINT [FK_LineUpContest_LineUp];
+IF OBJECT_ID(N'[dbo].[FK_ContestGameGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestGames] DROP CONSTRAINT [FK_ContestGameGame];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUpContest_Contest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FK_LineUp_Contest] DROP CONSTRAINT [FK_LineUpContest_Contest];
+IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GameTeam1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerLineupLineUp]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerLineups] DROP CONSTRAINT [FK_PlayerLineupLineUp];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerLineupPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PlayerLineups] DROP CONSTRAINT [FK_PlayerLineupPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ContestLineupContest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestLineups] DROP CONSTRAINT [FK_ContestLineupContest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LineUpContestLineup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ContestLineups] DROP CONSTRAINT [FK_LineUpContestLineup];
 GO
 
 -- --------------------------------------------------
@@ -133,14 +130,14 @@ GO
 IF OBJECT_ID(N'[dbo].[LineUps]', 'U') IS NOT NULL
     DROP TABLE [dbo].[LineUps];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Contest_Game]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FK_Contest_Game];
+IF OBJECT_ID(N'[dbo].[ContestGames]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ContestGames];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUp_Player]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FK_LineUp_Player];
+IF OBJECT_ID(N'[dbo].[PlayerLineups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerLineups];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LineUp_Contest]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FK_LineUp_Contest];
+IF OBJECT_ID(N'[dbo].[ContestLineups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ContestLineups];
 GO
 
 -- --------------------------------------------------
@@ -201,15 +198,14 @@ GO
 
 -- Creating table 'Sports'
 CREATE TABLE [dbo].[Sports] (
-    [SportId] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(100)  NOT NULL,
-    [PositionId] int  NOT NULL
+    [SportId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(100)  NOT NULL
 );
 GO
 
 -- Creating table 'Notifications'
 CREATE TABLE [dbo].[Notifications] (
-    [NotificationId] int IDENTITY(1,1) NOT NULL,
+    [NotificationId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [InitialDate] datetime  NOT NULL,
@@ -219,14 +215,14 @@ GO
 
 -- Creating table 'ClimaConditions'
 CREATE TABLE [dbo].[ClimaConditions] (
-    [ClimaConditionsId] int IDENTITY(1,1) NOT NULL,
+    [ClimaConditionsId] bigint IDENTITY(1,1) NOT NULL,
     [Condition] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Venues'
 CREATE TABLE [dbo].[Venues] (
-    [VenueId] int IDENTITY(1,1) NOT NULL,
+    [VenueId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Surface] nvarchar(max)  NOT NULL,
     [State] nvarchar(max)  NOT NULL,
@@ -236,12 +232,12 @@ GO
 
 -- Creating table 'Players'
 CREATE TABLE [dbo].[Players] (
-    [PlayerId] int IDENTITY(1,1) NOT NULL,
+    [PlayerId] bigint IDENTITY(1,1) NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [PreferredName] nvarchar(max)  NOT NULL,
-    [TeamId] int  NOT NULL,
-    [PositionId] int  NOT NULL,
+    [TeamId] bigint  NOT NULL,
+    [PositionId] bigint  NOT NULL,
     [Salary] float  NOT NULL,
     [Photo] nvarchar(max)  NOT NULL
 );
@@ -249,32 +245,32 @@ GO
 
 -- Creating table 'Positions'
 CREATE TABLE [dbo].[Positions] (
-    [PositionId] int IDENTITY(1,1) NOT NULL,
+    [PositionId] bigint IDENTITY(1,1) NOT NULL,
     [PositionName] nvarchar(max)  NOT NULL,
-    [SportId] int  NOT NULL
+    [SportId] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'Teams'
 CREATE TABLE [dbo].[Teams] (
-    [TeamId] int IDENTITY(1,1) NOT NULL,
+    [TeamId] bigint IDENTITY(1,1) NOT NULL,
     [TeamName] nvarchar(max)  NOT NULL,
     [TeamLogo] nvarchar(max)  NOT NULL,
-    [SportId] int  NOT NULL
+    [SportId] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'ContestTypes'
 CREATE TABLE [dbo].[ContestTypes] (
-    [ContestTypeId] int IDENTITY(1,1) NOT NULL,
+    [ContestTypeId] bigint IDENTITY(1,1) NOT NULL,
     [Type] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Contests'
 CREATE TABLE [dbo].[Contests] (
-    [ContestId] int IDENTITY(1,1) NOT NULL,
-    [ContestTypeId] int  NOT NULL,
+    [ContestId] bigint IDENTITY(1,1) NOT NULL,
+    [ContestTypeId] bigint  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [SignedUp] int  NOT NULL,
     [MaxCapacity] int  NOT NULL,
@@ -285,20 +281,20 @@ GO
 
 -- Creating table 'Games'
 CREATE TABLE [dbo].[Games] (
-    [GameId] int IDENTITY(1,1) NOT NULL,
+    [GameId] bigint IDENTITY(1,1) NOT NULL,
     [Scheduled] datetime  NOT NULL,
     [Humidity] float  NOT NULL,
     [Temperture] float  NOT NULL,
-    [VenueId] int  NOT NULL,
-    [AwayTeam_TeamId] int  NOT NULL,
-    [HomeTeam_TeamId] int  NOT NULL,
-    [ClimaCondition_ClimaConditionsId] int  NOT NULL
+    [VenueId] bigint  NOT NULL,
+    [ClimaConditionsId] bigint  NOT NULL,
+    [TeamTeamId] bigint  NOT NULL,
+    [TeamTeamId1] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'Promotions'
 CREATE TABLE [dbo].[Promotions] (
-    [PromotionId] int IDENTITY(1,1) NOT NULL,
+    [PromotionId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [Code] nvarchar(max)  NOT NULL
@@ -307,29 +303,43 @@ GO
 
 -- Creating table 'LineUps'
 CREATE TABLE [dbo].[LineUps] (
-    [LineUpId] int IDENTITY(1,1) NOT NULL,
-    [AccountLogin] nvarchar(50)  NOT NULL
+    [LineUpId] bigint IDENTITY(1,1) NOT NULL,
+    [AccountLogin] nvarchar(50)  NOT NULL,
+    [PlayerLineupId] bigint  NOT NULL
 );
 GO
 
--- Creating table 'FK_Contest_Game'
-CREATE TABLE [dbo].[FK_Contest_Game] (
-    [Contests_ContestId] int  NOT NULL,
-    [Games_GameId] int  NOT NULL
+-- Creating table 'ContestGames'
+CREATE TABLE [dbo].[ContestGames] (
+    [ContestId] bigint  NOT NULL,
+    [GameId] bigint  NOT NULL,
+    [ContestGameId] bigint IDENTITY(1,1) NOT NULL
 );
 GO
 
--- Creating table 'FK_LineUp_Player'
-CREATE TABLE [dbo].[FK_LineUp_Player] (
-    [LineUps_LineUpId] int  NOT NULL,
-    [Players_PlayerId] int  NOT NULL
+-- Creating table 'PlayerLineups'
+CREATE TABLE [dbo].[PlayerLineups] (
+    [PlayerLineupId] bigint IDENTITY(1,1) NOT NULL,
+    [LineupId] bigint  NOT NULL,
+    [PlayerId] bigint  NOT NULL
 );
 GO
 
--- Creating table 'FK_LineUp_Contest'
-CREATE TABLE [dbo].[FK_LineUp_Contest] (
-    [LineUps_LineUpId] int  NOT NULL,
-    [Contests_ContestId] int  NOT NULL
+-- Creating table 'ContestLineups'
+CREATE TABLE [dbo].[ContestLineups] (
+    [ContestLineupId] int IDENTITY(1,1) NOT NULL,
+    [ContestId] bigint  NOT NULL,
+    [LineUpId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Goals'
+CREATE TABLE [dbo].[Goals] (
+    [GoalId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [CompletionCount] int  NOT NULL,
+    [GoalLogo] nvarchar(max)  NOT NULL,
+    [SportId] bigint  NOT NULL
 );
 GO
 
@@ -439,22 +449,28 @@ ADD CONSTRAINT [PK_LineUps]
     PRIMARY KEY CLUSTERED ([LineUpId] ASC);
 GO
 
--- Creating primary key on [Contests_ContestId], [Games_GameId] in table 'FK_Contest_Game'
-ALTER TABLE [dbo].[FK_Contest_Game]
-ADD CONSTRAINT [PK_FK_Contest_Game]
-    PRIMARY KEY CLUSTERED ([Contests_ContestId], [Games_GameId] ASC);
+-- Creating primary key on [ContestId], [GameId], [ContestGameId] in table 'ContestGames'
+ALTER TABLE [dbo].[ContestGames]
+ADD CONSTRAINT [PK_ContestGames]
+    PRIMARY KEY CLUSTERED ([ContestId], [GameId], [ContestGameId] ASC);
 GO
 
--- Creating primary key on [LineUps_LineUpId], [Players_PlayerId] in table 'FK_LineUp_Player'
-ALTER TABLE [dbo].[FK_LineUp_Player]
-ADD CONSTRAINT [PK_FK_LineUp_Player]
-    PRIMARY KEY CLUSTERED ([LineUps_LineUpId], [Players_PlayerId] ASC);
+-- Creating primary key on [PlayerLineupId], [LineupId], [PlayerId] in table 'PlayerLineups'
+ALTER TABLE [dbo].[PlayerLineups]
+ADD CONSTRAINT [PK_PlayerLineups]
+    PRIMARY KEY CLUSTERED ([PlayerLineupId], [LineupId], [PlayerId] ASC);
 GO
 
--- Creating primary key on [LineUps_LineUpId], [Contests_ContestId] in table 'FK_LineUp_Contest'
-ALTER TABLE [dbo].[FK_LineUp_Contest]
-ADD CONSTRAINT [PK_FK_LineUp_Contest]
-    PRIMARY KEY CLUSTERED ([LineUps_LineUpId], [Contests_ContestId] ASC);
+-- Creating primary key on [ContestLineupId], [ContestId], [LineUpId] in table 'ContestLineups'
+ALTER TABLE [dbo].[ContestLineups]
+ADD CONSTRAINT [PK_ContestLineups]
+    PRIMARY KEY CLUSTERED ([ContestLineupId], [ContestId], [LineUpId] ASC);
+GO
+
+-- Creating primary key on [GoalId] in table 'Goals'
+ALTER TABLE [dbo].[Goals]
+ADD CONSTRAINT [PK_Goals]
+    PRIMARY KEY CLUSTERED ([GoalId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -504,21 +520,6 @@ GO
 CREATE INDEX [IX_FK_InjuryTeam_League]
 ON [dbo].[InjuryTeams]
     ([LeagueId]);
-GO
-
--- Creating foreign key on [PositionId] in table 'Sports'
-ALTER TABLE [dbo].[Sports]
-ADD CONSTRAINT [FK_Position_Sport]
-    FOREIGN KEY ([PositionId])
-    REFERENCES [dbo].[Positions]
-        ([PositionId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Position_Sport'
-CREATE INDEX [IX_FK_Position_Sport]
-ON [dbo].[Sports]
-    ([PositionId]);
 GO
 
 -- Creating foreign key on [SportId] in table 'Teams'
@@ -581,40 +582,10 @@ ON [dbo].[Contests]
     ([ContestTypeId]);
 GO
 
--- Creating foreign key on [AwayTeam_TeamId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_Game_AwayTeam]
-    FOREIGN KEY ([AwayTeam_TeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Game_AwayTeam'
-CREATE INDEX [IX_FK_Game_AwayTeam]
-ON [dbo].[Games]
-    ([AwayTeam_TeamId]);
-GO
-
--- Creating foreign key on [HomeTeam_TeamId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_GameTeam]
-    FOREIGN KEY ([HomeTeam_TeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam'
-CREATE INDEX [IX_FK_GameTeam]
-ON [dbo].[Games]
-    ([HomeTeam_TeamId]);
-GO
-
--- Creating foreign key on [ClimaCondition_ClimaConditionsId] in table 'Games'
+-- Creating foreign key on [ClimaConditionsId] in table 'Games'
 ALTER TABLE [dbo].[Games]
 ADD CONSTRAINT [FK_ClimaConditionsGame]
-    FOREIGN KEY ([ClimaCondition_ClimaConditionsId])
+    FOREIGN KEY ([ClimaConditionsId])
     REFERENCES [dbo].[ClimaConditions]
         ([ClimaConditionsId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -623,46 +594,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_ClimaConditionsGame'
 CREATE INDEX [IX_FK_ClimaConditionsGame]
 ON [dbo].[Games]
-    ([ClimaCondition_ClimaConditionsId]);
-GO
-
--- Creating foreign key on [VenueId] in table 'Games'
-ALTER TABLE [dbo].[Games]
-ADD CONSTRAINT [FK_VenueGame]
-    FOREIGN KEY ([VenueId])
-    REFERENCES [dbo].[Venues]
-        ([VenueId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_VenueGame'
-CREATE INDEX [IX_FK_VenueGame]
-ON [dbo].[Games]
-    ([VenueId]);
-GO
-
--- Creating foreign key on [Contests_ContestId] in table 'FK_Contest_Game'
-ALTER TABLE [dbo].[FK_Contest_Game]
-ADD CONSTRAINT [FK_ContestGame_Contest]
-    FOREIGN KEY ([Contests_ContestId])
-    REFERENCES [dbo].[Contests]
-        ([ContestId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Games_GameId] in table 'FK_Contest_Game'
-ALTER TABLE [dbo].[FK_Contest_Game]
-ADD CONSTRAINT [FK_ContestGame_Game]
-    FOREIGN KEY ([Games_GameId])
-    REFERENCES [dbo].[Games]
-        ([GameId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ContestGame_Game'
-CREATE INDEX [IX_FK_ContestGame_Game]
-ON [dbo].[FK_Contest_Game]
-    ([Games_GameId]);
+    ([ClimaConditionsId]);
 GO
 
 -- Creating foreign key on [AccountLogin] in table 'LineUps'
@@ -680,54 +612,400 @@ ON [dbo].[LineUps]
     ([AccountLogin]);
 GO
 
--- Creating foreign key on [LineUps_LineUpId] in table 'FK_LineUp_Player'
-ALTER TABLE [dbo].[FK_LineUp_Player]
-ADD CONSTRAINT [FK_LineUpPlayer_LineUp]
-    FOREIGN KEY ([LineUps_LineUpId])
-    REFERENCES [dbo].[LineUps]
-        ([LineUpId])
+-- Creating foreign key on [SportId] in table 'Positions'
+ALTER TABLE [dbo].[Positions]
+ADD CONSTRAINT [FK_SportPosition]
+    FOREIGN KEY ([SportId])
+    REFERENCES [dbo].[Sports]
+        ([SportId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Players_PlayerId] in table 'FK_LineUp_Player'
-ALTER TABLE [dbo].[FK_LineUp_Player]
-ADD CONSTRAINT [FK_LineUpPlayer_Player]
-    FOREIGN KEY ([Players_PlayerId])
-    REFERENCES [dbo].[Players]
-        ([PlayerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- Creating non-clustered index for FOREIGN KEY 'FK_SportPosition'
+CREATE INDEX [IX_FK_SportPosition]
+ON [dbo].[Positions]
+    ([SportId]);
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_LineUpPlayer_Player'
-CREATE INDEX [IX_FK_LineUpPlayer_Player]
-ON [dbo].[FK_LineUp_Player]
-    ([Players_PlayerId]);
-GO
-
--- Creating foreign key on [LineUps_LineUpId] in table 'FK_LineUp_Contest'
-ALTER TABLE [dbo].[FK_LineUp_Contest]
-ADD CONSTRAINT [FK_LineUpContest_LineUp]
-    FOREIGN KEY ([LineUps_LineUpId])
-    REFERENCES [dbo].[LineUps]
-        ([LineUpId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Contests_ContestId] in table 'FK_LineUp_Contest'
-ALTER TABLE [dbo].[FK_LineUp_Contest]
-ADD CONSTRAINT [FK_LineUpContest_Contest]
-    FOREIGN KEY ([Contests_ContestId])
+-- Creating foreign key on [ContestId] in table 'ContestGames'
+ALTER TABLE [dbo].[ContestGames]
+ADD CONSTRAINT [FK_ContestGameContest]
+    FOREIGN KEY ([ContestId])
     REFERENCES [dbo].[Contests]
         ([ContestId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_LineUpContest_Contest'
-CREATE INDEX [IX_FK_LineUpContest_Contest]
-ON [dbo].[FK_LineUp_Contest]
-    ([Contests_ContestId]);
+-- Creating foreign key on [GameId] in table 'ContestGames'
+ALTER TABLE [dbo].[ContestGames]
+ADD CONSTRAINT [FK_ContestGameGame]
+    FOREIGN KEY ([GameId])
+    REFERENCES [dbo].[Games]
+        ([GameId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ContestGameGame'
+CREATE INDEX [IX_FK_ContestGameGame]
+ON [dbo].[ContestGames]
+    ([GameId]);
+GO
+
+-- Creating foreign key on [VenueId] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_VenueGame]
+    FOREIGN KEY ([VenueId])
+    REFERENCES [dbo].[Venues]
+        ([VenueId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_VenueGame'
+CREATE INDEX [IX_FK_VenueGame]
+ON [dbo].[Games]
+    ([VenueId]);
+GO
+
+-- Creating foreign key on [TeamTeamId] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_GameTeam]
+    FOREIGN KEY ([TeamTeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam'
+CREATE INDEX [IX_FK_GameTeam]
+ON [dbo].[Games]
+    ([TeamTeamId]);
+GO
+
+-- Creating foreign key on [TeamTeamId1] in table 'Games'
+ALTER TABLE [dbo].[Games]
+ADD CONSTRAINT [FK_GameTeam1]
+    FOREIGN KEY ([TeamTeamId1])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GameTeam1'
+CREATE INDEX [IX_FK_GameTeam1]
+ON [dbo].[Games]
+    ([TeamTeamId1]);
+GO
+
+-- Creating foreign key on [LineupId] in table 'PlayerLineups'
+ALTER TABLE [dbo].[PlayerLineups]
+ADD CONSTRAINT [FK_PlayerLineupLineUp]
+    FOREIGN KEY ([LineupId])
+    REFERENCES [dbo].[LineUps]
+        ([LineUpId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlayerLineupLineUp'
+CREATE INDEX [IX_FK_PlayerLineupLineUp]
+ON [dbo].[PlayerLineups]
+    ([LineupId]);
+GO
+
+-- Creating foreign key on [PlayerId] in table 'PlayerLineups'
+ALTER TABLE [dbo].[PlayerLineups]
+ADD CONSTRAINT [FK_PlayerLineupPlayer]
+    FOREIGN KEY ([PlayerId])
+    REFERENCES [dbo].[Players]
+        ([PlayerId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlayerLineupPlayer'
+CREATE INDEX [IX_FK_PlayerLineupPlayer]
+ON [dbo].[PlayerLineups]
+    ([PlayerId]);
+GO
+
+-- Creating foreign key on [ContestId] in table 'ContestLineups'
+ALTER TABLE [dbo].[ContestLineups]
+ADD CONSTRAINT [FK_ContestLineupContest]
+    FOREIGN KEY ([ContestId])
+    REFERENCES [dbo].[Contests]
+        ([ContestId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ContestLineupContest'
+CREATE INDEX [IX_FK_ContestLineupContest]
+ON [dbo].[ContestLineups]
+    ([ContestId]);
+GO
+
+-- Creating foreign key on [LineUpId] in table 'ContestLineups'
+ALTER TABLE [dbo].[ContestLineups]
+ADD CONSTRAINT [FK_LineUpContestLineup]
+    FOREIGN KEY ([LineUpId])
+    REFERENCES [dbo].[LineUps]
+        ([LineUpId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LineUpContestLineup'
+CREATE INDEX [IX_FK_LineUpContestLineup]
+ON [dbo].[ContestLineups]
+    ([LineUpId]);
+GO
+
+-- Creating foreign key on [SportId] in table 'Goals'
+ALTER TABLE [dbo].[Goals]
+ADD CONSTRAINT [FK_GoalSport]
+    FOREIGN KEY ([SportId])
+    REFERENCES [dbo].[Sports]
+        ([SportId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GoalSport'
+CREATE INDEX [IX_FK_GoalSport]
+ON [dbo].[Goals]
+    ([SportId]);
 GO
 
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
+
+-- ----------------------------
+-- Records of Accounts
+-- ----------------------------
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password]) VALUES (N'admin', N'admin@admins.com', N'password')
+GO
+GO
+
+-- ----------------------------
+-- Records of Sports
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Sports] ON
+GO
+INSERT INTO [dbo].[Sports] ([SportId], [Name]) VALUES (N'1', N'Baseball')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Sports] OFF
+GO
+
+-- ----------------------------
+-- Records of ClimaConditions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ClimaConditions] ON
+GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'1', N'Rainy')
+GO
+GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'2', N'Sunny')
+GO
+GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'3', N'Cloudy')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[ClimaConditions] OFF
+GO
+
+-- ----------------------------
+-- Records of ContestTypes
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ContestTypes] ON
+GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'1', N'Head-To-Head')
+GO
+GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'2', N'Tournament')
+GO
+GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'3', N'First-5')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[ContestTypes] OFF
+GO
+
+-- ----------------------------
+-- Records of Contests
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Contests] ON
+GO
+INSERT INTO [dbo].[Contests] ([ContestId], [ContestTypeId], [Name], [SignedUp], [MaxCapacity], [EntryFee], [SalaryCap]) VALUES (N'1', N'1', N'First Test Contest', N'200', N'500', N'5', N'300000')
+GO
+GO
+INSERT INTO [dbo].[Contests] ([ContestId], [ContestTypeId], [Name], [SignedUp], [MaxCapacity], [EntryFee], [SalaryCap]) VALUES (N'2', N'2', N'Second Test Contest', N'30', N'150', N'35', N'450000')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Contests] OFF
+GO
+
+-- ----------------------------
+-- Records of Teams
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Teams] ON
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Teams] OFF
+GO
+
+-- ----------------------------
+-- Records of Venues
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Venues] ON
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'1', N'Yankee Stadium', N'1000', N'New York', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'2', N'Busch Stadium', N'1000', N'Misuri', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'3', N'Oakland Coliseum', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'4', N'  Fenway Park', N'1000', N'Massachusetts', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'5', N'AT&T Park', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'6', N'Dodger-Stadium', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'7', N'Hard Rock Stadium', N'1000', N'Florida', N'US')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Venues] OFF
+GO
+
+-- ----------------------------
+-- Records of Games
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Games] ON
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [TeamTeamId], [TeamTeamId1], [ClimaConditionsId]) VALUES (N'1', N'2018-01-17 23:34:30.000', N'90', N'30', N'1', N'3', N'2', N'1')
+GO
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [TeamTeamId], [TeamTeamId1], [ClimaConditionsId]) VALUES (N'2', N'2018-01-17 23:34:40.000', N'50', N'45', N'3', N'5', N'4', N'2')
+GO
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [TeamTeamId], [TeamTeamId1], [ClimaConditionsId]) VALUES (N'3', N'2018-01-17 23:36:24.000', N'40', N'37', N'5', N'8', N'6', N'3')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Games] OFF
+GO
+
+-- ----------------------------
+-- Records of ContestGames
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ContestGames] ON
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'1', N'1')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'1', N'4')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'2', N'2')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'2', N'5')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'3', N'3')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'3', N'6')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[ContestGames] OFF
+GO
+
+-- ----------------------------
+-- Records of Positions
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Positions] ON
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'1', N'First Base', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'2', N'Second Base', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'3', N'Third Base', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'4', N'Left Field', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'5', N'Right Field', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'6', N'Center Field', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'7', N'Short Stop', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'8', N'Pitcher', N'1')
+GO
+GO
+INSERT INTO [dbo].[Positions] ([PositionId], [PositionName], [SportId]) VALUES (N'9', N'Catcher', N'1')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Positions] OFF
+GO
+
+-- ----------------------------
+-- Records of Players
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Players] ON
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'1', N'Player1', N'Player', N'Player1', N'2', N'1', N'300', N'player1.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'2', N'Player2', N'Player', N'Player2', N'2', N'2', N'470', N'player2.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'3', N'Player3', N'Player', N'Player3', N'2', N'4', N'560', N'player3.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'4', N'Player4', N'Player', N'Player4', N'2', N'3', N'300', N'player4.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'5', N'Player5', N'Player', N'Player5', N'3', N'1', N'300', N'player5.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'6', N'Player6', N'Player', N'Player6', N'3', N'2', N'470', N'player6.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'7', N'Player7', N'Player', N'Player7', N'3', N'4', N'560', N'player7.png')
+GO
+GO
+INSERT INTO [dbo].[Players] ([PlayerId], [FirstName], [LastName], [PreferredName], [TeamId], [PositionId], [Salary], [Photo]) VALUES (N'8', N'Player8', N'Player', N'Player8', N'3', N'3', N'300', N'player8.png')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Players] OFF
+GO
+

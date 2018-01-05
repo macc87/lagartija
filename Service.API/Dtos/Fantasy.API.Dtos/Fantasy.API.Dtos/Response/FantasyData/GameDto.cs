@@ -8,7 +8,7 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 {
     public class GameDto
     {
-        public int GameId { get; set; }
+        public long GameId { get; set; }
 
         public System.DateTime Scheduled { get; set; }
 

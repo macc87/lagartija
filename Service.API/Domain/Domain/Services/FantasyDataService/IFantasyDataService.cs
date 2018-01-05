@@ -9,5 +9,7 @@ namespace Fantasy.API.Domain.Services.FantasyService
     public interface IFantasyDataService : IDisposable
     {
         Task<ServiceResult<List<ContestBO>>> GetContestsAsync();
+        Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId);
+        Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId);
     }
 }

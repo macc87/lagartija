@@ -8,7 +8,7 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
     public class VenueBO
     {
-        public int VenueId { get; set; }
+        public long VenueId { get; set; }
 
         public string Name { get; set; }
 

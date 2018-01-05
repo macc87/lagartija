@@ -8,7 +8,7 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 {
     public class PromotionDto
     {
-        public int PromoId { get; set; }
+        public long PromoId { get; set; }
 
         public string Name { get; set; }
 

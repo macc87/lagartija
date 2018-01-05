@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int TeamId
+        public long TeamId
         {
             get; set;
         }
@@ -34,7 +34,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public int SportId
+        public long SportId
         {
     get { return _sportId; }
             set
@@ -49,7 +49,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _sportId;
+        private long _sportId;
 
         #endregion
 
@@ -101,36 +101,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Player> _players;
-    
-        public Game AwayGame
-        {
-            get { return _awayGame; }
-            set
-            {
-                if (!ReferenceEquals(_awayGame, value))
-                {
-                    var previousValue = _awayGame;
-                    _awayGame = value;
-                    FixupAwayGame(previousValue);
-                }
-            }
-        }
-        private Game _awayGame;
-    
-        public Game HomeGame
-        {
-            get { return _homeGame; }
-            set
-            {
-                if (!ReferenceEquals(_homeGame, value))
-                {
-                    var previousValue = _homeGame;
-                    _homeGame = value;
-                    FixupHomeGame(previousValue);
-                }
-            }
-        }
-        private Game _homeGame;
 
         #endregion
 
@@ -153,32 +123,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 {
                     SportId = Sport.SportId;
                 }
-            }
-        }
-    
-        private void FixupAwayGame(Game previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.AwayTeam, this))
-            {
-                previousValue.AwayTeam = null;
-            }
-    
-            if (AwayGame != null)
-            {
-                AwayGame.AwayTeam = this;
-            }
-        }
-    
-        private void FixupHomeGame(Game previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.HomeTeam, this))
-            {
-                previousValue.HomeTeam = null;
-            }
-    
-            if (HomeGame != null)
-            {
-                HomeGame.HomeTeam = this;
             }
         }
     

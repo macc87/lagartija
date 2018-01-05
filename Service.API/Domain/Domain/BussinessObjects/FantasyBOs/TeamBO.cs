@@ -8,7 +8,7 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
     public class TeamBO
     {
-        public int TeamId { get; set; }
+        public long TeamId { get; set; }
 
         public string TeamName { get; set; }
 

@@ -134,7 +134,7 @@ namespace Fantasy.API.Service.Controllers
         /// </remarks>
         [HttpGet]
         [Route("contests", Name = "GetContestsV1")]
-        [ResponseType(typeof(ServiceResult<InjuryDto>))]
+        [ResponseType(typeof(ServiceResult<ContestDto>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsAsync()
         {
@@ -157,9 +157,46 @@ namespace Fantasy.API.Service.Controllers
             }
             catch (Exception exception)
             {
-                return Ok(ResponseHandler.ExceptionHandler<InjuryDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
         }
+
+        /// <summary>
+        /// Get Players From Team Id
+        /// </summary>
+        /// <returns>Returns a list of Players from a MLB Team</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("playersfromteam", Name = "GetPlayersFromTeamV1")]
+        [ResponseType(typeof(ServiceResult<PlayerDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPlayersFromTeamAsync(int teamId)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPlayersFromTeamAsync(teamId);
+
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+                var resultDto = new List<Task<ContestDto>>();
+                foreach (PlayerBO player in resultBO.Result)
+                {
+                    var playerDto = await DtoFactories.DtoFactoryResponse.Create(player);
+                }
+
+                var result = await ResponseHandler.ServiceOkAsync(resultDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
         /// <summary>
         /// Eliminates the Database and Sport Radar Services
         /// </summary>

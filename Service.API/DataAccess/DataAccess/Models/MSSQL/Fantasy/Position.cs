@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int PositionId
+        public long PositionId
         {
             get; set;
         }
@@ -29,7 +29,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public int SportId
+        public long SportId
         {
     get { return _sportId; }
             set
@@ -44,7 +44,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _sportId;
+        private long _sportId;
 
         #endregion
 
