@@ -110,6 +110,7 @@
     <Compile Include="Models\MSSQL\Fantasy\ContestMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\TeamResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\ContestType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -120,6 +121,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\GameMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Goal.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\GoalMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Injury.cs">
