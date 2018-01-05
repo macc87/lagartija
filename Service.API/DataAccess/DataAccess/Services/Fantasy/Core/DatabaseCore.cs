@@ -68,6 +68,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
+        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = new TeamResponse()
+                {
+                    Team = dbContext.Teams.First(x => x.TeamId == teamId)
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Team " + teamId);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamResponse>(ex);
+            }
+        }
+
         #region [Dispose]
 
         public void Dispose()
