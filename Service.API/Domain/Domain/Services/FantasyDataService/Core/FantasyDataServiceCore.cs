@@ -40,6 +40,27 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<ContestBO>>(exception);
             }
         }
+        /*internal async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = await FantasyClient.GetPlayersFromTeamAsync(teamId);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get players from team");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Players);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<PlayerBO>>(exception);
+            }
+        }*/
 
         #region [Disposing]
 
