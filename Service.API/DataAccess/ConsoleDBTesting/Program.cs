@@ -23,12 +23,11 @@ namespace ConsoleDBTesting
             };
             foreach (Contest c in result.Contests)
             {
-               // c.Games = new List<Game>();
+                List<Game> games = new List<Game>();
                 foreach (ContestGame cg in c.ContestGame)
                 {
-                    Game g = dbContext.Games.Include("Venue").Include("AwayTeam").Include("HomeTeam").Include("ClimaCondition").First(x => x.GameId == cg.GameId);
-                    //
-                   // c.Games.Add(g);
+                    Game g = dbContext.Games.Include("Venue").Include("ClimaCondition").First(x => x.GameId == cg.GameId);
+                    games.Add(g);
                 }
             }
             Console.WriteLine("The end");
