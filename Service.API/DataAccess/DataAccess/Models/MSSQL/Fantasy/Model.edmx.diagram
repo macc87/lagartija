@@ -51,6 +51,8 @@
         <EntityTypeShape EntityType="FantasyModel.ContestLineup" Width="1.5" PointX="8.875" PointY="9.625" />
         <AssociationConnector Association="FantasyModel.ContestLineupContest" />
         <AssociationConnector Association="FantasyModel.LineUpContestLineup" />
+        <EntityTypeShape EntityType="FantasyModel.Goal" Width="1.5" PointX="7.625" PointY="3.875" />
+        <AssociationConnector Association="FantasyModel.GoalSport" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

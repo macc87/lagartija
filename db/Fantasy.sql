@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/05/2018 02:24:39
+-- Date Created: 01/05/2018 10:46:43
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -333,6 +333,16 @@ CREATE TABLE [dbo].[ContestLineups] (
 );
 GO
 
+-- Creating table 'Goals'
+CREATE TABLE [dbo].[Goals] (
+    [GoalId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [CompletionCount] int  NOT NULL,
+    [GoalLogo] nvarchar(max)  NOT NULL,
+    [SportId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -455,6 +465,12 @@ GO
 ALTER TABLE [dbo].[ContestLineups]
 ADD CONSTRAINT [PK_ContestLineups]
     PRIMARY KEY CLUSTERED ([ContestLineupId], [ContestId], [LineUpId] ASC);
+GO
+
+-- Creating primary key on [GoalId] in table 'Goals'
+ALTER TABLE [dbo].[Goals]
+ADD CONSTRAINT [PK_Goals]
+    PRIMARY KEY CLUSTERED ([GoalId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -738,6 +754,21 @@ GO
 CREATE INDEX [IX_FK_LineUpContestLineup]
 ON [dbo].[ContestLineups]
     ([LineUpId]);
+GO
+
+-- Creating foreign key on [SportId] in table 'Goals'
+ALTER TABLE [dbo].[Goals]
+ADD CONSTRAINT [FK_GoalSport]
+    FOREIGN KEY ([SportId])
+    REFERENCES [dbo].[Sports]
+        ([SportId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GoalSport'
+CREATE INDEX [IX_FK_GoalSport]
+ON [dbo].[Goals]
+    ([SportId]);
 GO
 
 -- --------------------------------------------------

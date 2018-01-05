@@ -96,6 +96,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Position> _positions;
+    
+        public ICollection<Goal> Goals
+        {
+            get
+            {
+                if (_goals == null)
+                {
+                    var newCollection = new FixupCollection<Goal>();
+                    newCollection.CollectionChanged += FixupGoals;
+                    _goals = newCollection;
+                }
+                return _goals;
+            }
+            set
+            {
+                if (!ReferenceEquals(_goals, value))
+                {
+                    var previousValue = _goals as FixupCollection<Goal>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupGoals;
+                    }
+                    _goals = value;
+                    var newValue = value as FixupCollection<Goal>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupGoals;
+                    }
+                }
+            }
+        }
+        private ICollection<Goal> _goals;
 
         #endregion
 
@@ -136,6 +168,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (Position item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Sport, this))
+                    {
+                        item.Sport = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupGoals(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Goal item in e.NewItems)
+                {
+                    item.Sport = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Goal item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Sport, this))
                     {

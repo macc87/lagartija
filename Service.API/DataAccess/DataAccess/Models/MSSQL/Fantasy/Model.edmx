@@ -26,6 +26,7 @@
     <EntitySet Name="ContestGames" EntityType="FantasyModel.Store.ContestGames" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PlayerLineups" EntityType="FantasyModel.Store.PlayerLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContestLineups" EntityType="FantasyModel.Store.ContestLineups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Goals" EntityType="FantasyModel.Store.Goals" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
       <End Role="Injury" EntitySet="Injuries" />
       <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
@@ -101,6 +102,10 @@
     <AssociationSet Name="LineUpContestLineup" Association="FantasyModel.Store.LineUpContestLineup">
       <End Role="ContestLineup" EntitySet="ContestLineups" />
       <End Role="LineUp" EntitySet="LineUps" />
+    </AssociationSet>
+    <AssociationSet Name="GoalSport" Association="FantasyModel.Store.GoalSport">
+      <End Role="Goal" EntitySet="Goals" />
+      <End Role="Sport" EntitySet="Sports" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
@@ -297,6 +302,16 @@
     <Property Name="ContestLineupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ContestId" Type="bigint" Nullable="false" />
     <Property Name="LineUpId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Goals">
+    <Key>
+      <PropertyRef Name="GoalId" />
+    </Key>
+    <Property Name="GoalId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompletionCount" Type="int" Nullable="false" />
+    <Property Name="GoalLogo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SportId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="FK_InjuryPlayer_Injury">
     <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="1" />
@@ -526,6 +541,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="GoalSport">
+    <End Role="Goal" Type="FantasyModel.Store.Goals" Multiplicity="*" />
+    <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Sport">
+        <PropertyRef Name="SportId" />
+      </Principal>
+      <Dependent Role="Goal">
+        <PropertyRef Name="SportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -713,6 +740,11 @@
             <End Role="ContestLineup" EntitySet="ContestLineups" />
             <End Role="LineUp" EntitySet="LineUps" />
           </AssociationSet>
+          <EntitySet Name="Goals" EntityType="FantasyModel.Goal" />
+          <AssociationSet Name="GoalSport" Association="FantasyModel.GoalSport">
+            <End Role="Goal" EntitySet="Goals" />
+            <End Role="Sport" EntitySet="Sports" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -731,6 +763,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
           <NavigationProperty Name="Teams" Relationship="FantasyModel.FK_Sport_Team" FromRole="Sport" ToRole="Team" />
           <NavigationProperty Name="Positions" Relationship="FantasyModel.SportPosition" FromRole="Sport" ToRole="Position" />
+          <NavigationProperty Name="Goals" Relationship="FantasyModel.GoalSport" FromRole="Sport" ToRole="Goal" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -1085,6 +1118,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Goal">
+          <Key>
+            <PropertyRef Name="GoalId" />
+          </Key>
+          <Property Name="GoalId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="CompletionCount" Type="Int32" Nullable="false" />
+          <Property Name="GoalLogo" Type="String" Nullable="false" />
+          <NavigationProperty Name="Sport" Relationship="FantasyModel.GoalSport" FromRole="Goal" ToRole="Sport" />
+          <Property Name="SportId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="GoalSport">
+          <End Type="FantasyModel.Goal" Role="Goal" Multiplicity="*" />
+          <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="SportId" />
+            </Principal>
+            <Dependent Role="Goal">
+              <PropertyRef Name="SportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1297,6 +1353,17 @@
           <ScalarProperty Name="ContestLineupId" ColumnName="ContestLineupId" />
           <ScalarProperty Name="ContestId" ColumnName="ContestId" />
           <ScalarProperty Name="LineUpId" ColumnName="LineUpId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Goals">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Goal)">
+        <MappingFragment StoreEntitySet="Goals">
+          <ScalarProperty Name="GoalId" ColumnName="GoalId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CompletionCount" ColumnName="CompletionCount" />
+          <ScalarProperty Name="GoalLogo" ColumnName="GoalLogo" />
+          <ScalarProperty Name="SportId" ColumnName="SportId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
