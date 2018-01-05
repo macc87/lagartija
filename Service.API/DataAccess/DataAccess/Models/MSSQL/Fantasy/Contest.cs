@@ -19,12 +19,12 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int ContestId
+        public long ContestId
         {
             get; set;
         }
     
-        public int ContestTypeId
+        public long ContestTypeId
         {
     get { return _contestTypeId; }
             set
@@ -39,7 +39,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _contestTypeId;
+        private long _contestTypeId;
     
         public string Name
         {
@@ -85,69 +85,69 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private ContestType _contestType;
     
-        public ICollection<Game> Games
+        public ICollection<ContestGame> ContestGame
         {
             get
             {
-                if (_games == null)
+                if (_contestGame == null)
                 {
-                    var newCollection = new FixupCollection<Game>();
-                    newCollection.CollectionChanged += FixupGames;
-                    _games = newCollection;
+                    var newCollection = new FixupCollection<ContestGame>();
+                    newCollection.CollectionChanged += FixupContestGame;
+                    _contestGame = newCollection;
                 }
-                return _games;
+                return _contestGame;
             }
             set
             {
-                if (!ReferenceEquals(_games, value))
+                if (!ReferenceEquals(_contestGame, value))
                 {
-                    var previousValue = _games as FixupCollection<Game>;
+                    var previousValue = _contestGame as FixupCollection<ContestGame>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupGames;
+                        previousValue.CollectionChanged -= FixupContestGame;
                     }
-                    _games = value;
-                    var newValue = value as FixupCollection<Game>;
+                    _contestGame = value;
+                    var newValue = value as FixupCollection<ContestGame>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupGames;
+                        newValue.CollectionChanged += FixupContestGame;
                     }
                 }
             }
         }
-        private ICollection<Game> _games;
+        private ICollection<ContestGame> _contestGame;
     
-        public ICollection<LineUp> LineUps
+        public ICollection<ContestLineup> ContestLineups
         {
             get
             {
-                if (_lineUps == null)
+                if (_contestLineups == null)
                 {
-                    var newCollection = new FixupCollection<LineUp>();
-                    newCollection.CollectionChanged += FixupLineUps;
-                    _lineUps = newCollection;
+                    var newCollection = new FixupCollection<ContestLineup>();
+                    newCollection.CollectionChanged += FixupContestLineups;
+                    _contestLineups = newCollection;
                 }
-                return _lineUps;
+                return _contestLineups;
             }
             set
             {
-                if (!ReferenceEquals(_lineUps, value))
+                if (!ReferenceEquals(_contestLineups, value))
                 {
-                    var previousValue = _lineUps as FixupCollection<LineUp>;
+                    var previousValue = _contestLineups as FixupCollection<ContestLineup>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupLineUps;
+                        previousValue.CollectionChanged -= FixupContestLineups;
                     }
-                    _lineUps = value;
-                    var newValue = value as FixupCollection<LineUp>;
+                    _contestLineups = value;
+                    var newValue = value as FixupCollection<ContestLineup>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupLineUps;
+                        newValue.CollectionChanged += FixupContestLineups;
                     }
                 }
             }
         }
-        private ICollection<LineUp> _lineUps;
+        private ICollection<ContestLineup> _contestLineups;
 
         #endregion
 
@@ -173,51 +173,45 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupGames(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupContestGame(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (Game item in e.NewItems)
+                foreach (ContestGame item in e.NewItems)
                 {
-                    if (!item.Contests.Contains(this))
-                    {
-                        item.Contests.Add(this);
-                    }
+                    item.Contests = this;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (Game item in e.OldItems)
+                foreach (ContestGame item in e.OldItems)
                 {
-                    if (item.Contests.Contains(this))
+                    if (ReferenceEquals(item.Contests, this))
                     {
-                        item.Contests.Remove(this);
+                        item.Contests = null;
                     }
                 }
             }
         }
     
-        private void FixupLineUps(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupContestLineups(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (LineUp item in e.NewItems)
+                foreach (ContestLineup item in e.NewItems)
                 {
-                    if (!item.Contests.Contains(this))
-                    {
-                        item.Contests.Add(this);
-                    }
+                    item.Contest = this;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (LineUp item in e.OldItems)
+                foreach (ContestLineup item in e.OldItems)
                 {
-                    if (item.Contests.Contains(this))
+                    if (ReferenceEquals(item.Contest, this))
                     {
-                        item.Contests.Remove(this);
+                        item.Contest = null;
                     }
                 }
             }

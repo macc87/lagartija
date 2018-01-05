@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public int GameId
+        public long GameId
         {
             get; set;
         }
@@ -39,7 +39,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public int VenueId
+        public long VenueId
         {
     get { return _venueId; }
             set
@@ -54,41 +54,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 }
             }
         }
-        private int _venueId;
+        private long _venueId;
+    
+        public long ClimaConditionsId
+        {
+    get { return _climaConditionsId; }
+            set
+            {
+                if (_climaConditionsId != value)
+                {
+                    if (ClimaCondition != null && ClimaCondition.ClimaConditionsId != value)
+                    {
+                        ClimaCondition = null;
+                    }
+                    _climaConditionsId = value;
+                }
+            }
+        }
+        private long _climaConditionsId;
+    
+        public long TeamTeamId
+        {
+            get; set;
+        }
+    
+        public long TeamTeamId1
+        {
+            get; set;
+        }
 
         #endregion
 
         #region Navigation Properties
-    
-        public Team AwayTeam
-        {
-            get { return _awayTeam; }
-            set
-            {
-                if (!ReferenceEquals(_awayTeam, value))
-                {
-                    var previousValue = _awayTeam;
-                    _awayTeam = value;
-                    FixupAwayTeam(previousValue);
-                }
-            }
-        }
-        private Team _awayTeam;
-    
-        public Team HomeTeam
-        {
-            get { return _homeTeam; }
-            set
-            {
-                if (!ReferenceEquals(_homeTeam, value))
-                {
-                    var previousValue = _homeTeam;
-                    _homeTeam = value;
-                    FixupHomeTeam(previousValue);
-                }
-            }
-        }
-        private Team _homeTeam;
     
         public ClimaConditions ClimaCondition
         {
@@ -105,6 +102,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private ClimaConditions _climaCondition;
     
+        public ICollection<ContestGame> ContestGames
+        {
+            get
+            {
+                if (_contestGames == null)
+                {
+                    var newCollection = new FixupCollection<ContestGame>();
+                    newCollection.CollectionChanged += FixupContestGames;
+                    _contestGames = newCollection;
+                }
+                return _contestGames;
+            }
+            set
+            {
+                if (!ReferenceEquals(_contestGames, value))
+                {
+                    var previousValue = _contestGames as FixupCollection<ContestGame>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupContestGames;
+                    }
+                    _contestGames = value;
+                    var newValue = value as FixupCollection<ContestGame>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupContestGames;
+                    }
+                }
+            }
+        }
+        private ICollection<ContestGame> _contestGames;
+    
         public Venue Venue
         {
             get { return _venue; }
@@ -119,68 +148,10 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private Venue _venue;
-    
-        public ICollection<Contest> Contests
-        {
-            get
-            {
-                if (_contests == null)
-                {
-                    var newCollection = new FixupCollection<Contest>();
-                    newCollection.CollectionChanged += FixupContests;
-                    _contests = newCollection;
-                }
-                return _contests;
-            }
-            set
-            {
-                if (!ReferenceEquals(_contests, value))
-                {
-                    var previousValue = _contests as FixupCollection<Contest>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupContests;
-                    }
-                    _contests = value;
-                    var newValue = value as FixupCollection<Contest>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupContests;
-                    }
-                }
-            }
-        }
-        private ICollection<Contest> _contests;
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupAwayTeam(Team previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.AwayGame, this))
-            {
-                previousValue.AwayGame = null;
-            }
-    
-            if (AwayTeam != null)
-            {
-                AwayTeam.AwayGame = this;
-            }
-        }
-    
-        private void FixupHomeTeam(Team previousValue)
-        {
-            if (previousValue != null && ReferenceEquals(previousValue.HomeGame, this))
-            {
-                previousValue.HomeGame = null;
-            }
-    
-            if (HomeTeam != null)
-            {
-                HomeTeam.HomeGame = this;
-            }
-        }
     
         private void FixupClimaCondition(ClimaConditions previousValue)
         {
@@ -194,6 +165,10 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                 if (!ClimaCondition.Games.Contains(this))
                 {
                     ClimaCondition.Games.Add(this);
+                }
+                if (ClimaConditionsId != ClimaCondition.ClimaConditionsId)
+                {
+                    ClimaConditionsId = ClimaCondition.ClimaConditionsId;
                 }
             }
         }
@@ -218,26 +193,23 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupContests(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupContestGames(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (Contest item in e.NewItems)
+                foreach (ContestGame item in e.NewItems)
                 {
-                    if (!item.Games.Contains(this))
-                    {
-                        item.Games.Add(this);
-                    }
+                    item.Game = this;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (Contest item in e.OldItems)
+                foreach (ContestGame item in e.OldItems)
                 {
-                    if (item.Games.Contains(this))
+                    if (ReferenceEquals(item.Game, this))
                     {
-                        item.Games.Remove(this);
+                        item.Game = null;
                     }
                 }
             }

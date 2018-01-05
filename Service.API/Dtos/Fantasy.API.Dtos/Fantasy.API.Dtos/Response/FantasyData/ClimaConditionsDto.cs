@@ -8,7 +8,7 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 {
     public class ClimaConditionsDto
     {
-        public int ClimaId { get; set; }
+        public long ClimaId { get; set; }
 
         public string Condition { get; set; }
     }

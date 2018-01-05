@@ -1,9 +1,9 @@
 /*
 Navicat SQL Server Data Transfer
 
-Source Server         : MSSQLSERVER
+Source Server         : SQLSERVER
 Source Server Version : 120000
-Source Host           : .:1433
+Source Host           : :1433
 Source Database       : Fantasy
 Source Schema         : dbo
 
@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2017-12-23 13:40:22
+Date: 2018-01-04 02:22:47
 */
 
 
@@ -42,11 +42,13 @@ GO
 DROP TABLE [dbo].[ClimaConditions]
 GO
 CREATE TABLE [dbo].[ClimaConditions] (
-[ClimaConditionsId] int NOT NULL IDENTITY(1,1) ,
+[ClimaConditionsId] bigint NOT NULL IDENTITY(1,1) ,
 [Condition] nvarchar(MAX) NOT NULL 
 )
 
 
+GO
+DBCC CHECKIDENT(N'[dbo].[ClimaConditions]', RESEED, 3)
 GO
 
 -- ----------------------------
@@ -54,7 +56,58 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[ClimaConditions] ON
 GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'1', N'Rainy')
+GO
+GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'2', N'Sunny')
+GO
+GO
+INSERT INTO [dbo].[ClimaConditions] ([ClimaConditionsId], [Condition]) VALUES (N'3', N'Cloudy')
+GO
+GO
 SET IDENTITY_INSERT [dbo].[ClimaConditions] OFF
+GO
+
+-- ----------------------------
+-- Table structure for ContestGames
+-- ----------------------------
+DROP TABLE [dbo].[ContestGames]
+GO
+CREATE TABLE [dbo].[ContestGames] (
+[ContestId] bigint NOT NULL ,
+[GameId] bigint NOT NULL ,
+[ContestGameId] bigint NOT NULL IDENTITY(1,1) 
+)
+
+
+GO
+DBCC CHECKIDENT(N'[dbo].[ContestGames]', RESEED, 6)
+GO
+
+-- ----------------------------
+-- Records of ContestGames
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[ContestGames] ON
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'1', N'1')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'1', N'4')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'2', N'2')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'2', N'5')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'1', N'3', N'3')
+GO
+GO
+INSERT INTO [dbo].[ContestGames] ([ContestId], [GameId], [ContestGameId]) VALUES (N'2', N'3', N'6')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[ContestGames] OFF
 GO
 
 -- ----------------------------
@@ -63,8 +116,8 @@ GO
 DROP TABLE [dbo].[Contests]
 GO
 CREATE TABLE [dbo].[Contests] (
-[ContestId] int NOT NULL IDENTITY(1,1) ,
-[ContestTypeId] int NOT NULL ,
+[ContestId] bigint NOT NULL IDENTITY(1,1) ,
+[ContestTypeId] bigint NOT NULL ,
 [Name] nvarchar(MAX) NOT NULL ,
 [SignedUp] int NOT NULL ,
 [MaxCapacity] int NOT NULL ,
@@ -74,11 +127,19 @@ CREATE TABLE [dbo].[Contests] (
 
 
 GO
+DBCC CHECKIDENT(N'[dbo].[Contests]', RESEED, 2)
+GO
 
 -- ----------------------------
 -- Records of Contests
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Contests] ON
+GO
+INSERT INTO [dbo].[Contests] ([ContestId], [ContestTypeId], [Name], [SignedUp], [MaxCapacity], [EntryFee], [SalaryCap]) VALUES (N'1', N'1', N'First Test Contest', N'200', N'500', N'5', N'300000')
+GO
+GO
+INSERT INTO [dbo].[Contests] ([ContestId], [ContestTypeId], [Name], [SignedUp], [MaxCapacity], [EntryFee], [SalaryCap]) VALUES (N'2', N'2', N'Second Test Contest', N'30', N'150', N'35', N'450000')
+GO
 GO
 SET IDENTITY_INSERT [dbo].[Contests] OFF
 GO
@@ -89,11 +150,13 @@ GO
 DROP TABLE [dbo].[ContestTypes]
 GO
 CREATE TABLE [dbo].[ContestTypes] (
-[ContestTypeId] int NOT NULL IDENTITY(1,1) ,
+[ContestTypeId] bigint NOT NULL IDENTITY(1,1) ,
 [Type] nvarchar(MAX) NOT NULL 
 )
 
 
+GO
+DBCC CHECKIDENT(N'[dbo].[ContestTypes]', RESEED, 3)
 GO
 
 -- ----------------------------
@@ -101,25 +164,17 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[ContestTypes] ON
 GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'1', N'Head-To-Head')
+GO
+GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'2', N'Tournament')
+GO
+GO
+INSERT INTO [dbo].[ContestTypes] ([ContestTypeId], [Type]) VALUES (N'3', N'First-5')
+GO
+GO
 SET IDENTITY_INSERT [dbo].[ContestTypes] OFF
 GO
-
--- ----------------------------
--- Table structure for FK_Contest_Game
--- ----------------------------
-DROP TABLE [dbo].[FK_Contest_Game]
-GO
-CREATE TABLE [dbo].[FK_Contest_Game] (
-[Contests_ContestId] int NOT NULL ,
-[Games_GameId] int NOT NULL 
-)
-
-
-GO
-
--- ----------------------------
--- Records of FK_Contest_Game
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for FK_LineUp_Contest
@@ -127,8 +182,8 @@ GO
 DROP TABLE [dbo].[FK_LineUp_Contest]
 GO
 CREATE TABLE [dbo].[FK_LineUp_Contest] (
-[LineUps_LineUpId] int NOT NULL ,
-[Contests_ContestId] int NOT NULL 
+[LineUps_LineUpId] bigint NOT NULL ,
+[Contests_ContestId] bigint NOT NULL 
 )
 
 
@@ -144,8 +199,8 @@ GO
 DROP TABLE [dbo].[FK_LineUp_Player]
 GO
 CREATE TABLE [dbo].[FK_LineUp_Player] (
-[LineUps_LineUpId] int NOT NULL ,
-[Players_PlayerId] int NOT NULL 
+[LineUps_LineUpId] bigint NOT NULL ,
+[Players_PlayerId] bigint NOT NULL 
 )
 
 
@@ -161,23 +216,34 @@ GO
 DROP TABLE [dbo].[Games]
 GO
 CREATE TABLE [dbo].[Games] (
-[GameId] int NOT NULL IDENTITY(1,1) ,
+[GameId] bigint NOT NULL IDENTITY(1,1) ,
 [Scheduled] datetime NOT NULL ,
 [Humidity] float(53) NOT NULL ,
 [Temperture] float(53) NOT NULL ,
-[VenueId] int NOT NULL ,
-[AwayTeam_TeamId] int NOT NULL ,
-[HomeTeam_TeamId] int NOT NULL ,
-[ClimaCondition_ClimaConditionsId] int NOT NULL 
+[VenueId] bigint NOT NULL ,
+[AwayTeam_TeamId] bigint NOT NULL ,
+[HomeTeam_TeamId] bigint NOT NULL ,
+[ClimaCondition_ClimaConditionsId] bigint NOT NULL 
 )
 
 
+GO
+DBCC CHECKIDENT(N'[dbo].[Games]', RESEED, 3)
 GO
 
 -- ----------------------------
 -- Records of Games
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Games] ON
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeam_TeamId], [HomeTeam_TeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'1', N'2018-01-17 23:34:30.000', N'90', N'30', N'1', N'3', N'2', N'1')
+GO
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeam_TeamId], [HomeTeam_TeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'2', N'2018-01-17 23:34:40.000', N'50', N'45', N'3', N'5', N'4', N'2')
+GO
+GO
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [AwayTeam_TeamId], [HomeTeam_TeamId], [ClimaCondition_ClimaConditionsId]) VALUES (N'3', N'2018-01-17 23:36:24.000', N'40', N'37', N'5', N'8', N'6', N'3')
+GO
 GO
 SET IDENTITY_INSERT [dbo].[Games] OFF
 GO
@@ -272,7 +338,7 @@ GO
 DROP TABLE [dbo].[LineUps]
 GO
 CREATE TABLE [dbo].[LineUps] (
-[LineUpId] int NOT NULL IDENTITY(1,1) ,
+[LineUpId] bigint NOT NULL IDENTITY(1,1) ,
 [AccountLogin] nvarchar(50) NOT NULL 
 )
 
@@ -293,7 +359,7 @@ GO
 DROP TABLE [dbo].[Notifications]
 GO
 CREATE TABLE [dbo].[Notifications] (
-[NotificationId] int NOT NULL IDENTITY(1,1) ,
+[NotificationId] bigint NOT NULL IDENTITY(1,1) ,
 [Name] nvarchar(MAX) NOT NULL ,
 [Content] nvarchar(MAX) NOT NULL ,
 [InitialDate] datetime NOT NULL ,
@@ -317,12 +383,12 @@ GO
 DROP TABLE [dbo].[Players]
 GO
 CREATE TABLE [dbo].[Players] (
-[PlayerId] int NOT NULL IDENTITY(1,1) ,
+[PlayerId] bigint NOT NULL IDENTITY(1,1) ,
 [FirstName] nvarchar(MAX) NOT NULL ,
 [LastName] nvarchar(MAX) NOT NULL ,
 [PreferredName] nvarchar(MAX) NOT NULL ,
-[TeamId] int NOT NULL ,
-[PositionId] int NOT NULL ,
+[TeamId] bigint NOT NULL ,
+[PositionId] bigint NOT NULL ,
 [Salary] float(53) NOT NULL ,
 [Photo] nvarchar(MAX) NOT NULL 
 )
@@ -344,9 +410,9 @@ GO
 DROP TABLE [dbo].[Positions]
 GO
 CREATE TABLE [dbo].[Positions] (
-[PositionId] int NOT NULL IDENTITY(1,1) ,
+[PositionId] bigint NOT NULL IDENTITY(1,1) ,
 [PositionName] nvarchar(MAX) NOT NULL ,
-[SportId] int NOT NULL 
+[SportId] bigint NOT NULL 
 )
 
 
@@ -366,7 +432,7 @@ GO
 DROP TABLE [dbo].[Promotions]
 GO
 CREATE TABLE [dbo].[Promotions] (
-[PromotionId] int NOT NULL IDENTITY(1,1) ,
+[PromotionId] bigint NOT NULL IDENTITY(1,1) ,
 [Name] nvarchar(MAX) NOT NULL ,
 [Content] nvarchar(MAX) NOT NULL ,
 [Code] nvarchar(MAX) NOT NULL 
@@ -389,9 +455,8 @@ GO
 DROP TABLE [dbo].[Sports]
 GO
 CREATE TABLE [dbo].[Sports] (
-[SportId] int NOT NULL IDENTITY(1,1) ,
-[Name] nvarchar(100) NOT NULL ,
-[PositionId] int NOT NULL 
+[SportId] bigint NOT NULL IDENTITY(1,1) ,
+[Name] nvarchar(100) NOT NULL 
 )
 
 
@@ -402,6 +467,9 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Sports] ON
 GO
+INSERT INTO [dbo].[Sports] ([SportId], [Name]) VALUES (N'1', N'Baseball')
+GO
+GO
 SET IDENTITY_INSERT [dbo].[Sports] OFF
 GO
 
@@ -411,19 +479,42 @@ GO
 DROP TABLE [dbo].[Teams]
 GO
 CREATE TABLE [dbo].[Teams] (
-[TeamId] int NOT NULL IDENTITY(1,1) ,
+[TeamId] bigint NOT NULL IDENTITY(1,1) ,
 [TeamName] nvarchar(MAX) NOT NULL ,
 [TeamLogo] nvarchar(MAX) NOT NULL ,
-[SportId] int NOT NULL 
+[SportId] bigint NOT NULL 
 )
 
 
+GO
+DBCC CHECKIDENT(N'[dbo].[Teams]', RESEED, 10)
 GO
 
 -- ----------------------------
 -- Records of Teams
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Teams] ON
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1')
+GO
+GO
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1')
+GO
 GO
 SET IDENTITY_INSERT [dbo].[Teams] OFF
 GO
@@ -434,7 +525,7 @@ GO
 DROP TABLE [dbo].[Venues]
 GO
 CREATE TABLE [dbo].[Venues] (
-[VenueId] int NOT NULL IDENTITY(1,1) ,
+[VenueId] bigint NOT NULL IDENTITY(1,1) ,
 [Name] nvarchar(MAX) NOT NULL ,
 [Surface] nvarchar(MAX) NOT NULL ,
 [State] nvarchar(MAX) NOT NULL ,
@@ -443,11 +534,34 @@ CREATE TABLE [dbo].[Venues] (
 
 
 GO
+DBCC CHECKIDENT(N'[dbo].[Venues]', RESEED, 7)
+GO
 
 -- ----------------------------
 -- Records of Venues
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Venues] ON
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'1', N'Yankee Stadium', N'1000', N'New York', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'2', N'Busch Stadium', N'1000', N'Misuri', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'3', N'Oakland Coliseum', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'4', N'	Fenway Park', N'1000', N'Massachusetts', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'5', N'AT&T Park', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'6', N'Dodger-Stadium', N'1000', N'California', N'US')
+GO
+GO
+INSERT INTO [dbo].[Venues] ([VenueId], [Name], [Surface], [State], [Country]) VALUES (N'7', N'Hard Rock Stadium', N'1000', N'Florida', N'US')
+GO
 GO
 SET IDENTITY_INSERT [dbo].[Venues] OFF
 GO
@@ -473,6 +587,19 @@ ALTER TABLE [dbo].[ClimaConditions] ADD PRIMARY KEY ([ClimaConditionsId])
 GO
 
 -- ----------------------------
+-- Indexes structure for table ContestGames
+-- ----------------------------
+CREATE INDEX [IX_FK_ContestGameGame] ON [dbo].[ContestGames]
+([GameId] ASC) 
+GO
+
+-- ----------------------------
+-- Primary Key structure for table ContestGames
+-- ----------------------------
+ALTER TABLE [dbo].[ContestGames] ADD PRIMARY KEY ([ContestId], [GameId], [ContestGameId])
+GO
+
+-- ----------------------------
 -- Indexes structure for table Contests
 -- ----------------------------
 CREATE INDEX [IX_FK_ContestType_Contest] ON [dbo].[Contests]
@@ -493,19 +620,6 @@ GO
 -- Primary Key structure for table ContestTypes
 -- ----------------------------
 ALTER TABLE [dbo].[ContestTypes] ADD PRIMARY KEY ([ContestTypeId])
-GO
-
--- ----------------------------
--- Indexes structure for table FK_Contest_Game
--- ----------------------------
-CREATE INDEX [IX_FK_ContestGame_Game] ON [dbo].[FK_Contest_Game]
-([Games_GameId] ASC) 
-GO
-
--- ----------------------------
--- Primary Key structure for table FK_Contest_Game
--- ----------------------------
-ALTER TABLE [dbo].[FK_Contest_Game] ADD PRIMARY KEY ([Contests_ContestId], [Games_GameId])
 GO
 
 -- ----------------------------
@@ -647,6 +761,9 @@ GO
 -- ----------------------------
 -- Indexes structure for table Positions
 -- ----------------------------
+CREATE INDEX [IX_FK_SportPosition] ON [dbo].[Positions]
+([SportId] ASC) 
+GO
 
 -- ----------------------------
 -- Primary Key structure for table Positions
@@ -667,9 +784,6 @@ GO
 -- ----------------------------
 -- Indexes structure for table Sports
 -- ----------------------------
-CREATE INDEX [IX_FK_Position_Sport] ON [dbo].[Sports]
-([PositionId] ASC) 
-GO
 
 -- ----------------------------
 -- Primary Key structure for table Sports
@@ -701,17 +815,17 @@ ALTER TABLE [dbo].[Venues] ADD PRIMARY KEY ([VenueId])
 GO
 
 -- ----------------------------
--- Foreign Key structure for table [dbo].[Contests]
+-- Foreign Key structure for table [dbo].[ContestGames]
 -- ----------------------------
-ALTER TABLE [dbo].[Contests] ADD FOREIGN KEY ([ContestTypeId]) REFERENCES [dbo].[ContestTypes] ([ContestTypeId]) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE [dbo].[ContestGames] ADD FOREIGN KEY ([ContestId]) REFERENCES [dbo].[Contests] ([ContestId]) ON DELETE NO ACTION ON UPDATE NO ACTION
+GO
+ALTER TABLE [dbo].[ContestGames] ADD FOREIGN KEY ([GameId]) REFERENCES [dbo].[Games] ([GameId]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------
--- Foreign Key structure for table [dbo].[FK_Contest_Game]
+-- Foreign Key structure for table [dbo].[Contests]
 -- ----------------------------
-ALTER TABLE [dbo].[FK_Contest_Game] ADD FOREIGN KEY ([Contests_ContestId]) REFERENCES [dbo].[Contests] ([ContestId]) ON DELETE NO ACTION ON UPDATE NO ACTION
-GO
-ALTER TABLE [dbo].[FK_Contest_Game] ADD FOREIGN KEY ([Games_GameId]) REFERENCES [dbo].[Games] ([GameId]) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE [dbo].[Contests] ADD FOREIGN KEY ([ContestTypeId]) REFERENCES [dbo].[ContestTypes] ([ContestTypeId]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------
@@ -771,9 +885,9 @@ ALTER TABLE [dbo].[Players] ADD FOREIGN KEY ([TeamId]) REFERENCES [dbo].[Teams] 
 GO
 
 -- ----------------------------
--- Foreign Key structure for table [dbo].[Sports]
+-- Foreign Key structure for table [dbo].[Positions]
 -- ----------------------------
-ALTER TABLE [dbo].[Sports] ADD FOREIGN KEY ([PositionId]) REFERENCES [dbo].[Positions] ([PositionId]) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE [dbo].[Positions] ADD FOREIGN KEY ([SportId]) REFERENCES [dbo].[Sports] ([SportId]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------

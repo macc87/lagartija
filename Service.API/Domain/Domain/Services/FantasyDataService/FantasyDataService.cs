@@ -35,6 +35,30 @@ namespace Fantasy.API.Domain.Services.FantasyService
             }
         }
 
+        public async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetPlayersFromTeamAsync(teamId);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<PlayerBO>>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetTeamAsync(teamId);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<TeamBO>(exception);
+            }
+        }
+
         #region [Disposing]
 
         public void Dispose()

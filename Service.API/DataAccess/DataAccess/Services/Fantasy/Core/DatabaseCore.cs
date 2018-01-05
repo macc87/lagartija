@@ -30,10 +30,10 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             try
             {
                 ContestResponse result = new ContestResponse();                
-                List<Contest> list;                
-                dbContest.Configuration.ProxyCreationEnabled = false;
-                var dbQuery = dbContest.Set<Contest>();
-                dbQuery.Include(x => x.Games);
+                List<Contest> list;
+                dbContext.Configuration.ProxyCreationEnabled = false;
+                var dbQuery = dbContext.Set<Contest>();
+                //dbQuery.Include(x => x.Games);
                 list = dbQuery.ToList();
                 result.Contests = list;                
                 if (result != null)
@@ -65,6 +65,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             catch (Exception ex)
             {
                 return ExceptionHandler<PlayersResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
+        {
+            try
+            {
+                var result = new TeamResponse()
+                {
+                    Team = dbContext.Teams.First(x => x.TeamId == teamId)
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Team " + teamId);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamResponse>(ex);
             }
         }
 

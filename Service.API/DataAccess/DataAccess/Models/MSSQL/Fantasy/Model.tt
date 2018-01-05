@@ -11,9 +11,11 @@
 //*********************************************************
 #>
 <#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ import namespace="System.Text.RegularExpressions" #>
 <#@ include file="EF.Utility.CS.ttinclude"#><#@
  output extension=".cs"#><#
 
+DefineMetadata();
 CodeGenerationTools code = new CodeGenerationTools(this);
 MetadataLoader loader = new MetadataLoader(this);
 CodeRegion region = new CodeRegion(this, 1);
@@ -808,5 +810,13 @@ bool VerifyTypesAreCaseInsensitiveUnique(EdmItemCollection itemCollection)
     }
 
     return true;
+}
+#>
+<#+
+private void DefineMetadata()
+{
+    TemplateMetadata[MetadataConstants.TT_TEMPLATE_NAME] = "CSharpDbContext.Types";
+    TemplateMetadata[MetadataConstants.TT_TEMPLATE_VERSION] = "6.2";
+    TemplateMetadata[MetadataConstants.TT_MINIMUM_ENTITY_FRAMEWORK_VERSION] = "6.2";
 }
 #>
