@@ -17,6 +17,11 @@ namespace ConsoleDBTesting
 
             FantasyContext dbContext = new FantasyContext();
             var gms = dbContext.Games.ToList();
+            var players = dbContext.Players.ToList();
+            var lineups = dbContext.LineUps.ToList();
+            var liupPlayers = dbContext.PlayerLineups.ToList();
+            var contestLineups = dbContext.ContestLineups.ToList();
+
             ContestResponse result = new ContestResponse()
             {
                 Contests = dbContext.Contests.Include("ContestType").Include("ContestGame").ToList()
@@ -30,6 +35,7 @@ namespace ConsoleDBTesting
                     games.Add(g);
                 }
             }
+
             Console.WriteLine("The end");
             Console.ReadLine();
         }
