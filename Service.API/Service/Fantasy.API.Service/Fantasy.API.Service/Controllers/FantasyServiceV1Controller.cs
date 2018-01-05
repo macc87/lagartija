@@ -134,7 +134,7 @@ namespace Fantasy.API.Service.Controllers
         /// </remarks>
         [HttpGet]
         [Route("contests", Name = "GetContestsV1")]
-        [ResponseType(typeof(ServiceResult<InjuryDto>))]
+        [ResponseType(typeof(ServiceResult<ContestDto>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsAsync()
         {
@@ -157,7 +157,7 @@ namespace Fantasy.API.Service.Controllers
             }
             catch (Exception exception)
             {
-                return Ok(ResponseHandler.ExceptionHandler<InjuryDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
         }
 
@@ -169,8 +169,8 @@ namespace Fantasy.API.Service.Controllers
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
-        [Route("playersfromteam", Name = "GetContestsV1")]
-        [ResponseType(typeof(ServiceResult<InjuryDto>))]
+        [Route("playersfromteam", Name = "GetPlayersFromTeamV1")]
+        [ResponseType(typeof(ServiceResult<PlayerDto>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetPlayersFromTeamAsync(int teamId)
         {
@@ -193,7 +193,7 @@ namespace Fantasy.API.Service.Controllers
             }
             catch (Exception exception)
             {
-                return Ok(ResponseHandler.ExceptionHandler<InjuryDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+                return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
         }
 
