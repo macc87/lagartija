@@ -43,8 +43,8 @@
     <Reference Include="Fantasy.API.Domain, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.5\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.2\lib\net461\Fantasy.API.Dtos.dll</HintPath>
+    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.3\lib\net461\Fantasy.API.Dtos.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Utilities, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.3\lib\net452\Fantasy.API.Utilities.dll</HintPath>
@@ -88,16 +88,6 @@
     <Compile Include="Mapping\DtoFactories.cs" />
     <Compile Include="Mapping\RequestMapping\DtoFactoryRequest.cs" />
     <Compile Include="Mapping\ResponseMapping\DtoFactoryResponse.cs" />
-    <Compile Include="Models\Claim\MSSQL\Fantasy\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Claim\MSSQL\Fantasy\Model.Mapping.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,17 +96,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Claim\MSSQL\Fantasy\Model.Mapping.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Mapping.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Claim\MSSQL\Fantasy\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MSSQL\Fantasy\Model.edmx.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
