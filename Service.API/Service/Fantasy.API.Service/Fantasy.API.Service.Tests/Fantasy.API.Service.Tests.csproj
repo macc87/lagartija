@@ -93,16 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FantasyServiceV1ControllerTests.cs" />
-    <Compile Include="Models\Claim\MSSQL\Fantasy\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Claim\MSSQL\Fantasy\Model.Mapping.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,17 +104,6 @@
       <Project>{7B4A9412-25AE-44D8-B76F-44FD1CA37D81}</Project>
       <Name>Fantasy.API.Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Claim\MSSQL\Fantasy\Model.Mapping.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Mapping.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Claim\MSSQL\Fantasy\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\MSSQL\Fantasy\Model.edmx.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
