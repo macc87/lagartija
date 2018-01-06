@@ -64,8 +64,8 @@
     <Reference Include="Fantasy.API.Domain, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fantasy.API.Domain.1.0.0.5\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fantasy.Api.Dtos.1.0.0.3\lib\net461\Fantasy.API.Dtos.dll</HintPath>
+    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fantasy.Api.Dtos.1.0.0.4\lib\net461\Fantasy.API.Dtos.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Security, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fantasy.API.Security.1.0.0.4\lib\net461\Fantasy.API.Security.dll</HintPath>
