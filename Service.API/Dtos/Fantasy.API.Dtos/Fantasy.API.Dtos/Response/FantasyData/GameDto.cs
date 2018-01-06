@@ -22,5 +22,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public TeamDto HomeTeam { get; set; }
 
         public ClimaConditionsDto ClimaCondition { get; set; }
+        public string _comment { get; set; }
     }
 }

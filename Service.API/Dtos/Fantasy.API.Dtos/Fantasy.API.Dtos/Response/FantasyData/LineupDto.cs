@@ -11,5 +11,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public long LineUpId { get; set; }
         public IEnumerable<PlayerDto> Players { get; set; }
         public UserDto User { get; set; }
+        public string _comment { get; set; }
     }
 }

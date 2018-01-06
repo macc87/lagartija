@@ -11,5 +11,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public long ContestTypeId { get; set; }
 
         public string Type { get; set; }
+        public string _comment { get; set; }
     }
 }
