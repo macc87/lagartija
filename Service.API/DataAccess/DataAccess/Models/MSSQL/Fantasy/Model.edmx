@@ -106,11 +106,7 @@
     <AssociationSet Name="GoalSport" Association="FantasyModel.Store.GoalSport">
       <End Role="Goal" EntitySet="Goals" />
       <End Role="Sport" EntitySet="Sports" />
-    </AssociationSet>
-    <AssociationSet Name="SportPosition" Association="FantasyModel.Store.SportPosition">
-      <End Role="Sport" EntitySet="Sports" />
-      <End Role="Position" EntitySet="Positions" />
-    </AssociationSet>
+    </AssociationSet>    
   </EntityContainer>
   <EntityType Name="Injuries">
     <Key>
