@@ -58,5 +58,29 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+
+        [TestMethod()]
+        public async Task GetContests_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsAsync())
+                as OkNegotiatedContentResult<ServiceResult<ContestDto>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod()]
+        public async Task GetPlayersFromTeam_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetPlayersFromTeamAsync(2))
+                as OkNegotiatedContentResult<ServiceResult<PlayerDto>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }
