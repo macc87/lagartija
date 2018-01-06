@@ -13,31 +13,37 @@ namespace Fantasy.API.DataAccess.Tests
         readonly IFantasyDataClient fantasyDatClient = new DatabaseClient();
 
 
-        [TestMethod]
+        [TestMethod()]
         public async Task GetSchedule_Successful()
         {
             var result = await fantasyClient.GetDailyScheduleAsync(DateTime.Today.AddMonths(-3));
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public async Task GetInjuries_Successful()
         {
             var result = await fantasyClient.GetInjuriesAsync();
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public async Task GetContests_Successful()
         {
             var result = await fantasyDatClient.GetContestsAsync();
             Assert.IsFalse(result.HasError);
         }
 
+        [TestMethod()]
         public async Task GetPlayersFromTeam_Successful()
         {
-            var result = await fantasyDatClient.GetPlayersFromTeamAsync(1);
+            var result = await fantasyDatClient.GetPlayersFromTeamAsync(2);
             Assert.IsFalse(result.HasError);
+            if(result.Result.Players.Count > 0)
+            {
+                Assert.IsNotNull(result.Result.Players[0].Team);
+                Assert.IsNotNull(result.Result.Players[0].Position);
+            }
         }
 
         //[TestMethod]

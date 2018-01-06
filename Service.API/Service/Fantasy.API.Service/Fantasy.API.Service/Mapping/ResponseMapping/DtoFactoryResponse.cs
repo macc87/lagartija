@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Service.Mapping.ResponseMapping
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DtoFactoryResponse
     {
 
@@ -30,6 +33,11 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
             return await Task.FromResult(result);
         }
 
+        /// <summary>
+        /// Create a Task with a InjuriesTeam Dto
+        /// </summary>
+        /// <param name="teams"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<InjuriesTeamDto>> Create(IEnumerable<InjuriesTeamBO> teams)
         {
             var result = new List<InjuriesTeamDto>();
