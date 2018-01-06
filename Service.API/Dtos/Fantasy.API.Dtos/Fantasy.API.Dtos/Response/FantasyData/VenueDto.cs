@@ -17,5 +17,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public string State { get; set; }
 
         public string Country { get; set; }
+        public string _comment { get; set; }
     }
 }

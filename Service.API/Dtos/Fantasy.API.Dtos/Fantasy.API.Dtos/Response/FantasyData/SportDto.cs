@@ -11,5 +11,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public long SportId { get; set; }
 
         public string Name { get; set; }
+        public string _comment { get; set; }
     }
 }

@@ -23,5 +23,12 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public double Salary { get; set; }
        
         public string Photo { get; set; }
+
+        public string _comment { get; set; }
+
+        public override string ToString()
+        {
+            return "PlayerDto";
+        }
     }
 }

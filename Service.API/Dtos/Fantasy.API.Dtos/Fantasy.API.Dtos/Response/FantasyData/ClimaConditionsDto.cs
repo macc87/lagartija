@@ -11,5 +11,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public long ClimaId { get; set; }
 
         public string Condition { get; set; }
+        public string _comment { get; set; }
     }
 }
