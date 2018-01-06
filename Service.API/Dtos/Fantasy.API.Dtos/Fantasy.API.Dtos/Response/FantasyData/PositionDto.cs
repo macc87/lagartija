@@ -13,6 +13,7 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public string PositionName { get; set; }
 
         public SportDto Sport { get; set; }
+        public string _comment { get; set; }
     }
 }
 

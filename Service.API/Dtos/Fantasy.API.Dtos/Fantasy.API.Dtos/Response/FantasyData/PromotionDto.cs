@@ -15,5 +15,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public string Content { get; set; }
 
         public string Code { get; set; }
+        public string _comment { get; set; }
     }
 }
