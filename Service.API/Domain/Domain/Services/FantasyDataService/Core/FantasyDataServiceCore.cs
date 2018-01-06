@@ -62,7 +62,7 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
             }
         }
 
-        internal async Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId)
+        internal async Task<ServiceResult<TeamBO>> GetTeamAsync(long teamId)
         {
             try
             {

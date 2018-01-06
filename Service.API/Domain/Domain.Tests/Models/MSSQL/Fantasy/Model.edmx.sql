@@ -3,7 +3,7 @@
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
 -- Date Created: 01/05/2018 10:46:43
--- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
+-- Generated from EDMX file: C:\Data\Develop\Projects\fantasyleague\src\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -768,6 +768,21 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_GoalSport'
 CREATE INDEX [IX_FK_GoalSport]
 ON [dbo].[Goals]
+    ([SportId]);
+GO
+
+-- Creating foreign key on [SportId] in table 'Positions'
+ALTER TABLE [dbo].[Positions]
+ADD CONSTRAINT [FK_SportPosition]
+    FOREIGN KEY ([SportId])
+    REFERENCES [dbo].[Sports]
+        ([SportId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SportPosition'
+CREATE INDEX [IX_FK_SportPosition]
+ON [dbo].[Positions]
     ([SportId]);
 GO
 
