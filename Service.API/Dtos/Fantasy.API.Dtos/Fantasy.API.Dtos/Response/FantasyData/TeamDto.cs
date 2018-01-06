@@ -17,5 +17,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public SportDto Sport { get; set; }
 
         public IEnumerable<PlayerDto> Players { get; set; }
+        public string _comment { get; set; }
     }
 }
