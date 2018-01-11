@@ -54,17 +54,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 var result = new PlayersResponse()
                 {
-                    Players = dbContext.Players.Where(x => x.TeamId == teamId).Include("Team").Include("Position").ToList()
+                    Players = dbContext.Players.Where(x => x.TeamId == teamId).ToList()
                 };
-                //var result = new PlayersResponse();
-                //List<Player> list;
-                //dbContext.Configuration.ProxyCreationEnabled = false;
-                //var dbQuery = dbContext.Set<Player>();
-                //dbQuery.Include("Team");
-                //dbQuery.Include("Position");
-                //list = dbQuery.Where(x => x.TeamId == teamId).ToList();
-                //result.Players = list;
-
                 if (result != null)
                     return await ServiceOkAsync(result);
 
@@ -77,7 +68,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(long teamId)
+        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
         {
             try
             {

@@ -181,7 +181,7 @@ namespace Fantasy.API.Service.Controllers
                 if (resultBO.HasError)
                     throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
                         message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
-                var resultDto = new List<Task<PlayerDto>>();
+                var resultDto = new List<Task<ContestDto>>();
                 foreach (PlayerBO player in resultBO.Result)
                 {
                     var playerDto = await DtoFactories.DtoFactoryResponse.Create(player);

@@ -54,7 +54,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
-        public async Task<ServiceResult<TeamResponse>> GetTeamAsync(long teamId)
+        public async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
         {
             try
             {

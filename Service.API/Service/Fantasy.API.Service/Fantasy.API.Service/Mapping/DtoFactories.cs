@@ -5,16 +5,10 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Service.Mapping
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class DtoFactories
     {
         private static DtoFactoryRequest _dtoFactoryRequest;
         private static DtoFactoryResponse _dtoFactoryResponse;
-        /// <summary>
-        /// 
-        /// </summary>
         public static DtoFactoryRequest DtoFactoryRequest
         {
             get
@@ -22,9 +16,6 @@ namespace Fantasy.API.Service.Mapping
                 return _dtoFactoryRequest ?? (_dtoFactoryRequest = new DtoFactoryRequest());
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public static DtoFactoryResponse DtoFactoryResponse
         {
             get
@@ -33,14 +24,6 @@ namespace Fantasy.API.Service.Mapping
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TIn"></typeparam>
-        /// <typeparam name="TOut"></typeparam>
-        /// <param name="objects"></param>
-        /// <param name="isResponse"></param>
-        /// <returns></returns>
         public static async Task<List<TOut>> CreateList<TIn, TOut>(IEnumerable<TIn> objects, bool isResponse = true)
             where TOut : class
             where TIn : class
