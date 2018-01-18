@@ -110,6 +110,24 @@
     <Compile Include="Models\MSSQL\Fantasy\ContestMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Information.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\InformationMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NotificationsResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\InformationsResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\TeamResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\ContestType.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -158,16 +176,6 @@
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\LineupMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Notification.cs">
       <DependentUpon>Model.tt</DependentUpon>
