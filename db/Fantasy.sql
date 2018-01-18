@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/05/2018 10:46:43
+-- Date Created: 01/18/2018 04:23:50
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -74,6 +74,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LineUpContestLineup]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ContestLineups] DROP CONSTRAINT [FK_LineUpContestLineup];
 GO
+IF OBJECT_ID(N'[dbo].[FK_GoalSport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Goals] DROP CONSTRAINT [FK_GoalSport];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -139,6 +142,9 @@ GO
 IF OBJECT_ID(N'[dbo].[ContestLineups]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ContestLineups];
 GO
+IF OBJECT_ID(N'[dbo].[Goals]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Goals];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -203,9 +209,9 @@ CREATE TABLE [dbo].[Sports] (
 );
 GO
 
--- Creating table 'Notifications'
-CREATE TABLE [dbo].[Notifications] (
-    [NotificationId] bigint IDENTITY(1,1) NOT NULL,
+-- Creating table 'Information'
+CREATE TABLE [dbo].[Information] (
+    [InformationId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [InitialDate] datetime  NOT NULL,
@@ -343,6 +349,17 @@ CREATE TABLE [dbo].[Goals] (
 );
 GO
 
+-- Creating table 'Notifications'
+CREATE TABLE [dbo].[Notifications] (
+    [NotificationId] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [AccountLogin] nvarchar(50)  NOT NULL,
+    [Link] nvarchar(max)  NOT NULL,
+    [Active] bit  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -383,10 +400,10 @@ ADD CONSTRAINT [PK_Sports]
     PRIMARY KEY CLUSTERED ([SportId] ASC);
 GO
 
--- Creating primary key on [NotificationId] in table 'Notifications'
-ALTER TABLE [dbo].[Notifications]
-ADD CONSTRAINT [PK_Notifications]
-    PRIMARY KEY CLUSTERED ([NotificationId] ASC);
+-- Creating primary key on [InformationId] in table 'Information'
+ALTER TABLE [dbo].[Information]
+ADD CONSTRAINT [PK_Information]
+    PRIMARY KEY CLUSTERED ([InformationId] ASC);
 GO
 
 -- Creating primary key on [ClimaConditionsId] in table 'ClimaConditions'
@@ -471,6 +488,12 @@ GO
 ALTER TABLE [dbo].[Goals]
 ADD CONSTRAINT [PK_Goals]
     PRIMARY KEY CLUSTERED ([GoalId] ASC);
+GO
+
+-- Creating primary key on [NotificationId] in table 'Notifications'
+ALTER TABLE [dbo].[Notifications]
+ADD CONSTRAINT [PK_Notifications]
+    PRIMARY KEY CLUSTERED ([NotificationId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -771,6 +794,21 @@ ON [dbo].[Goals]
     ([SportId]);
 GO
 
+-- Creating foreign key on [AccountLogin] in table 'Notifications'
+ALTER TABLE [dbo].[Notifications]
+ADD CONSTRAINT [FK_NotificationAccount]
+    FOREIGN KEY ([AccountLogin])
+    REFERENCES [dbo].[Accounts]
+        ([Login])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NotificationAccount'
+CREATE INDEX [IX_FK_NotificationAccount]
+ON [dbo].[Notifications]
+    ([AccountLogin]);
+GO
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
@@ -1008,4 +1046,22 @@ GO
 GO
 SET IDENTITY_INSERT [dbo].[Players] OFF
 GO
+
+-- ----------------------------
+-- Records of Notifications
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Notifications] ON
+GO
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'1', N'Notification 1', N'This notification is just a Test', N'admin', N'site/notification1/link', N'TRUE')
+GO
+GO
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'2', N'Notification 2', N'This notification is just a Test', N'admin', N'site/notification2/link', N'TRUE')
+GO
+GO
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'3', N'Notification 3', N'This notification is just a Test', N'admin', N'site/notification3/link', N'TRUE')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Notifications] OFF
+GO
+
 
