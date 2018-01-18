@@ -12,7 +12,7 @@
     <EntitySet Name="Leagues" EntityType="FantasyModel.Store.Leagues" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts" EntityType="FantasyModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sports" EntityType="FantasyModel.Store.Sports" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Notifications" EntityType="FantasyModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Information" EntityType="FantasyModel.Store.Information" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClimaConditions" EntityType="FantasyModel.Store.ClimaConditions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Venues" EntityType="FantasyModel.Store.Venues" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Players" EntityType="FantasyModel.Store.Players" store:Type="Tables" Schema="dbo" />
@@ -27,6 +27,7 @@
     <EntitySet Name="PlayerLineups" EntityType="FantasyModel.Store.PlayerLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContestLineups" EntityType="FantasyModel.Store.ContestLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Goals" EntityType="FantasyModel.Store.Goals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="FantasyModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
       <End Role="Injury" EntitySet="Injuries" />
       <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
@@ -107,6 +108,10 @@
       <End Role="Goal" EntitySet="Goals" />
       <End Role="Sport" EntitySet="Sports" />
     </AssociationSet>
+    <AssociationSet Name="NotificationAccount" Association="FantasyModel.Store.NotificationAccount">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
     <Key>
@@ -167,11 +172,11 @@
     <Property Name="SportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
-  <EntityType Name="Notifications">
+  <EntityType Name="Information">
     <Key>
-      <PropertyRef Name="NotificationId" />
+      <PropertyRef Name="InformationId" />
     </Key>
-    <Property Name="NotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InformationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InitialDate" Type="datetime" Nullable="false" />
@@ -312,6 +317,17 @@
     <Property Name="CompletionCount" Type="int" Nullable="false" />
     <Property Name="GoalLogo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SportId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_InjuryPlayer_Injury">
     <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="1" />
@@ -553,6 +569,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="NotificationAccount">
+    <End Role="Notification" Type="FantasyModel.Store.Notifications" Multiplicity="*" />
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="AccountLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -662,7 +690,7 @@
           </AssociationSet>
           <EntitySet Name="Accounts" EntityType="FantasyModel.Account" />
           <EntitySet Name="Sports" EntityType="FantasyModel.Sport" />
-          <EntitySet Name="Notifications" EntityType="FantasyModel.Notification" />
+          <EntitySet Name="Information" EntityType="FantasyModel.Information" />
           <EntitySet Name="ClimaConditions" EntityType="FantasyModel.ClimaConditions" />
           <EntitySet Name="Venues" EntityType="FantasyModel.Venue" />
           <EntitySet Name="Players" EntityType="FantasyModel.Player" />
@@ -745,6 +773,11 @@
             <End Role="Goal" EntitySet="Goals" />
             <End Role="Sport" EntitySet="Sports" />
           </AssociationSet>
+          <EntitySet Name="Notifications" EntityType="FantasyModel.Notification" />
+          <AssociationSet Name="NotificationAccount" Association="FantasyModel.NotificationAccount">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -754,6 +787,7 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LineUps" Relationship="FantasyModel.AccountLineUp" FromRole="Account" ToRole="LineUp" />
+          <NavigationProperty Name="Notifications" Relationship="FantasyModel.NotificationAccount" FromRole="Account" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Sport">
           <Key>
@@ -765,11 +799,11 @@
           <NavigationProperty Name="Positions" Relationship="FantasyModel.SportPosition" FromRole="Sport" ToRole="Position" />
           <NavigationProperty Name="Goals" Relationship="FantasyModel.GoalSport" FromRole="Sport" ToRole="Goal" />
         </EntityType>
-        <EntityType Name="Notification">
+        <EntityType Name="Information">
           <Key>
-            <PropertyRef Name="NotificationId" />
+            <PropertyRef Name="InformationId" />
           </Key>
-          <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <Property Name="InitialDate" Type="DateTime" Nullable="false" />
@@ -1141,6 +1175,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="FantasyModel.NotificationAccount" FromRole="Notification" ToRole="Account" />
+          <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="NotificationAccount">
+          <End Type="FantasyModel.Notification" Role="Notification" Multiplicity="*" />
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AccountLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1212,10 +1270,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Notifications">
-      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Notification)">
-        <MappingFragment StoreEntitySet="Notifications">
-          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Information)">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="InformationId" ColumnName="InformationId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="InitialDate" ColumnName="InitialDate" />
@@ -1364,6 +1422,18 @@
           <ScalarProperty Name="CompletionCount" ColumnName="CompletionCount" />
           <ScalarProperty Name="GoalLogo" ColumnName="GoalLogo" />
           <ScalarProperty Name="SportId" ColumnName="SportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Notification)">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

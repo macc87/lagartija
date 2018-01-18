@@ -72,6 +72,78 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync()
+        {
+            try
+            {
+                var result = await _dbClientCore.GetActiveNotificationsAsync();
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationsResponse>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(Account user)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetUserActiveNotificationsAsync(user);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationsResponse>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<InformationsResponse>> GetInformationsAsync()
+        {
+            try
+            {
+                var result = await _dbClientCore.GetInformationsAsync();
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationsResponse>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<InformationsResponse>> GetInformationsAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetInformationsAsync(start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationsResponse>(exception);
+            }
+        }
+
         #region [Dispose]
 
         public void Dispose()
@@ -96,6 +168,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
             _disposed = true;
         }
+
         #endregion
     }
 }
