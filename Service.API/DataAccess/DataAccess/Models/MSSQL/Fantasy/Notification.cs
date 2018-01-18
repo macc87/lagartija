@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public long NotificationId
+        public int NotificationId
         {
             get; set;
         }
@@ -34,14 +34,74 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             get; set;
         }
     
-        public System.DateTime InitialDate
+        public string AccountLogin
+        {
+    get { return _accountLogin; }
+            set
+            {
+                if (_accountLogin != value)
+                {
+                    if (Account != null && Account.Login != value)
+                    {
+                        Account = null;
+                    }
+                    _accountLogin = value;
+                }
+            }
+        }
+        private string _accountLogin;
+    
+        public string Link
         {
             get; set;
         }
     
-        public System.DateTime FinalDate
+        public bool Active
         {
             get; set;
+        }
+
+        #endregion
+
+        #region Navigation Properties
+    
+        public Account Account
+        {
+            get { return _account; }
+            set
+            {
+                if (!ReferenceEquals(_account, value))
+                {
+                    var previousValue = _account;
+                    _account = value;
+                    FixupAccount(previousValue);
+                }
+            }
+        }
+        private Account _account;
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupAccount(Account previousValue)
+        {
+            if (previousValue != null && previousValue.Notifications.Contains(this))
+            {
+                previousValue.Notifications.Remove(this);
+            }
+    
+            if (Account != null)
+            {
+                if (!Account.Notifications.Contains(this))
+                {
+                    Account.Notifications.Add(this);
+                }
+                if (AccountLogin != Account.Login)
+                {
+                    AccountLogin = Account.Login;
+                }
+            }
         }
 
         #endregion
