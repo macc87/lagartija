@@ -40,6 +40,38 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
+        [TestMethod()]
+        public async Task GetInformations_Successful()
+        {
+            var result = await fantasyDatClient.GetInformationsAsync();
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod()]
+        public async Task GetInformationsDated_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+            var result = await fantasyDatClient.GetInformationsAsync(start, end);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetActiveNotifications_Successful()
+        {
+            var result = await fantasyDatClient.GetActiveNotificationsAsync();
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task GetUserActiveNotifications_Successful()
+        {
+            DataAccess.Models.MSSQL.Fantasy.Account user = new Models.MSSQL.Fantasy.Account()
+            {
+                Login = "admin"
+            };
+            var result = await fantasyDatClient.GetUserActiveNotificationsAsync(user);
+            Assert.IsFalse(result.HasError);
+        }
+
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{
