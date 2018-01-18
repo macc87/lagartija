@@ -88,6 +88,90 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
+        internal async Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(Account user)
+        {
+            try
+            {
+                var result = new NotificationsResponse()
+                {
+                    Notifications = new List<Notification>()
+                };
+                result.Notifications = dbContext.Notifications.Where(x=>x.Active && x.Account.Login == user.Login).ToList();
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Notifications ");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NotificationsResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync()
+        {
+            try
+            {
+                var result = new NotificationsResponse()
+                {
+                    Notifications = new List<Notification>()
+                };
+                result.Notifications = dbContext.Notifications.Where(x=>x.Active).ToList();
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Notifications");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NotificationsResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<InformationsResponse>> GetInformationsAsync()
+        {
+            try
+            {
+                var result = new InformationsResponse()
+                {
+                    Informations = new List<Information>()
+                };
+                result.Informations = dbContext.Informations.ToList();
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Notifications ");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InformationsResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<InformationsResponse>> GetInformationsAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = new InformationsResponse()
+                {
+                    Informations = new List<Information>()
+                };
+                result.Informations = dbContext.Informations.Where(x => x.FinalDate >= start || x.FinalDate >= end).ToList();
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Notifications");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InformationsResponse>(ex);
+            }
+        }
+
         #region [Dispose]
 
         public void Dispose()
