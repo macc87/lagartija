@@ -12,12 +12,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
     public interface IFantasyDataClient : IDisposable
     {
         Task<ServiceResult<ContestResponse>> GetContestsAsync();
-
+        Task<ServiceResult<ContestResponse>> GetActiveContestsAsync();
         Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId);
         Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId);
         Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync();
         Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(Account user);
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync();
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync(DateTime start, DateTime end);
+        Task<ServiceResult<PromotionsResponse>> GetPromotionsAsync();
+        Task<ServiceResult<DateTime>> GetNextContestTime(IEnumerable<Contest> contests);
+        Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type);
+        Task<ServiceResult<ContestResponse>> GetContestFilteredby(double smallEntry, double bigEntry);
+        Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type, double smallEntry, double bigEntry);
+        //TODO: Task<ServiceResult<ContestResponse>> GetContestFilteredby(Prizing Rule);
+
+        Task<ServiceResult<UserResponse>> GetUserInfo(string login);
+
+
     }
-}
+};
+
+        
