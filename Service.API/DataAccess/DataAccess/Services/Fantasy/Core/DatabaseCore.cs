@@ -341,10 +341,21 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             try
             {
                 Account user = dbContext.Accounts.Where(x => x.Login == login).First();
+                List<AccountFriends> Accountfriends = dbContext.AccountFriends.Where(x => x.AccountLogin == user.Login || x.AccountLogin1 == user.Login).ToList();
+                List<Account> Friends = new List<Account>();
+                foreach (AccountFriends af in Accountfriends)
+                {
+                    if (af.AccountLogin != user.Login)
+                    {
+                        Account friend = dbContext.Accounts.Where(x => x.Login == af.AccountLogin).First();
+                        Friends.Add(friend);
+                    }
+                }
                 UserResponse result = new UserResponse()
                 {
                     User = user,
-                    Friends = user.Friends.ToList(),
+                    Friends = Friends,
+                    Money = user.Money
                     // TODO: Add Other User response results fields......
                 };
                 if (result != null)
