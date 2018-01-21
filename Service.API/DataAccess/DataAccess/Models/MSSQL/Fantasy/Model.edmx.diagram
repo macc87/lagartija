@@ -48,8 +48,11 @@
         <AssociationConnector Association="FantasyModel.LineUpContestLineup" />
         <EntityTypeShape EntityType="FantasyModel.Goal" Width="1.5" PointX="7.625" PointY="3.875" />
         <AssociationConnector Association="FantasyModel.GoalSport" />
-        <EntityTypeShape EntityType="FantasyModel.Notification" Width="1.5" PointX="5.875" PointY="15" />
+        <EntityTypeShape EntityType="FantasyModel.Notification" Width="1.5" PointX="5.875" PointY="15.125" />
         <AssociationConnector Association="FantasyModel.NotificationAccount" />
+        <EntityTypeShape EntityType="FantasyModel.AccountFriends" Width="1.5" PointX="10.5" PointY="15.125" />
+        <AssociationConnector Association="FantasyModel.AccountAccountFriends" />
+        <AssociationConnector Association="FantasyModel.AccountAccountFriends1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

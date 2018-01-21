@@ -33,6 +33,11 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
+    
+        public long Money
+        {
+            get; set;
+        }
 
         #endregion
 

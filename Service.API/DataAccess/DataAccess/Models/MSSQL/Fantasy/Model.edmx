@@ -28,6 +28,7 @@
     <EntitySet Name="ContestLineups" EntityType="FantasyModel.Store.ContestLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Goals" EntityType="FantasyModel.Store.Goals" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="FantasyModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountFriends" EntityType="FantasyModel.Store.AccountFriends" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
       <End Role="Injury" EntitySet="Injuries" />
       <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
@@ -112,6 +113,14 @@
       <End Role="Notification" EntitySet="Notifications" />
       <End Role="Account" EntitySet="Accounts" />
     </AssociationSet>
+    <AssociationSet Name="AccountAccountFriends" Association="FantasyModel.Store.AccountAccountFriends">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountFriends" EntitySet="AccountFriends" />
+    </AssociationSet>
+    <AssociationSet Name="AccountAccountFriends1" Association="FantasyModel.Store.AccountAccountFriends1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountFriends" EntitySet="AccountFriends" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
     <Key>
@@ -164,6 +173,7 @@
     <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="250" />
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Money" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Sports">
     <Key>
@@ -328,6 +338,16 @@
     <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountFriends">
+    <Key>
+      <PropertyRef Name="AccountFriendsId" />
+      <PropertyRef Name="AccountLogin" />
+      <PropertyRef Name="AccountLogin1" />
+    </Key>
+    <Property Name="AccountFriendsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="AccountLogin1" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <Association Name="FK_InjuryPlayer_Injury">
     <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="1" />
@@ -581,6 +601,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="AccountAccountFriends">
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <End Role="AccountFriends" Type="FantasyModel.Store.AccountFriends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="AccountFriends">
+        <PropertyRef Name="AccountLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountAccountFriends1">
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <End Role="AccountFriends" Type="FantasyModel.Store.AccountFriends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="AccountFriends">
+        <PropertyRef Name="AccountLogin1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -778,6 +822,15 @@
             <End Role="Notification" EntitySet="Notifications" />
             <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
+          <EntitySet Name="AccountFriends" EntityType="FantasyModel.AccountFriends" />
+          <AssociationSet Name="AccountAccountFriends" Association="FantasyModel.AccountAccountFriends">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountFriends" EntitySet="AccountFriends" />
+          </AssociationSet>
+          <AssociationSet Name="AccountAccountFriends1" Association="FantasyModel.AccountAccountFriends1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountFriends" EntitySet="AccountFriends" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -788,6 +841,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LineUps" Relationship="FantasyModel.AccountLineUp" FromRole="Account" ToRole="LineUp" />
           <NavigationProperty Name="Notifications" Relationship="FantasyModel.NotificationAccount" FromRole="Account" ToRole="Notification" />
+          <Property Name="Money" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Sport">
           <Key>
@@ -1199,6 +1253,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccountFriends">
+          <Key>
+            <PropertyRef Name="AccountFriendsId" />
+            <PropertyRef Name="AccountLogin" />
+            <PropertyRef Name="AccountLogin1" />
+          </Key>
+          <Property Name="AccountFriendsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountLogin1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AccountAccountFriends">
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="FantasyModel.AccountFriends" Role="AccountFriends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="AccountFriends">
+              <PropertyRef Name="AccountLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountAccountFriends1">
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="FantasyModel.AccountFriends" Role="AccountFriends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="AccountFriends">
+              <PropertyRef Name="AccountLogin1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1259,6 +1347,7 @@
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1434,6 +1523,15 @@
           <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountFriends">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.AccountFriends)">
+        <MappingFragment StoreEntitySet="AccountFriends">
+          <ScalarProperty Name="AccountFriendsId" ColumnName="AccountFriendsId" />
+          <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
+          <ScalarProperty Name="AccountLogin1" ColumnName="AccountLogin1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
