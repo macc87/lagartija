@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2018-01-18 03:36:20
+Date: 2018-01-20 01:22:32
 */
 
 
@@ -251,21 +251,57 @@ CREATE TABLE [dbo].[Goals] (
 
 
 GO
-DBCC CHECKIDENT(N'[dbo].[Goals]', RESEED, 2)
-GO
 
 -- ----------------------------
 -- Records of Goals
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Goals] ON
 GO
-INSERT INTO [dbo].[Goals] ([GoalId], [Name], [CompletionCount], [GoalLogo], [SportId]) VALUES (N'1', N'Hits', N'6', N'hitlogo.png', N'1')
-GO
-GO
-INSERT INTO [dbo].[Goals] ([GoalId], [Name], [CompletionCount], [GoalLogo], [SportId]) VALUES (N'2', N'Doubles', N'1', N'doublelogo.png', N'1')
-GO
-GO
 SET IDENTITY_INSERT [dbo].[Goals] OFF
+GO
+
+-- ----------------------------
+-- Table structure for Information
+-- ----------------------------
+DROP TABLE [dbo].[Information]
+GO
+CREATE TABLE [dbo].[Information] (
+[InformationId] bigint NOT NULL IDENTITY(1,1) ,
+[Name] nvarchar(MAX) NOT NULL ,
+[Content] nvarchar(MAX) NOT NULL ,
+[InitialDate] datetime NOT NULL ,
+[FinalDate] datetime NOT NULL 
+)
+
+
+GO
+DBCC CHECKIDENT(N'[dbo].[Information]', RESEED, 6)
+GO
+
+-- ----------------------------
+-- Records of Information
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Information] ON
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'1', N'Information 1', N'This Information is just a Test', N'2018-01-18 02:02:00.000', N'2018-01-22 02:02:05.000')
+GO
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'2', N'Information 2', N'This Information is just a test 2', N'2018-01-19 02:02:39.000', N'2018-01-31 02:02:46.000')
+GO
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'3', N'Information 3', N'This Information is just a test 3', N'2018-01-16 02:03:11.000', N'2018-02-08 02:03:17.000')
+GO
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'4', N'Info1', N'This is just a test information', N'2018-01-16 04:33:47.000', N'2018-02-02 04:33:59.000')
+GO
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'5', N'Info2', N'This is just a test info', N'2018-01-18 04:34:28.000', N'2018-01-31 04:34:34.000')
+GO
+GO
+INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'6', N'Info3', N'This is just a test info', N'2018-01-19 04:35:04.000', N'2018-01-22 04:35:07.000')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Information] OFF
 GO
 
 -- ----------------------------
@@ -380,11 +416,12 @@ GO
 DROP TABLE [dbo].[Notifications]
 GO
 CREATE TABLE [dbo].[Notifications] (
-[NotificationId] bigint NOT NULL IDENTITY(1,1) ,
+[NotificationId] int NOT NULL IDENTITY(1,1) ,
 [Name] nvarchar(MAX) NOT NULL ,
 [Content] nvarchar(MAX) NOT NULL ,
-[InitialDate] datetime NOT NULL ,
-[FinalDate] datetime NOT NULL 
+[AccountLogin] nvarchar(50) NOT NULL ,
+[Link] nvarchar(MAX) NOT NULL ,
+[Active] bit NOT NULL 
 )
 
 
@@ -397,13 +434,13 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Notifications] ON
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'1', N'Notification 1', N'This notification is just a Test', N'2018-01-18 02:02:00.000', N'2018-01-22 02:02:05.000')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'1', N'Notification 1', N'This notification is just a Test', N'admin', N'site/notification1/link', N'1')
 GO
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'2', N'Notification 2', N'This notification is just a test 2', N'2018-01-19 02:02:39.000', N'2018-01-31 02:02:46.000')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'2', N'Notification 2', N'This notification is just a Test', N'admin', N'site/notification2/link', N'1')
 GO
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'3', N'Notification 3', N'This notification is just a test 3', N'2018-01-16 02:03:11.000', N'2018-02-08 02:03:17.000')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'3', N'Notification 3', N'This notification is just a Test', N'admin', N'site/notification3/link', N'1')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Notifications] OFF
@@ -783,6 +820,16 @@ ALTER TABLE [dbo].[Goals] ADD PRIMARY KEY ([GoalId])
 GO
 
 -- ----------------------------
+-- Indexes structure for table Information
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table Information
+-- ----------------------------
+ALTER TABLE [dbo].[Information] ADD PRIMARY KEY ([InformationId])
+GO
+
+-- ----------------------------
 -- Indexes structure for table Injuries
 -- ----------------------------
 
@@ -847,6 +894,9 @@ GO
 -- ----------------------------
 -- Indexes structure for table Notifications
 -- ----------------------------
+CREATE INDEX [IX_FK_NotificationAccount] ON [dbo].[Notifications]
+([AccountLogin] ASC) 
+GO
 
 -- ----------------------------
 -- Primary Key structure for table Notifications
@@ -1000,6 +1050,12 @@ GO
 -- Foreign Key structure for table [dbo].[LineUps]
 -- ----------------------------
 ALTER TABLE [dbo].[LineUps] ADD FOREIGN KEY ([AccountLogin]) REFERENCES [dbo].[Accounts] ([Login]) ON DELETE NO ACTION ON UPDATE NO ACTION
+GO
+
+-- ----------------------------
+-- Foreign Key structure for table [dbo].[Notifications]
+-- ----------------------------
+ALTER TABLE [dbo].[Notifications] ADD FOREIGN KEY ([AccountLogin]) REFERENCES [dbo].[Accounts] ([Login]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/18/2018 04:23:50
+-- Date Created: 01/20/2018 23:25:19
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -77,6 +77,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GoalSport]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Goals] DROP CONSTRAINT [FK_GoalSport];
 GO
+IF OBJECT_ID(N'[dbo].[FK_NotificationAccount]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Notifications] DROP CONSTRAINT [FK_NotificationAccount];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AccountFriendsAccount]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_AccountFriendsAccount];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -100,8 +106,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Sports]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Sports];
 GO
-IF OBJECT_ID(N'[dbo].[Notifications]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Notifications];
+IF OBJECT_ID(N'[dbo].[Information]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Information];
 GO
 IF OBJECT_ID(N'[dbo].[ClimaConditions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ClimaConditions];
@@ -144,6 +150,12 @@ IF OBJECT_ID(N'[dbo].[ContestLineups]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Goals]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Goals];
+GO
+IF OBJECT_ID(N'[dbo].[Notifications]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Notifications];
+GO
+IF OBJECT_ID(N'[dbo].[AccountFriends]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AccountFriends];
 GO
 
 -- --------------------------------------------------
@@ -198,7 +210,8 @@ GO
 CREATE TABLE [dbo].[Accounts] (
     [Login] nvarchar(50)  NOT NULL,
     [Email] nvarchar(250)  NOT NULL,
-    [Password] nvarchar(50)  NOT NULL
+    [Password] nvarchar(50)  NOT NULL,
+    [Money] bigint  NOT NULL
 );
 GO
 
@@ -360,6 +373,14 @@ CREATE TABLE [dbo].[Notifications] (
 );
 GO
 
+-- Creating table 'AccountFriends'
+CREATE TABLE [dbo].[AccountFriends] (
+    [AccountFriendsId] bigint IDENTITY(1,1) NOT NULL,
+    [AccountLogin] nvarchar(50)  NOT NULL,
+    [AccountLogin1] nvarchar(50)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -494,6 +515,12 @@ GO
 ALTER TABLE [dbo].[Notifications]
 ADD CONSTRAINT [PK_Notifications]
     PRIMARY KEY CLUSTERED ([NotificationId] ASC);
+GO
+
+-- Creating primary key on [AccountFriendsId], [AccountLogin], [AccountLogin1] in table 'AccountFriends'
+ALTER TABLE [dbo].[AccountFriends]
+ADD CONSTRAINT [PK_AccountFriends]
+    PRIMARY KEY CLUSTERED ([AccountFriendsId], [AccountLogin], [AccountLogin1] ASC);
 GO
 
 -- --------------------------------------------------
@@ -809,6 +836,36 @@ ON [dbo].[Notifications]
     ([AccountLogin]);
 GO
 
+-- Creating foreign key on [AccountLogin] in table 'AccountFriends'
+ALTER TABLE [dbo].[AccountFriends]
+ADD CONSTRAINT [FK_AccountAccountFriends]
+    FOREIGN KEY ([AccountLogin])
+    REFERENCES [dbo].[Accounts]
+        ([Login])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AccountAccountFriends'
+CREATE INDEX [IX_FK_AccountAccountFriends]
+ON [dbo].[AccountFriends]
+    ([AccountLogin]);
+GO
+
+-- Creating foreign key on [AccountLogin1] in table 'AccountFriends'
+ALTER TABLE [dbo].[AccountFriends]
+ADD CONSTRAINT [FK_AccountAccountFriends1]
+    FOREIGN KEY ([AccountLogin1])
+    REFERENCES [dbo].[Accounts]
+        ([Login])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AccountAccountFriends1'
+CREATE INDEX [IX_FK_AccountAccountFriends1]
+ON [dbo].[AccountFriends]
+    ([AccountLogin1]);
+GO
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
@@ -816,7 +873,29 @@ GO
 -- ----------------------------
 -- Records of Accounts
 -- ----------------------------
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password]) VALUES (N'admin', N'admin@admins.com', N'password')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'admin', N'admin@admins.com', N'password', N'90')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136')
+GO
+GO
+
+-- ----------------------------
+-- Records of AccountFriends
+-- ----------------------------
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'1', N'admin', N'testuser1')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'2', N'admin', N'testuser2')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'3', N'admin', N'testuser3')
 GO
 GO
 
@@ -1052,13 +1131,13 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Notifications] ON
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'1', N'Notification 1', N'This notification is just a Test', N'admin', N'site/notification1/link', N'TRUE')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'1', N'Notification 1', N'This notification is just a Test', N'admin', N'site/notification1/link', N'1')
 GO
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'2', N'Notification 2', N'This notification is just a Test', N'admin', N'site/notification2/link', N'TRUE')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'2', N'Notification 2', N'This notification is just a Test', N'admin', N'site/notification2/link', N'1')
 GO
 GO
-INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'3', N'Notification 3', N'This notification is just a Test', N'admin', N'site/notification3/link', N'TRUE')
+INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [AccountLogin], [Link], [Active]) VALUES (N'3', N'Notification 3', N'This notification is just a Test', N'admin', N'site/notification3/link', N'1')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Notifications] OFF
