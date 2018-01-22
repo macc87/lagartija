@@ -22,7 +22,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
     		            this.HasKey(t => t.LeagueId);	
     		            this.ToTable("League",dbSchema);
-                        this.Property(t => t.LeagueId).HasColumnName("LeagueId").IsRequired().IsUnicode(false).HasMaxLength(36);
+                        this.Property(t => t.LeagueId).HasColumnName("LeagueId").HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
     
                 }
     }

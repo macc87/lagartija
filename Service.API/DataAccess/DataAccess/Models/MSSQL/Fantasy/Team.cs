@@ -50,6 +50,16 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private long _sportId;
+    
+        public string Abbr
+        {
+            get; set;
+        }
+    
+        public string Market
+        {
+            get; set;
+        }
 
         #endregion
 
@@ -101,6 +111,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<Player> _players;
+    
+        public ICollection<League> Leagues
+        {
+            get
+            {
+                if (_leagues == null)
+                {
+                    var newCollection = new FixupCollection<League>();
+                    newCollection.CollectionChanged += FixupLeagues;
+                    _leagues = newCollection;
+                }
+                return _leagues;
+            }
+            set
+            {
+                if (!ReferenceEquals(_leagues, value))
+                {
+                    var previousValue = _leagues as FixupCollection<League>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupLeagues;
+                    }
+                    _leagues = value;
+                    var newValue = value as FixupCollection<League>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupLeagues;
+                    }
+                }
+            }
+        }
+        private ICollection<League> _leagues;
 
         #endregion
 
@@ -139,6 +181,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (Player item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Team, this))
+                    {
+                        item.Team = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupLeagues(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (League item in e.NewItems)
+                {
+                    item.Team = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (League item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Team, this))
                     {
