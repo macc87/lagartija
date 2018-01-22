@@ -51,17 +51,25 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
 
         #endregion      
 
-        internal async Task<ServiceResult<ContestResponse>> GetContestsAsync()
+        internal async Task<ServiceResult<ContestsResponse>> GetContestsAsync()
         {
             try
             {
-                ContestResponse result = new ContestResponse();                
+                ContestsResponse result = new ContestsResponse();                
                 List<Contest> list;
                 dbContext.Configuration.ProxyCreationEnabled = false;
-                var dbQuery = dbContext.Set<Contest>();
+                var dbQuery = dbContext.Contests.ToList();
+                foreach (Contest c in dbQuery)
+                {
+                    var cgames = dbContext.ContestGames.Where(x => x.ContestId == c.ContestId).Include("Game").ToList();
+                    var clineups = dbContext.ContestLineups.Where(x => x.ContestId == c.ContestId).ToList();
+                    c.ContestGame = cgames;
+                    c.ContestLineups = clineups;
+                }
+                
                 //dbQuery.Include(x => x.Games);
                 list = dbQuery.ToList();
-                result.Contests = list;                
+                result.Contests = dbQuery;                
                 if (result != null)
                     return await ServiceOkAsync(result);
 
@@ -70,23 +78,27 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestResponse>(ex);
+                return ExceptionHandler<ContestsResponse>(ex);
             }
         }
 
-        internal async Task<ServiceResult<ContestResponse>> GetActiveContestsAsync()
+        internal async Task<ServiceResult<ContestsResponse>> GetActiveContestsAsync()
         {
             try
             {
-                ContestResponse result = new ContestResponse();
-                List<Contest> list;
+                ContestsResponse result = new ContestsResponse();
                 dbContext.Configuration.ProxyCreationEnabled = false;
-                var dbQuery = dbContext.Set<Contest>();
-                //dbQuery.Include(x => x.Games);
+                var dbQuery = dbContext.Contests.ToList();
+                foreach (Contest c in dbQuery)
+                {
+                    var cgames = dbContext.ContestGames.Where(x => x.ContestId == c.ContestId).Include("Game").ToList();
+                    var clineups = dbContext.ContestLineups.Where(x => x.ContestId == c.ContestId).ToList();
+                    c.ContestGame = cgames;
+                    c.ContestLineups = clineups;
+                }
                 DateTime now = DateTime.Now;
-                list = dbQuery.ToList();
                 var active = new List<Contest>();
-                foreach (Contest c in list)
+                foreach (Contest c in dbQuery)
                 {
                     List<ContestGame> contGames = c.ContestGame.Where(x => x.Game.Scheduled > now).ToList();
                     if (contGames.Count > 0)
@@ -103,7 +115,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestResponse>(ex);
+                return ExceptionHandler<ContestsResponse>(ex);
             }
         }
 
@@ -252,14 +264,15 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<DateTime>> GetNextContestTime(IEnumerable<Contest> contests)
+        internal async Task<ServiceResult<DateTime>> GetNextContestTimeAsync(IEnumerable<Contest> contests)
         {
             try
             {
                 DateTime result = new DateTime();
                 foreach (Contest c in contests)
                 {
-                    DateTime scheduledGame = c.ContestGame.OrderBy(x => x.Game.Scheduled).First().Game.Scheduled;
+                    var cgames = c.ContestGame.OrderBy(x => x.Game.Scheduled).ToList();
+                    DateTime scheduledGame = cgames.First().Game.Scheduled;
                     if (scheduledGame < result)
                     {
                         result = scheduledGame;
@@ -278,12 +291,12 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type)
+        internal async Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type)
         {
             try
             {
-                ContestResponse actives = GetActiveContestsAsync().Result.Result;
-                ContestResponse result = new ContestResponse();
+                ContestsResponse actives = GetActiveContestsAsync().Result.Result;
+                ContestsResponse result = new ContestsResponse();
                 List<Contest> filtered = actives.Contests.Where(x => x.ContestType == type).ToList();
                 result.Contests = filtered;
                 if (result != null)
@@ -294,15 +307,16 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestResponse>(ex);
+                return ExceptionHandler<ContestsResponse>(ex);
             }
         }
-        internal async Task<ServiceResult<ContestResponse>> GetContestFilteredby(double smallEntry, double bigEntry)
+
+        internal async Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(double smallEntry, double bigEntry)
         {
             try
             {
-                ContestResponse actives = GetActiveContestsAsync().Result.Result;
-                ContestResponse result = new ContestResponse();
+                ContestsResponse actives = GetActiveContestsAsync().Result.Result;
+                ContestsResponse result = new ContestsResponse();
                 List<Contest> filtered = actives.Contests.Where(x => x.EntryFee >= smallEntry && x.EntryFee <= bigEntry).ToList();
                 result.Contests = filtered;
                 if (result != null)
@@ -313,16 +327,16 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestResponse>(ex);
+                return ExceptionHandler<ContestsResponse>(ex);
             }
         }
 
-        internal async Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type, double smallEntry, double bigEntry)
+        internal async Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type, double smallEntry, double bigEntry)
         {
             try
             {
-                ContestResponse actives = GetActiveContestsAsync().Result.Result;
-                ContestResponse result = new ContestResponse();
+                ContestsResponse actives = GetActiveContestsAsync().Result.Result;
+                ContestsResponse result = new ContestsResponse();
                 List<Contest> filtered = actives.Contests.Where(x => x.ContestType == type && x.EntryFee >= smallEntry && x.EntryFee <= bigEntry).ToList();
                 result.Contests = filtered;
                 if (result != null)
@@ -333,10 +347,32 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestResponse>(ex);
+                return ExceptionHandler<ContestsResponse>(ex);
             }
         }
-        internal async Task<ServiceResult<UserResponse>> GetUserInfo(string login)
+
+        internal async Task<ServiceResult<ContestTypeResponse>> GetContesTypesAsync()
+        {
+            try
+            {
+                var ctContest = dbContext.ContestTypes.ToList();
+                var result = new ContestTypeResponse()
+                {
+                    Types = ctContest
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Contest Type");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestTypeResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<UserResponse>> GetUserInfoAsync(string login)
         {
             try
             {
@@ -350,24 +386,319 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                         Account friend = dbContext.Accounts.Where(x => x.Login == af.AccountLogin).First();
                         Friends.Add(friend);
                     }
+                    else
+                    {
+                        Account friend = dbContext.Accounts.Where(x => x.Login == af.AccountLogin1).First();
+                        Friends.Add(friend);
+                    }
                 }
                 UserResponse result = new UserResponse()
                 {
                     User = user,
                     Friends = Friends,
-                    Money = user.Money
-                    // TODO: Add Other User response results fields......
+                    Money = user.Money,
+                    Point = user.Point
                 };
                 if (result != null)
                     return await ServiceOkAsync(result);
 
                 throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
-                        message: "HandleResponse failed in getting UserInfo");
+                        message: "HandleResponse failed in getting User Info");
             }
             catch (Exception ex)
             {
                 return ExceptionHandler<UserResponse>(ex);
             }
         }
+
+        internal async Task<ServiceResult<List<Account>>> GetUsersBestRivalsAsync(string login)
+        {
+            try
+            {
+                UserResponse userR = GetUserInfoAsync(login).Result.Result;
+                List<Account> result = userR.Friends.Where(x => x.Money >= userR.Money).ToList();
+
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Best Rivals");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<List<Account>>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<List<Account>>> GetUsersWorstRivalsAsync(string login)
+        {
+            try
+            {
+                UserResponse userR = GetUserInfoAsync(login).Result.Result;
+                List<Account> result = userR.Friends.Where(x => x.Money < userR.Money).ToList();
+
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Worst Rivals");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<List<Account>>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<List<Account>>> GetUserFriendsAsync(string login)
+        {
+            try
+            {
+                UserResponse userR = GetUserInfoAsync(login).Result.Result;
+                List<Account> result = userR.Friends;
+
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Friends");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<List<Account>>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LineupsResponse>> GetLineupsAsync(string login)
+        {
+            try
+            {
+                UserResponse userR = GetUserInfoAsync(login).Result.Result;
+                List<LineUp> lineups = dbContext.LineUps.Where(x => x.Account.Login == login).ToList();
+                LineupsResponse result = new LineupsResponse()
+                {
+                    Lineups = lineups
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Lineups");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LineupsResponse>> GetActiveLineupsAsync(string login)
+        {
+            try
+            {
+                ContestsResponse Activecontests = GetActiveContestsAsync().Result.Result;
+                List<LineUp> lineups = dbContext.LineUps.Where(x => x.Account.Login == login).ToList();
+                List<LineUp> active = new List<LineUp>();
+                foreach (LineUp lp in lineups)
+                {
+                    List<ContestLineup> lpcs = dbContext.ContestLineups.Where(x => x.LineUpId == lp.LineUpId).ToList();
+                    foreach (ContestLineup clp in lpcs)
+                    {
+                        List<Contest> cont = Activecontests.Contests.Where(x => x.ContestId == clp.ContestId).ToList();
+                        if (cont.Count > 0)
+                        {
+                            active.Add(lp);
+                        }
+                    }
+                }
+                LineupsResponse result = new LineupsResponse()
+                {
+                    Lineups = active
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Lineups");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupsResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<ContestResponse>> GetContest(Int64 id)
+        {
+            try
+            {
+                Contest c = dbContext.Contests.Where(x => x.ContestId == id).First();
+                List<ContestLineup> clineups = dbContext.ContestLineups.Where(x => x.ContestId == id).ToList();
+                List<ContestGame> cgames = dbContext.ContestGames.Where(x => x.ContestId == id).ToList();
+                List<Game> games = new List<Game>();
+                List<LineUp> lineups = new List<LineUp>();
+                foreach (ContestLineup clp in clineups)
+                {
+                    LineUp l = dbContext.LineUps.Where(x => x.LineUpId == clp.LineUpId).First();
+                    lineups.Add(l);
+                }
+                foreach (ContestGame cg in cgames)
+                {
+                    Game g = dbContext.Games.Where(x => x.GameId == cg.GameId).First();
+                    games.Add(g);
+                }
+                DateTime start = games.OrderBy(x => x.Scheduled).First().Scheduled;
+
+                ContestResponse result = new ContestResponse()
+                {
+                    Contest = c,
+                    Games = games,
+                    Lineups = lineups,
+                    Starts = start
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Contest");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<ContestsResponse>> GetContests(DateTime date)
+        {
+            try
+            {
+                List<Game> games = dbContext.Games.Where(x => x.Scheduled == date).ToList();
+                List<Contest> contests = new List<Contest>();
+
+                foreach (Game g in games)
+                {
+                    List<ContestGame> cgames = dbContext.ContestGames.Where(x => x.GameId == g.GameId).ToList();
+                    foreach (ContestGame cg in cgames)
+                    {
+                        contests.Add(dbContext.Contests.Where(x => x.ContestId == cg.ContestId).First());
+                    }
+                }
+                ContestsResponse result = new ContestsResponse()
+                {
+                    Contests = contests
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Contests");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestsResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<GamesResponse>> GetGamesFromContest(Int64 id)
+        {
+            try
+            {
+                List<Game> games = new List<Game>();
+                List<ContestGame> cgames = dbContext.ContestGames.Where(x => x.ContestId == id).ToList();
+                foreach (ContestGame cg in cgames)
+                {
+                    games.Add(dbContext.Games.Where(x => x.GameId == cg.GameId).First());
+                }
+                GamesResponse result = new GamesResponse()
+                {
+                    Games = games
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Games from Contest");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GamesResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<TeamsResponse>> GetTeamsFromGames(List<Game> games)
+        {
+            try
+            {
+                List<Team> teams = new List<Team>();
+                foreach (Game g in games)
+                {
+                    Team home = dbContext.Teams.Where(x => x.TeamId == g.TeamTeamId).First();
+                    Team away = dbContext.Teams.Where(x => x.TeamId == g.TeamTeamId1).First();
+                    home.Players = dbContext.Players.Where(x => x.TeamId == home.TeamId).ToList();
+                    away.Players = dbContext.Players.Where(x => x.TeamId == away.TeamId).ToList();
+                    teams.Add(home);
+                    teams.Add(away);
+                }
+                TeamsResponse result = new TeamsResponse()
+                {
+                    Teams = teams
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Teams from Games");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeam(Int64 id)
+        {
+            try
+            {
+                Team team = dbContext.Teams.Where(x => x.TeamId == id).First();
+                List<Player> players = dbContext.Players.Where(x => x.TeamId == team.TeamId).ToList();
+               
+                PlayersResponse result = new PlayersResponse()
+                {
+                    Players = players
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Players from Team");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayersResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeams(List<Team> teams)
+        {
+            try
+            {
+                List<Player> players = new List<Player>();
+                foreach (Team t in teams)
+                {
+                    List<Player> plyrs = dbContext.Players.Where(x => x.TeamId == t.TeamId).ToList();
+                    foreach (Player p in plyrs)
+                    {
+                        players.Add(p);
+                    }
+                }
+                PlayersResponse result = new PlayersResponse()
+                {
+                    Players = players
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Players from Team");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayersResponse>(ex);
+            }
+        }
+
     }
 }

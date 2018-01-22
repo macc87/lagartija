@@ -11,8 +11,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
 {
     public interface IFantasyDataClient : IDisposable
     {
-        Task<ServiceResult<ContestResponse>> GetContestsAsync();
-        Task<ServiceResult<ContestResponse>> GetActiveContestsAsync();
+        Task<ServiceResult<ContestsResponse>> GetContestsAsync();
+        Task<ServiceResult<ContestsResponse>> GetActiveContestsAsync();
         Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId);
         Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId);
         Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync();
@@ -20,15 +20,22 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync();
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync(DateTime start, DateTime end);
         Task<ServiceResult<PromotionsResponse>> GetPromotionsAsync();
-        Task<ServiceResult<DateTime>> GetNextContestTime(IEnumerable<Contest> contests);
-        Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type);
-        Task<ServiceResult<ContestResponse>> GetContestFilteredby(double smallEntry, double bigEntry);
-        Task<ServiceResult<ContestResponse>> GetContestFilteredby(ContestType type, double smallEntry, double bigEntry);
+        Task<ServiceResult<DateTime>> GetNextContestTimeAsync(IEnumerable<Contest> contests);
+        Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type);
+        Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(double smallEntry, double bigEntry);
+        Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type, double smallEntry, double bigEntry);
+        Task<ServiceResult<ContestTypeResponse>> GetContestTypesAsync();
         //TODO: Task<ServiceResult<ContestResponse>> GetContestFilteredby(Prizing Rule);
-
-        Task<ServiceResult<UserResponse>> GetUserInfo(string login);
-
-
+        Task<ServiceResult<UserResponse>> GetUserInfoAsync(string login);
+        Task<ServiceResult<List<Account>>> GetUsersBestRivalsAsync(string login);
+        Task<ServiceResult<List<Account>>> GetUsersWorstRivalsAsync(string login);
+        Task<ServiceResult<List<Account>>> GetUserFriendsAsync(string login);
+        Task<ServiceResult<LineupsResponse>> GetLineupsAsync(string login);
+        Task<ServiceResult<LineupsResponse>> GetActiveLineupsAsync(string login);
+        Task<ServiceResult<ContestResponse>> GetContest(Int64 id);
+        Task<ServiceResult<ContestsResponse>> GetContests(DateTime startDate);
+        Task<ServiceResult<GamesResponse>> GetGamesFromContest(Int64 id);
+        Task<ServiceResult<TeamsResponse>> GetTeamsFromGames(List<Models.MSSQL.Fantasy.Game> games);
     }
 };
 
