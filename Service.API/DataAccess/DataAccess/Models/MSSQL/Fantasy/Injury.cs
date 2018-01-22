@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public string InjuryId
+        public long InjuryId
         {
             get; set;
         }
@@ -47,68 +47,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         public System.DateTime UpdateDate
         {
             get; set;
-        }
-
-        #endregion
-
-        #region Navigation Properties
-    
-        public ICollection<InjuryPlayer> InjuryPlayers
-        {
-            get
-            {
-                if (_injuryPlayers == null)
-                {
-                    var newCollection = new FixupCollection<InjuryPlayer>();
-                    newCollection.CollectionChanged += FixupInjuryPlayers;
-                    _injuryPlayers = newCollection;
-                }
-                return _injuryPlayers;
-            }
-            set
-            {
-                if (!ReferenceEquals(_injuryPlayers, value))
-                {
-                    var previousValue = _injuryPlayers as FixupCollection<InjuryPlayer>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupInjuryPlayers;
-                    }
-                    _injuryPlayers = value;
-                    var newValue = value as FixupCollection<InjuryPlayer>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupInjuryPlayers;
-                    }
-                }
-            }
-        }
-        private ICollection<InjuryPlayer> _injuryPlayers;
-
-        #endregion
-
-        #region Association Fixup
-    
-        private void FixupInjuryPlayers(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (InjuryPlayer item in e.NewItems)
-                {
-                    item.Injury = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (InjuryPlayer item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Injury, this))
-                    {
-                        item.Injury = null;
-                    }
-                }
-            }
         }
 
         #endregion
