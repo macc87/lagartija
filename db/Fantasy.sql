@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/20/2018 23:25:19
+-- Date Created: 01/21/2018 12:05:52
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -17,15 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_InjuryPlayer_Injury]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryPlayers] DROP CONSTRAINT [FK_InjuryPlayer_Injury];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InjuryPlayer_InjuryTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryPlayers] DROP CONSTRAINT [FK_InjuryPlayer_InjuryTeam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InjuryTeam_League]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[InjuryTeams] DROP CONSTRAINT [FK_InjuryTeam_League];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Sport_Team]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Teams] DROP CONSTRAINT [FK_Sport_Team];
 GO
@@ -80,8 +71,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_NotificationAccount]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Notifications] DROP CONSTRAINT [FK_NotificationAccount];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AccountFriendsAccount]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Accounts] DROP CONSTRAINT [FK_AccountFriendsAccount];
+IF OBJECT_ID(N'[dbo].[FK_AccountAccountFriends]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AccountFriends] DROP CONSTRAINT [FK_AccountAccountFriends];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AccountAccountFriends1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AccountFriends] DROP CONSTRAINT [FK_AccountAccountFriends1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamLeague]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Leagues] DROP CONSTRAINT [FK_TeamLeague];
 GO
 
 -- --------------------------------------------------
@@ -90,12 +87,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[Injuries]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Injuries];
-GO
-IF OBJECT_ID(N'[dbo].[InjuryPlayers]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[InjuryPlayers];
-GO
-IF OBJECT_ID(N'[dbo].[InjuryTeams]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[InjuryTeams];
 GO
 IF OBJECT_ID(N'[dbo].[Leagues]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Leagues];
@@ -164,7 +155,7 @@ GO
 
 -- Creating table 'Injuries'
 CREATE TABLE [dbo].[Injuries] (
-    [InjuryId] varchar(36)  NOT NULL,
+    [InjuryId] bigint  NOT NULL,
     [Comment] varchar(max)  NULL,
     [Description] varchar(500)  NULL,
     [Status] varchar(50)  NOT NULL,
@@ -173,36 +164,12 @@ CREATE TABLE [dbo].[Injuries] (
 );
 GO
 
--- Creating table 'InjuryPlayers'
-CREATE TABLE [dbo].[InjuryPlayers] (
-    [PlayerId] varchar(36)  NOT NULL,
-    [Status] varchar(50)  NOT NULL,
-    [Position] varchar(10)  NOT NULL,
-    [PrimaryPosition] varchar(10)  NOT NULL,
-    [FirstName] varchar(100)  NOT NULL,
-    [LastName] varchar(150)  NOT NULL,
-    [JerseyNumber] varchar(3)  NOT NULL,
-    [PreferredName] varchar(50)  NOT NULL,
-    [InjuryId] varchar(36)  NOT NULL,
-    [InjuryTeamId] varchar(36)  NOT NULL
-);
-GO
-
--- Creating table 'InjuryTeams'
-CREATE TABLE [dbo].[InjuryTeams] (
-    [TeamId] varchar(36)  NOT NULL,
-    [Name] varchar(20)  NOT NULL,
-    [Abbr] varchar(10)  NOT NULL,
-    [Market] varchar(20)  NULL,
-    [LeagueId] varchar(36)  NOT NULL
-);
-GO
-
 -- Creating table 'Leagues'
 CREATE TABLE [dbo].[Leagues] (
-    [LeagueId] varchar(36)  NOT NULL,
+    [LeagueId] bigint  NOT NULL,
     [Name] varchar(50)  NOT NULL,
-    [Alias] varchar(10)  NOT NULL
+    [Alias] varchar(10)  NOT NULL,
+    [TeamTeamId] bigint  NOT NULL
 );
 GO
 
@@ -211,7 +178,8 @@ CREATE TABLE [dbo].[Accounts] (
     [Login] nvarchar(50)  NOT NULL,
     [Email] nvarchar(250)  NOT NULL,
     [Password] nvarchar(50)  NOT NULL,
-    [Money] bigint  NOT NULL
+    [Money] bigint  NOT NULL,
+    [Point] bigint  NOT NULL
 );
 GO
 
@@ -275,7 +243,9 @@ CREATE TABLE [dbo].[Teams] (
     [TeamId] bigint IDENTITY(1,1) NOT NULL,
     [TeamName] nvarchar(max)  NOT NULL,
     [TeamLogo] nvarchar(max)  NOT NULL,
-    [SportId] bigint  NOT NULL
+    [SportId] bigint  NOT NULL,
+    [Abbr] nvarchar(max)  NOT NULL,
+    [Market] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -389,18 +359,6 @@ GO
 ALTER TABLE [dbo].[Injuries]
 ADD CONSTRAINT [PK_Injuries]
     PRIMARY KEY CLUSTERED ([InjuryId] ASC);
-GO
-
--- Creating primary key on [PlayerId] in table 'InjuryPlayers'
-ALTER TABLE [dbo].[InjuryPlayers]
-ADD CONSTRAINT [PK_InjuryPlayers]
-    PRIMARY KEY CLUSTERED ([PlayerId] ASC);
-GO
-
--- Creating primary key on [TeamId] in table 'InjuryTeams'
-ALTER TABLE [dbo].[InjuryTeams]
-ADD CONSTRAINT [PK_InjuryTeams]
-    PRIMARY KEY CLUSTERED ([TeamId] ASC);
 GO
 
 -- Creating primary key on [LeagueId] in table 'Leagues'
@@ -526,51 +484,6 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [InjuryId] in table 'InjuryPlayers'
-ALTER TABLE [dbo].[InjuryPlayers]
-ADD CONSTRAINT [FK_InjuryPlayer_Injury]
-    FOREIGN KEY ([InjuryId])
-    REFERENCES [dbo].[Injuries]
-        ([InjuryId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_InjuryPlayer_Injury'
-CREATE INDEX [IX_FK_InjuryPlayer_Injury]
-ON [dbo].[InjuryPlayers]
-    ([InjuryId]);
-GO
-
--- Creating foreign key on [InjuryTeamId] in table 'InjuryPlayers'
-ALTER TABLE [dbo].[InjuryPlayers]
-ADD CONSTRAINT [FK_InjuryPlayer_InjuryTeam]
-    FOREIGN KEY ([InjuryTeamId])
-    REFERENCES [dbo].[InjuryTeams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_InjuryPlayer_InjuryTeam'
-CREATE INDEX [IX_FK_InjuryPlayer_InjuryTeam]
-ON [dbo].[InjuryPlayers]
-    ([InjuryTeamId]);
-GO
-
--- Creating foreign key on [LeagueId] in table 'InjuryTeams'
-ALTER TABLE [dbo].[InjuryTeams]
-ADD CONSTRAINT [FK_InjuryTeam_League]
-    FOREIGN KEY ([LeagueId])
-    REFERENCES [dbo].[Leagues]
-        ([LeagueId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_InjuryTeam_League'
-CREATE INDEX [IX_FK_InjuryTeam_League]
-ON [dbo].[InjuryTeams]
-    ([LeagueId]);
-GO
 
 -- Creating foreign key on [SportId] in table 'Teams'
 ALTER TABLE [dbo].[Teams]
@@ -866,6 +779,21 @@ ON [dbo].[AccountFriends]
     ([AccountLogin1]);
 GO
 
+-- Creating foreign key on [TeamTeamId] in table 'Leagues'
+ALTER TABLE [dbo].[Leagues]
+ADD CONSTRAINT [FK_TeamLeague]
+    FOREIGN KEY ([TeamTeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamLeague'
+CREATE INDEX [IX_FK_TeamLeague]
+ON [dbo].[Leagues]
+    ([TeamTeamId]);
+GO
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
@@ -873,16 +801,16 @@ GO
 -- ----------------------------
 -- Records of Accounts
 -- ----------------------------
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'admin', N'admin@admins.com', N'password', N'90')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'admin', N'admin@admins.com', N'password', N'90', N'96')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187', N'50')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167', N'50')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136', N'50')
 GO
 GO
 
@@ -963,25 +891,25 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Teams] ON
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1', N'NYU', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1', N'SLC', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1', N'OAA', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1', N'BRS', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1', N'SFG', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1', N'LAD', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1', N'MAR', N'MLB Market')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Teams] OFF
@@ -1143,4 +1071,19 @@ GO
 SET IDENTITY_INSERT [dbo].[Notifications] OFF
 GO
 
-
+-- ----------------------------
+-- Records of AccountFriends
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[AccountFriends] ON
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'1', N'admin', N'testuser1')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'2', N'admin', N'testuser2')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'3', N'admin', N'testuser3')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[AccountFriends] OFF
+GO

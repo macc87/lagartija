@@ -11,9 +11,42 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2018-01-20 01:22:32
+Date: 2018-01-21 10:54:13
 */
 
+
+-- ----------------------------
+-- Table structure for AccountFriends
+-- ----------------------------
+DROP TABLE [dbo].[AccountFriends]
+GO
+CREATE TABLE [dbo].[AccountFriends] (
+[AccountFriendsId] bigint NOT NULL IDENTITY(1,1) ,
+[AccountLogin] nvarchar(50) NOT NULL ,
+[AccountLogin1] nvarchar(50) NOT NULL 
+)
+
+
+GO
+DBCC CHECKIDENT(N'[dbo].[AccountFriends]', RESEED, 4)
+GO
+
+-- ----------------------------
+-- Records of AccountFriends
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[AccountFriends] ON
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'1', N'admin', N'testuser1')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'2', N'admin', N'testuser2')
+GO
+GO
+INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'4', N'admin', N'testuser3')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[AccountFriends] OFF
+GO
 
 -- ----------------------------
 -- Table structure for Accounts
@@ -23,7 +56,8 @@ GO
 CREATE TABLE [dbo].[Accounts] (
 [Login] nvarchar(50) NOT NULL ,
 [Email] nvarchar(250) NOT NULL ,
-[Password] nvarchar(50) NOT NULL 
+[Password] nvarchar(50) NOT NULL ,
+[Money] bigint NOT NULL 
 )
 
 
@@ -32,7 +66,16 @@ GO
 -- ----------------------------
 -- Records of Accounts
 -- ----------------------------
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password]) VALUES (N'admin', N'admin@admins.com', N'password')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'admin', N'admin@admins.com', N'password', N'90')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167')
+GO
+GO
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136')
 GO
 GO
 
@@ -275,31 +318,11 @@ CREATE TABLE [dbo].[Information] (
 
 
 GO
-DBCC CHECKIDENT(N'[dbo].[Information]', RESEED, 6)
-GO
 
 -- ----------------------------
 -- Records of Information
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Information] ON
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'1', N'Information 1', N'This Information is just a Test', N'2018-01-18 02:02:00.000', N'2018-01-22 02:02:05.000')
-GO
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'2', N'Information 2', N'This Information is just a test 2', N'2018-01-19 02:02:39.000', N'2018-01-31 02:02:46.000')
-GO
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'3', N'Information 3', N'This Information is just a test 3', N'2018-01-16 02:03:11.000', N'2018-02-08 02:03:17.000')
-GO
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'4', N'Info1', N'This is just a test information', N'2018-01-16 04:33:47.000', N'2018-02-02 04:33:59.000')
-GO
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'5', N'Info2', N'This is just a test info', N'2018-01-18 04:34:28.000', N'2018-01-31 04:34:34.000')
-GO
-GO
-INSERT INTO [dbo].[Information] ([InformationId], [Name], [Content], [InitialDate], [FinalDate]) VALUES (N'6', N'Info3', N'This is just a test info', N'2018-01-19 04:35:04.000', N'2018-01-22 04:35:07.000')
-GO
 GO
 SET IDENTITY_INSERT [dbo].[Information] OFF
 GO
@@ -713,6 +736,22 @@ SET IDENTITY_INSERT [dbo].[Venues] OFF
 GO
 
 -- ----------------------------
+-- Indexes structure for table AccountFriends
+-- ----------------------------
+CREATE INDEX [IX_FK_AccountAccountFriends] ON [dbo].[AccountFriends]
+([AccountLogin] ASC) 
+GO
+CREATE INDEX [IX_FK_AccountAccountFriends1] ON [dbo].[AccountFriends]
+([AccountLogin1] ASC) 
+GO
+
+-- ----------------------------
+-- Primary Key structure for table AccountFriends
+-- ----------------------------
+ALTER TABLE [dbo].[AccountFriends] ADD PRIMARY KEY ([AccountFriendsId], [AccountLogin], [AccountLogin1])
+GO
+
+-- ----------------------------
 -- Indexes structure for table Accounts
 -- ----------------------------
 
@@ -990,6 +1029,14 @@ GO
 -- Primary Key structure for table Venues
 -- ----------------------------
 ALTER TABLE [dbo].[Venues] ADD PRIMARY KEY ([VenueId])
+GO
+
+-- ----------------------------
+-- Foreign Key structure for table [dbo].[AccountFriends]
+-- ----------------------------
+ALTER TABLE [dbo].[AccountFriends] ADD FOREIGN KEY ([AccountLogin]) REFERENCES [dbo].[Accounts] ([Login]) ON DELETE NO ACTION ON UPDATE NO ACTION
+GO
+ALTER TABLE [dbo].[AccountFriends] ADD FOREIGN KEY ([AccountLogin1]) REFERENCES [dbo].[Accounts] ([Login]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------
