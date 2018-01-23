@@ -36,6 +36,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ContestsResponse>> GetContests(DateTime startDate);
         Task<ServiceResult<GamesResponse>> GetGamesFromContest(Int64 id);
         Task<ServiceResult<TeamsResponse>> GetTeamsFromGames(List<Models.MSSQL.Fantasy.Game> games);
+        Task<ServiceResult<LineupsResponse>> GetLineups(string login);
+        Task<ServiceResult<LineupsResponse>> GetLineupsofContest(Int64 id);
     }
 };
 

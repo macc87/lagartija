@@ -181,6 +181,12 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
+        [TestMethod]
+        public async Task GetLineupsofContest_Successful()
+        {
+            var result = await fantasyDatClient.GetLineupsofContest(1);
+            Assert.IsFalse(result.HasError);
+        }
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{

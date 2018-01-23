@@ -522,7 +522,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<LineupsResponse>(ex);
             }
         }
-
         internal async Task<ServiceResult<ContestResponse>> GetContest(Int64 id)
         {
             try
@@ -562,7 +561,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<ContestResponse>(ex);
             }
         }
-
         internal async Task<ServiceResult<ContestsResponse>> GetContests(DateTime date)
         {
             try
@@ -593,7 +591,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<ContestsResponse>(ex);
             }
         }
-
         internal async Task<ServiceResult<GamesResponse>> GetGamesFromContest(Int64 id)
         {
             try
@@ -619,7 +616,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<GamesResponse>(ex);
             }
         }
-
         internal async Task<ServiceResult<TeamsResponse>> GetTeamsFromGames(List<Game> games)
         {
             try
@@ -700,5 +696,31 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
+        public async Task<ServiceResult<LineupsResponse>> GetLineupsofContest(Int64 id)
+        {
+            try
+            {
+                List<ContestLineup> clineup = dbContext.ContestLineups.Where(x => x.ContestId == id).ToList();
+                List<LineUp> lineups = new List<LineUp>();           
+                foreach (ContestLineup clp in clineup)
+                {
+                    LineUp l = dbContext.LineUps.Where(x => x.LineUpId == clp.LineUpId).Include("Account").First();
+                    lineups.Add(l);
+                }
+                LineupsResponse result = new LineupsResponse()
+                {
+                    Lineups = lineups
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Lineups from Contests");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupsResponse>(ex);
+            }
+        }
     }
 }
