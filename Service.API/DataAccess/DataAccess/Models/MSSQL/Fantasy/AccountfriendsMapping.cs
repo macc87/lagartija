@@ -15,14 +15,16 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     using System.Data.Entity.ModelConfiguration;
     using global::Fantasy.API.DataAccess.Configurations;
     using System.ComponentModel.DataAnnotations.Schema;
-    internal sealed class InjuryteamMapping : EntityTypeConfiguration<InjuryTeam>
+    internal sealed class AccountfriendsMapping : EntityTypeConfiguration<AccountFriends>
     {
-                public InjuryteamMapping()
+                public AccountfriendsMapping()
                 {
                     string dbSchema = DataLayerEnvironment.GetInstance().FantasyMssqlProperties.DbSchema; 
-    		            this.HasKey(t => t.TeamId);	
-    		            this.ToTable("InjuryTeam",dbSchema);
-                        this.Property(t => t.TeamId).HasColumnName("TeamId").IsRequired().IsUnicode(false).HasMaxLength(36);
+    		            this.HasKey(t => new {t.AccountFriendsId, t.AccountLogin, t.AccountLogin1});	
+    		            this.ToTable("AccountFriends",dbSchema);
+                        this.Property(t => t.AccountFriendsId).HasColumnName("AccountFriendsId").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                        this.Property(t => t.AccountLogin).HasColumnName("AccountLogin").IsRequired().HasMaxLength(50);
+                        this.Property(t => t.AccountLogin1).HasColumnName("AccountLogin1").IsRequired().HasMaxLength(50);
     
                 }
     }

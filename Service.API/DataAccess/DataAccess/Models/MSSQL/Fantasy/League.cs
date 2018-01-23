@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public string LeagueId
+        public long LeagueId
         {
             get; set;
         }
@@ -33,65 +33,63 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
+    
+        public long TeamTeamId
+        {
+    get { return _teamTeamId; }
+            set
+            {
+                if (_teamTeamId != value)
+                {
+                    if (Team != null && Team.TeamId != value)
+                    {
+                        Team = null;
+                    }
+                    _teamTeamId = value;
+                }
+            }
+        }
+        private long _teamTeamId;
 
         #endregion
 
         #region Navigation Properties
     
-        public ICollection<InjuryTeam> InjuryTeams
+        public Team Team
         {
-            get
-            {
-                if (_injuryTeams == null)
-                {
-                    var newCollection = new FixupCollection<InjuryTeam>();
-                    newCollection.CollectionChanged += FixupInjuryTeams;
-                    _injuryTeams = newCollection;
-                }
-                return _injuryTeams;
-            }
+            get { return _team; }
             set
             {
-                if (!ReferenceEquals(_injuryTeams, value))
+                if (!ReferenceEquals(_team, value))
                 {
-                    var previousValue = _injuryTeams as FixupCollection<InjuryTeam>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupInjuryTeams;
-                    }
-                    _injuryTeams = value;
-                    var newValue = value as FixupCollection<InjuryTeam>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupInjuryTeams;
-                    }
+                    var previousValue = _team;
+                    _team = value;
+                    FixupTeam(previousValue);
                 }
             }
         }
-        private ICollection<InjuryTeam> _injuryTeams;
+        private Team _team;
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupInjuryTeams(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupTeam(Team previousValue)
         {
-            if (e.NewItems != null)
+            if (previousValue != null && previousValue.Leagues.Contains(this))
             {
-                foreach (InjuryTeam item in e.NewItems)
-                {
-                    item.League = this;
-                }
+                previousValue.Leagues.Remove(this);
             }
     
-            if (e.OldItems != null)
+            if (Team != null)
             {
-                foreach (InjuryTeam item in e.OldItems)
+                if (!Team.Leagues.Contains(this))
                 {
-                    if (ReferenceEquals(item.League, this))
-                    {
-                        item.League = null;
-                    }
+                    Team.Leagues.Add(this);
+                }
+                if (TeamTeamId != Team.TeamId)
+                {
+                    TeamTeamId = Team.TeamId;
                 }
             }
         }
