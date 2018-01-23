@@ -525,5 +525,23 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<GoalsResponse>(exception);
             }
         }
+
+        public async Task<ServiceResult<PlayerResponse>> GetPlayer(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayer(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
+            }
+        }
     }
 }

@@ -188,6 +188,13 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
+        [TestMethod]
+        public async Task GetPlayerfromId_Successful()
+        {
+            var result = await fantasyDatClient.GetPlayer(1);
+            Assert.IsFalse(result.HasError);
+        }
+
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{
