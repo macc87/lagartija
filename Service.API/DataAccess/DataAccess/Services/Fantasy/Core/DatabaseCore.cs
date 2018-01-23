@@ -699,6 +699,28 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<PlayersResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<GoalsResponse>> GetGoalsfromContest(Int64 id)
+        {
+            try
+            {
+                ContestGame cg = dbContext.ContestGames.Where(x => x.ContestId == id).First();
+                Game g = dbContext.Games.Where(x => x.GameId == cg.GameId).First();
+                Team t = dbContext.Teams.Where(x=>x.TeamId == g.TeamTeamId).First();
+                List<Goal> goals = dbContext.Goals.Where(x => x.SportId == t.SportId).ToList();
+                GoalsResponse result = new GoalsResponse()
+                {
+                    Goals = goals
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Goals from Contest");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GoalsResponse>(ex);
+            }
+        }
     }
 }
