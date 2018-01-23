@@ -15,36 +15,21 @@ using System.Collections.Specialized;
 
 namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
-    public class Injury
+    public class AccountFriends
     {
         #region Primitive Properties
     
-        public long InjuryId
+        public long AccountFriendsId
         {
             get; set;
         }
     
-        public string Comment
+        public string AccountLogin
         {
             get; set;
         }
     
-        public string Description
-        {
-            get; set;
-        }
-    
-        public string Status
-        {
-            get; set;
-        }
-    
-        public System.DateTime StartDate
-        {
-            get; set;
-        }
-    
-        public System.DateTime UpdateDate
+        public string AccountLogin1
         {
             get; set;
         }

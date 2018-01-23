@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
-    public class ContestResponse
+    public class ContestsResponse
     {
-        public Contest Contest { get; set; }
-        public List<Game> Games { get; set; }
-        public List<LineUp> Lineups { get; set; }
-        public DateTime Starts { get; set; }
+        public List<Contest> Contests { get; set; }
         public string _comment { get; set; }
     }
 }
