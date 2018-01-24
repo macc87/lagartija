@@ -745,5 +745,34 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<PlayerResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromLineup(Int64 id)
+        {
+            try
+            {
+                List<PlayerLineup> plineups = dbContext.PlayerLineups.Where(x => x.LineupId == id).ToList();
+                List<Player> players = new List<Player>();
+                foreach (PlayerLineup pl in plineups)
+                {
+                    Player p = dbContext.Players.Where(x => x.PlayerId == pl.PlayerId).First();
+                    p.Position = dbContext.Positions.Where(x => x.PositionId == p.PositionId).First();
+                    p.Team = dbContext.Teams.Where(x => x.TeamId == p.TeamId).First();
+                    p.PlayerLineups = dbContext.PlayerLineups.Where(x => x.PlayerId == p.PlayerId).ToList();
+                    players.Add(p);
+                }
+                PlayersResponse result = new PlayersResponse()
+                {
+                    Players = players
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Players from Lineup");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayersResponse>(ex);
+            }
+        }
     }
 }
