@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\ContestResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\GoalsResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\PlayerResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\TeamsResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\GamesResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\LineupsResponse.cs" />

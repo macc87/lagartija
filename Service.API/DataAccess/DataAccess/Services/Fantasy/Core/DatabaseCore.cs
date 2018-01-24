@@ -143,7 +143,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
         {
             try
             {
-                Team t = dbContext.Teams.First(x => x.TeamId == teamId);
+                Team t = dbContext.Teams.Where(x => x.TeamId == teamId).First();
                 t.Sport = dbContext.Sports.First(x => x.SportId == t.SportId);
                 t.Leagues = dbContext.Leagues.Where(x => x.TeamTeamId == teamId).ToList();
                 t.Players = dbContext.Players.Where(x => x.TeamId == teamId).ToList();
