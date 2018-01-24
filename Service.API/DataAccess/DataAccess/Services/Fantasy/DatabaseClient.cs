@@ -525,7 +525,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<GoalsResponse>(exception);
             }
         }
-
         public async Task<ServiceResult<PlayerResponse>> GetPlayer(Int64 id)
         {
             try
@@ -543,7 +542,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
             }
         }
-
         public async Task<ServiceResult<PlayersResponse>> GetPlayersFromLineup(Int64 id)
         {
             try
@@ -561,5 +559,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
             }
         }
+
     }
 }
