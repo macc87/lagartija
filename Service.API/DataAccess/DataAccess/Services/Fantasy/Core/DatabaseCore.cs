@@ -798,6 +798,25 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<GamesResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<GameResponse>> GetGame(Int64 id)
+        {
+            try
+            {
+                Game game = dbContext.Games.Where(x => x.GameId == id).First();
+                GameResponse result = new GameResponse()
+                {
+                    Game = game
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Game" + id);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GameResponse>(ex);
+            }
+        }
     }
 }

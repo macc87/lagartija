@@ -212,7 +212,14 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task GetGamesfromTeam_Successful()
         {
-            var result = await fantasyDatClient.GetTeamAsync(2);
+            var result = await fantasyDatClient.GetGamesfromTeam(2);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetGamesfromId_Successful()
+        {
+            var result = await fantasyDatClient.GetGame(2);
             Assert.IsFalse(result.HasError);
         }
         //[TestMethod]
