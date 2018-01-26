@@ -40,6 +40,48 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<ContestBO>>(exception);
             }
         }
+        internal async Task<ServiceResult<List<ContestBO>>> GetActiveContestsAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetActiveContestsAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get contests");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Contests);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<ContestBO>>(exception);
+            }
+        }
+        internal async Task<ServiceResult<List<NotificationBO>>> GetActiveNotificationsAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetActiveNotificationsAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get notifications");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Notifications);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<NotificationBO>>(exception);
+            }
+        }
         internal async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
         {
             try

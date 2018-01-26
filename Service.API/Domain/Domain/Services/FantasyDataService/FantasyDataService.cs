@@ -34,7 +34,18 @@ namespace Fantasy.API.Domain.Services.FantasyService
 
             }
         }
+        public async Task<ServiceResult<List<ContestBO>>> GetActiveContestsAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetActiveContestsAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<ContestBO>>(exception);
 
+            }
+        }
         public async Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId)
         {
             try
@@ -56,6 +67,18 @@ namespace Fantasy.API.Domain.Services.FantasyService
             catch (Exception exception)
             {
                 return _fantasyDataServiceCore.ExceptionHandler<TeamBO>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<List<NotificationBO>>> GetActiveNotificationsAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetActiveNotificationsAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<NotificationBO>>(exception);
             }
         }
 

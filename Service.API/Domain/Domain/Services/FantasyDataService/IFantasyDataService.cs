@@ -11,5 +11,7 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<ContestBO>>> GetContestsAsync();
         Task<ServiceResult<List<PlayerBO>>> GetPlayersFromTeamAsync(int teamId);
         Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId);
+        Task<ServiceResult<List<ContestBO>>> GetActiveContestsAsync();
+        Task<ServiceResult<List<NotificationBO>>> GetActiveNotificationsAsync();
     }
 }

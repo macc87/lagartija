@@ -280,5 +280,31 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             };
             return await Task.FromResult(result);
         }
+        public async Task<List<NotificationBO>> Create(List<Notification> notifications)
+        {
+            List<NotificationBO> result = new List<NotificationBO>();
+
+            foreach (Notification n in notifications)
+            {
+                var user = new UserBO
+                {
+                    Login = n.Account.Login,
+                    Email = n.Account.Email,
+                    Password = n.Account.Password
+                };
+
+                var nb = new NotificationBO
+                {
+                    NotificationId = n.NotificationId,
+                    Name = n.Name,
+                    Active = n.Active,
+                    Content = n.Content,
+                    Link = n.Link,
+                    User = user
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
     }
 }
