@@ -143,6 +143,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<League> _leagues;
+    
+        public ICollection<NewsTeam> NewsTeams
+        {
+            get
+            {
+                if (_newsTeams == null)
+                {
+                    var newCollection = new FixupCollection<NewsTeam>();
+                    newCollection.CollectionChanged += FixupNewsTeams;
+                    _newsTeams = newCollection;
+                }
+                return _newsTeams;
+            }
+            set
+            {
+                if (!ReferenceEquals(_newsTeams, value))
+                {
+                    var previousValue = _newsTeams as FixupCollection<NewsTeam>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupNewsTeams;
+                    }
+                    _newsTeams = value;
+                    var newValue = value as FixupCollection<NewsTeam>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupNewsTeams;
+                    }
+                }
+            }
+        }
+        private ICollection<NewsTeam> _newsTeams;
 
         #endregion
 
@@ -203,6 +235,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (League item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Team, this))
+                    {
+                        item.Team = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupNewsTeams(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (NewsTeam item in e.NewItems)
+                {
+                    item.Team = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (NewsTeam item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Team, this))
                     {

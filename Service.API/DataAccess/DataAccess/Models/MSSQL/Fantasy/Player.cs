@@ -148,6 +148,70 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<PlayerLineup> _playerLineups;
+    
+        public ICollection<Injury> Injuries
+        {
+            get
+            {
+                if (_injuries == null)
+                {
+                    var newCollection = new FixupCollection<Injury>();
+                    newCollection.CollectionChanged += FixupInjuries;
+                    _injuries = newCollection;
+                }
+                return _injuries;
+            }
+            set
+            {
+                if (!ReferenceEquals(_injuries, value))
+                {
+                    var previousValue = _injuries as FixupCollection<Injury>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupInjuries;
+                    }
+                    _injuries = value;
+                    var newValue = value as FixupCollection<Injury>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupInjuries;
+                    }
+                }
+            }
+        }
+        private ICollection<Injury> _injuries;
+    
+        public ICollection<NewsPlayer> NewsPlayers
+        {
+            get
+            {
+                if (_newsPlayers == null)
+                {
+                    var newCollection = new FixupCollection<NewsPlayer>();
+                    newCollection.CollectionChanged += FixupNewsPlayers;
+                    _newsPlayers = newCollection;
+                }
+                return _newsPlayers;
+            }
+            set
+            {
+                if (!ReferenceEquals(_newsPlayers, value))
+                {
+                    var previousValue = _newsPlayers as FixupCollection<NewsPlayer>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupNewsPlayers;
+                    }
+                    _newsPlayers = value;
+                    var newValue = value as FixupCollection<NewsPlayer>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupNewsPlayers;
+                    }
+                }
+            }
+        }
+        private ICollection<NewsPlayer> _newsPlayers;
 
         #endregion
 
@@ -206,6 +270,50 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (PlayerLineup item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Player, this))
+                    {
+                        item.Player = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupInjuries(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Injury item in e.NewItems)
+                {
+                    item.Player = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Injury item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Player, this))
+                    {
+                        item.Player = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupNewsPlayers(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (NewsPlayer item in e.NewItems)
+                {
+                    item.Player = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (NewsPlayer item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Player, this))
                     {
