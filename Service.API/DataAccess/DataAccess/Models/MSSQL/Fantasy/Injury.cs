@@ -48,6 +48,66 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
+    
+        public long PlayerPlayerId
+        {
+    get { return _playerPlayerId; }
+            set
+            {
+                if (_playerPlayerId != value)
+                {
+                    if (Player != null && Player.PlayerId != value)
+                    {
+                        Player = null;
+                    }
+                    _playerPlayerId = value;
+                }
+            }
+        }
+        private long _playerPlayerId;
+
+        #endregion
+
+        #region Navigation Properties
+    
+        public Player Player
+        {
+            get { return _player; }
+            set
+            {
+                if (!ReferenceEquals(_player, value))
+                {
+                    var previousValue = _player;
+                    _player = value;
+                    FixupPlayer(previousValue);
+                }
+            }
+        }
+        private Player _player;
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupPlayer(Player previousValue)
+        {
+            if (previousValue != null && previousValue.Injuries.Contains(this))
+            {
+                previousValue.Injuries.Remove(this);
+            }
+    
+            if (Player != null)
+            {
+                if (!Player.Injuries.Contains(this))
+                {
+                    Player.Injuries.Add(this);
+                }
+                if (PlayerPlayerId != Player.PlayerId)
+                {
+                    PlayerPlayerId = Player.PlayerId;
+                }
+            }
+        }
 
         #endregion
 
