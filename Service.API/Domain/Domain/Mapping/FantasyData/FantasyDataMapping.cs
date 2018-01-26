@@ -280,5 +280,64 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             };
             return await Task.FromResult(result);
         }
+        public async Task<List<NotificationBO>> Create(List<Notification> notifications)
+        {
+            List<NotificationBO> result = new List<NotificationBO>();
+
+            foreach (Notification n in notifications)
+            {
+                var user = new UserBO
+                {
+                    Login = n.Account.Login,
+                    Email = n.Account.Email,
+                    Password = n.Account.Password
+                };
+
+                var nb = new NotificationBO
+                {
+                    NotificationId = n.NotificationId,
+                    Name = n.Name,
+                    Active = n.Active,
+                    Content = n.Content,
+                    Link = n.Link,
+                    User = user
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<List<InformationBO>> Create(List<Information> informations)
+        {
+            List<InformationBO> result = new List<InformationBO>();
+            foreach (Information i in informations)
+            {
+                var nb = new InformationBO
+                {
+                    InformationId = i.InformationId,
+                    Content = i.Content,
+                    FinalDate = i.FinalDate,
+                    InitialDate = i.InitialDate,
+                    Name = i.Name,
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<List<PromotionBO>> Create(List<Promotion> promotions)
+        {
+            List<PromotionBO> result = new List<PromotionBO>();
+            foreach (Promotion p in promotions)
+            {
+                var nb = new PromotionBO
+                {
+                    PromoId = p.PromotionId,
+                    Code = p.Code,
+                    Content = p.Content,
+                    Name = p.Name
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
     }
 }

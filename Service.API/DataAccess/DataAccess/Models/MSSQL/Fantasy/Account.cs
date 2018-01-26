@@ -33,6 +33,16 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
+    
+        public long Money
+        {
+            get; set;
+        }
+    
+        public long Point
+        {
+            get; set;
+        }
 
         #endregion
 
@@ -69,6 +79,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<LineUp> _lineUps;
+    
+        public ICollection<Notification> Notifications
+        {
+            get
+            {
+                if (_notifications == null)
+                {
+                    var newCollection = new FixupCollection<Notification>();
+                    newCollection.CollectionChanged += FixupNotifications;
+                    _notifications = newCollection;
+                }
+                return _notifications;
+            }
+            set
+            {
+                if (!ReferenceEquals(_notifications, value))
+                {
+                    var previousValue = _notifications as FixupCollection<Notification>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupNotifications;
+                    }
+                    _notifications = value;
+                    var newValue = value as FixupCollection<Notification>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupNotifications;
+                    }
+                }
+            }
+        }
+        private ICollection<Notification> _notifications;
 
         #endregion
 
@@ -87,6 +129,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (LineUp item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Account, this))
+                    {
+                        item.Account = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupNotifications(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Notification item in e.NewItems)
+                {
+                    item.Account = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Notification item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Account, this))
                     {

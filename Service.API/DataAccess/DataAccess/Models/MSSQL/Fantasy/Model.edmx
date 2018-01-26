@@ -7,12 +7,10 @@
     <Schema Namespace="FantasyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="FantasyModelStoreContainer">
     <EntitySet Name="Injuries" EntityType="FantasyModel.Store.Injuries" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="InjuryPlayers" EntityType="FantasyModel.Store.InjuryPlayers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="InjuryTeams" EntityType="FantasyModel.Store.InjuryTeams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Leagues" EntityType="FantasyModel.Store.Leagues" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts" EntityType="FantasyModel.Store.Accounts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sports" EntityType="FantasyModel.Store.Sports" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Notifications" EntityType="FantasyModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Information" EntityType="FantasyModel.Store.Information" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClimaConditions" EntityType="FantasyModel.Store.ClimaConditions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Venues" EntityType="FantasyModel.Store.Venues" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Players" EntityType="FantasyModel.Store.Players" store:Type="Tables" Schema="dbo" />
@@ -27,18 +25,11 @@
     <EntitySet Name="PlayerLineups" EntityType="FantasyModel.Store.PlayerLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContestLineups" EntityType="FantasyModel.Store.ContestLineups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Goals" EntityType="FantasyModel.Store.Goals" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_InjuryPlayer_Injury" Association="FantasyModel.Store.FK_InjuryPlayer_Injury">
-      <End Role="Injury" EntitySet="Injuries" />
-      <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InjuryPlayer_InjuryTeam" Association="FantasyModel.Store.FK_InjuryPlayer_InjuryTeam">
-      <End Role="InjuryTeam" EntitySet="InjuryTeams" />
-      <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InjuryTeam_League" Association="FantasyModel.Store.FK_InjuryTeam_League">
-      <End Role="League" EntitySet="Leagues" />
-      <End Role="InjuryTeam" EntitySet="InjuryTeams" />
-    </AssociationSet>
+    <EntitySet Name="Notifications" EntityType="FantasyModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountFriends" EntityType="FantasyModel.Store.AccountFriends" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="News" EntityType="FantasyModel.Store.News" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NewsPlayers" EntityType="FantasyModel.Store.NewsPlayers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NewsTeams" EntityType="FantasyModel.Store.NewsTeams" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Sport_Team" Association="FantasyModel.Store.FK_Sport_Team">
       <End Role="Sport" EntitySet="Sports" />
       <End Role="Team" EntitySet="Teams" />
@@ -106,51 +97,64 @@
     <AssociationSet Name="GoalSport" Association="FantasyModel.Store.GoalSport">
       <End Role="Goal" EntitySet="Goals" />
       <End Role="Sport" EntitySet="Sports" />
-    </AssociationSet>    
+    </AssociationSet>
+    <AssociationSet Name="NotificationAccount" Association="FantasyModel.Store.NotificationAccount">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="AccountAccountFriends" Association="FantasyModel.Store.AccountAccountFriends">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountFriends" EntitySet="AccountFriends" />
+    </AssociationSet>
+    <AssociationSet Name="AccountAccountFriends1" Association="FantasyModel.Store.AccountAccountFriends1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountFriends" EntitySet="AccountFriends" />
+    </AssociationSet>
+    <AssociationSet Name="TeamLeague" Association="FantasyModel.Store.TeamLeague">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="League" EntitySet="Leagues" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerInjury" Association="FantasyModel.Store.PlayerInjury">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Injury" EntitySet="Injuries" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerNewsPlayer" Association="FantasyModel.Store.PlayerNewsPlayer">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="NewsPlayer" EntitySet="NewsPlayers" />
+    </AssociationSet>
+    <AssociationSet Name="NewsNewsPlayer" Association="FantasyModel.Store.NewsNewsPlayer">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsPlayer" EntitySet="NewsPlayers" />
+    </AssociationSet>
+    <AssociationSet Name="TeamNewsTeam" Association="FantasyModel.Store.TeamNewsTeam">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="NewsTeam" EntitySet="NewsTeams" />
+    </AssociationSet>
+    <AssociationSet Name="NewsNewsTeam" Association="FantasyModel.Store.NewsNewsTeam">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsTeam" EntitySet="NewsTeams" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
     <Key>
       <PropertyRef Name="InjuryId" />
     </Key>
-    <Property Name="InjuryId" Type="varchar" Nullable="false" MaxLength="36" />
+    <Property Name="InjuryId" Type="bigint" Nullable="false" />
     <Property Name="Comment" Type="varchar(max)" Nullable="true" />
     <Property Name="Description" Type="varchar" Nullable="true" MaxLength="500" />
     <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="UpdateDate" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="InjuryPlayers">
-    <Key>
-      <PropertyRef Name="PlayerId" />
-    </Key>
-    <Property Name="PlayerId" Type="varchar" Nullable="false" MaxLength="36" />
-    <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Position" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="PrimaryPosition" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="150" />
-    <Property Name="JerseyNumber" Type="varchar" Nullable="false" MaxLength="3" />
-    <Property Name="PreferredName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="InjuryId" Type="varchar" Nullable="false" MaxLength="36" />
-    <Property Name="InjuryTeamId" Type="varchar" Nullable="false" MaxLength="36" />
-  </EntityType>
-  <EntityType Name="InjuryTeams">
-    <Key>
-      <PropertyRef Name="TeamId" />
-    </Key>
-    <Property Name="TeamId" Type="varchar" Nullable="false" MaxLength="36" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="Abbr" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="Market" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="LeagueId" Type="varchar" Nullable="false" MaxLength="36" />
+    <Property Name="PlayerPlayerId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Leagues">
     <Key>
       <PropertyRef Name="LeagueId" />
     </Key>
-    <Property Name="LeagueId" Type="varchar" Nullable="false" MaxLength="36" />
+    <Property Name="LeagueId" Type="bigint" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Alias" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TeamTeamId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts">
     <Key>
@@ -159,6 +163,8 @@
     <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="250" />
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Money" Type="bigint" Nullable="false" />
+    <Property Name="Point" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Sports">
     <Key>
@@ -167,11 +173,11 @@
     <Property Name="SportId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
-  <EntityType Name="Notifications">
+  <EntityType Name="Information">
     <Key>
-      <PropertyRef Name="NotificationId" />
+      <PropertyRef Name="InformationId" />
     </Key>
-    <Property Name="NotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InformationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InitialDate" Type="datetime" Nullable="false" />
@@ -223,6 +229,8 @@
     <Property Name="TeamName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TeamLogo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SportId" Type="bigint" Nullable="false" />
+    <Property Name="Abbr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Market" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ContestTypes">
     <Key>
@@ -313,42 +321,56 @@
     <Property Name="GoalLogo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SportId" Type="bigint" Nullable="false" />
   </EntityType>
-  <Association Name="FK_InjuryPlayer_Injury">
-    <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="1" />
-    <End Role="InjuryPlayer" Type="FantasyModel.Store.InjuryPlayers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Injury">
-        <PropertyRef Name="InjuryId" />
-      </Principal>
-      <Dependent Role="InjuryPlayer">
-        <PropertyRef Name="InjuryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InjuryPlayer_InjuryTeam">
-    <End Role="InjuryTeam" Type="FantasyModel.Store.InjuryTeams" Multiplicity="1" />
-    <End Role="InjuryPlayer" Type="FantasyModel.Store.InjuryPlayers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="InjuryTeam">
-        <PropertyRef Name="TeamId" />
-      </Principal>
-      <Dependent Role="InjuryPlayer">
-        <PropertyRef Name="InjuryTeamId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InjuryTeam_League">
-    <End Role="League" Type="FantasyModel.Store.Leagues" Multiplicity="1" />
-    <End Role="InjuryTeam" Type="FantasyModel.Store.InjuryTeams" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="League">
-        <PropertyRef Name="LeagueId" />
-      </Principal>
-      <Dependent Role="InjuryTeam">
-        <PropertyRef Name="LeagueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountFriends">
+    <Key>
+      <PropertyRef Name="AccountFriendsId" />
+      <PropertyRef Name="AccountLogin" />
+      <PropertyRef Name="AccountLogin1" />
+    </Key>
+    <Property Name="AccountFriendsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="AccountLogin1" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tittle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsPlayers">
+    <Key>
+      <PropertyRef Name="NewsPlayerId" />
+      <PropertyRef Name="PlayerId" />
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsPlayerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="bigint" Nullable="false" />
+    <Property Name="NewsId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsTeams">
+    <Key>
+      <PropertyRef Name="NewsTeamId" />
+      <PropertyRef Name="TeamId" />
+      <PropertyRef Name="NewsId" />
+    </Key>
+    <Property Name="NewsTeamId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="bigint" Nullable="false" />
+    <Property Name="NewsId" Type="bigint" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Sport_Team">
     <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="1" />
     <End Role="Team" Type="FantasyModel.Store.Teams" Multiplicity="*" />
@@ -553,6 +575,114 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="NotificationAccount">
+    <End Role="Notification" Type="FantasyModel.Store.Notifications" Multiplicity="*" />
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="AccountLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountAccountFriends">
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <End Role="AccountFriends" Type="FantasyModel.Store.AccountFriends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="AccountFriends">
+        <PropertyRef Name="AccountLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountAccountFriends1">
+    <End Role="Account" Type="FantasyModel.Store.Accounts" Multiplicity="1" />
+    <End Role="AccountFriends" Type="FantasyModel.Store.AccountFriends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="AccountFriends">
+        <PropertyRef Name="AccountLogin1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeamLeague">
+    <End Role="Team" Type="FantasyModel.Store.Teams" Multiplicity="1" />
+    <End Role="League" Type="FantasyModel.Store.Leagues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="League">
+        <PropertyRef Name="TeamTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerInjury">
+    <End Role="Player" Type="FantasyModel.Store.Players" Multiplicity="1" />
+    <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Injury">
+        <PropertyRef Name="PlayerPlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerNewsPlayer">
+    <End Role="Player" Type="FantasyModel.Store.Players" Multiplicity="1" />
+    <End Role="NewsPlayer" Type="FantasyModel.Store.NewsPlayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="NewsPlayer">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NewsNewsPlayer">
+    <End Role="News" Type="FantasyModel.Store.News" Multiplicity="1" />
+    <End Role="NewsPlayer" Type="FantasyModel.Store.NewsPlayers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsId" />
+      </Principal>
+      <Dependent Role="NewsPlayer">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TeamNewsTeam">
+    <End Role="Team" Type="FantasyModel.Store.Teams" Multiplicity="1" />
+    <End Role="NewsTeam" Type="FantasyModel.Store.NewsTeams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="NewsTeam">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NewsNewsTeam">
+    <End Role="News" Type="FantasyModel.Store.News" Multiplicity="1" />
+    <End Role="NewsTeam" Type="FantasyModel.Store.NewsTeams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsId" />
+      </Principal>
+      <Dependent Role="NewsTeam">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -561,108 +691,31 @@
           <Key>
             <PropertyRef Name="InjuryId" />
           </Key>
-          <Property Name="InjuryId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InjuryId" Type="Int64" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="InjuryPlayers" ToRole="InjuryPlayer" FromRole="Injury" Relationship="Self.FK_InjuryPlayer_Injury" />
-        </EntityType>
-        <EntityType Name="InjuryPlayer">
-          <Key>
-            <PropertyRef Name="PlayerId" />
-          </Key>
-          <Property Name="PlayerId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PrimaryPosition" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="JerseyNumber" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PreferredName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="InjuryId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="InjuryTeamId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Injury" Relationship="Self.FK_InjuryPlayer_Injury" FromRole="InjuryPlayer" ToRole="Injury" />
-          <NavigationProperty Name="InjuryTeam" Relationship="Self.FK_InjuryPlayer_InjuryTeam" FromRole="InjuryPlayer" ToRole="InjuryTeam" />
-        </EntityType>
-        <EntityType Name="InjuryTeam">
-          <Key>
-            <PropertyRef Name="TeamId" />
-          </Key>
-          <Property Name="TeamId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Market" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LeagueId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="InjuryPlayers" Relationship="Self.FK_InjuryPlayer_InjuryTeam" FromRole="InjuryTeam" ToRole="InjuryPlayer" />
-          <NavigationProperty Name="League" Relationship="Self.FK_InjuryTeam_League" FromRole="InjuryTeam" ToRole="League" />
+          <NavigationProperty Name="Player" Relationship="FantasyModel.PlayerInjury" FromRole="Injury" ToRole="Player" />
+          <Property Name="PlayerPlayerId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="League">
           <Key>
             <PropertyRef Name="LeagueId" />
           </Key>
-          <Property Name="LeagueId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LeagueId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="InjuryTeams" Relationship="Self.FK_InjuryTeam_League" FromRole="League" ToRole="InjuryTeam" />
+          <NavigationProperty Name="Team" Relationship="FantasyModel.TeamLeague" FromRole="League" ToRole="Team" />
+          <Property Name="TeamTeamId" Type="Int64" Nullable="false" />
         </EntityType>
-        <Association Name="FK_InjuryPlayer_Injury">
-          <End Role="Injury" Type="Self.Injury" Multiplicity="1" />
-          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Injury">
-              <PropertyRef Name="InjuryId" />
-            </Principal>
-            <Dependent Role="InjuryPlayer">
-              <PropertyRef Name="InjuryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InjuryPlayer_InjuryTeam">
-          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="1" />
-          <End Role="InjuryPlayer" Type="Self.InjuryPlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InjuryTeam">
-              <PropertyRef Name="TeamId" />
-            </Principal>
-            <Dependent Role="InjuryPlayer">
-              <PropertyRef Name="InjuryTeamId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InjuryTeam_League">
-          <End Role="League" Type="Self.League" Multiplicity="1" />
-          <End Role="InjuryTeam" Type="Self.InjuryTeam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="League">
-              <PropertyRef Name="LeagueId" />
-            </Principal>
-            <Dependent Role="InjuryTeam">
-              <PropertyRef Name="LeagueId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="FantasyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Injuries" EntityType="Self.Injury" />
-          <EntitySet Name="InjuryPlayers" EntityType="Self.InjuryPlayer" />
-          <EntitySet Name="InjuryTeams" EntityType="Self.InjuryTeam" />
           <EntitySet Name="Leagues" EntityType="Self.League" />
-          <AssociationSet Name="FK_InjuryPlayer_Injury" Association="Self.FK_InjuryPlayer_Injury">
-            <End Role="Injury" EntitySet="Injuries" />
-            <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InjuryPlayer_InjuryTeam" Association="Self.FK_InjuryPlayer_InjuryTeam">
-            <End Role="InjuryTeam" EntitySet="InjuryTeams" />
-            <End Role="InjuryPlayer" EntitySet="InjuryPlayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InjuryTeam_League" Association="Self.FK_InjuryTeam_League">
-            <End Role="League" EntitySet="Leagues" />
-            <End Role="InjuryTeam" EntitySet="InjuryTeams" />
-          </AssociationSet>
           <EntitySet Name="Accounts" EntityType="FantasyModel.Account" />
           <EntitySet Name="Sports" EntityType="FantasyModel.Sport" />
-          <EntitySet Name="Notifications" EntityType="FantasyModel.Notification" />
+          <EntitySet Name="Information" EntityType="FantasyModel.Information" />
           <EntitySet Name="ClimaConditions" EntityType="FantasyModel.ClimaConditions" />
           <EntitySet Name="Venues" EntityType="FantasyModel.Venue" />
           <EntitySet Name="Players" EntityType="FantasyModel.Player" />
@@ -745,6 +798,47 @@
             <End Role="Goal" EntitySet="Goals" />
             <End Role="Sport" EntitySet="Sports" />
           </AssociationSet>
+          <EntitySet Name="Notifications" EntityType="FantasyModel.Notification" />
+          <AssociationSet Name="NotificationAccount" Association="FantasyModel.NotificationAccount">
+            <End Role="Notification" EntitySet="Notifications" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="AccountFriends" EntityType="FantasyModel.AccountFriends" />
+          <AssociationSet Name="AccountAccountFriends" Association="FantasyModel.AccountAccountFriends">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountFriends" EntitySet="AccountFriends" />
+          </AssociationSet>
+          <AssociationSet Name="AccountAccountFriends1" Association="FantasyModel.AccountAccountFriends1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountFriends" EntitySet="AccountFriends" />
+          </AssociationSet>
+          <AssociationSet Name="TeamLeague" Association="FantasyModel.TeamLeague">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="League" EntitySet="Leagues" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerInjury" Association="FantasyModel.PlayerInjury">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Injury" EntitySet="Injuries" />
+          </AssociationSet>
+          <EntitySet Name="News" EntityType="FantasyModel.News" />
+          <EntitySet Name="NewsPlayers" EntityType="FantasyModel.NewsPlayer" />
+          <AssociationSet Name="PlayerNewsPlayer" Association="FantasyModel.PlayerNewsPlayer">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="NewsPlayer" EntitySet="NewsPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="NewsNewsPlayer" Association="FantasyModel.NewsNewsPlayer">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsPlayer" EntitySet="NewsPlayers" />
+          </AssociationSet>
+          <EntitySet Name="NewsTeams" EntityType="FantasyModel.NewsTeam" />
+          <AssociationSet Name="TeamNewsTeam" Association="FantasyModel.TeamNewsTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="NewsTeam" EntitySet="NewsTeams" />
+          </AssociationSet>
+          <AssociationSet Name="NewsNewsTeam" Association="FantasyModel.NewsNewsTeam">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsTeam" EntitySet="NewsTeams" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -754,6 +848,9 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LineUps" Relationship="FantasyModel.AccountLineUp" FromRole="Account" ToRole="LineUp" />
+          <NavigationProperty Name="Notifications" Relationship="FantasyModel.NotificationAccount" FromRole="Account" ToRole="Notification" />
+          <Property Name="Money" Type="Int64" Nullable="false" />
+          <Property Name="Point" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Sport">
           <Key>
@@ -765,11 +862,11 @@
           <NavigationProperty Name="Positions" Relationship="FantasyModel.SportPosition" FromRole="Sport" ToRole="Position" />
           <NavigationProperty Name="Goals" Relationship="FantasyModel.GoalSport" FromRole="Sport" ToRole="Goal" />
         </EntityType>
-        <EntityType Name="Notification">
+        <EntityType Name="Information">
           <Key>
-            <PropertyRef Name="NotificationId" />
+            <PropertyRef Name="InformationId" />
           </Key>
-          <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InformationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <Property Name="InitialDate" Type="DateTime" Nullable="false" />
@@ -809,6 +906,8 @@
           <Property Name="Salary" Type="Double" Nullable="false" />
           <Property Name="Photo" Type="String" Nullable="false" />
           <NavigationProperty Name="PlayerLineups" Relationship="FantasyModel.PlayerLineupPlayer" FromRole="Player" ToRole="PlayerLineup" />
+          <NavigationProperty Name="Injuries" Relationship="FantasyModel.PlayerInjury" FromRole="Player" ToRole="Injury" />
+          <NavigationProperty Name="NewsPlayers" Relationship="FantasyModel.PlayerNewsPlayer" FromRole="Player" ToRole="NewsPlayer" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -830,6 +929,10 @@
           <NavigationProperty Name="Sport" Relationship="FantasyModel.FK_Sport_Team" FromRole="Team" ToRole="Sport" />
           <Property Name="SportId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Players" Relationship="FantasyModel.TeamPlayer" FromRole="Team" ToRole="Player" />
+          <Property Name="Abbr" Type="String" Nullable="false" />
+          <Property Name="Market" Type="String" Nullable="false" />
+          <NavigationProperty Name="Leagues" Relationship="FantasyModel.TeamLeague" FromRole="Team" ToRole="League" />
+          <NavigationProperty Name="NewsTeams" Relationship="FantasyModel.TeamNewsTeam" FromRole="Team" ToRole="NewsTeam" />
         </EntityType>
         <Association Name="FK_Sport_Team">
           <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
@@ -1141,6 +1244,171 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="FantasyModel.NotificationAccount" FromRole="Notification" ToRole="Account" />
+          <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="NotificationAccount">
+          <End Type="FantasyModel.Notification" Role="Notification" Multiplicity="*" />
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AccountLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountFriends">
+          <Key>
+            <PropertyRef Name="AccountFriendsId" />
+            <PropertyRef Name="AccountLogin" />
+            <PropertyRef Name="AccountLogin1" />
+          </Key>
+          <Property Name="AccountFriendsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountLogin1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AccountAccountFriends">
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="FantasyModel.AccountFriends" Role="AccountFriends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="AccountFriends">
+              <PropertyRef Name="AccountLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountAccountFriends1">
+          <End Type="FantasyModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="FantasyModel.AccountFriends" Role="AccountFriends" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="AccountFriends">
+              <PropertyRef Name="AccountLogin1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamLeague">
+          <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="FantasyModel.League" Role="League" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="League">
+              <PropertyRef Name="TeamTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlayerInjury">
+          <End Type="FantasyModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="FantasyModel.Injury" Role="Injury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="Injury">
+              <PropertyRef Name="PlayerPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tittle" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <NavigationProperty Name="NewsPlayers" Relationship="FantasyModel.NewsNewsPlayer" FromRole="News" ToRole="NewsPlayer" />
+          <NavigationProperty Name="NewsTeams" Relationship="FantasyModel.NewsNewsTeam" FromRole="News" ToRole="NewsTeam" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsPlayer">
+          <Key>
+            <PropertyRef Name="NewsPlayerId" />
+            <PropertyRef Name="PlayerId" />
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsPlayerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Player" Relationship="FantasyModel.PlayerNewsPlayer" FromRole="NewsPlayer" ToRole="Player" />
+          <Property Name="PlayerId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="FantasyModel.NewsNewsPlayer" FromRole="NewsPlayer" ToRole="News" />
+          <Property Name="NewsId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="PlayerNewsPlayer">
+          <End Type="FantasyModel.Player" Role="Player" Multiplicity="1" />
+          <End Type="FantasyModel.NewsPlayer" Role="NewsPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="NewsPlayer">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NewsNewsPlayer">
+          <End Type="FantasyModel.News" Role="News" Multiplicity="1" />
+          <End Type="FantasyModel.NewsPlayer" Role="NewsPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="NewsPlayer">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NewsTeam">
+          <Key>
+            <PropertyRef Name="NewsTeamId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsTeamId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Team" Relationship="FantasyModel.TeamNewsTeam" FromRole="NewsTeam" ToRole="Team" />
+          <Property Name="TeamId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="FantasyModel.NewsNewsTeam" FromRole="NewsTeam" ToRole="News" />
+          <Property Name="NewsId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="TeamNewsTeam">
+          <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="FantasyModel.NewsTeam" Role="NewsTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="NewsTeam">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NewsNewsTeam">
+          <End Type="FantasyModel.News" Role="News" Multiplicity="1" />
+          <End Type="FantasyModel.NewsTeam" Role="NewsTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="NewsTeam">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1156,33 +1424,7 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InjuryPlayers">
-      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.InjuryPlayer)">
-        <MappingFragment StoreEntitySet="InjuryPlayers">
-          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="PrimaryPosition" ColumnName="PrimaryPosition" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="JerseyNumber" ColumnName="JerseyNumber" />
-          <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
-          <ScalarProperty Name="InjuryId" ColumnName="InjuryId" />
-          <ScalarProperty Name="InjuryTeamId" ColumnName="InjuryTeamId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InjuryTeams">
-      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.InjuryTeam)">
-        <MappingFragment StoreEntitySet="InjuryTeams">
-          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Abbr" ColumnName="Abbr" />
-          <ScalarProperty Name="Market" ColumnName="Market" />
-          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+          <ScalarProperty Name="PlayerPlayerId" ColumnName="PlayerPlayerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1192,6 +1434,7 @@
           <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="TeamTeamId" ColumnName="TeamTeamId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1201,6 +1444,8 @@
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1212,10 +1457,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Notifications">
-      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Notification)">
-        <MappingFragment StoreEntitySet="Notifications">
-          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Information)">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="InformationId" ColumnName="InformationId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="InitialDate" ColumnName="InitialDate" />
@@ -1272,6 +1517,8 @@
           <ScalarProperty Name="TeamName" ColumnName="TeamName" />
           <ScalarProperty Name="TeamLogo" ColumnName="TeamLogo" />
           <ScalarProperty Name="SportId" ColumnName="SportId" />
+          <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+          <ScalarProperty Name="Market" ColumnName="Market" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1364,6 +1611,55 @@
           <ScalarProperty Name="CompletionCount" ColumnName="CompletionCount" />
           <ScalarProperty Name="GoalLogo" ColumnName="GoalLogo" />
           <ScalarProperty Name="SportId" ColumnName="SportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.Notification)">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountFriends">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.AccountFriends)">
+        <MappingFragment StoreEntitySet="AccountFriends">
+          <ScalarProperty Name="AccountFriendsId" ColumnName="AccountFriendsId" />
+          <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
+          <ScalarProperty Name="AccountLogin1" ColumnName="AccountLogin1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.News)">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+          <ScalarProperty Name="Tittle" ColumnName="Tittle" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsPlayers">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.NewsPlayer)">
+        <MappingFragment StoreEntitySet="NewsPlayers">
+          <ScalarProperty Name="NewsPlayerId" ColumnName="NewsPlayerId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsTeams">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.NewsTeam)">
+        <MappingFragment StoreEntitySet="NewsTeams">
+          <ScalarProperty Name="NewsTeamId" ColumnName="NewsTeamId" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="NewsId" ColumnName="NewsId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

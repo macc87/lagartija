@@ -19,7 +19,7 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
     {
         #region Primitive Properties
     
-        public string InjuryId
+        public long InjuryId
         {
             get; set;
         }
@@ -48,65 +48,63 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
+    
+        public long PlayerPlayerId
+        {
+    get { return _playerPlayerId; }
+            set
+            {
+                if (_playerPlayerId != value)
+                {
+                    if (Player != null && Player.PlayerId != value)
+                    {
+                        Player = null;
+                    }
+                    _playerPlayerId = value;
+                }
+            }
+        }
+        private long _playerPlayerId;
 
         #endregion
 
         #region Navigation Properties
     
-        public ICollection<InjuryPlayer> InjuryPlayers
+        public Player Player
         {
-            get
-            {
-                if (_injuryPlayers == null)
-                {
-                    var newCollection = new FixupCollection<InjuryPlayer>();
-                    newCollection.CollectionChanged += FixupInjuryPlayers;
-                    _injuryPlayers = newCollection;
-                }
-                return _injuryPlayers;
-            }
+            get { return _player; }
             set
             {
-                if (!ReferenceEquals(_injuryPlayers, value))
+                if (!ReferenceEquals(_player, value))
                 {
-                    var previousValue = _injuryPlayers as FixupCollection<InjuryPlayer>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupInjuryPlayers;
-                    }
-                    _injuryPlayers = value;
-                    var newValue = value as FixupCollection<InjuryPlayer>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupInjuryPlayers;
-                    }
+                    var previousValue = _player;
+                    _player = value;
+                    FixupPlayer(previousValue);
                 }
             }
         }
-        private ICollection<InjuryPlayer> _injuryPlayers;
+        private Player _player;
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupInjuryPlayers(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupPlayer(Player previousValue)
         {
-            if (e.NewItems != null)
+            if (previousValue != null && previousValue.Injuries.Contains(this))
             {
-                foreach (InjuryPlayer item in e.NewItems)
-                {
-                    item.Injury = this;
-                }
+                previousValue.Injuries.Remove(this);
             }
     
-            if (e.OldItems != null)
+            if (Player != null)
             {
-                foreach (InjuryPlayer item in e.OldItems)
+                if (!Player.Injuries.Contains(this))
                 {
-                    if (ReferenceEquals(item.Injury, this))
-                    {
-                        item.Injury = null;
-                    }
+                    Player.Injuries.Add(this);
+                }
+                if (PlayerPlayerId != Player.PlayerId)
+                {
+                    PlayerPlayerId = Player.PlayerId;
                 }
             }
         }
