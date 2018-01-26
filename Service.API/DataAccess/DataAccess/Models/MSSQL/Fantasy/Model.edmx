@@ -349,6 +349,7 @@
     <Property Name="NewsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tittle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="NewsPlayers">
     <Key>
@@ -1334,6 +1335,7 @@
           <Property Name="Content" Type="String" Nullable="false" />
           <NavigationProperty Name="NewsPlayers" Relationship="FantasyModel.NewsNewsPlayer" FromRole="News" ToRole="NewsPlayer" />
           <NavigationProperty Name="NewsTeams" Relationship="FantasyModel.NewsNewsTeam" FromRole="News" ToRole="NewsTeam" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsPlayer">
           <Key>
@@ -1639,6 +1641,7 @@
           <ScalarProperty Name="NewsId" ColumnName="NewsId" />
           <ScalarProperty Name="Tittle" ColumnName="Tittle" />
           <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

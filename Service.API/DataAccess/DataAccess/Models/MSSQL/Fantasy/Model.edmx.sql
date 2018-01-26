@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/26/2018 09:15:47
+-- Date Created: 01/26/2018 09:53:26
 -- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -80,6 +80,21 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TeamLeague]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Leagues] DROP CONSTRAINT [FK_TeamLeague];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerInjury]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Injuries] DROP CONSTRAINT [FK_PlayerInjury];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerNewsPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NewsPlayers] DROP CONSTRAINT [FK_PlayerNewsPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NewsNewsPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NewsPlayers] DROP CONSTRAINT [FK_NewsNewsPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamNewsTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NewsTeams] DROP CONSTRAINT [FK_TeamNewsTeam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NewsNewsTeam]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NewsTeams] DROP CONSTRAINT [FK_NewsNewsTeam];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -147,6 +162,15 @@ IF OBJECT_ID(N'[dbo].[Notifications]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[AccountFriends]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AccountFriends];
+GO
+IF OBJECT_ID(N'[dbo].[News]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[News];
+GO
+IF OBJECT_ID(N'[dbo].[NewsPlayers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NewsPlayers];
+GO
+IF OBJECT_ID(N'[dbo].[NewsTeams]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NewsTeams];
 GO
 
 -- --------------------------------------------------
@@ -356,7 +380,8 @@ GO
 CREATE TABLE [dbo].[News] (
     [NewsId] bigint IDENTITY(1,1) NOT NULL,
     [Tittle] nvarchar(max)  NOT NULL,
-    [Content] nvarchar(max)  NOT NULL
+    [Content] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
