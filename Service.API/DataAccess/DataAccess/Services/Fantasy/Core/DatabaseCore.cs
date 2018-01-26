@@ -818,5 +818,99 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<GameResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<NewsResponse>> GetNews(DateTime start, DateTime end)
+        {
+            try
+            {
+                List<News> news = dbContext.News.Where(x => x.Date >= start && x.Date <= end).ToList();
+                NewsResponse result = new NewsResponse()
+                {
+                    News = news
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting News");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NewsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                List<NewsPlayer> playerNews = dbContext.PlayerNews.Where(x => x.PlayerId == id).ToList();
+                List<News> news = new List<News>();
+                foreach (NewsPlayer np in playerNews)
+                {
+                    News n = dbContext.News.Where(x => x.NewsId == np.NewsId && x.Date >= start && x.Date <= end).First();
+                    if (n != null)
+                    {
+                        news.Add(n);
+                    }
+                }
+                NewsResponse result = new NewsResponse()
+                {
+                    News = news
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting News from player" + id);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NewsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                List<News> news = new List<News>();
+
+                // Team News
+                List<NewsTeam> teamNews = dbContext.TeamNews.Where(x => x.TeamId == id).ToList();
+                foreach (NewsTeam nt in teamNews)
+                {
+                    news.Add(dbContext.News.Where(x => x.NewsId == nt.NewsId && x.Date >= start && x.Date <= end).First());
+                }
+
+                // Team Players News
+                List<Player> players = dbContext.Players.Where(x => x.TeamId == id).ToList();
+                List<NewsPlayer> playerNews = new List<NewsPlayer>();
+                foreach (Player p in players)
+                {
+                    List<NewsPlayer> pNews = dbContext.PlayerNews.Where(x => x.PlayerId == id).ToList();
+                    playerNews.AddRange(pNews);
+                }
+                foreach (NewsPlayer np in playerNews)
+                {
+                    News n = dbContext.News.Where(x =>x.NewsId == np.NewsId && x.Date >= start && x.Date <= end).First();
+                    if (n != null)
+                    {
+                        news.Add(n);
+                    }
+                }
+
+                NewsResponse result = new NewsResponse()
+                {
+                    News = news
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting News from team" + id);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NewsResponse>(ex);
+            }
+        }
     }
 }

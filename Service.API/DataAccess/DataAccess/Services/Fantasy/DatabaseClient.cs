@@ -593,5 +593,56 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<GameResponse>(exception);
             }
         }
+        public async Task<ServiceResult<NewsResponse>> GetNews(DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetNews(start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayerNews(id, start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetTeamNews(id, start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
     }
 }

@@ -41,6 +41,10 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<PlayersResponse>> GetPlayersFromLineup(Int64 id);
         Task<ServiceResult<GamesResponse>> GetGamesfromTeam(Int64 id);
         Task<ServiceResult<GameResponse>> GetGame(Int64 id);
+        Task<ServiceResult<NewsResponse>> GetNews(DateTime start, DateTime end);
+        Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
+        Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end);
+
 
     }
 };
