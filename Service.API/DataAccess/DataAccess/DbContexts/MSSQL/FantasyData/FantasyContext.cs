@@ -64,6 +64,9 @@ namespace Fantasy.API.DataAccess.DbContexts.MSSQL.FantasyData
         public virtual DbSet<AccountFriends> AccountFriends { get; set; }
         public virtual DbSet<Goal> Goals { get; set; }
         public virtual DbSet<League> Leagues { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<NewsPlayer> PlayerNews { get; set; }
+        public virtual DbSet<NewsTeam> TeamNews { get; set; }
 
 
     }
