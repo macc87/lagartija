@@ -1,0 +1,33 @@
+ViewModels
+
++ DashboardViewModel
+  - Next Contests Table
+
++ MatchViewModel
+
++ ContestRunningViewModel
+  - Contestants: List<Users>
+  - Position Table / Prizes Table
+  - Contest progress bar (time left)
+  - MyPoints
+  - Position Bar
+
++ ContestSignInViewModel
+
++ CreateContestViewModel
+
++ LineUpViewModel
+  - matchs: List<Match>
+  - available draft: List<Player>
+  - lineup: List<Player>
+  - Remaining Avg. Salary per Cap
+  - Budget
+
++ PlayerStatsViewModel
+
++ MyLineUpsViewModel
+  - Current LineUps
+
++ MyContestsViewModel
+  - Current Contests
+

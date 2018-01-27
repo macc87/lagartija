@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Home</h1>
+    <p class="lead">
+        FantasyGame home page. This place will be the hook where potential and registered users arrives.
+    </p>
+    <p>
+        Most have, game info and legal links
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <h2>Promotions</h2>
+        @foreach (var item in @ViewBag.Promotions)
+        {
+            <div>
+                <span>@item.Name</span> | 
+                <span>@item.PromotionContent</span> | 
+                <span>
+                    @Html.ActionLink("Ver Promoción", "ViewPromotion", new { id = item.Id })
+                </span>
+            </div>
+        }
+    </div>
+    <div class="col-md-5">
+    <h2>Notifications</h2>
+        @foreach (var item in @ViewBag.Notifications)
+        {
+            <div>
+                <span>@item.Name</span> |
+                <span>@item.Content</span> |
+                <span>
+                    @Html.ActionLink("Ver Notificación", "ViewNotification", new { id = item.Id })
+                </span>
+            </div>
+        }
+    </div>
+    <div class="col-md-2">
+        <h2>Contest Types</h2>
+        @foreach (var item in @ViewBag.ContestTypes)
+        {
+            <div>
+                <div>@item.Type</div>
+            </div>
+        }
+    </div>
+</div>

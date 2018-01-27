@@ -21,11 +21,25 @@ namespace website
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js"));            
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/toastr.min.css",
+                      "~/Content/main.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/boilermacc").Include(
+                      "~/Scripts/macc.ajax.js",
+                      "~/Scripts/macc.form.js",
+                      "~/Scripts/macc.img.js",
+                      "~/Scripts/toastr.min.js",
+                      "~/Scripts/macc.modal.js",
+                      "~/Scripts/macc.msg.js",
+                      "~/Scripts/macc.scrollable.slider.js",
+                      "~/Scripts/macc.tabs.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Scripts/main.js"));
         }
     }
 }
