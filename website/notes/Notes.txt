@@ -1,0 +1,21 @@
+Notes
+
++ [DraftKings] El salario de cada jugador esta en funcion de los 
+               FantasyPoints (FP) que genere.
+
++ [PlayerStats] Pueden ser brindadas de la forma usual y se puede 
+                dar un servicio Premium donde se brinden estadisticas 
+                más profundas como por ejemplo: 
+                - Estabilidad del perfonmance del jugador
+                - Probabilidad de exito en el proximo juego
+                - Etc, el tipo de estadisticas que desarrollaria un
+                  usuario con inclinacion a las Matematicas y Data Minning, 
+                  en fin, un servicio Premium sobre cosas utiltes que surjan
+
++ [Data] El streaming de datos nos da una idea tambien de las cosas que 
+         deben ser guardadas en los modelos, y nos da una idea de los datos 
+         a manejar. Fuera de ayuda tener un ejemplo del json o xml que va a
+         servir como feed         
+
++ [Design] Family-Friendly design: Más estandar como FanDuel, menos hardcore         
+           que DraftKings.

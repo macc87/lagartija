@@ -1,0 +1,10 @@
+ViewModels
+
++ DashboardViewModel
+
++ MatchViewModel
+
++ LineUpViewModel
+  - matchs: List<Match>
+  - available draft: List<Player>
+  - lineup: List<Player>
