@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2018-01-21 10:54:13
+Date: 2018-01-26 09:19:36
 */
 
 
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[AccountFriends] (
 
 
 GO
-DBCC CHECKIDENT(N'[dbo].[AccountFriends]', RESEED, 4)
+DBCC CHECKIDENT(N'[dbo].[AccountFriends]', RESEED, 7)
 GO
 
 -- ----------------------------
@@ -57,7 +57,8 @@ CREATE TABLE [dbo].[Accounts] (
 [Login] nvarchar(50) NOT NULL ,
 [Email] nvarchar(250) NOT NULL ,
 [Password] nvarchar(50) NOT NULL ,
-[Money] bigint NOT NULL 
+[Money] bigint NOT NULL ,
+[Point] bigint NOT NULL 
 )
 
 
@@ -66,16 +67,16 @@ GO
 -- ----------------------------
 -- Records of Accounts
 -- ----------------------------
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'admin', N'admin@admins.com', N'password', N'90')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'admin', N'admin@admins.com', N'password', N'90', N'96')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser1', N'testuser1@admins.com', N'password', N'187', N'50')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser2', N'testuser2@admins.com', N'password', N'167', N'50')
 GO
 GO
-INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136')
+INSERT INTO [dbo].[Accounts] ([Login], [Email], [Password], [Money], [Point]) VALUES (N'testuser3', N'testuser3@admins.com', N'password', N'136', N'50')
 GO
 GO
 
@@ -267,13 +268,13 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Games] ON
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'1', N'2018-01-17 23:34:30.000', N'90', N'30', N'1', N'1', N'3', N'2')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'1', N'2018-01-30 23:34:30.000', N'90', N'30', N'1', N'1', N'3', N'2')
 GO
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'2', N'2018-01-17 23:34:40.000', N'50', N'45', N'3', N'2', N'5', N'4')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'2', N'2018-02-01 23:34:40.000', N'50', N'45', N'3', N'2', N'5', N'4')
 GO
 GO
-INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'3', N'2018-01-17 23:36:24.000', N'40', N'37', N'5', N'3', N'8', N'6')
+INSERT INTO [dbo].[Games] ([GameId], [Scheduled], [Humidity], [Temperture], [VenueId], [ClimaConditionsId], [TeamTeamId], [TeamTeamId1]) VALUES (N'3', N'2018-01-29 23:36:24.000', N'40', N'37', N'5', N'3', N'8', N'6')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Games] OFF
@@ -333,7 +334,7 @@ GO
 DROP TABLE [dbo].[Injuries]
 GO
 CREATE TABLE [dbo].[Injuries] (
-[InjuryId] varchar(36) NOT NULL ,
+[InjuryId] bigint NOT NULL ,
 [Comment] varchar(MAX) NULL ,
 [Description] varchar(500) NULL ,
 [Status] varchar(50) NOT NULL ,
@@ -349,59 +350,15 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for InjuryPlayers
--- ----------------------------
-DROP TABLE [dbo].[InjuryPlayers]
-GO
-CREATE TABLE [dbo].[InjuryPlayers] (
-[PlayerId] varchar(36) NOT NULL ,
-[Status] varchar(50) NOT NULL ,
-[Position] varchar(10) NOT NULL ,
-[PrimaryPosition] varchar(10) NOT NULL ,
-[FirstName] varchar(100) NOT NULL ,
-[LastName] varchar(150) NOT NULL ,
-[JerseyNumber] varchar(3) NOT NULL ,
-[PreferredName] varchar(50) NOT NULL ,
-[InjuryId] varchar(36) NOT NULL ,
-[InjuryTeamId] varchar(36) NOT NULL 
-)
-
-
-GO
-
--- ----------------------------
--- Records of InjuryPlayers
--- ----------------------------
-
--- ----------------------------
--- Table structure for InjuryTeams
--- ----------------------------
-DROP TABLE [dbo].[InjuryTeams]
-GO
-CREATE TABLE [dbo].[InjuryTeams] (
-[TeamId] varchar(36) NOT NULL ,
-[Name] varchar(20) NOT NULL ,
-[Abbr] varchar(10) NOT NULL ,
-[Market] varchar(20) NULL ,
-[LeagueId] varchar(36) NOT NULL 
-)
-
-
-GO
-
--- ----------------------------
--- Records of InjuryTeams
--- ----------------------------
-
--- ----------------------------
 -- Table structure for Leagues
 -- ----------------------------
 DROP TABLE [dbo].[Leagues]
 GO
 CREATE TABLE [dbo].[Leagues] (
-[LeagueId] varchar(36) NOT NULL ,
+[LeagueId] bigint NOT NULL ,
 [Name] varchar(50) NOT NULL ,
-[Alias] varchar(10) NOT NULL 
+[Alias] varchar(10) NOT NULL ,
+[TeamTeamId] bigint NOT NULL 
 )
 
 
@@ -651,7 +608,9 @@ CREATE TABLE [dbo].[Teams] (
 [TeamId] bigint NOT NULL IDENTITY(1,1) ,
 [TeamName] nvarchar(MAX) NOT NULL ,
 [TeamLogo] nvarchar(MAX) NOT NULL ,
-[SportId] bigint NOT NULL 
+[SportId] bigint NOT NULL ,
+[Abbr] nvarchar(MAX) NOT NULL ,
+[Market] nvarchar(MAX) NOT NULL 
 )
 
 
@@ -664,25 +623,25 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[Teams] ON
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'2', N'New York Yankees', N'yankeelogo.png', N'1', N'NYU', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'3', N'Saint Louis Cardinals', N'cardinalslogo.png', N'1', N'SLC', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'4', N'Oakland Athletics', N'oaklandlogo.png', N'1', N'OAA', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'5', N'Boston Red Sox', N'redsoxlogo.png', N'1', N'BRS', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'6', N'San Francisco Giants', N'giantslogo.png', N'1', N'SFG', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'8', N'Los Angeles Dodgers', N'dodgerslogo.png', N'1', N'LAD', N'MLB Market')
 GO
 GO
-INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1')
+INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], [Market]) VALUES (N'10', N'Miami Marlins', N'marlinslogo.png', N'1', N'MAR', N'MLB Market')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Teams] OFF
@@ -879,37 +838,11 @@ ALTER TABLE [dbo].[Injuries] ADD PRIMARY KEY ([InjuryId])
 GO
 
 -- ----------------------------
--- Indexes structure for table InjuryPlayers
--- ----------------------------
-CREATE INDEX [IX_FK_InjuryPlayer_Injury] ON [dbo].[InjuryPlayers]
-([InjuryId] ASC) 
-GO
-CREATE INDEX [IX_FK_InjuryPlayer_InjuryTeam] ON [dbo].[InjuryPlayers]
-([InjuryTeamId] ASC) 
-GO
-
--- ----------------------------
--- Primary Key structure for table InjuryPlayers
--- ----------------------------
-ALTER TABLE [dbo].[InjuryPlayers] ADD PRIMARY KEY ([PlayerId])
-GO
-
--- ----------------------------
--- Indexes structure for table InjuryTeams
--- ----------------------------
-CREATE INDEX [IX_FK_InjuryTeam_League] ON [dbo].[InjuryTeams]
-([LeagueId] ASC) 
-GO
-
--- ----------------------------
--- Primary Key structure for table InjuryTeams
--- ----------------------------
-ALTER TABLE [dbo].[InjuryTeams] ADD PRIMARY KEY ([TeamId])
-GO
-
--- ----------------------------
 -- Indexes structure for table Leagues
 -- ----------------------------
+CREATE INDEX [IX_FK_TeamLeague] ON [dbo].[Leagues]
+([TeamTeamId] ASC) 
+GO
 
 -- ----------------------------
 -- Primary Key structure for table Leagues
@@ -1080,17 +1013,9 @@ ALTER TABLE [dbo].[Goals] ADD FOREIGN KEY ([SportId]) REFERENCES [dbo].[Sports] 
 GO
 
 -- ----------------------------
--- Foreign Key structure for table [dbo].[InjuryPlayers]
+-- Foreign Key structure for table [dbo].[Leagues]
 -- ----------------------------
-ALTER TABLE [dbo].[InjuryPlayers] ADD FOREIGN KEY ([InjuryId]) REFERENCES [dbo].[Injuries] ([InjuryId]) ON DELETE NO ACTION ON UPDATE NO ACTION
-GO
-ALTER TABLE [dbo].[InjuryPlayers] ADD FOREIGN KEY ([InjuryTeamId]) REFERENCES [dbo].[InjuryTeams] ([TeamId]) ON DELETE NO ACTION ON UPDATE NO ACTION
-GO
-
--- ----------------------------
--- Foreign Key structure for table [dbo].[InjuryTeams]
--- ----------------------------
-ALTER TABLE [dbo].[InjuryTeams] ADD FOREIGN KEY ([LeagueId]) REFERENCES [dbo].[Leagues] ([LeagueId]) ON DELETE NO ACTION ON UPDATE NO ACTION
+ALTER TABLE [dbo].[Leagues] ADD FOREIGN KEY ([TeamTeamId]) REFERENCES [dbo].[Teams] ([TeamId]) ON DELETE NO ACTION ON UPDATE NO ACTION
 GO
 
 -- ----------------------------

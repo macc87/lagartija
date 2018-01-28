@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 {
-    public class PromotionBO
+    public class InformationBO
     {
-        public long PromoId { get; set; }
-
+        public long InformationId { get; set; }
         public string Name { get; set; }
-
         public string Content { get; set; }
-
-        public string Code { get; set; }
+        public System.DateTime InitialDate { get; set; }
+        public System.DateTime FinalDate { get; set; }
     }
 }

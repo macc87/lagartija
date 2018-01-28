@@ -153,6 +153,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(string user)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetUserActiveNotificationsAsync(user);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationsResponse>(exception);
+            }
+        }
+
         public async Task<ServiceResult<InformationsResponse>> GetInformationsAsync()
         {
             try
@@ -508,5 +526,159 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
             }
         }
+        public async Task<ServiceResult<GoalsResponse>> GetGoalsfromContest(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetGoalsfromContest(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GoalsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PlayerResponse>> GetPlayer(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayer(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromLineup(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayersFromLineup(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GamesResponse>> GetGamesfromTeam(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetGamesfromTeam(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GamesResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GameResponse>> GetGame(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetGame(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GameResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NewsResponse>> GetNews(DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetNews(start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayerNews(id, start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetTeamNews(id, start, end);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupsResponse>> GetLineupsofContest(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetLineupsofContest(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupsResponse>(exception);
+            }
+        }
+       
     }
 }

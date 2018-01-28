@@ -181,6 +181,75 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
+        [TestMethod]
+        public async Task GetGoalsfromContest_Successful()
+        {
+            var result = await fantasyDatClient.GetGoalsfromContest(1);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetPlayerfromId_Successful()
+        {
+            var result = await fantasyDatClient.GetPlayer(1);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetPlayerfromLineups_Successful()
+        {
+            var result = await fantasyDatClient.GetPlayersFromLineup(1);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetTeamsfromId_Successful()
+        {
+            var result = await fantasyDatClient.GetTeamAsync(2);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetGamesfromTeam_Successful()
+        {
+            var result = await fantasyDatClient.GetGamesfromTeam(2);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetGamesfromId_Successful()
+        {
+            var result = await fantasyDatClient.GetGame(2);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetNews_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+
+            var result = await fantasyDatClient.GetNews(start, end);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetNewsPlayer_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+            var result = await fantasyDatClient.GetPlayerNews(1, start, end);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
+        public async Task GetNewsTeam_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+            var result = await fantasyDatClient.GetTeamNews(2, start, end);
+            Assert.IsFalse(result.HasError);
+        }
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{

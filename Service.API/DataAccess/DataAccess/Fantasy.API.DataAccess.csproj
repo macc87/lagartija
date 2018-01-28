@@ -117,6 +117,38 @@
       <DependentUpon>Model.Mapping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\ContestResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\GameResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\GoalsResponse.cs" />
+    <Compile Include="Models\MSSQL\Fantasy\News.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsPlayer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsplayerMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsTeam.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\NewsteamMapping.cs">
+      <DependentUpon>Model.Mapping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSSQL\Fantasy\PlayerResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\TeamsResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\GamesResponse.cs" />
     <Compile Include="Models\MSSQL\Fantasy\LineupsResponse.cs" />
@@ -162,16 +194,6 @@
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\LineupMapping.cs">
       <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\Model.Mapping1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MSSQL\Fantasy\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSSQL\Fantasy\Notification.cs">
       <DependentUpon>Model.tt</DependentUpon>
