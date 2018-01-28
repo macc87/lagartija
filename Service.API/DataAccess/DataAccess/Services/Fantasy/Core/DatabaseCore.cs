@@ -192,7 +192,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 {
                     Notifications = new List<Notification>()
                 };
-                result.Notifications = dbContext.Notifications.Where(x => x.Active && x.Account.Login == user).ToList();
+                result.Notifications = dbContext.Notifications.Where(x => x.Active && x.Account.Login == user).Include("Account").ToList();
                 if (result != null)
                     return await ServiceOkAsync(result);
 
