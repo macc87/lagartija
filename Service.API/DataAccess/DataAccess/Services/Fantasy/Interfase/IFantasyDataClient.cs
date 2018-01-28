@@ -17,6 +17,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId);
         Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync();
         Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(Account user);
+        Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(string user);
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync();
         Task<ServiceResult<InformationsResponse>> GetInformationsAsync(DateTime start, DateTime end);
         Task<ServiceResult<PromotionsResponse>> GetPromotionsAsync();

@@ -184,6 +184,27 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
+        internal async Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(string user)
+        {
+            try
+            {
+                var result = new NotificationsResponse()
+                {
+                    Notifications = new List<Notification>()
+                };
+                result.Notifications = dbContext.Notifications.Where(x => x.Active && x.Account.Login == user).ToList();
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Notifications ");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NotificationsResponse>(ex);
+            }
+        }
+
         internal async Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync()
         {
             try

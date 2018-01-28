@@ -153,6 +153,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(string user)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetUserActiveNotificationsAsync(user);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationsResponse>(exception);
+            }
+        }
+
         public async Task<ServiceResult<InformationsResponse>> GetInformationsAsync()
         {
             try
