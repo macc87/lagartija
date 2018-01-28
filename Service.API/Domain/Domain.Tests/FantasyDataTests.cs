@@ -33,5 +33,26 @@ namespace Fantasy.API.Domain.Tests
             var result = await _dataService.GetActiveContestsAsync();
             Assert.IsFalse(result.HasError);
         }
+
+        [TestMethod]
+        public async Task GetUserActiveContests_Successful()
+        {
+            var result = await _dataService.GetUserActiveNotificationsAsync("admin");
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task GetInformationsContests_Successful()
+        {
+            var result = await _dataService.GetInformationsAsync();
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task GetInformationsbyDateContests_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(15);
+            var result = await _dataService.GetInformationsAsync(start, end);
+            Assert.IsFalse(result.HasError);
+        }
     }
 }
