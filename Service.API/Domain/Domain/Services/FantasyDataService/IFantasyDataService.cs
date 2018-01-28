@@ -16,5 +16,7 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<NotificationBO>>> GetUserActiveNotificationsAsync(string login);
         Task<ServiceResult<List<InformationBO>>> GetInformationsAsync();
         Task<ServiceResult<List<InformationBO>>> GetInformationsAsync(DateTime start, DateTime end);
+        Task<ServiceResult<List<PromotionBO>>> GetPromotionsAsync();
+
     }
 }

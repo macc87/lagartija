@@ -188,6 +188,27 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<InformationBO>>(exception);
             }
         }
+        internal async Task<ServiceResult<List<PromotionBO>>> GetPromotionsAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetPromotionsAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get promotions");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Promotions);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<PromotionBO>>(exception);
+            }
+        }
         #region [Disposing]
 
         public void Dispose()

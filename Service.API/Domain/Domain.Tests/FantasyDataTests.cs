@@ -54,5 +54,11 @@ namespace Fantasy.API.Domain.Tests
             var result = await _dataService.GetInformationsAsync(start, end);
             Assert.IsFalse(result.HasError);
         }
+
+        public async Task GetPromotions_Successful()
+        {
+            var result = await _dataService.GetPromotionsAsync();
+            Assert.IsFalse(result.HasError);
+        }
     }
 }

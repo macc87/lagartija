@@ -118,6 +118,18 @@ namespace Fantasy.API.Domain.Services.FantasyService
             }
         }
 
+        public async Task<ServiceResult<List<PromotionBO>>> GetPromotionsAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetPromotionsAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<PromotionBO>>(exception);
+            }
+        }
+
         #region [Disposing]
 
         public void Dispose()

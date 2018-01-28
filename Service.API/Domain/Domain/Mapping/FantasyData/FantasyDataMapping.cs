@@ -323,5 +323,21 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             }
             return await Task.FromResult(result);
         }
+        public async Task<List<PromotionBO>> Create(List<Promotion> promotions)
+        {
+            List<PromotionBO> result = new List<PromotionBO>();
+            foreach (Promotion p in promotions)
+            {
+                var nb = new PromotionBO
+                {
+                    PromoId = p.PromotionId,
+                    Code = p.Code,
+                    Content = p.Content,
+                    Name = p.Name
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
     }
 }
