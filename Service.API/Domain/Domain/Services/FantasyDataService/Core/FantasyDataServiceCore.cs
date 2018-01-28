@@ -103,7 +103,6 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<PlayerBO>>(exception);
             }
         }
-
         internal async Task<ServiceResult<TeamBO>> GetTeamAsync(int teamId)
         {
             try
@@ -126,8 +125,69 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
             }
 
         }
-
-
+        internal async Task<ServiceResult<List<NotificationBO>>> GetUserActiveNotifications(string userLogin)
+        {
+            try
+            {
+                var result = await FantasyClient.GetUserActiveNotificationsAsync(userLogin);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get notifications");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Notifications);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<NotificationBO>>(exception);
+            }
+        }
+        internal async Task<ServiceResult<List<InformationBO>>> GetInformationsAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetInformationsAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get notifications");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Informations);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<InformationBO>>(exception);
+            }
+        }
+        internal async Task<ServiceResult<List<InformationBO>>> GetInformationsAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                var result = await FantasyClient.GetInformationsAsync(start, end);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get notifications");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Informations);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<InformationBO>>(exception);
+            }
+        }
         #region [Disposing]
 
         public void Dispose()

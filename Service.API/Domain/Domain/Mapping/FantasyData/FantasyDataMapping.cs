@@ -306,5 +306,22 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             }
             return await Task.FromResult(result);
         }
+        public async Task<List<InformationBO>> Create(List<Information> informations)
+        {
+            List<InformationBO> result = new List<InformationBO>();
+            foreach (Information i in informations)
+            {
+                var nb = new InformationBO
+                {
+                    InformationId = i.InformationId,
+                    Content = i.Content,
+                    FinalDate = i.FinalDate,
+                    InitialDate = i.InitialDate,
+                    Name = i.Name,
+                };
+                result.Add(nb);
+            }
+            return await Task.FromResult(result);
+        }
     }
 }
