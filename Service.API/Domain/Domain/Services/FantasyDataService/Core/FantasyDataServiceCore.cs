@@ -125,7 +125,7 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
             }
 
         }
-        internal async Task<ServiceResult<List<NotificationBO>>> GetUserActiveNotifications(string userLogin)
+        internal async Task<ServiceResult<List<NotificationBO>>> GetUserActiveNotificationsAsync(string userLogin)
         {
             try
             {

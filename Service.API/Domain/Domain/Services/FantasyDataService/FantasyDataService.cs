@@ -82,6 +82,42 @@ namespace Fantasy.API.Domain.Services.FantasyService
             }
         }
 
+        public async Task<ServiceResult<List<NotificationBO>>> GetUserActiveNotificationsAsync(string login)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetUserActiveNotificationsAsync(login);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<NotificationBO>>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<List<InformationBO>>> GetInformationsAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetInformationsAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<InformationBO>>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<List<InformationBO>>> GetInformationsAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetInformationsAsync(start, end);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<InformationBO>>(exception);
+            }
+        }
+
         #region [Disposing]
 
         public void Dispose()
