@@ -24,9 +24,10 @@ namespace website
                       "~/Scripts/respond.js"));            
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/toastr.min.css",
-                      "~/Content/main.css"));
+                      "~/Content/css/bootstrap.css",
+                      "~/Content/css/toastr.min.css",
+                      "~/Content/css/font-awesome.min.css",                      
+                      "~/Content/css/main.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/boilermacc").Include(
                       "~/Scripts/macc.ajax.js",

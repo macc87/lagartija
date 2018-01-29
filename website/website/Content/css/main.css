@@ -1,0 +1,106 @@
+body {
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.align-right{
+    text-align:right;
+}
+
+/* Temporary CSS */
+
+.table-content-lineup,
+.table-content-lineup td {
+    border-style: solid;
+    border-width: 3px;
+    border-color: lightgray;
+    padding: 5px;
+}
+
+.player-wrapper {
+    background-color: lightgray;
+    margin: 5px;
+    padding: 5px;
+    height: 100px;
+}
+
+.livecontest-info h4{
+    display:inline-block;
+}
+
+
+.custom-navbar {
+    margin-bottom: 0;
+}
+.user-navbar {    
+    background-color: white;
+    line-height: 50px;    
+    height: 50px;
+}
+.main-navbar {
+    top: 50px;    
+}
+.social-btn {
+    display: inline;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #004246;
+}
+.social-btn a {    
+    color: #004246;
+}
+.social-btn a:hover {
+    color: #206266;
+}
+.navbar-item {
+    display: inline-block;
+}
+.round-btn {
+    height: 35px;    
+    width: 35px;
+    border-radius: 35px;    
+    text-align: center;    
+}
+.navbar-item .round-btn {
+    margin-top: 7.5px;
+    line-height: 36px; 
+    font-size: 20px;   
+}
+.icon-btn {    
+    color: #ffffff;
+    background: #004246;
+    position: relative;
+}
+.icon-btn:hover {    
+    color: #2a7763;
+    background: #bcbcbc;
+}
+.custom-caret {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #004246;
+    line-height: 0px;
+    transform: rotateY(6);
+}
