@@ -58,13 +58,15 @@ textarea {
     height: 50px;
 }
 .main-navbar {
-    top: 50px;    
+    top: 50px;   
+    z-index: 1029; 
+    background: #004246;
+    color: #ffffff;
 }
 .social-btn {
     display: inline;
-    font-size: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    font-size: 15px;    
+    padding-right: 40px;
     color: #004246;
 }
 .social-btn a {    
@@ -73,7 +75,8 @@ textarea {
 .social-btn a:hover {
     color: #206266;
 }
-.navbar-item {
+.navbar-item,
+.navbar-item > div {
     display: inline-block;
 }
 .round-btn {
@@ -102,5 +105,44 @@ textarea {
     right: 0;
     color: #004246;
     line-height: 0px;
-    transform: rotateY(6);
+    font-size: 12px;
+    transform: translateX(2px) translateY(-2px) rotate(-45deg);
+}
+.user-cash {
+    font-family: RussellSquareStd;
+    position: relative;
+    top: -2px;
+}
+.navbar-item {
+    padding-left: 20px;
+}
+.dropdown-menu.open {
+    display: block;
+    z-index: 1030;
+}
+
+.user-navbar .navbar-right {
+    float: right !important;
+    margin-right: 0;
+}
+
+.main-navbar .navbar-brand {
+    padding: 0;
+    padding-top: 2px;    
+}
+.navbar > .container .navbar-brand, 
+.navbar > .container-fluid .navbar-brand {
+    margin-left: 0;
+}
+
+.main-navbar .nav > li > a {
+    padding-left: 40px;
+    padding-right: 0px;
+    text-transform: uppercase;
+    color: #cccccc;
+    font-family: AquaGrotesque;
+    font-size: 15px;
+}
+.main-navbar .navbar-right {    
+    margin-right: 0;
 }
