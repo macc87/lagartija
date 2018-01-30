@@ -1,6 +1,6 @@
 ﻿<div class="navbar navbar-inverse navbar-fixed-top custom-navbar user-navbar">
     <div class="container">
-        <div class="navbar-left">
+        <div class="navbar-left hidden-sm hidden-xs">
             <div class="social-btn">
                 <a href="#"><span class="fa fa-twitter"></span></a>
             </div>
@@ -26,20 +26,32 @@
                     </div>
                 </a>
             </div>
-            <div class="navbar-item">
-                <a href="#">
+            <div class="navbar-item dropdown">
+                <a href="#user-dropdown" class="dropdown-toggle" data-toggle="dropdown">
                     <div class="icon-btn round-btn">
                         <span class="fa fa-user"></span>
-                        <span class="custom-caret fa fa-caret-down"></span>
+                        <div class="custom-caret fa fa-caret-down"></div>
                     </div>
                 </a>
+                <ul id="user-dropdown" class="dropdown-menu">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">My Logs</a></li>                    
+                    <li class="divider"></li>
+                    <li><a href="#">Log out</a></li>
+                    <li class="divider"></li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
             </div>
             <div class="navbar-item">
-                <a href="#">
-                    <div class="icon-btn round-btn">
-                        <span class="fa fa-plus"></span>
-                    </div>
-                </a>
+                <div class="user-cash">$ 10000</div>
+                <div>
+                    <a href="#">
+                        <div class="icon-btn round-btn">
+                            <span class="fa fa-plus"></span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -51,17 +63,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("FantasyGame", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </button>            
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Content/img/logo.png"/></a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Lobby", "Index", "Lobby")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <div class="navbar-collapse collapse">            
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("History", "Index", "Home")</li>
+                <li>@Html.ActionLink("Contests", "Index", "Lobby")</li>
+                <li><a href="#">Create Contest</a></li>
+                <li><a href="#"><span class="fa fa-bars"></span></a></li>                
             </ul>
-            @Html.Partial("_LoginPartial")
         </div>
     </div>
 </div>

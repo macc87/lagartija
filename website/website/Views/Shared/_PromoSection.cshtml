@@ -1,0 +1,36 @@
+﻿<section class="promos">
+    <div class="row background">
+        <div class="col-xs-6 golden"></div>
+        <div class="col-xs-6"></div>
+    </div>
+    <div class="container">
+        <div class="row promos-bar">
+            <div class="col-sm-3 sport">                
+                <div class="sprite mlb"></div>
+                <div class="sport-name">mlb</div>                
+            </div>
+            <div class="col-sm-9 promo-items">                
+                @Html.Partial("_PromoItem",
+                    new ViewDataDictionary {
+                        { "promoImg", "/Content/Media/Images/promo-1.png"  },
+                        { "promoText", "Win 10 000 dollars with a HOMERUN" },
+                        { "promoLink", "#" }
+                    })
+
+                @Html.Partial("_PromoItem",
+                    new ViewDataDictionary {
+                        { "promoImg", "/Content/Media/Images/promo-2.png" },
+                        { "promoText", "Win 10 000 dollars with a HOMERUN" },
+                        { "promoLink", "#" }
+                    })
+
+                @Html.Partial("_PromoItem",
+                    new ViewDataDictionary {
+                        { "promoImg", "/Content/Media/Images/promo-3.png" },
+                        { "promoText", "Win 10 000 dollars with a HOMERUN" },
+                        { "promoLink", "#" }
+                    })
+            </div>
+        </div>
+    </div>
+</section>

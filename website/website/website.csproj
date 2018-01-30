@@ -290,6 +290,9 @@
     <Content Include="Views\Home\MyLiveContests.cshtml" />
     <Content Include="Views\Home\MyLiveContest.cshtml" />
     <Content Include="Views\Shared\_MainNavbar.cshtml" />
+    <Content Include="Views\Shared\_PromoSection.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_PromoItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

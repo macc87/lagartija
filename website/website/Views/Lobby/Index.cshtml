@@ -1,7 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Lobby";
 }
 
-<h2>Index</h2>
+@Html.Partial("_PromoSection")
+
+<div class="container body-content">
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+</div>
+
 
