@@ -279,7 +279,6 @@
     <Content Include="Views\Shared\_Account.cshtml" />
     <Content Include="Views\Home\ViewPromotion.cshtml" />
     <Content Include="Views\Home\ViewNotification.cshtml" />
-    <Content Include="Views\Home\Lobby.cshtml" />
     <Content Include="Views\Lobby\Index.cshtml" />
     <Content Include="Views\Home\PartakeContest.cshtml" />
     <Content Include="Views\Home\CreateContest.cshtml" />
