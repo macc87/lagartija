@@ -1,0 +1,121 @@
+﻿<div class="contest-left-filter">
+    <div class="filter-section">
+        <h3>States</h3>
+        <input type="hidden" id="state" name="state" />
+
+        <div class="custom-radio radio-btn-js state-radio active state-1"
+             data-target="#state"
+             data-group=".state-radio"
+             data-value="1">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            7:05 ET main <span class="fa fa-lock lock"></span> <span class="fa fa-unlock-alt unlock"></span>
+        </div>
+
+        <div class="custom-radio radio-btn-js state-radio state-2"
+             data-target="#state"
+             data-group=".state-radio"
+             data-value="2">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            8:40 ET late night <span class="fa fa-lock lock"></span> <span class="fa fa-unlock-alt unlock"></span>
+        </div>
+
+        <div class="custom-radio radio-btn-js state-radio state-2"
+             data-target="#state"
+             data-group=".state-radio"
+             data-value="3">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            10:01 ET after hour <span class="fa fa-lock lock"></span> <span class="fa fa-unlock-alt unlock"></span>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <h3>Games after hours</h3>        
+
+        <div class="filter-vs-item">
+            <div class="team-vs">
+                <div class="teams">SEA vs HOU</div>
+                <div class="location">SAFECO field</div>
+            </div>
+            <div class="weather"><span class="fa fa-umbrella"></span></div>
+        </div>
+
+        <div class="filter-vs-item">
+            <div class="team-vs">
+                <div class="teams">NYY vs MIN</div>
+                <div class="location">yankee stadium</div>
+            </div>
+            <div class="weather"><span class="fa fa-cloud"></span></div>
+        </div>
+
+        <div class="filter-vs-item">
+            <div class="team-vs">
+                <div class="teams">SEA vs HOU</div>
+                <div class="location">SAFECO field</div>
+            </div>
+            <div class="weather"><span class="fa fa-umbrella"></span></div>
+        </div>
+
+        <div class="filter-vs-item">
+            <div class="team-vs">
+                <div class="teams">NYY vs MIN</div>
+                <div class="location">yankee stadium</div>
+            </div>
+            <div class="weather"><span class="fa fa-cloud"></span></div>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <h3>Entry type</h3>
+        <input type="hidden" id="entry-type" name="entry-type" />
+
+        <div class="custom-radio radio-btn-js entry-type-radio active custom-radio-2"
+             data-target="#entry-type"
+             data-group=".entry-type-radio"
+             data-value="all">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            All
+        </div>
+
+        <div class="custom-radio radio-btn-js entry-type-radio custom-radio-2"
+             data-target="#entry-type"
+             data-group=".entry-type-radio"
+             data-value="single">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            Single Entry
+        </div>
+
+        <div class="custom-radio radio-btn-js entry-type-radio custom-radio-2"
+             data-target="#entry-type"
+             data-group=".entry-type-radio"
+             data-value="multi">
+            <div class="outside">
+                <div class="inside"></div>
+            </div>
+            Multi Entry
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <h3>Entry Fee</h3>
+        
+        <div class="custom-range-input">
+            <div id="slider-range-entryfee"></div>
+            <input type="hidden" name="entryfee-min" id="entryfee-min" value="0">
+            <input type="hidden" name="entryfee-max" id="entryfee-max" value="1000">
+            <div id="entryfee-values">
+                <span id="min-value"></span>
+                <span id="max-value"></span>
+            </div>
+        </div>
+    </div>
+</div>    

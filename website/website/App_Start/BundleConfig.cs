@@ -19,6 +19,11 @@ namespace website
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                        "~/Content/jquery-ui/jquery-ui.min.js"));
+            bundles.Add(new StyleBundle("~/Content/css/jquery-ui").Include(
+                      "~/Content/jquery-ui/jquery-ui.min.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));            
@@ -33,6 +38,7 @@ namespace website
                       "~/Scripts/macc.ajax.js",
                       "~/Scripts/macc.form.js",
                       "~/Scripts/macc.img.js",
+                      "~/Scripts/macc.input.radio.js",
                       "~/Scripts/toastr.min.js",
                       "~/Scripts/macc.modal.js",
                       "~/Scripts/macc.msg.js",
