@@ -8,26 +8,26 @@
 }
 @font-face {
     font-family: 'Roboto-Bold';
-    src: url('../fonts/Roboto-Bold.eot'),
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype'),
          url('../fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Bold.woff') format('woff'),
-         url('../fonts/Roboto-Bold.ttf') format('truetype'),
+         url('../fonts/Roboto-Bold.eot'),
+         url('../fonts/Roboto-Bold.woff') format('woff'),         
          url('../fonts/Roboto-Bold.svg') format('svg');
 }
 @font-face {
     font-family: 'Roboto-Regular';
-    src: url('../fonts/Roboto-Regular.eot'),
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype'),    
          url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto-Regular.woff') format('woff'),
-         url('../fonts/Roboto-Regular.ttf') format('truetype'),
+         url('../fonts/Roboto-Regular.eot'),     
          url('../fonts/Roboto-Regular.svg') format('svg');
 }
 @font-face {
     font-family: 'Roboto-Medium';
-    src: url('../fonts/Roboto-Medium.eot'),
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype'),
          url('../fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto-Medium.woff') format('woff'),
-         url('../fonts/Roboto-Medium.ttf') format('truetype'),
+         url('../fonts/Roboto-Medium.eot'),
          url('../fonts/Roboto-Medium.svg') format('svg');
 }
 @font-face {
@@ -40,19 +40,35 @@
 }
 @font-face {
     font-family: 'FranklinGothic-Heavy';
-    src: url('../fonts/FranklinGothic-Heavy.otf'),
+    src: url('../fonts/FranklinGothic-Heavy.ttf') format('truetype'),
          url('../fonts/FranklinGothic-Heavy.eot?#iefix') format('embedded-opentype'),
          url('../fonts/FranklinGothic-Heavy.woff') format('woff'),
-         url('../fonts/FranklinGothic-Heavy.ttf') format('truetype'),
+         url('../fonts/FranklinGothic-Heavy.otf'),
          url('../fonts/FranklinGothic-Heavy.svg') format('svg');
 }
 @font-face {
     font-family: 'FranklinGothic-HeavyItalic';
-    src: url('../fonts/FranklinGothic-HeavyItalic.otf'),
+    src: url('../fonts/FranklinGothic-HeavyItalic.ttf') format('truetype'),
          url('../fonts/FranklinGothic-HeavyItalic.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/FranklinGothic-HeavyItalic.woff') format('woff'),
-         url('../fonts/FranklinGothic-HeavyItalic.ttf') format('truetype'),
+         url('../fonts/FranklinGothic-HeavyItalic.woff') format('woff'),         
+         url('../fonts/FranklinGothic-HeavyItalic.otf'),
          url('../fonts/FranklinGothic-HeavyItalic.svg') format('svg');
+}
+@font-face {
+    font-family: 'FranklinGothic-Demi';
+    src: url('../fonts/FranklinGothic-Demi.ttf') format('truetype'),
+         url('../fonts/FranklinGothic-Demi.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FranklinGothic-Demi.woff') format('woff'),
+         url('../fonts/FranklinGothic-Demi.otf'),
+         url('../fonts/FranklinGothic-Demi.svg') format('svg');
+}
+@font-face {
+    font-family: 'Digital-7Mono';
+    src: url('../fonts/Digital-7Mono.ttf') format('truetype'),
+         url('../fonts/Digital-7Mono.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Digital-7Mono.woff') format('woff'),
+         url('../fonts/Digital-7Mono.otf'),
+         url('../fonts/Digital-7Mono.svg') format('svg');
 }
 
 body {
@@ -113,12 +129,14 @@ textarea {
     background-color: white;
     line-height: 50px;    
     height: 50px;
+    border: none;
 }
 .main-navbar {
     top: 50px;   
     z-index: 1029; 
     background: #004246;
     color: #ffffff;
+    border: 0;
 }
 .social-btn {
     display: inline;
@@ -194,17 +212,25 @@ textarea {
 }
 
 .main-navbar .nav > li > a {
-    padding-left: 40px;
-    padding-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
     text-transform: uppercase;
-    color: #cccccc;
+    color: #ffffff;
     font-family: 'FranklinGothic-Heavy';
     font-size: 15px;
+}
+.main-navbar .nav > li:last-child > a {
+    padding-right: 0;
 }
 .main-navbar .navbar-right {    
     margin-right: 0;
 }
-
+.main-navbar.navbar-inverse .navbar-nav > .open > a, 
+.main-navbar.navbar-inverse .navbar-nav > .open > a:hover, 
+.main-navbar.navbar-inverse .navbar-nav > .open > a:focus {
+    background: #fff;
+    color: #001819;
+}
 section.promos {
     border: 0;
     box-shadow: 4px -10px 5px 12px #004246;
@@ -313,13 +339,14 @@ section.promos .promo-item {
 .btn-create-contest-1 {
     display: inline-block;
 }
-.btn-create-contest-1 div.btn {    
+.btn-create-contest-1 div.btn,
+.btn-create-contest-1 .btn-default:active:hover {
     color: #ffffff;
     background: transparent;
     height: 32px;
     width: 90px;
-    border-radius: 2px;
-    border-width: 2px;
+    border: 2px solid #ffffff;
+    border-radius: 2px;    
     font-family: 'RussellSquareStd-Regular';
     font-size: 16px;
     line-height: 13px;
@@ -335,6 +362,7 @@ section.promos .promo-item {
     font-size: 12px;
     position: absolute;
     margin-left: 40px;
+    line-height: 15px;
 }
 .next-contest-clock > div {
 /*     display: inline-block; */    
@@ -343,6 +371,7 @@ section.promos .promo-item {
     display: inline-block;
     font-family: 'Digital-7Mono';
     font-size: 24px;
+    line-height: 17px;
 }
 .btn.btn-default {
     border-radius: 2px;
@@ -362,7 +391,8 @@ section.promos .promo-item {
     color: #274500;    
     border-right: 0;
 }
-.sort-by-input {
+.sort-by-input,
+.sort-by-input .btn {
     font-family: 'RussellSquareStd-Regular';
     font-size: 18px;
     text-align: right;
@@ -371,20 +401,20 @@ section.promos .promo-item {
     color: #aeacac;
 }
 
-.custom-dropdow button,
-.custom-dropdow button:hover,
-.custom-dropdow button:active,
-.custom-dropdow button:visited,
-.custom-dropdow button:focus,
-.custom-dropdow.open > .dropdown-toggle.btn-default,
-.btn-default:active:hover, 
-.btn-default.active:hover, 
-.custom-dropdown .btn-default:active:focus, 
-.custom-dropdown .btn-default.active:focus, 
-.custom-dropdow.open > .dropdown-toggle.btn-default:focus, 
-.custom-dropdown .btn-default:active.focus, 
-.custom-dropdown .btn-default.active.focus, 
-.custom-dropdown.open > .dropdown-toggle.btn-default.focus {
+.custom-dropdown-2-btn button,
+.custom-dropdown-2-btn button:hover,
+.custom-dropdown-2-btn button:active,
+.custom-dropdown-2-btn button:visited,
+.custom-dropdown-2-btn button:focus,
+.custom-dropdown-2-btn.open > .dropdown-toggle.btn-default,
+/* .btn-default:active:hover, 
+.btn-default.active:hover,  */
+.custom-dropdown-2-btn .btn-default:active:focus, 
+.custom-dropdown-2-btn .btn-default.active:focus, 
+.custom-dropdown-2-btn.open > .dropdown-toggle.btn-default:focus, 
+.custom-dropdown-2-btn .btn-default:active.focus, 
+.custom-dropdown-2-btn .btn-default.active.focus, 
+.custom-dropdown-2-btn.open > .dropdown-toggle.btn-default.focus {
     background-color: transparent;
     border: none;
     color: #ffffff;
@@ -398,7 +428,7 @@ section.promos .promo-item {
 .contest-left-filter .filter-section {
     border-bottom: 2px solid #000000;
     padding: 5px;    
-    font-family: 'RussellSquareStd-Regular';
+    font-family: 'FranklinGothic-Demi';
     font-size: 12px;
 }
 .contest-left-filter .filter-section:last-child {
@@ -428,6 +458,7 @@ h3 {
     border-color: #c6a25c;
     position: relative;    
     top: 2px;    
+    margin-right: 2px;
 }
 .custom-radio .inside {
     display: none;
@@ -487,28 +518,30 @@ h3 {
 }
 
 .custom-range-input {
-    padding-top: 5px;
+    padding-top: 0px;
     padding-left: 1px;
 }
 .custom-range-input .ui-slider {
-    height: 5px;
-    border: 2px solid #0094d1;
+    height: 4px;
+    border: 2px solid #c6a25c;
     width: calc(100% - 15px);
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
 }
 .custom-range-input .ui-slider .ui-slider-range {
-    background: #0094d1;
+    background: #c6a25c;
 }
-.custom-range-input .ui-slider .ui-slider-handle {
-    background: #fff;
-    width: 13px;
-    font-size: 17px;
-    border: none;
+.custom-range-input .ui-slider .ui-slider-handle {    
     cursor: pointer;
-    top: -7px;
-    height: 10px;
+    top: -6px;    
+}
+.custom-range-input .ui-slider .ui-slider-handle.custom-slider-handle {
+    height: 13px;
+    width: 13px;
+    background: #c6a25c;
+    border: 2px solid #000000;
+    border-radius: 9px;
 }
 .custom-range-input .ui-slider .ui-slider-handle:hover,
 .custom-range-input .ui-slider .ui-slider-handle:focus {
@@ -518,8 +551,8 @@ h3 {
 }
 #entryfee-values {
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     height: 20px;
     margin-left: -15px;
     margin-right: -15px;
@@ -528,5 +561,78 @@ h3 {
     position: absolute;
     /* transform: translateX(0%); */
     width: 50px;
+    text-align: center;    
+}
+
+.custom-dropdown-1 {
+    background: #004246;
+    opacity: 0.9;    
+    border-radius: 2px;
+    padding: 15px;
+    font-family: 'FranklinGothic-Heavy';
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.custom-dropdown-1 > li {    
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+.custom-dropdown-1 > li:last-child {
+    border: none;
+}
+.custom-dropdown-1 > li > a {
+    color: #ffffff;
+    padding: 5px;;
+}
+.custom-dropdown-1 > li:last-child > a {
+    padding-bottom: 0;
+}
+.custom-dropdown-1 > li > a:hover, 
+.custom-dropdown-1 > li > a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: initial;
+}
+
+.custom-dropdown-3 {
+    min-width: auto;
+    background: #ffffff;
+    opacity: 0.9;    
+    border-radius: 2px;
+    padding: 10px;
+    font-family: 'FranklinGothic-Heavy';
+    font-size: 15px;
+    text-transform: uppercase;    
+}
+.navbar-nav > li > .custom-dropdown-3.dropdown-menu {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+.custom-dropdown-3 > li {    
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+.custom-dropdown-3 > li:last-child {
+    border: none;
+}
+.custom-dropdown-3 > li > a {
+    color: #001819;
+    padding: 5px;
     text-align: center;
+}
+.custom-dropdown-3 > li:last-child > a {
+    padding-bottom: 0;
+}
+.custom-dropdown-3 > li > a:hover, 
+.custom-dropdown-3 > li > a:focus {
+    color: ##001819;
+    text-decoration: none;
+    background-color: initial;
+}
+
+.custom-dropdown-1.custom-dropdown-2 {
+    font-family: 'RussellSquareStd-Regular';
+    font-size: 15px;
 }

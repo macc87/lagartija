@@ -33,12 +33,10 @@
                         <div class="custom-caret fa fa-caret-down"></div>
                     </div>
                 </a>
-                <ul id="user-dropdown" class="dropdown-menu">
+                <ul id="user-dropdown" class="dropdown-menu custom-dropdown-1">
                     <li><a href="#">My Profile</a></li>
-                    <li><a href="#">My Logs</a></li>                    
-                    <li class="divider"></li>
-                    <li><a href="#">Log out</a></li>
-                    <li class="divider"></li>
+                    <li><a href="#">My Logs</a></li>                                        
+                    <li><a href="#">Log out</a></li>                    
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
@@ -68,7 +66,13 @@
         </div>
         <div class="navbar-collapse collapse">            
             <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("History", "Index", "Home")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">History</a>
+                    <ul class="dropdown-menu custom-dropdown-3">                        
+                        <li><a href="#">Logs</a></li>                        
+                        <li><a href="#">Stats</a></li>
+                    </ul>
+                </li>
                 <li>@Html.ActionLink("Contests", "Index", "Lobby")</li>
                 <li><a href="#">Create Contest</a></li>
                 <li><a href="#"><span class="fa fa-bars"></span></a></li>                

@@ -5,8 +5,8 @@
 
         // Double slider
         var slider_2 = $("#slider-range-entryfee");
-        var entryfee_min = $('#entryfee_min');
-        var entryfee_max = $('#entryfee_max');
+        var entryfee_min = $('#entryfee-min');
+        var entryfee_max = $('#entryfee-max');
         var min_value = $('#min-value');
         var max_value = $('#max-value');
         function UpdateValues()
@@ -32,7 +32,7 @@
         var handle_min = slider_2.find('.ui-slider-handle').eq(0);
         var handle_max = slider_2.find('.ui-slider-handle').eq(1);
         UpdateValues();
-        $('.ui-slider-handle').addClass('fa fa-shield');
+        $('.ui-slider-handle').addClass('custom-slider-handle');
         // -----------------------------------------------------------
     });
 })(jQuery);
