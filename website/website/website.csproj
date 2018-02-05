@@ -294,6 +294,9 @@
     <Content Include="Views\Shared\_PromoItem.cshtml" />
     <Content Include="Views\Lobby\_SearchBar.cshtml" />
     <Content Include="Views\Lobby\_LeftBar.cshtml" />
+    <Content Include="Views\Shared\_ContestCaps.cshtml" />
+    <Content Include="Views\Shared\_ContestsTable.cshtml" />
+    <Content Include="Views\Shared\_ContestCapItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

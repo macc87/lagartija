@@ -31,7 +31,8 @@ namespace website
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/toastr.min.css",
-                      "~/Content/css/font-awesome.min.css",                      
+                      "~/Content/css/font-awesome.min.css",
+                      "~/Content/css/weather-icons.min.css",
                       "~/Content/css/main.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/boilermacc").Include(
