@@ -648,25 +648,44 @@ h3 {
 .contest-cap {
     display: inline-block;
     margin: 20px;    
+    position: relative;
+    width: 260px;
+    height: 260px;
 }
 .contest-cap .side {
-    display: none;
+/*     display: none; */
     width: 260px;
     height: 260px;
 /*     border: 1px solid; */
     border-radius: 260px;
     text-align: center;
-    padding-top: 15px;
-
+    padding-top: 15px; 
+    position: absolute;
+    transition-property: transform, opacity;
+    transition-duration: 0.5s;
 }
 .contest-cap .side.front {
-    display: block;    
+    display: block;     
+/*     z-index: 1;    */
+    background: #ffffff;
+/*     transform: rotateY(0deg); */
+    opacity: 1;
 }
 .contest-cap:hover .side.front {
-    display: none;
+    transform: rotateY(180deg);
+    opacity: 0;
+}
+.contest-cap .side.back {
+    transform: rotateY(180deg);
+/*     z-index: 0; */
+/*     display: none; */
+    opacity: 0;
 }
 .contest-cap:hover .side.back {
-    display: block;
+/*     display: block; */
+     transform: rotateY(0deg);     
+     opacity: 1;
+/*     z-index: 1; */
 }
 .contest-cap .side.back {
     background: #004246;
@@ -837,7 +856,44 @@ h3 {
     background-position-x: -114px;
     background-position-y: -84px;
 }
-.contest-cap:hover {
-    position: relative;
-    top: -7px;
+.contest-cap:hover {    
+    
+}
+
+@keyframes flip-cap-front {
+    from {        
+        z-index: 1;
+        transform: rotateY(180deg);            
+    }
+    50% {        
+        z-index: 1;
+        transform: rotateY(90eg);    
+    }
+    to {
+        z-index: 1;
+        transform: rotateY(0deg);    
+    }
+}
+@keyframes flip-cap-back {
+    from {        
+        z-index: 0;
+        transform: rotateY(0deg);            
+    }
+    50% {        
+        z-index: 0;
+        transform: rotateY(90eg);    
+    }
+    to {
+        z-index: 0;
+        transform: rotateY(180deg);    
+    }
+}
+
+.activate-flip-front {    
+    animation-name: flip-cap-front;
+    animation-duration: 1s;
+}
+.activate-flip-back {        
+    animation-name: flip-cap-back;
+    animation-duration: 1s;
 }

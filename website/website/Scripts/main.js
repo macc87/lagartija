@@ -2,6 +2,7 @@
 (function ($) {
     var $document = $(document).ready(function() {
         var $window = $(window);
+        var $body = $('body');
 
         // Double slider
         var slider_2 = $("#slider-range-entryfee");
@@ -34,6 +35,17 @@
         UpdateValues();
         $('.ui-slider-handle').addClass('custom-slider-handle');
         // -----------------------------------------------------------
+
+        $body.on('mouseenter', '.contest-cap', function(event){
+//             var self = $(this);
+//             self.find('.side.front')
+//                 .toggleClass('activate-flip-back');            
+        });
+        $body.on('mouseleave', '.contest-cap', function(event){
+//             var self = $(this);            
+//             self.find('.side.back')
+//                 .toggleClass('activate-flip-back');
+        });
     });
 })(jQuery);
 
