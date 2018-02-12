@@ -1111,10 +1111,51 @@ h3.color-golden {
 }
 .home-section.home-section-level-2 {
     padding: 40px 0;
+    z-index: 1;
 }
 .home-section h5 {
     font-family: 'FuturaStd-Medium';
     font-size: 16px;
     font-style: italic;
     margin-bottom: 20px;
+}
+
+.footer-section-1 {
+    background: #004246;
+    color: #001819;
+    position: relative;
+}
+footer a,
+footer a:hover {
+    color: #001819;
+    text-decoration: none;
+}
+.footer-logo {
+    color: #ffffff;
+    font-family: 'FranklinGothic-Heavy';
+    font-size: 60px;        
+    line-height: 200px;
+    height: 248px;    
+    border: 24px solid #ffffff;    
+    border-radius: 160px;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    text-align: center; 
+    margin-top: -36px;
+    margin-bottom: -36px;     
+}
+.footer-section-1 h2 {
+    font-family: 'FranklinGothic-Heavy';
+    font-size: 24px;
+}
+.footer-section-1 .footer-link {
+    font-family: 'FuturaStd-Medium';
+    font-size: 15px;
+}
+.footer-section-2 {
+    background: #001819;
+    color: #004246;
+    font-family: 'FuturaStd-Medium';
+    font-size: 12px;
+    padding: 30px 0;
 }
