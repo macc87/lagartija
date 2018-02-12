@@ -23,7 +23,14 @@ namespace website.Controllers
 
         public ActionResult Index()
         {            
-            return View();
+            if(this.Request.IsAuthenticated)
+            {
+                return this.RedirectToAction("Index", "Lobby");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Lobby()

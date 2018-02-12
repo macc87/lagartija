@@ -43,6 +43,7 @@ namespace website
                       "~/Scripts/toastr.min.js",
                       "~/Scripts/macc.modal.js",
                       "~/Scripts/macc.msg.js",
+                      "~/Scripts/macc.img.js",
                       "~/Scripts/macc.scrollable.slider.js",
                       "~/Scripts/macc.tabs.js"));
 

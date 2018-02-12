@@ -2,13 +2,120 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Home</h1>
-    <p class="lead">
-        FantasyGame home page. This place will be the hook where potential and registered users arrives.
-    </p>
-    <p>
-        Most have, game info and legal links
-    </p>
-</div>
-
+<section id="home-login-section" class="home-section">
+    <div id="home-img" 
+         class="background-image-js"
+         data-src="Content/img/baseball-home.jpg"
+         data-size="cover"
+         data-position="left bottom"
+         data-color="#ffffff">
+    </div>
+    <div class="bg-white"></div>    
+    <div class="bg-green"></div>
+    <div id="login-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.Partial("../Account/Login")
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-7">                    
+                    <div id="home-players-img"
+                         class="background-image-js"
+                         data-src="Content/img/baseball-home-players.png"
+                         data-size="contain"
+                         data-position="right center"
+                         data-color="rgba(255,255,255,0)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shadow-green bottom"></div>
+</section>
+<section class="home-section bg-green-2 home-section-level-2">
+    <div class="shadow-gold top"></div>
+    <div class="container">        
+        <div class="home-section-img background-image-js"
+             data-src="Content/img/home-section-2.png"
+             data-size="contain"
+             data-position="bottom center"
+             data-color="rgba(255,255,255,0)">
+        </div>
+        <div class="row">
+            <div class="col-sm-8 hidden-xs">                                
+            </div>
+            <div class="col-sm-4">
+                <h3>
+                    Make a strong team is the Key
+                </h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse                    
+                </p>
+                <a href="#login-section">
+                    <div class="btn btn-default custom-btn-2">
+                        Join Now
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>    
+</section>
+<section class="home-section home-section-level-2">    
+    <div class="container">       
+        <div class="text-right">
+            <h3 class="color-golden">Play with Us</h3>
+            <h5 class="color-green">Test your drafting skills in any of our contests</h5>
+        </div>        
+        <div class="row">            
+            <div class="col-sm-4 text-center">                                
+                <div class="home-promo-item">                    
+                    <div class="background-image-js"
+                         data-src="/Content/Media/Images/home-promo-2.png"
+                         data-size="contain"
+                         data-position="center center"
+                         data-color="rgba(255,255,255,0)">
+                    </div>
+                    <a href="#login-section">
+                        <div class="btn btn-default custom-btn-3">
+                            Join Now
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="home-promo-item">
+                    <div class="background-image-js"
+                         data-src="/Content/Media/Images/home-promo-1.png"
+                         data-size="contain"
+                         data-position="center center"
+                         data-color="rgba(255,255,255,0)">
+                    </div>
+                    <a href="#login-section">
+                        <div class="btn btn-default custom-btn-3">
+                            Join Now
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="home-promo-item">
+                    <div class="background-image-js"
+                         data-src="/Content/Media/Images/home-promo-3.png"
+                         data-size="contain"
+                         data-position="center center"
+                         data-color="rgba(255,255,255,0)">
+                    </div>
+                    <a href="#login-section">
+                        <div class="btn btn-default custom-btn-3">
+                            Join Now
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
