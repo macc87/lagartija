@@ -88,8 +88,7 @@
 }
 
 body {
-    padding-top: 100px;
-    padding-bottom: 20px;
+    padding-top: 100px;    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -961,7 +960,7 @@ h3 {
 
 .auth-form {
     margin-top: 5vh;
-    background: #a47240a8;    
+    background: #a4724080;    
     border-radius: 10px;
     padding: 20px;
     text-align: center;
