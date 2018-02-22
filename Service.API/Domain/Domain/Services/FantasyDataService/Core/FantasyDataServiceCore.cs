@@ -209,6 +209,29 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<PromotionBO>>(exception);
             }
         }
+        internal async Task<ServiceResult<DateTimeBO>> GetNextContestTime(List<API.DataAccess.Models.MSSQL.Fantasy.Contest> contest)
+        {
+            try
+            {
+                /*var result = await FantasyClient.GetCon
+                //    GetNextContestTimeAsync(contest);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get next contest time");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result);
+                return await ServiceOkAsync(resultMapping);*/
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<DateTimeBO>(exception);
+            }
+        }
+        
         #region [Disposing]
 
         public void Dispose()

@@ -17,6 +17,6 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<InformationBO>>> GetInformationsAsync();
         Task<ServiceResult<List<InformationBO>>> GetInformationsAsync(DateTime start, DateTime end);
         Task<ServiceResult<List<PromotionBO>>> GetPromotionsAsync();
-
+        Task<ServiceResult<DateTimeBO>> NextContestTime(List<API.DataAccess.Models.MSSQL.Fantasy.Contest> contests);
     }
 }

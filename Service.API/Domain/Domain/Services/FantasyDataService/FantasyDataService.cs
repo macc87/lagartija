@@ -129,6 +129,17 @@ namespace Fantasy.API.Domain.Services.FantasyService
                 return _fantasyDataServiceCore.ExceptionHandler<List<PromotionBO>>(exception);
             }
         }
+        public async Task<ServiceResult<DateTimeBO>> GetNextContestTime(List<API.DataAccess.Models.MSSQL.Fantasy.Contest> contests)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetNextContestTime(contests);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<DateTimeBO>(exception);
+            }
+        }
 
         #region [Disposing]
 

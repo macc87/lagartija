@@ -339,5 +339,13 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             }
             return await Task.FromResult(result);
         }
+        public async Task<DateTimeBO> Create(System.DateTime time)
+        {
+            DateTimeBO result = new DateTimeBO
+            {
+                NextContestTime = time
+            };
+            return await Task.FromResult(result);
+        }
     }
 }
