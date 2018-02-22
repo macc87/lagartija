@@ -3,7 +3,7 @@ using Fantasy.API.DataAccess.Services.Fantasy.Interfase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fantasy.API.DataAccess.Tests
@@ -35,13 +35,21 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.GetContestsAsync();
             Assert.IsFalse(result.HasError);
         }
-
+        [TestMethod]
         public async Task GetPlayersFromTeam_Successful()
         {
-            var result = await fantasyDatClient.GetPlayersFromTeamAsync(1);
+            var result = await fantasyDatClient.GetPlayersFromTeamAsync(2);
             Assert.IsFalse(result.HasError);
         }
-
+        [TestMethod]
+        public async Task GetPlayersFromTeams_Successful()
+        {
+            List<Team> teams = new List<Team>();
+            var team = await fantasyDatClient.GetTeamAsync(2);
+            teams.Add(team.Result.Team);
+            var result = await fantasyDatClient.GetPlayersFromTeamsAsync(teams);
+            Assert.IsFalse(result.HasError);
+        }
         [TestMethod()]
         public async Task GetInformations_Successful()
         {
@@ -142,6 +150,12 @@ namespace Fantasy.API.DataAccess.Tests
         public async Task GetLineups_Successful()
         {
             var result = await fantasyDatClient.GetLineupsAsync("admin");
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task GetLineupsFromContest_Successful()
+        {
+            var result = await fantasyDatClient.GetLineupsFromContestAsync(1);
             Assert.IsFalse(result.HasError);
         }
         [TestMethod]
@@ -248,6 +262,13 @@ namespace Fantasy.API.DataAccess.Tests
             DateTime start = DateTime.Now;
             DateTime end = start.AddDays(10);
             var result = await fantasyDatClient.GetTeamNews(2, start, end);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod()]
+        public async Task GetContestGames_Successful()
+        {
+            var result = await fantasyDatClient.GetContestGamesAsync(1);
             Assert.IsFalse(result.HasError);
         }
         //[TestMethod]

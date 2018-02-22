@@ -81,7 +81,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
-        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId)
+        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(Int64 teamId)
         {
             try
             {
@@ -99,7 +99,43 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
-        public async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
+        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamRefurbishedAsync(Int64 teamId)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayersFromTeamAsync(teamId);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamsAsync(List<Models.MSSQL.Fantasy.Team> teams)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPlayersFromTeamsAsync(teams);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayersResponse>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<TeamResponse>> GetTeamAsync(Int64 teamId)
         {
             try
             {
@@ -240,6 +276,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             catch (Exception exception)
             {
                 return _dbClientCore.ExceptionHandler<DateTime>(exception);
+            }
+        }
+
+        public async Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contest)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetContestGamesAsync(contest);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<List<ContestGame>>(exception);
             }
         }
 
@@ -393,6 +447,23 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             try
             {
                 var result = await _dbClientCore.GetLineupsAsync(login);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupsResponse>> GetLineupsFromContestAsync(Int64 id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetLineupsFromContestAsync(id);
 
                 if (result.HasError)
                     throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
