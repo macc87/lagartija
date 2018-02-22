@@ -37,14 +37,14 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.15\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
+    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.25\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Domain, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.5\lib\net452\Fantasy.API.Domain.dll</HintPath>
+    <Reference Include="Fantasy.API.Domain, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.6\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.3\lib\net461\Fantasy.API.Dtos.dll</HintPath>
+    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.4\lib\net461\Fantasy.API.Dtos.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Utilities, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.3\lib\net452\Fantasy.API.Utilities.dll</HintPath>
@@ -97,7 +97,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
