@@ -198,6 +198,42 @@ namespace Fantasy.API.Service.Controllers
         }
 
         /// <summary>
+        /// Get contests
+        /// </summary>
+        /// <returns>Returns a list of active contest from MLB</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("activecontests", Name = "GetActiveContestsV1")]
+        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetActiveContestsAsync()
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetContestsAsync();
+
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+                var resultDto = new List<Task<ContestDto>>();
+                foreach (ContestBO contest in resultBO.Result)
+                {
+                    var contestDto = await DtoFactories.DtoFactoryResponse.Create(contest);
+                }
+
+                var result = await ResponseHandler.ServiceOkAsync(resultDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
         /// Eliminates the Database and Sport Radar Services
         /// </summary>
         /// <param name="disposing"></param>
