@@ -44,8 +44,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.20, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.20\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
+    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.25\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Utilities, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.3\lib\net452\Fantasy.API.Utilities.dll</HintPath>
@@ -79,8 +79,12 @@
   <ItemGroup>
     <Compile Include="BussinessObjects\EmailBOs\EmailLogBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\ClimaConditionsBO.cs" />
+    <Compile Include="BussinessObjects\FantasyBOs\GoalBO.cs" />
+    <Compile Include="BussinessObjects\FantasyBOs\GoalsBO.cs" />
+    <Compile Include="BussinessObjects\FantasyBOs\ContestGameBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\DatetimeBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\InformationBO.cs" />
+    <Compile Include="BussinessObjects\FantasyBOs\NewsBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\NotificationBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\ContestBO.cs" />
     <Compile Include="BussinessObjects\FantasyBOs\ContestTypeBO.cs" />
