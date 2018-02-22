@@ -119,7 +119,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId)
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(Int64 teamId)
         {            
             try
             {
@@ -139,7 +139,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId)
+        internal async Task<ServiceResult<TeamResponse>> GetTeamAsync(Int64 teamId)
         {
             try
             {
@@ -160,6 +160,30 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             catch (Exception ex)
             {
                 return ExceptionHandler<TeamResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamsAsync(List<Models.MSSQL.Fantasy.Team> teams)
+        {
+            try
+            {
+                List<Player> players = new List<Player>();
+                foreach (Team t in teams)
+                {
+                    players.AddRange(dbContext.Players.Where(x => x.TeamId == t.TeamId).ToList());
+                }
+                var result = new PlayersResponse()
+                {
+                    Players = players
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Players from Teams");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayersResponse>(ex);
             }
         }
 
@@ -315,6 +339,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<DateTime>(ex);
             }
         }
+        internal async Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contestId)
+        {
+            try
+            {
+                List<ContestGame> result = dbContext.ContestGames.Include("Game").Where(x => x.ContestId == contestId).ToList();
+
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Contest Games");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<List<ContestGame>>(ex);
+            }
+        }
+
 
         internal async Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type)
         {
@@ -513,6 +555,35 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<LineupsResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<LineupsResponse>> GetLineupsFromContestAsync(Int64 id)
+        {
+            try
+            {
+                List<ContestLineup> clinups = dbContext.ContestLineups.Where(x => x.ContestId == id).ToList();
+                List<LineUp> lineups = new List<LineUp>();
+                foreach (ContestLineup clp in clinups)
+                {
+                    LineUp lp = dbContext.LineUps.Where(x => x.LineUpId == clp.LineUpId).Include("Account").First();
+                    List<PlayerLineup> pls = dbContext.PlayerLineups.Where(x => x.LineupId == clp.LineUpId).ToList();
+                    lp.PlayerLineup = pls;
+                    lineups.Add(lp);
+                }
+                LineupsResponse result = new LineupsResponse()
+                {
+                    Lineups = lineups
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Lineups from contest " + id);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupsResponse>(ex);
+            }
+        }
+
         internal async Task<ServiceResult<LineupsResponse>> GetActiveLineupsAsync(string login)
         {
             try
@@ -531,6 +602,32 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                             active.Add(lp);
                         }
                     }
+                }
+                LineupsResponse result = new LineupsResponse()
+                {
+                    Lineups = active
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting User Lineups");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LineupsResponse>> GetLineupsofContest(Int64 id)
+        {
+            try
+            {
+                List<ContestLineup> clups = dbContext.ContestLineups.Where(x => x.ContestId == id).ToList();
+                List<LineUp> active = new List<LineUp>();
+                foreach (ContestLineup lp in clups)
+                {
+                    LineUp l = dbContext.LineUps.Where(x => x.LineUpId == lp.LineUpId).First();
+
                 }
                 LineupsResponse result = new LineupsResponse()
                 {
