@@ -4,6 +4,7 @@ using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace Fantasy.API.Domain.Mapping.FantasyData
 {
@@ -95,6 +96,24 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             result.LineUps = await Create(lineup);
             return await Task.FromResult(result);
         }
+        public async Task<ContestBO> Create(Contest contest, List<LineUp> lineups, List<Game> games, DateTime starts)
+        {
+            long Cid = contest.ContestId;
+            var result = new ContestBO
+            {
+                ContestId = contest.ContestId,
+                EntryFee = contest.EntryFee,
+                MaxCapacity = contest.MaxCapacity,
+                Name = contest.Name,
+                SalaryCap = contest.SalaryCap,
+                SignedUp = contest.SignedUp,
+                Starts = starts
+            };
+
+            result.LineUps = await Create(lineups);
+            result.Games = await Create(games);
+            return await Task.FromResult(result);
+        }
         public async Task<List<ContestBO>> Create(List<Contest> contests)
         {
             List<ContestBO> result = new List<ContestBO>();
@@ -140,16 +159,57 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 GameBO gbo = new GameBO
                 {
                     GameId = g.GameId,
-                    ClimaCondition = await Create(g.ClimaCondition),
                     Humidity = g.Humidity,
                     Scheduled = g.Scheduled,
-                    Temperture = g.Temperture,
-                    Venue = await Create(g.Venue)
+                    Temperture = g.Temperture
                 };
+                ClimaConditions cc = fContext.ClimaConditions.Where(x => x.ClimaConditionsId == g.ClimaConditionsId).First();
+                gbo.ClimaCondition = await Create(cc);
+                Venue v = fContext.Venues.Where(x => x.VenueId == g.VenueId).First();
+                gbo.Venue = await Create(v);
                 gbo.HomeTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId));
                 gbo.AwayTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId1));
                 result.Add(gbo);
             }
+            return await Task.FromResult(result);
+        }
+        public async Task<List<GameBO>> Create(List<Game> games)
+        {
+            var result = new List<GameBO>();
+            foreach (Game g in games)
+            {
+                GameBO gbo = new GameBO
+                {
+                    GameId = g.GameId,
+                    Humidity = g.Humidity,
+                    Scheduled = g.Scheduled,
+                    Temperture = g.Temperture
+                };
+                ClimaConditions cc = fContext.ClimaConditions.Where(x => x.ClimaConditionsId == g.ClimaConditionsId).First();
+                gbo.ClimaCondition = await Create(cc);
+                Venue v = fContext.Venues.Where(x => x.VenueId == g.VenueId).First();
+                gbo.Venue = await Create(v);
+                gbo.HomeTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId));
+                gbo.AwayTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId1));
+                result.Add(gbo);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<GameBO> Create(Game g)
+        {
+            var result = new GameBO
+            {
+                GameId = g.GameId,
+                Humidity = g.Humidity,
+                Scheduled = g.Scheduled,
+                Temperture = g.Temperture
+            };
+            ClimaConditions cc = fContext.ClimaConditions.Where(x => x.ClimaConditionsId == g.ClimaConditionsId).First();
+            result.ClimaCondition = await Create(cc);
+            Venue v = fContext.Venues.Where(x => x.VenueId == g.VenueId).First();
+            result.Venue = await Create(v);
+            result.HomeTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId));
+            result.AwayTeam = await Create(fContext.Teams.First(x => x.TeamId == g.TeamTeamId1));
             return await Task.FromResult(result);
         }
         public async Task<VenueBO> Create(Venue venue)
@@ -223,7 +283,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 LastName = p.LastName,
                 Photo = p.Photo,
                 PreferredName = p.PreferredName,
-                Salary = p.Salary
+                Salary = p.Salary,
             };
             Position pos = fContext.Positions.Where(x => x.PositionId == p.PositionId).First();
             result.Position = new PositionBO
@@ -236,6 +296,31 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             {
                 SportId = sp.SportId,
                 Name = sp.Name,
+            };
+            List<NewsBO> nList = new List<NewsBO>();
+            foreach (NewsPlayer np in p.NewsPlayers)
+            {
+                News n = fContext.News.Where(x => x.NewsId == np.NewsId).First();
+                NewsBO nBO = await Create(n);
+                nList.Add(nBO);
+            }
+            List<LineupBO> lList = new List<LineupBO>();
+            foreach (PlayerLineup pl in p.PlayerLineups)
+            {
+                LineUp lp = fContext.LineUps.Where(x => x.LineUpId == pl.LineupId).First();
+                LineupBO lpBO = await Create(lp);
+                lList.Add(lpBO);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<NewsBO> Create(News n)
+        {
+            var result = new NewsBO
+            {
+                Content = n.Content,
+                Date = n.Date,
+                NewsId = n.NewsId,
+                Tittle = n.Tittle
             };
             return await Task.FromResult(result);
         }
@@ -270,14 +355,48 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             };
             return await Task.FromResult(result);
         }
+        public async Task<List<TeamBO>> Create(List<Team> teams)
+        {
+            List<TeamBO> result = new List<TeamBO>();
+
+            foreach (Team team in teams)
+            {
+                TeamBO tbo = new TeamBO
+                {
+                    TeamId = team.TeamId,
+                    TeamLogo = team.TeamLogo,
+                    TeamName = team.TeamName
+                };
+                Sport sp = fContext.Sports.Find(team.SportId);
+                var sportBo = new SportBO
+                {
+                    SportId = sp.SportId,
+                    Name = sp.Name
+                };
+                result.Add(tbo);
+            }
+            return await Task.FromResult(result);
+        }
         public async Task<UserBO> Create(Account user)
         {
             var result = new UserBO
             {
                 Email = user.Email,
                 Login = user.Login,
-                Password = user.Password
+                Password = user.Password,
+                Money = user.Money,
+                Point = user.Point
             };
+            return await Task.FromResult(result);
+        }
+        public async Task<List<UserBO>> Create(List<Account> users)
+        {
+            List<UserBO> result = new List<UserBO>();
+            foreach (Account user in users)
+            {
+                var usr = await Create(user);
+                result.Add(usr);
+            }
             return await Task.FromResult(result);
         }
         public async Task<List<NotificationBO>> Create(List<Notification> notifications)
@@ -286,12 +405,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
 
             foreach (Notification n in notifications)
             {
-                var user = new UserBO
-                {
-                    Login = n.Account.Login,
-                    Email = n.Account.Email,
-                    Password = n.Account.Password
-                };
+                var user = await Create(n.Account);
 
                 var nb = new NotificationBO
                 {
@@ -345,6 +459,89 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             {
                 NextContestTime = time
             };
+            return await Task.FromResult(result);
+        }
+        public async Task<ContestGamesBO> Create(List<ContestGame> cgames)
+        {
+            ContestGamesBO result = new ContestGamesBO
+            {
+                ContestGames = cgames
+            };
+            return await Task.FromResult(result);
+        }
+        public async Task<List<LineupBO>> Create(List<LineUp> lineups)
+        {
+            List<LineupBO> result = new List<LineupBO>();
+            foreach (LineUp lp in lineups)
+            {
+                
+                Account us = fContext.Accounts.Where(x => x.Login == lp.AccountLogin).First();
+                UserBO user = await Create(us);
+                List<PlayerBO> players = new List<PlayerBO>();
+                foreach (PlayerLineup pl in lp.PlayerLineup)
+                {
+                    Player p = fContext.Players.Where(x => x.PlayerId == pl.PlayerId).First();
+                    //PlayerBO p = await Create(pl.Player);
+                    PlayerBO ply = new PlayerBO()
+                    {
+                        PlayerId = p.PlayerId,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        Photo = p.Photo,
+                        PreferredName = p.PreferredName,
+                        Salary = p.Salary
+                    };
+                    players.Add(ply);
+                }
+                LineupBO lbo = new LineupBO()
+                {
+                    LineUpId = lp.LineUpId,
+                    User = user,
+                    Players = players
+                };
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<GoalsBO> Create(List<Goal> goals)
+        {
+            GoalsBO result = new GoalsBO()
+            {
+                Goals = new List<GoalBO>()
+            };
+            foreach (Goal goal in goals)
+            {
+                GoalBO gbo = new GoalBO
+                {
+                    GoalId = goal.GoalId,
+                    CompletionCount = goal.CompletionCount,
+                    GoalLogo = goal.GoalLogo,
+                    Name = goal.Name,
+                };
+                Sport sp = fContext.Sports.Find(goal.SportId);
+                var sportBo = new SportBO
+                {
+                    SportId = sp.SportId,
+                    Name = sp.Name
+                };
+                result.Goals.Add(gbo);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<List<NewsBO>> Create(List<News> news)
+        {
+            List<NewsBO> result = new List<NewsBO>();
+            
+            foreach (News n in news)
+            {
+                NewsBO gbo = new NewsBO
+                {
+                    NewsId = n.NewsId,
+                    Content = n.Content,
+                    Date = n.Date,
+                    Tittle = n.Tittle
+                };
+                result.Add(gbo);
+            }
             return await Task.FromResult(result);
         }
     }
