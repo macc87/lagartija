@@ -22,6 +22,8 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 
         public double SalaryCap { get; set; }
 
+        public DateTime Starts { get; set; }
+
         public IEnumerable<GameBO> Games { get; set;}
         public IEnumerable<LineupBO> LineUps { get; set; }
     }

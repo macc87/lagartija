@@ -13,8 +13,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
     {
         Task<ServiceResult<ContestsResponse>> GetContestsAsync();
         Task<ServiceResult<ContestsResponse>> GetActiveContestsAsync();
-        Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(int teamId);
-        Task<ServiceResult<TeamResponse>> GetTeamAsync(int teamId);
+        Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamAsync(Int64 teamId);
+        Task<ServiceResult<PlayersResponse>> GetPlayersFromTeamsAsync(List<Models.MSSQL.Fantasy.Team> teams);
+        Task<ServiceResult<TeamResponse>> GetTeamAsync(Int64 teamId);
         Task<ServiceResult<NotificationsResponse>> GetActiveNotificationsAsync();
         Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(Account user);
         Task<ServiceResult<NotificationsResponse>> GetUserActiveNotificationsAsync(string user);
@@ -32,6 +33,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<List<Account>>> GetUsersWorstRivalsAsync(string login);
         Task<ServiceResult<List<Account>>> GetUserFriendsAsync(string login);
         Task<ServiceResult<LineupsResponse>> GetLineupsAsync(string login);
+        Task<ServiceResult<LineupsResponse>> GetLineupsFromContestAsync(Int64 id);
         Task<ServiceResult<LineupsResponse>> GetActiveLineupsAsync(string login);
         Task<ServiceResult<ContestResponse>> GetContest(Int64 id);
         Task<ServiceResult<ContestsResponse>> GetContests(DateTime startDate);
@@ -45,8 +47,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<NewsResponse>> GetNews(DateTime start, DateTime end);
         Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end);
-
-
+        Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contest);
     }
 };
 

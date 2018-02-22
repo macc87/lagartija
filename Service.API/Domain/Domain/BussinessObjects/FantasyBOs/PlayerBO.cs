@@ -17,11 +17,15 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
         public string PreferredName { get; set; }
 
         public TeamBO Team { get; set; }
-        
+
         public PositionBO Position { get; set; }
-        
+
         public double Salary { get; set; }
-       
+
         public string Photo { get; set; }
+
+        public List<NewsBO> News { get; set; }
+
+        public List<InjuriesBO> Injuries {get; set;}
     }
 }
