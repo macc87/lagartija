@@ -47,12 +47,16 @@
     <Compile Include="Response\FantasyData\ContestDto.cs" />
     <Compile Include="Response\FantasyData\ContestTypeDto.cs" />
     <Compile Include="Response\FantasyData\GameDto.cs" />
+    <Compile Include="Response\FantasyData\InformationDto.cs" />
     <Compile Include="Response\FantasyData\InjuryDto.cs" />
     <Compile Include="Response\FantasyData\LeagueDto.cs" />
     <Compile Include="Response\FantasyData\LineupDto.cs" />
     <Compile Include="Response\FantasyData\PlayerDto.cs" />
     <Compile Include="Response\FantasyData\PositionDto.cs" />
+    <Compile Include="Response\FantasyData\NewsDto.cs" />
     <Compile Include="Response\FantasyData\PromotionDto.cs" />
+    <Compile Include="Response\FantasyData\NotificationDto.cs" />
+    <Compile Include="Response\FantasyData\GoalDto.cs" />
     <Compile Include="Response\FantasyData\SportDto.cs" />
     <Compile Include="Response\FantasyData\TeamDto.cs" />
     <Compile Include="Response\FantasyData\UserDto.cs" />
