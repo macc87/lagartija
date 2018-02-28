@@ -129,6 +129,12 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                     SalaryCap = contest.SalaryCap,
                     SignedUp = contest.SignedUp,
                 };
+                ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+                res.ContestTypeId = new ContestTypeBO()
+                {
+                    ContestTypeId = ct.ContestTypeId,
+                    Type = ct.Type
+                };
                 List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
                 List<Game> gameList = new List<Game>();
                 foreach (ContestGame cg in cgames)
