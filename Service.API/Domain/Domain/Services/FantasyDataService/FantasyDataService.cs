@@ -399,6 +399,17 @@ namespace Fantasy.API.Domain.Services.FantasyService
                 return _fantasyDataServiceCore.ExceptionHandler<List<NewsBO>>(exception);
             }
         }
+        public async Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetContestTypesAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<ContestTypeBO>>(exception);
+            }
+        }
         #region [Disposing]
 
         public void Dispose()
