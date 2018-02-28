@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    public class VenueDto
+    public class GoalDto
     {
-        public long VenueId { get; set; }
+        public long GoalId { get; set; }
 
         public string Name { get; set; }
 
-        public string Surface { get; set; }
+        public int CompletionCount { get; set; }
+      
+        public string GoalLogo { get; set; }
 
-        public string State { get; set; }
-
-        public string Country { get; set; }
         public string _comment { get; set; }
-        
     }
 }

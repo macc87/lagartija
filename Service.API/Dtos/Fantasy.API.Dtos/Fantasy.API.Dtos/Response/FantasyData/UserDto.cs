@@ -13,5 +13,18 @@ namespace Fantasy.API.Dtos.Response.FantasyData
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public long Money { get; set; }
+
+        public List<LineupDto> Lineups { get; set; }
+
+        public List<NotificationDto> Notifications { get; set; }
+
+        public string _comment { get; set; }
+
+        public override string ToString()
+        {
+            return "UserDto";
+        }
     }
 }
