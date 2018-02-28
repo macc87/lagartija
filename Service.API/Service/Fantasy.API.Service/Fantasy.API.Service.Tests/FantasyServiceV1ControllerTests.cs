@@ -21,7 +21,7 @@ namespace Fantasy.API.Service.Tests
         {
             var userInfo = new UserInfo
             {
-                UserSystemId = "Admin",
+                UserSystemId = "admin",
                 Role = new List<string>
                 {
                     ApplicationRoles.ItAdmin
@@ -35,6 +35,7 @@ namespace Fantasy.API.Service.Tests
             _controller = new FantasyServiceV1Controller(new SportsRadarClient(), new DatabaseClient(), userInfo);
         }
 
+        /*
         [TestMethod]
         public async Task Real_GetInjuries_Successfully()
         {
@@ -45,13 +46,24 @@ namespace Fantasy.API.Service.Tests
             Assert.IsNotNull(okNegotiatedContentResult);
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
-        }
+        }*/
 
         [TestMethod]
         public async Task Real_GetContests_Successfully()
         {
             var okNegotiatedContentResult = (await _controller.GetContestsAsync())
-                as OkNegotiatedContentResult<ServiceResult<ContestDto>>;
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetActiveContests_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetActiveContestsAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
 
             //Assert that the expected results have occurred.
             Assert.IsNotNull(okNegotiatedContentResult);

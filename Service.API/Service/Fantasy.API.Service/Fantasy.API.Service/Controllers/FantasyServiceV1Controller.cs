@@ -92,6 +92,7 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
+        /*    
         /// <summary>
         /// Get current injured players
         /// </summary>
@@ -124,6 +125,7 @@ namespace Fantasy.API.Service.Controllers
                 return Ok(ResponseHandler.ExceptionHandler<InjuryDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
         }
+        */
 
         /// <summary>
         /// Get contests
@@ -145,12 +147,12 @@ namespace Fantasy.API.Service.Controllers
                 if (resultBO.HasError)
                     throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
                         message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
-                var resultDto = new List<Task<ContestDto>>();
+                var resultDto = new List<ContestDto>();
                 foreach (ContestBO contest in resultBO.Result)
                 {
                     var contestDto = await DtoFactories.DtoFactoryResponse.Create(contest);
+                    resultDto.Add(contestDto);
                 }
-                
                 var result = await ResponseHandler.ServiceOkAsync(resultDto);
 
                 return Ok(result);
@@ -181,10 +183,11 @@ namespace Fantasy.API.Service.Controllers
                 if (resultBO.HasError)
                     throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
                         message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
-                var resultDto = new List<Task<ContestDto>>();
+                var resultDto = new List<PlayerDto>();
                 foreach (PlayerBO player in resultBO.Result)
                 {
                     var playerDto = await DtoFactories.DtoFactoryResponse.Create(player);
+                    resultDto.Add(playerDto);
                 }
 
                 var result = await ResponseHandler.ServiceOkAsync(resultDto);
@@ -198,7 +201,7 @@ namespace Fantasy.API.Service.Controllers
         }
 
         /// <summary>
-        /// Get contests
+        /// Get Active Contests
         /// </summary>
         /// <returns>Returns a list of active contest from MLB</returns>
         /// <remarks>Used by applications:
@@ -212,18 +215,54 @@ namespace Fantasy.API.Service.Controllers
         {
             try
             {
-                var resultBO = await FantasyDataService.GetContestsAsync();
+                var resultBO = await FantasyDataService.GetActiveContestsAsync();
 
                 if (resultBO.HasError)
                     throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
                         message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
-                var resultDto = new List<Task<ContestDto>>();
+                List<ContestDto> cDtos = new List<ContestDto>();
                 foreach (ContestBO contest in resultBO.Result)
                 {
                     var contestDto = await DtoFactories.DtoFactoryResponse.Create(contest);
-                }
+                    cDtos.Add(contestDto);
+                }           
+                var result = await ResponseHandler.ServiceOkAsync(cDtos);
 
-                var result = await ResponseHandler.ServiceOkAsync(resultDto);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Active Contests
+        /// </summary>
+        /// <returns>Returns a list of active contest from MLB</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("activecontests", Name = "GetActiveContestsV1")]
+        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetContestsFilteredbyAsync()
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetActiveContestsAsync();
+
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+                List<ContestDto> cDtos = new List<ContestDto>();
+                foreach (ContestBO contest in resultBO.Result)
+                {
+                    var contestDto = await DtoFactories.DtoFactoryResponse.Create(contest);
+                    cDtos.Add(contestDto);
+                }
+                var result = await ResponseHandler.ServiceOkAsync(cDtos);
 
                 return Ok(result);
             }

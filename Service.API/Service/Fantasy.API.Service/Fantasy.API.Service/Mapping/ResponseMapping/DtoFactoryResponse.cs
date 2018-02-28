@@ -2,6 +2,7 @@
 using Fantasy.API.Dtos.Response.FantasyData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace Fantasy.API.Service.Mapping.ResponseMapping
 {
@@ -16,7 +17,8 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         /// </summary>
 
 
-        /// <summary>
+        /*
+         * /// <summary>
         /// Create a Task with a Injury Dto 
         /// </summary>
         /// <param name="poco">Injuries Bussiness Object</param>
@@ -43,7 +45,7 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
             var result = new List<InjuriesTeamDto>();
             return await Task.FromResult(result);
         }
-
+        */
         /// <summary>
         /// Create a Task with a League Dto 
         /// </summary>
@@ -103,8 +105,20 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                     Scheduled = game.Scheduled,
                     Temperture = game.Temperture,
                 };
-                gDto.AwayTeam = await Create(game.AwayTeam);
-                gDto.HomeTeam = await Create(game.HomeTeam);
+                //gDto.AwayTeam = await Create(game.AwayTeam);
+                gDto.AwayTeam = new TeamDto()
+                {
+                    TeamId = game.AwayTeam.TeamId,
+                    TeamLogo = game.AwayTeam.TeamLogo,
+                    TeamName = game.AwayTeam.TeamName
+                };
+                gDto.HomeTeam = new TeamDto()
+                {
+                    TeamId = game.AwayTeam.TeamId,
+                    TeamLogo = game.AwayTeam.TeamLogo,
+                    TeamName = game.AwayTeam.TeamName
+                };
+                //gDto.HomeTeam = await Create(game.HomeTeam);
                 gDto.Venue = await Create(game.Venue);
                 gDto.ClimaCondition = await Create(game.ClimaCondition);
                 result.Add(gDto);
@@ -120,6 +134,69 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         public async Task<IEnumerable<LineupDto>> Create(IEnumerable<LineupBO> poco)
         {
             var result = new List<LineupDto>();
+            foreach (LineupBO lbo in poco)
+            {
+                LineupDto luDto = new LineupDto()
+                {
+                    LineUpId = lbo.LineUpId,
+                };
+                luDto.User = await Create(lbo.User);
+                List<PlayerDto> players = new List<PlayerDto>();
+                foreach (PlayerBO pBo in lbo.Players)
+                {
+                    PlayerDto pDto = new PlayerDto()
+                    {
+                        FirstName = pBo.FirstName,
+                        LastName = pBo.LastName,
+                        Photo = pBo.Photo,
+                        PlayerId = pBo.PlayerId,
+                        Position = new PositionDto()
+                        {
+                            PositionId = pBo.Position.PositionId,
+                            PositionName = pBo.Position.PositionName,
+                            Sport = new SportDto()
+                            {
+                                Name = pBo.Position.Sport.Name,
+                                SportId = pBo.Position.Sport.SportId
+                            }
+                        },
+                        PreferredName = pBo.PreferredName,
+                        Salary = pBo.Salary,
+                        Team = new TeamDto()
+                        {
+                            TeamId = pBo.Team.TeamId,
+                            TeamLogo = pBo.Team.TeamLogo,
+                            TeamName = pBo.Team.TeamName,
+                            Sport = new SportDto()
+                            {
+                                Name = pBo.Position.Sport.Name,
+                                SportId = pBo.Position.Sport.SportId
+                            }
+                        }
+                    };
+                    players.Add(pDto);
+                }
+                luDto.Players = players;
+                result.Add(luDto);
+            }
+            return await Task.FromResult(result);
+        }
+
+        /// <summary>
+        /// Create a Task with a User 
+        /// </summary>
+        /// <param name="user">User Bussiness Object</param>
+        /// <returns>User Dto</returns>
+        private async Task<UserDto> Create(UserBO user)
+        {
+            UserDto result = new UserDto()
+            {
+                Email = user.Email,
+                Login = user.Login,
+                Password = user.Password,
+                Money = user.Money,
+                //Points = user.Points,
+            };
             return await Task.FromResult(result);
         }
 
@@ -260,7 +337,31 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                     PreferredName = player.PreferredName,
                     Salary = player.Salary
                 };
-                pDto.Team = await Create(player.Team);
+                pDto.Team = new TeamDto()
+                {
+                    TeamId = player.Team.TeamId,
+                    TeamLogo = player.Team.TeamLogo,
+                    TeamName = player.Team.TeamName,
+                    Sport = new SportDto()
+                    {
+                        Name = player.Team.Sport.Name,
+                        SportId = player.Team.Sport.SportId
+                    }
+                };
+                foreach (PlayerBO pBO in player.Team.Players)
+                {
+                    PlayerDto pDtoList = new PlayerDto()
+                    {
+                        PlayerId = pBO.PlayerId,
+                        FirstName = pBO.FirstName,
+                        LastName = pBO.LastName,
+                        Photo = pBO.Photo,
+                        PreferredName = pBO.PreferredName,
+                        Salary = pBO.Salary,
+                        Team = pDto.Team,
+                        Position = await Create(player.Position)
+                    };
+                }
                 pDto.Position = await Create(player.Position);
                 result.Add(pDto);
             }
