@@ -43,5 +43,6 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<NewsBO>>> GetNews(DateTime start, DateTime end);
         Task<ServiceResult<List<NewsBO>>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<List<NewsBO>>> GetTeamNews(Int64 id, DateTime start, DateTime end);
+        Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync();
     }
 }

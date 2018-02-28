@@ -745,6 +745,27 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<NewsBO>>(exception);
             }
         }
+        internal async Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetContestTypesAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get contest types ");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Types);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<ContestTypeBO>>(exception);
+            }
+        }
         #region [Disposing]
 
         public void Dispose()

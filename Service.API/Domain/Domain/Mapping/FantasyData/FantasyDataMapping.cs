@@ -553,5 +553,20 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             }
             return await Task.FromResult(result);
         }
+        public async Task<List<ContestTypeBO>> Create(List<ContestType> contestTypes)
+        {
+            List<ContestTypeBO> result = new List<ContestTypeBO>();
+
+            foreach (ContestType ct in contestTypes)
+            {
+                ContestTypeBO ctBO = new ContestTypeBO()
+                {
+                    ContestTypeId = ct.ContestTypeId,
+                    Type = ct.Type
+                };
+                result.Add(ctBO);
+            }
+            return await Task.FromResult(result);
+        }
     }
 }
