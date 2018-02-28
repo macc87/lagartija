@@ -345,7 +345,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             {
                 TeamId = team.TeamId,
                 TeamLogo = team.TeamLogo,
-                TeamName = team.TeamName
+                TeamName = team.TeamName,
             };
             Sport sp = fContext.Sports.Find(team.SportId);
             var sportBo = new SportBO
@@ -353,6 +353,9 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SportId = sp.SportId,
                 Name = sp.Name
             };
+            result.Sport = sportBo;
+            List<Player> players = team.Players.ToList();
+            result.Players = await Create(players);
             return await Task.FromResult(result);
         }
         public async Task<List<TeamBO>> Create(List<Team> teams)
