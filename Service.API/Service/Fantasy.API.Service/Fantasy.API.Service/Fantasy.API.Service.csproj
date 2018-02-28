@@ -43,8 +43,8 @@
     <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.25, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.25\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Domain, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.7\lib\net452\Fantasy.API.Domain.dll</HintPath>
+    <Reference Include="Fantasy.API.Domain, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.8\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Dtos, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.5\lib\net461\Fantasy.API.Dtos.dll</HintPath>
