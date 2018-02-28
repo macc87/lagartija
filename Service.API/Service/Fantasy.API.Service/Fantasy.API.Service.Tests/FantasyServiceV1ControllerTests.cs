@@ -70,5 +70,40 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+
+        [TestMethod]
+        public async Task Real_GetContestsbyDate_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsbyDateAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetContestbyId_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetContestsFilteredbytype_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsFilteredbyTypeAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }

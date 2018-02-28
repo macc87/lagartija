@@ -76,6 +76,8 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SalaryCap = contest.SalaryCap,
                 SignedUp = contest.SignedUp,
             };
+            ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+            result.ContestTypeId = await Create(ct);
             List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
             List<Game> gameList = new List<Game>();
             foreach (ContestGame cg in cgames)
@@ -109,7 +111,8 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SignedUp = contest.SignedUp,
                 Starts = starts
             };
-
+            ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+            result.ContestTypeId = await Create(ct);
             result.LineUps = await Create(lineups);
             result.Games = await Create(games);
             return await Task.FromResult(result);
