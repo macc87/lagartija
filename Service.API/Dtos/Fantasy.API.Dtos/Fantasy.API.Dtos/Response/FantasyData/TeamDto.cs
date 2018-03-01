@@ -16,6 +16,12 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 
         public SportDto Sport { get; set; }
 
+        public string Abbr { get; set; }
+
+        public string Market { get; set; }
+
+        public IEnumerable<LeagueDto> Leagues { get; set; }
+
         public IEnumerable<PlayerDto> Players { get; set; }
         public string _comment { get; set; }
     }
