@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.Dtos.Response.FantasyData
 {
-    class DateTimeDto
+    public class DateTimeDto
     {
         public DateTime NextContestTime { get; set; }
     }
