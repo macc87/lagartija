@@ -168,5 +168,16 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+        [TestMethod]
+        public async Task Real_GetUserActiveNotifications_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetUserActiveNotificationsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<List<NotificationDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }
