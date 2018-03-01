@@ -46,6 +46,7 @@
     <Compile Include="Response\FantasyData\ClimaConditionsDto.cs" />
     <Compile Include="Response\FantasyData\ContestDto.cs" />
     <Compile Include="Response\FantasyData\ContestTypeDto.cs" />
+    <Compile Include="Response\FantasyData\DateTimeDto.cs" />
     <Compile Include="Response\FantasyData\GameDto.cs" />
     <Compile Include="Response\FantasyData\InformationDto.cs" />
     <Compile Include="Response\FantasyData\InjuryDto.cs" />
