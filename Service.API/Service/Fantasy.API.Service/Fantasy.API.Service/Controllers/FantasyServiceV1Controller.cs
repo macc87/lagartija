@@ -307,7 +307,7 @@ namespace Fantasy.API.Service.Controllers
                     SignedUp = resultBO.Result.SignedUp
                     //TODO: Starts = resultBO.Result.Starts
                 };
-                c.Games = new List<GameDto>();
+                List<GameDto> games = new List<GameDto>();
                 foreach (GameBO gBo in resultBO.Result.Games)
                 {
                     GameDto gDto = new GameDto()
@@ -339,6 +339,17 @@ namespace Fantasy.API.Service.Controllers
                         {
                             Name = gBo.HomeTeam.Sport.Name,
                             SportId = gBo.HomeTeam.Sport.SportId
+                        },
+                    };
+                    gDto.AwayTeam = new TeamDto()
+                    {
+                        TeamId = gBo.AwayTeam.TeamId,
+                        TeamLogo = gBo.AwayTeam.TeamLogo,
+                        TeamName = gBo.AwayTeam.TeamName,
+                        Sport = new SportDto()
+                        {
+                            Name = gBo.AwayTeam.Sport.Name,
+                            SportId = gBo.AwayTeam.Sport.SportId
                         },
                     };
                     List<PlayerDto> homePlayers= new List<PlayerDto>();
@@ -391,7 +402,29 @@ namespace Fantasy.API.Service.Controllers
                         awayPlayers.Add(pDTO);
                     }
                     gDto.AwayTeam.Players = awayPlayers;
+                    games.Add(gDto);
                 }
+                c.Games = games;
+                List<LineupDto> lineupList = new List<LineupDto>();
+                foreach (LineupBO lBO in resultBO.Result.LineUps)
+                {
+                    LineupDto lDTO = new LineupDto()
+                    {
+                        LineUpId = lBO.LineUpId,
+                        User = new UserDto()
+                        {
+                            Email = lBO.User.Email,
+                            Password = lBO.User.Password,
+                            Login = lBO.User.Login,
+                            Money = lBO.User.Money,
+                            Lineups = new List<LineupDto>(),
+                            Notifications = new List<NotificationDto>()
+                        },
+                        Players = new List<PlayerDto>()
+                    };
+                    lineupList.Add(lDTO);
+                }
+                c.LineUpsDto = lineupList;
                 var result = await ResponseHandler.ServiceOkAsync(c);
                 return Ok(result);
             }

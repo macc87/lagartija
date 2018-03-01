@@ -86,7 +86,7 @@ namespace Fantasy.API.Service.Tests
         public async Task Real_GetContestbyId_Successfully()
         {
             var okNegotiatedContentResult = (await _controller.GetContestAsync(1))
-                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+                as OkNegotiatedContentResult<ServiceResult<ContestDto>>;
 
             //Assert that the expected results have occurred.
             Assert.IsNotNull(okNegotiatedContentResult);
