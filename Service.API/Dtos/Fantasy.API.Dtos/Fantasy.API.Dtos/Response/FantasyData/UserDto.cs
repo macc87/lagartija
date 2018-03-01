@@ -16,9 +16,7 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 
         public long Money { get; set; }
 
-        public List<LineupDto> Lineups { get; set; }
-
-        public List<NotificationDto> Notifications { get; set; }
+        public long Points { get; set; }
 
         public string _comment { get; set; }
 
