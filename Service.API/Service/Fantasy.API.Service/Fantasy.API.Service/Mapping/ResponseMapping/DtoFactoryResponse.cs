@@ -202,6 +202,30 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         }
 
         /// <summary>
+        /// Create a Task with a List of Users 
+        /// </summary>
+        /// <param name="users">User Bussiness Object</param>
+        /// <returns>List of User Dto's</returns>
+        public async Task<List<UserDto>> Create(IEnumerable<UserBO> users)
+        {
+            List<UserDto> listUser = new List<UserDto>();
+            foreach (UserBO uBO in users)
+            {
+                UserDto result = new UserDto()
+                {
+                    Email = uBO.Email,
+                    Login = uBO.Login,
+                    Password = uBO.Password,
+                    Money = uBO.Money,
+                    Points = uBO.Point,
+                    _comment = ""
+                };
+                listUser.Add(result);
+            }
+            return await Task.FromResult(listUser);
+        }
+
+        /// <summary>
         /// Create a Task with a Contest Type Dto
         /// </summary>
         /// <param name="cType">Contest Type Bussiness Object</param>

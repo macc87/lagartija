@@ -243,5 +243,74 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+
+        [TestMethod]
+        public async Task Real_GetUserBestRivals_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetUserBestRivalsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<List<UserDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetUserWorstRivals_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetUserWorstRivalsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<List<UserDto>> >;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetUserFriends_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetUserFriendsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<List<UserDto>> >;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetUserLineups_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetLineupsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<LineupDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetUserActiveLineups_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetActiveLineupsAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<LineupDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetContestActiveLineups_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestLineupsAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<LineupDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }
