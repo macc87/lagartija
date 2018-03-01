@@ -195,7 +195,7 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                 Login = user.Login,
                 Password = user.Password,
                 Money = user.Money,
-                //Points = user.Points,
+                Points = user.Point
             };
             return await Task.FromResult(result);
         }
@@ -364,6 +364,39 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                 }
                 pDto.Position = await Create(player.Position);
                 result.Add(pDto);
+            }
+            return await Task.FromResult(result);
+        }
+
+        /// <summary>
+        /// Create a Task with a list of Games Dto's 
+        /// </summary>
+        /// <param name="poco">List of Game Bussiness Object</param>
+        /// <returns>List of Games Dto's</returns>
+        public async Task<IEnumerable<NotificationDto>> Create(IEnumerable<NotificationBO> poco)
+        {
+            var result = new List<NotificationDto>();
+            foreach (NotificationBO notifBO in poco)
+            {
+                NotificationDto notifDTO = new NotificationDto()
+                {
+                    Active = notifBO.Active,
+                    Content = notifBO.Content,
+                    Link = notifBO.Link,
+                    Name = notifBO.Name,
+                    NotificationId = notifBO.NotificationId,
+                    User = new UserDto()
+                    {
+                        Email = notifBO.User.Email,
+                        Login = notifBO.User.Login,
+                        Money = notifBO.User.Money,
+                        Password = notifBO.User.Password,
+                        Points = notifBO.User.Point,
+                        _comment = ""
+                    },
+                    _comment = ""
+                };
+                result.Add(notifDTO);
             }
             return await Task.FromResult(result);
         }
