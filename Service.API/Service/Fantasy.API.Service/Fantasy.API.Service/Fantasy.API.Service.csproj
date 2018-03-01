@@ -46,8 +46,8 @@
     <Reference Include="Fantasy.API.Domain, Version=1.0.0.13, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.13\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.8\lib\net461\Fantasy.API.Dtos.dll</HintPath>
+    <Reference Include="Fantasy.API.Dtos, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.9\lib\net461\Fantasy.API.Dtos.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Utilities, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.API.Utilities.1.0.0.3\lib\net452\Fantasy.API.Utilities.dll</HintPath>
@@ -102,12 +102,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\MSSQL\Fantasy\Model.edmx.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Claim\MSSQL\Fantasy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
