@@ -179,5 +179,41 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+        [TestMethod]
+        public async Task Real_GetInformations_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetInformationsAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<InformationDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetInformationsbyDate_Successfully()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+            var okNegotiatedContentResult = (await _controller.GetInformationsbyDateAsync(start, end))
+                as OkNegotiatedContentResult<ServiceResult<List<InformationDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetPromotions_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetPromotionsAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<PromotionDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }

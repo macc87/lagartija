@@ -130,13 +130,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get contests
         /// </summary>
-        /// <returns>Returns a list of contest from MLB</returns>
+        /// <returns>Returns a list of contest</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contests", Name = "GetContestsV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsAsync()
         {
@@ -166,13 +166,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Players From Team Id
         /// </summary>
-        /// <returns>Returns a list of Players from a MLB Team</returns>
+        /// <returns>Returns a list of Players from a Team</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("playersfromteam", Name = "GetPlayersFromTeamV1")]
-        [ResponseType(typeof(ServiceResult<PlayerDto>))]
+        [ResponseType(typeof(ServiceResult<List<PlayerDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetPlayersFromTeamAsync(int teamId)
         {
@@ -203,13 +203,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Active Contests
         /// </summary>
-        /// <returns>Returns a list of active contest from MLB</returns>
+        /// <returns>Returns a list of active contests</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("activecontests", Name = "GetActiveContestsV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetActiveContestsAsync()
         {
@@ -239,13 +239,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Contests by Todays Date 
         /// </summary>
-        /// <returns>Returns a list of contests filtered by todays date from MLB</returns>
+        /// <returns>Returns a list of contests filtered by todays date</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contesttoday", Name = "GetContestsbyDateTodayV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsbyDateTodayAsync()
         {
@@ -275,13 +275,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Contests by Date
         /// </summary>
-        /// <returns>Returns a list of contests filtered by date from MLB</returns>
+        /// <returns>Returns a list of contests filtered by date</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contestdate", Name = "GetContestsbyDateV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsbyDateAsync(DateTime date)
         {
@@ -311,13 +311,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Contests by Entry Fee
         /// </summary>
-        /// <returns>Returns a list of contests filtered by entry Fee from MLB</returns>
+        /// <returns>Returns a list of contests filtered by entry Fee</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contestentryfee", Name = "GetContestsbyEntryFeeV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsbyEntryFeeAsync(double smallEntry, double bigEntry)
         {
@@ -347,13 +347,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Contests by Entry Fee and Type
         /// </summary>
-        /// <returns>Returns a list of contests filtered by Entry Fee and Contest Type from MLB</returns>
+        /// <returns>Returns a list of contests filtered by Entry Fee and Contest Type</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contestentryfeetype", Name = "GetContestsbyEntryFeeAndTypeV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsbyEntryFeeAndTypeAsync(long Type, double smallEntry, double bigEntry)
         {
@@ -383,7 +383,7 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Contest
         /// </summary>
-        /// <returns>Returns a list of contest from MLB</returns>
+        /// <returns>Returns a Contest</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
@@ -545,13 +545,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Active Contests by All Types
         /// </summary>
-        /// <returns>Returns a list of active contest filtered by Contest Type from MLB</returns>
+        /// <returns>Returns a list of active contest filtered by Contest Type</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contestsbytype", Name = "GetContestsbyAllTypesV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsFilteredbyTypeAsync()
         {
@@ -587,13 +587,13 @@ namespace Fantasy.API.Service.Controllers
         /// <summary>
         /// Get Active Contests Filtered by Type
         /// </summary>
-        /// <returns>Returns a list of active contest filtered by Contest Type from MLB</returns>
+        /// <returns>Returns a list of active contests filtered by Contest Type</returns>
         /// <remarks>Used by applications:
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
         [Route("contestsbytype", Name = "GetContestsbyTypeV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<ContestDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetContestsFilteredbyTypeAsync(long Type)
         {
@@ -629,7 +629,7 @@ namespace Fantasy.API.Service.Controllers
         /// </remarks>
         [HttpGet]
         [Route("activenotifications", Name = "GetActiveNotificationsV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<NotificationDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetActiveNotificationsAsync()
         {
@@ -652,7 +652,7 @@ namespace Fantasy.API.Service.Controllers
         }
 
         /// <summary>
-        /// Get USer Active Notifications
+        /// Get User Active Notifications
         /// </summary>
         /// <returns>Returns a list of active Notifications</returns>
         /// <remarks>Used by applications:
@@ -660,7 +660,7 @@ namespace Fantasy.API.Service.Controllers
         /// </remarks>
         [HttpGet]
         [Route("useractivenotifications", Name = "GetUserActiveNotificationsV1")]
-        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [ResponseType(typeof(ServiceResult<List<NotificationDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetUserActiveNotificationsAsync(string login)
         {
@@ -682,6 +682,98 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Get Informations
+        /// </summary>
+        /// <returns>Returns a list of Informations</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("informations", Name = "GetInformationsV1")]
+        [ResponseType(typeof(ServiceResult<List<InformationDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetInformationsAsync()
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetInformationsAsync();
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var nDtos = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(nDtos.ToList());
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Informations by Date
+        /// </summary>
+        /// <returns>Returns a list of Informations between a range of Dates</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("informationsbydate", Name = "GetInformationsbyDateV1")]
+        [ResponseType(typeof(ServiceResult<List<InformationDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetInformationsbyDateAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetInformationsAsync(start, end);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var nDtos = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(nDtos.ToList());
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Promotions
+        /// </summary>
+        /// <returns>Returns a list of Promotions</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("promotions", Name = "GetPromotionsV1")]
+        [ResponseType(typeof(ServiceResult<ContestDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPromotionsAsync()
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPromotionsAsync();
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var promoDtos = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(promoDtos.ToList());
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
 
         /// <summary>
         /// Eliminates the Database and Sport Radar Services

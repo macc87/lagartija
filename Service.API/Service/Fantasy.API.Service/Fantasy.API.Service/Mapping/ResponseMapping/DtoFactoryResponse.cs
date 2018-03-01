@@ -50,7 +50,7 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         /// Create a Task with a League Dto 
         /// </summary>
         /// <param name="league">League Bussiness Object</param>
-        /// <returns>Contest Dto</returns>
+        /// <returns>League Dto</returns>
         public async Task<LeagueDto> Create(LeagueBO league)
         {
             var result = new LeagueDto
@@ -319,10 +319,10 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         }
 
         /// <summary>
-        /// Create a Task with a list of Games Dto's 
+        /// Create a Task with a list of Player Dto's 
         /// </summary>
         /// <param name="poco">List of Game Bussiness Object</param>
-        /// <returns>List of Games Dto's</returns>
+        /// <returns>List of Player Dto's</returns>
         public async Task<IEnumerable<PlayerDto>> Create(IEnumerable<PlayerBO> poco)
         {
             var result = new List<PlayerDto>();
@@ -369,10 +369,10 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         }
 
         /// <summary>
-        /// Create a Task with a list of Games Dto's 
+        /// Create a Task with a list of Notifications Dto's 
         /// </summary>
         /// <param name="poco">List of Game Bussiness Object</param>
-        /// <returns>List of Games Dto's</returns>
+        /// <returns>List of Notifications Dto's</returns>
         public async Task<IEnumerable<NotificationDto>> Create(IEnumerable<NotificationBO> poco)
         {
             var result = new List<NotificationDto>();
@@ -397,6 +397,52 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                     _comment = ""
                 };
                 result.Add(notifDTO);
+            }
+            return await Task.FromResult(result);
+        }
+        /// <summary>
+        /// Create a Task with a list of Information Dto's 
+        /// </summary>
+        /// <param name="poco">List of Game Bussiness Object</param>
+        /// <returns>List of Notifications Dto's</returns>
+        public async Task<IEnumerable<InformationDto>> Create(IEnumerable<InformationBO> poco)
+        {
+            var result = new List<InformationDto>();
+            foreach (InformationBO infoBO in poco)
+            {
+                InformationDto infofDTO = new InformationDto()
+                {
+                    Content = infoBO.Content,
+                    FinalDate = infoBO.FinalDate,
+                    InitialDate = infoBO.InitialDate,
+                    InformationId = infoBO.InformationId,
+                    Name = infoBO.Name,
+                    _comment = ""
+                };
+                result.Add(infofDTO);
+            }
+            return await Task.FromResult(result);
+        }
+
+        /// <summary>
+        /// Create a Task with a list of Information Dto's 
+        /// </summary>
+        /// <param name="poco">List of Game Bussiness Object</param>
+        /// <returns>List of Notifications Dto's</returns>
+        public async Task<IEnumerable<PromotionDto>> Create(IEnumerable<PromotionBO> poco)
+        {
+            var result = new List<PromotionDto>();
+            foreach (PromotionBO promoBO in poco)
+            {
+                PromotionDto promoDTO = new PromotionDto()
+                {
+                    PromoId = promoBO.PromoId,
+                    Name = promoBO.Name,
+                    Content = promoBO.Content,
+                    Code = promoBO.Code,
+                    _comment = ""
+                };
+                result.Add(promoDTO);
             }
             return await Task.FromResult(result);
         }
