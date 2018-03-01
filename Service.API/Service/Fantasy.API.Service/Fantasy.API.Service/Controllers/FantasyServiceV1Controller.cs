@@ -1058,7 +1058,7 @@ namespace Fantasy.API.Service.Controllers
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
-        [Route("gamesfromcontest", Name = "GamesFromContestV1")]
+        [Route("gamesfromcontest", Name = "GetGamesFromContestV1")]
         [ResponseType(typeof(ServiceResult<List<GameDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetGamesFromContestAsync(long id)
@@ -1089,7 +1089,7 @@ namespace Fantasy.API.Service.Controllers
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
-        [Route("teamsfromgames", Name = "TeamsFromGamesV1")]
+        [Route("teamsfromgames", Name = "GetTeamsFromGamesV1")]
         [ResponseType(typeof(ServiceResult<List<TeamDto>>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetTeamsFromGamesAsync(IEnumerable<GameBO> games)
@@ -1141,6 +1141,352 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
+        /// <summary>
+        /// Get Teams From Game
+        /// </summary>
+        /// <returns>Returns the given games teams</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("teamsfromgame", Name = "GetTeamsFromGameV1")]
+        [ResponseType(typeof(ServiceResult<List<TeamDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetTeamsFromGameAsync(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetTeamsFromGame(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<TeamDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Team
+        /// </summary>
+        /// <returns>Returns a team</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("team", Name = "GetTeamsFromGameV1")]
+        [ResponseType(typeof(ServiceResult<TeamDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetTeamAsync(int id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetTeamAsync(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<TeamDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Players from Team
+        /// </summary>
+        /// <returns>Returns a list of Players</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("playersfromteam", Name = "GetPlayersFromTeamV1")]
+        [ResponseType(typeof(ServiceResult<List<PlayerDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPlayersFromTeamAsync(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPlayersFromTeamAsync(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Players from Teams
+        /// </summary>
+        /// <returns>Returns a list of Players</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("playersfromteams", Name = "GetPlayersFromTeamsV1")]
+        [ResponseType(typeof(ServiceResult<List<PlayerDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPlayersFromTeamsAsync(List<TeamBO> teams)
+        {
+            try
+            {
+                List<Team> Ttests = new List<Team>();
+                foreach (TeamBO tBO in teams)
+                {
+                    Team t = new Team()
+                    {
+                        TeamId = tBO.TeamId,
+                        Abbr = tBO.Abbr ?? "",
+                        Market = tBO.Market ?? "",
+                        SportId = tBO.Sport == null ? 1: tBO.Sport.SportId,
+                        TeamLogo = tBO.TeamLogo,
+                        TeamName = tBO.TeamName
+                    };
+                    Ttests.Add(t);
+                }
+                var resultBO = await FantasyDataService.GetPlayersFromTeamsAsync(Ttests);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Goals from Contest
+        /// </summary>
+        /// <returns>Returns a list of Goals froma given contest</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("goalsfromcontest", Name = "GetGoalsfromContestV1")]
+        [ResponseType(typeof(ServiceResult<List<GoalDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetGoalsFromContestAsync(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetGoalsfromContest(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result.Goals);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get News from Dates
+        /// </summary>
+        /// <returns>Returns a list of News from a given range of days</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("newsfromdates", Name = "GetNewsfromDatesV1")]
+        [ResponseType(typeof(ServiceResult<List<NewsDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetNewsFromDateAsync(DateTime start, DateTime end)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetNews(start, end);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<NewsDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get News from a Team
+        /// </summary>
+        /// <returns>Returns a list of News from a team in a given range of days</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("newsfromteam", Name = "GetNewsfromTeamV1")]
+        [ResponseType(typeof(ServiceResult<List<NewsDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetNewsFromTeamAsync(long id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetTeamNews(id, start, end);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<NewsDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get News from a Player
+        /// </summary>
+        /// <returns>Returns a list of News from a team in a given range of days</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("newsfromplayer", Name = "GetNewsfromPlayerV1")]
+        [ResponseType(typeof(ServiceResult<List<NewsDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetNewsFromPlayerAsync(long id, DateTime start, DateTime end)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPlayerNews(id, start, end);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<NewsDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Games from a Team
+        /// </summary>
+        /// <returns>Returns a list of Games from a team</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("gamesfromteam", Name = "GetGamesfromTeamV1")]
+        [ResponseType(typeof(ServiceResult<List<GameDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetGamesFromTeamAsync(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetGamesfromTeam(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<GameDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Game
+        /// </summary>
+        /// <returns>Returns a Game</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("game", Name = "GetGameV1")]
+        [ResponseType(typeof(ServiceResult<List<GameDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetGame(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetGameAsync(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<GameDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
+        /// Get Player
+        /// </summary>
+        /// <returns>Returns a Player</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("player", Name = "GetPlayerV1")]
+        [ResponseType(typeof(ServiceResult<List<PlayerDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPlayer(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPlayer(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<GameDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
         /// <summary>
         /// Eliminates the Database and Sport Radar Services
         /// </summary>

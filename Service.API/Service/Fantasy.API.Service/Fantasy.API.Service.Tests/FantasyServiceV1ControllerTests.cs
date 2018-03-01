@@ -10,6 +10,7 @@ using System.Web.Http.Results;
 using Fantasy.API.Dtos.Response.FantasyData;
 using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
 using Fantasy.API.Domain.Services.FantasyService;
+using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
 
 namespace Fantasy.API.Service.Tests
 {
@@ -324,12 +325,129 @@ namespace Fantasy.API.Service.Tests
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
         [TestMethod]
-        public async Task Real_GetTeamsFromGame_Successfully()
+        public async Task Real_GetTeamsFromGames_Successfully()
         {
             var games = new FantasyDataService(new DatabaseClient()).GetGamesFromContestAsync(1);
 
             var okNegotiatedContentResult = (await _controller.GetTeamsFromGamesAsync(games.Result.Result))
                 as OkNegotiatedContentResult<ServiceResult<List<TeamDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetTeamsFromGame_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetTeamsFromGameAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<List<TeamDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetTeam_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetTeamAsync(2))
+                as OkNegotiatedContentResult<ServiceResult<TeamDto>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetPlayerFromTeam_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetPlayersFromTeamAsync(2))
+                as OkNegotiatedContentResult<ServiceResult<List<PlayerDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetPlayerFromTeams_Successfully()
+        {
+            var teams = new FantasyDataService(new DatabaseClient()).GetTeamsFromGame(3);
+            var okNegotiatedContentResult = (await _controller.GetPlayersFromTeamsAsync(teams.Result.Result))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<PlayerDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetGoalsFromContests_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetGoalsFromContestAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<GoalDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetNewsFromDates_Successfully()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(15);
+            var okNegotiatedContentResult = (await _controller.GetNewsFromDateAsync(start, end))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<NewsDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetNewsFromTeam_Successfully()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(15);
+            var okNegotiatedContentResult = (await _controller.GetNewsFromTeamAsync(2, start, end))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<NewsDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetNewsFromPlayer_Successfully()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(15);
+            var okNegotiatedContentResult = (await _controller.GetNewsFromPlayerAsync(2, start, end))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<NewsDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetGamesFromTeam_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetGamesFromTeamAsync(3))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<GameDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetGame_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetGame(3))
+                as OkNegotiatedContentResult<ServiceResult<GameDto>>;
 
             //Assert that the expected results have occurred.
             Assert.IsNotNull(okNegotiatedContentResult);

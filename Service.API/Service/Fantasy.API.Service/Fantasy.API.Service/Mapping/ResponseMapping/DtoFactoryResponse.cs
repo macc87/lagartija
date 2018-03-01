@@ -363,8 +363,10 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                 PreferredName = poco.PreferredName,
                 Salary = poco.Salary
             };
-            result.Team = await Create(poco.Team);
-            result.Position = await Create(poco.Position);
+            if (result.Team == null) result.Team = new TeamDto();
+            else result.Team = await Create(poco.Team);
+            if (result.Position == null) result.Position = new PositionDto();
+            else result.Position = await Create(poco.Position); ;
             return await Task.FromResult(result);
         }
 
@@ -387,31 +389,52 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                     PreferredName = player.PreferredName,
                     Salary = player.Salary
                 };
-                pDto.Team = new TeamDto()
+                if (player.Team != null)
                 {
-                    TeamId = player.Team.TeamId,
-                    TeamLogo = player.Team.TeamLogo,
-                    TeamName = player.Team.TeamName,
-                    Sport = new SportDto()
+                    pDto.Team = new TeamDto()
                     {
-                        Name = player.Team.Sport.Name,
-                        SportId = player.Team.Sport.SportId
-                    }
-                };
-                foreach (PlayerBO pBO in player.Team.Players)
-                {
-                    PlayerDto pDtoList = new PlayerDto()
-                    {
-                        PlayerId = pBO.PlayerId,
-                        FirstName = pBO.FirstName,
-                        LastName = pBO.LastName,
-                        Photo = pBO.Photo,
-                        PreferredName = pBO.PreferredName,
-                        Salary = pBO.Salary,
-                        Team = pDto.Team,
-                        Position = await Create(player.Position)
+                        TeamId = player.Team.TeamId,
+                        TeamLogo = player.Team.TeamLogo,
+                        TeamName = player.Team.TeamName,
+                        Abbr = player.Team.Abbr,
+                        Market = player.Team.Market,
+                        Sport = new SportDto()
+                        {
+                            Name = player.Team.Sport.Name,
+                            SportId = player.Team.Sport.SportId
+                        }
                     };
+                    List<PlayerDto> players = new List<PlayerDto>();
+                    foreach (PlayerBO pBO in player.Team.Players)
+                    {
+                        PlayerDto pDtoList = new PlayerDto()
+                        {
+                            PlayerId = pBO.PlayerId,
+                            FirstName = pBO.FirstName,
+                            LastName = pBO.LastName,
+                            Photo = pBO.Photo,
+                            PreferredName = pBO.PreferredName,
+                            Salary = pBO.Salary,
+                            Team = pDto.Team,
+                            Position = await Create(player.Position)
+                        };
+                        players.Add(pDtoList);
+                    }
+                    pDto.Team.Players = players;
+                    List<LeagueDto> leagues = new List<LeagueDto>();
+                    foreach (LeagueBO lBO in player.Team.Leagues)
+                    {
+                        LeagueDto lDtoList = new LeagueDto()
+                        {
+                            alias = lBO.alias,
+                            id = lBO.id,
+                            name = lBO.name
+                        };
+                        leagues.Add(lDtoList);
+                    }
+                    pDto.Team.Leagues = leagues;
                 }
+                else pDto.Team = new TeamDto();
                 pDto.Position = await Create(player.Position);
                 result.Add(pDto);
             }
@@ -495,6 +518,105 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                 result.Add(promoDTO);
             }
             return await Task.FromResult(result);
+        }
+        /// <summary>
+        /// Create a Task with a list of Goals Dto's 
+        /// </summary>
+        /// <param name="poco">List of Goals Bussiness Object</param>
+        /// <returns>List of Notifications Dto's</returns>
+        public async Task<IEnumerable<GoalDto>> Create(IEnumerable<GoalBO> poco)
+        {
+            var result = new List<GoalDto>();
+            foreach (GoalBO gBO in poco)
+            {
+                GoalDto goalDTO = new GoalDto()
+                {
+                    CompletionCount = gBO.CompletionCount,
+                    GoalId = gBO.GoalId,
+                    GoalLogo = gBO.GoalLogo,
+                    Name = gBO.Name
+                };
+                result.Add(goalDTO);
+            }
+            return await Task.FromResult(result);
+        }
+        /// <summary>
+        /// Create a Task with a list of News Dto's 
+        /// </summary>
+        /// <param name="poco">List of News Bussiness Object</param>
+        /// <returns>List of News Dto's</returns>
+        public async Task<IEnumerable<NewsDto>> Create(IEnumerable<NewsBO> poco)
+        {
+            var result = new List<NewsDto>();
+            foreach (NewsBO nBO in poco)
+            {
+                NewsDto nDTO = new NewsDto()
+                {
+                    Content = nBO.Content,
+                    Date = nBO.Date,
+                    NewsId = nBO.NewsId,
+                    Tittle = nBO.Tittle
+                };
+                result.Add(nDTO);
+            }
+            return await Task.FromResult(result);
+        }
+        /// <summary>
+        /// Create a Task with a list of Game Dto's 
+        /// </summary>
+        /// <param name="poco">List of Game Bussiness Object</param>
+        /// <returns>List of Game Dto's</returns>
+        public async Task<GameDto> Create(GameBO poco)
+        {
+            GameDto gDto = new GameDto()
+            {
+                GameId = poco.GameId,
+                Humidity = poco.Humidity,
+                Scheduled = poco.Scheduled,
+                Temperture = poco.Temperture,
+            };
+            if (poco.AwayTeam == null) gDto.AwayTeam = new TeamDto() { };
+            else
+            {
+                gDto.AwayTeam = new TeamDto()
+                {
+                    TeamId = poco.AwayTeam.TeamId,
+                    TeamLogo = poco.AwayTeam.TeamLogo,
+                    TeamName = poco.AwayTeam.TeamName
+                };
+            }
+            if (poco.HomeTeam == null) gDto.HomeTeam = new TeamDto() { };
+            else
+            {
+                gDto.HomeTeam = new TeamDto()
+                {
+                    TeamId = poco.HomeTeam.TeamId,
+                    TeamLogo = poco.HomeTeam.TeamLogo,
+                    TeamName = poco.HomeTeam.TeamName
+                };
+            }
+            if (poco.Venue == null) gDto.Venue = new VenueDto();
+            else
+            {
+                gDto.Venue = new VenueDto()
+                {
+                    Country = poco.Venue.Country,
+                    Name = poco.Venue.Name,
+                    State = poco.Venue.State,
+                    Surface = poco.Venue.Surface,
+                    VenueId = poco.Venue.VenueId
+                };
+            }
+            if (poco.ClimaCondition == null) gDto.ClimaCondition = new ClimaConditionsDto();
+            else
+            {
+                gDto.ClimaCondition = new ClimaConditionsDto()
+                {
+                    ClimaId = poco.ClimaCondition.ClimaId,
+                    Condition = poco.ClimaCondition.Condition
+                };
+            }
+            return await Task.FromResult(gDto);
         }
     }
 }
