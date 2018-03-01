@@ -1488,6 +1488,36 @@ namespace Fantasy.API.Service.Controllers
             }
         }
         /// <summary>
+        /// Get Players from Lineup
+        /// </summary>
+        /// <returns>Returns a List of Players from a lineup</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("player", Name = "GetPlayersFromLineupV1")]
+        [ResponseType(typeof(ServiceResult<List<PlayerDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetPlayersFromLineup(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetPlayersFromLineup(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<GameDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+        /// <summary>
         /// Eliminates the Database and Sport Radar Services
         /// </summary>
         /// <param name="disposing"></param>
