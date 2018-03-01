@@ -292,6 +292,31 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         }
 
         /// <summary>
+        /// Create a Task with a List of Team Dto
+        /// </summary>
+        /// <param name="poco">Team Bussiness Object</param>
+        /// <returns>Team Dto</returns>
+        public async Task<List<TeamDto>> Create(IEnumerable<TeamBO> poco)
+        {
+            List<TeamDto> teamsDto = new List<TeamDto>();
+            foreach (TeamBO tBO in poco)
+            {
+                var result = new TeamDto
+                {
+                    TeamId = tBO.TeamId,
+                    TeamLogo = tBO.TeamLogo,
+                    TeamName = tBO.TeamName,
+                };
+                if (tBO.Players != null) result.Players = await Create(tBO.Players);
+                else result.Players = new List<PlayerDto>();
+                if (tBO.Sport != null) result.Sport = await Create(tBO.Sport);
+                else result.Sport = new SportDto();
+                teamsDto.Add(result);
+            }
+            return await Task.FromResult(teamsDto);
+        }
+
+        /// <summary>
         /// Create a Task with a Sport Dto
         /// </summary>
         /// <param name="poco">Sport Bussiness Object</param>

@@ -1050,7 +1050,96 @@ namespace Fantasy.API.Service.Controllers
             }
         }
 
-       
+        /// <summary>
+        /// Get Games from Contest
+        /// </summary>
+        /// <returns>Returns the given contest Games</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("gamesfromcontest", Name = "GamesFromContestV1")]
+        [ResponseType(typeof(ServiceResult<List<GameDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetGamesFromContestAsync(long id)
+        {
+            try
+            {
+                var resultBO = await FantasyDataService.GetGamesFromContestAsync(id);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var lineupDtos = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(lineupDtos);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<GameDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Teams From Games
+        /// </summary>
+        /// <returns>Returns the given games teams</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("teamsfromgames", Name = "TeamsFromGamesV1")]
+        [ResponseType(typeof(ServiceResult<List<TeamDto>>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetTeamsFromGamesAsync(IEnumerable<GameBO> games)
+        {
+            try
+            {
+                List<Game> Gtests = new List<Game>();
+                foreach (GameBO gBO in games)
+                {
+                    Game g = new Game()
+                    {
+                        GameId = gBO.GameId,
+                        ClimaConditionsId = gBO.ClimaCondition.ClimaId,
+                        Humidity = gBO.Humidity,
+                        Scheduled = gBO.Scheduled,
+                        Temperture = gBO.Temperture,
+                        TeamTeamId = gBO.HomeTeam.TeamId,
+                        TeamTeamId1 = gBO.AwayTeam.TeamId,
+                        VenueId = gBO.Venue.VenueId,
+                        ClimaCondition = new ClimaConditions()
+                        {
+                            ClimaConditionsId = gBO.ClimaCondition.ClimaId,
+                            Condition = gBO.ClimaCondition.Condition
+                        },
+                        Venue = new Venue()
+                        {
+                            VenueId = gBO.Venue.VenueId,
+                            Country = gBO.Venue.Country,
+                            Name = gBO.Venue.Name,
+                            State = gBO.Venue.State,
+                            Surface = gBO.Venue.Surface
+                        }
+                    };
+                    Gtests.Add(g);
+                }
+                var resultBO = await FantasyDataService.GetTeamsFromGames(Gtests);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                var teamsDto = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
+                var result = await ResponseHandler.ServiceOkAsync(teamsDto);
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<TeamDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
 
         /// <summary>
         /// Eliminates the Database and Sport Radar Services

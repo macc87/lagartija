@@ -312,5 +312,29 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+        [TestMethod]
+        public async Task Real_GetGamesFromContest_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetGamesFromContestAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<IEnumerable<GameDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+        [TestMethod]
+        public async Task Real_GetTeamsFromGame_Successfully()
+        {
+            var games = new FantasyDataService(new DatabaseClient()).GetGamesFromContestAsync(1);
+
+            var okNegotiatedContentResult = (await _controller.GetTeamsFromGamesAsync(games.Result.Result))
+                as OkNegotiatedContentResult<ServiceResult<List<TeamDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }
