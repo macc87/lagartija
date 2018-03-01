@@ -74,7 +74,19 @@ namespace Fantasy.API.Service.Tests
         [TestMethod]
         public async Task Real_GetContestsbyDate_Successfully()
         {
-            var okNegotiatedContentResult = (await _controller.GetContestsbyDateAsync())
+            var okNegotiatedContentResult = (await _controller.GetContestsbyDateAsync(DateTime.Now))
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetContestsbyDateToday_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsbyDateTodayAsync())
                 as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
 
             //Assert that the expected results have occurred.
@@ -95,10 +107,61 @@ namespace Fantasy.API.Service.Tests
         }
 
         [TestMethod]
-        public async Task Real_GetContestsFilteredbytype_Successfully()
+        public async Task Real_GetContestsFilteredbyAlltypes_Successfully()
         {
             var okNegotiatedContentResult = (await _controller.GetContestsFilteredbyTypeAsync())
                 as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+
+        [TestMethod]
+        public async Task Real_GetContestsFilteredbyType_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsFilteredbyTypeAsync(1))
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+
+        [TestMethod]
+        public async Task Real_GetContestsFilteredbytypeAndEntry_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsbyEntryFeeAndTypeAsync(1,1,20000))
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+
+        [TestMethod]
+        public async Task Real_GetContestsFilteredbyEntry_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetContestsbyEntryFeeAsync(1, 20000))
+                as OkNegotiatedContentResult<ServiceResult<List<ContestDto>>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
+        [TestMethod]
+        public async Task Real_GetGetActiveNotifications_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetActiveNotificationsAsync())
+                as OkNegotiatedContentResult<ServiceResult<List<NotificationDto>>>;
 
             //Assert that the expected results have occurred.
             Assert.IsNotNull(okNegotiatedContentResult);
