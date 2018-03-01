@@ -563,6 +563,23 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<TeamsResponse>(exception);
             }
         }
+        public async Task<ServiceResult<TeamsResponse>> GetTeamsFromGame(long gameID)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetTeamsFromGame(gameID);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamsResponse>(exception);
+            }
+        }
         public async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeam(Int64 id)
         {
             try
