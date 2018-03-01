@@ -187,7 +187,7 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
         /// </summary>
         /// <param name="user">User Bussiness Object</param>
         /// <returns>User Dto</returns>
-        private async Task<UserDto> Create(UserBO user)
+        public async Task<UserDto> Create(UserBO user)
         {
             UserDto result = new UserDto()
             {
@@ -195,7 +195,8 @@ namespace Fantasy.API.Service.Mapping.ResponseMapping
                 Login = user.Login,
                 Password = user.Password,
                 Money = user.Money,
-                Points = user.Point
+                Points = user.Point,
+                _comment = ""
             };
             return await Task.FromResult(result);
         }

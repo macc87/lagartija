@@ -232,5 +232,16 @@ namespace Fantasy.API.Service.Tests
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
 
+        [TestMethod]
+        public async Task Real_GetUserInfo_Successfully()
+        {
+            var okNegotiatedContentResult = (await _controller.GetUserInformationAsync("admin"))
+                as OkNegotiatedContentResult<ServiceResult<UserDto>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
     }
 }
