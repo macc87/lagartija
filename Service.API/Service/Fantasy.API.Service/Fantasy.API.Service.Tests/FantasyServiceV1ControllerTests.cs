@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Fantasy.API.Utilities.ServicesHandler.Core;
 using System.Web.Http.Results;
 using Fantasy.API.Dtos.Response.FantasyData;
+using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
+using Fantasy.API.Domain.Services.FantasyService;
 
 namespace Fantasy.API.Service.Tests
 {
@@ -215,5 +217,20 @@ namespace Fantasy.API.Service.Tests
             Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
             Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
         }
+
+        [TestMethod]
+        public async Task Real_GetNextContestTime_Successfully()
+        {
+            var contest = new FantasyDataService(new DatabaseClient()).GetActiveContestsAsync();
+
+            var okNegotiatedContentResult = (await _controller.GetNextContestStartTimeAsync(contest.Result.Result))
+                as OkNegotiatedContentResult<ServiceResult<DateTimeDto>>;
+
+            //Assert that the expected results have occurred.
+            Assert.IsNotNull(okNegotiatedContentResult);
+            Assert.IsFalse(okNegotiatedContentResult.Content.HasError);
+            Assert.IsNotNull(okNegotiatedContentResult.Content.Result);
+        }
+
     }
 }

@@ -15,7 +15,7 @@ using System.Web.Http.Description;
 using Fantasy.API.Dtos.Response.FantasyData;
 using Fantasy.API.Service.Mapping;
 using Fantasy.API.Domain.BussinessObjects.FantasyBOs;
-
+using Fantasy.API.DataAccess.Models.MSSQL.Fantasy;
 
 namespace Fantasy.API.Service.Controllers
 {
@@ -766,6 +766,62 @@ namespace Fantasy.API.Service.Controllers
 
                 var promoDtos = await DtoFactories.DtoFactoryResponse.Create(resultBO.Result);
                 var result = await ResponseHandler.ServiceOkAsync(promoDtos.ToList());
+
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResponseHandler.ExceptionHandler<ContestDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
+            }
+        }
+
+        /// <summary>
+        /// Get Next Contest Time
+        /// </summary>
+        /// <returns>Returns a the Start Date of the next Contest</returns>
+        /// <remarks>Used by applications:
+        /// Fantasy apps
+        /// </remarks>
+        [HttpGet]
+        [Route("nextconteststartdate", Name = "GetNextContestStartDateV1")]
+        [ResponseType(typeof(ServiceResult<DateTimeDto>))]
+        [EnumAuthorize(ApplicationRoles.ItAdmin)]
+        public async Task<IHttpActionResult> GetNextContestStartTimeAsync(IEnumerable<ContestBO> contests)
+        {
+            try
+            {
+                List<Contest> Ctests = new List<Contest>();
+                foreach (ContestBO cDto in contests)
+                {
+                    Contest c = new Contest()
+                    {
+                        ContestId = cDto.ContestId,
+                        ContestType = new ContestType()
+                        {
+                            ContestTypeId = cDto.ContestTypeId.ContestTypeId,
+                            Type = cDto.ContestTypeId.Type
+                        },
+                        EntryFee = cDto.EntryFee,
+                        MaxCapacity = cDto.MaxCapacity,
+                        Name = cDto.Name,
+                        SalaryCap = cDto.SalaryCap,
+                        SignedUp = cDto.SignedUp,
+                        ContestTypeId = cDto.ContestTypeId.ContestTypeId
+                    };
+                    var cGames = await FantasyDataService.GetContestGamesAsync(c.ContestId);
+                    c.ContestGame = cGames.Result.ContestGames;
+                    Ctests.Add(c);
+                }
+                var resultBO = await FantasyDataService.GetNextContestTimeAsync(Ctests);
+                if (resultBO.HasError)
+                    throw new ServiceException(exception: resultBO.InnerException, httpStatusCode: resultBO.HttpStatusCode,
+                        message: resultBO.Messages.Description, serviceResultCodeMessage: resultBO.Messages.Code);
+
+                DateTimeDto res = new DateTimeDto()
+                {
+                    NextContestTime = resultBO.Result.NextContestTime
+                };
+                var result = await ResponseHandler.ServiceOkAsync(res);
 
                 return Ok(result);
             }
