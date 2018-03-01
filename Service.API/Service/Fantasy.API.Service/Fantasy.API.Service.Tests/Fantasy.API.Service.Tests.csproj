@@ -47,11 +47,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.25, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.25\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
+    <Reference Include="Fantasy.API.DataAccess, Version=1.0.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.DataAccess.1.0.0.26\lib\net452\Fantasy.API.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Fantasy.API.Domain, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.11\lib\net452\Fantasy.API.Domain.dll</HintPath>
+    <Reference Include="Fantasy.API.Domain, Version=1.0.0.13, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\.nuget\packages\Fantasy.API.Domain.1.0.0.13\lib\net452\Fantasy.API.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Fantasy.API.Dtos, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\.nuget\packages\Fantasy.Api.Dtos.1.0.0.8\lib\net461\Fantasy.API.Dtos.dll</HintPath>
@@ -109,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\MSSQL\Fantasy\Model.edmx.sql" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
