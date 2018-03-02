@@ -194,6 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ContestController.cs" />
     <Compile Include="Controllers\LobbyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -297,6 +298,13 @@
     <Content Include="Views\Shared\_ContestCaps.cshtml" />
     <Content Include="Views\Shared\_ContestsTable.cshtml" />
     <Content Include="Views\Shared\_ContestCapItem.cshtml" />
+    <Content Include="Views\Shared\_PromoItemData.cshtml" />
+    <Content Include="Views\Shared\_Modals.cshtml" />
+    <Content Include="Views\Contest\Details.cshtml" />
+    <Content Include="Views\Shared\_ContestCapItemFront.cshtml" />
+    <Content Include="Views\Shared\_ContestCapItemBack.cshtml" />
+    <Content Include="Views\Contest\_TotalScore.cshtml" />
+    <Content Include="Views\Contest\_Target.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
