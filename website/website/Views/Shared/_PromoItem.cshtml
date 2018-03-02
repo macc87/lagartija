@@ -1,14 +1,19 @@
-﻿<div class="promo-item">
-    <img src="@ViewData["promoImg"]" />
-    <div class="promo-text">
-        @ViewData["promoText"]
+﻿<div class="promo-item flipper">
+    <div class="side front">
+        @Html.Partial("_PromoItemData",
+                    new ViewDataDictionary {
+                        { "promoImg", ViewData["promoImg"]  },
+                        { "promoText", ViewData["promoText"] },
+                        { "promoLink", ViewData["promoLink"] }
+                    })        
     </div>
-    <div>
-        <a href="@ViewData["promoLink"]">
-            <div class="entry-btn-1">
-                <span>Entry</span>
-            </div>
-        </a>
-    </div>
+    <div class="side back">
+        @Html.Partial("_PromoItemData",
+                    new ViewDataDictionary {
+                        { "promoImg", ViewData["promoImg"]  },
+                        { "promoText", ViewData["promoText"] },
+                        { "promoLink", ViewData["promoLink"] }
+                    })        
+    </div>    
 </div>
             
