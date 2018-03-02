@@ -767,6 +767,35 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<TeamsResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<TeamsResponse>> GetTeamsFromGame(long gameID)
+        {
+            try
+            {
+                List<Team> teams = new List<Team>();
+                Game g = dbContext.Games.Where(x => x.GameId == gameID).First();
+
+                Team home = dbContext.Teams.Where(x => x.TeamId == g.TeamTeamId).First();
+                Team away = dbContext.Teams.Where(x => x.TeamId == g.TeamTeamId1).First();
+                home.Players = dbContext.Players.Where(x => x.TeamId == home.TeamId).ToList();
+                away.Players = dbContext.Players.Where(x => x.TeamId == away.TeamId).ToList();
+                teams.Add(home);
+                teams.Add(away);
+
+                TeamsResponse result = new TeamsResponse()
+                {
+                    Teams = teams
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Teams from Games");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamsResponse>(ex);
+            }
+        }
         internal async Task<ServiceResult<PlayersResponse>> GetPlayersFromTeam(Int64 id)
         {
             try

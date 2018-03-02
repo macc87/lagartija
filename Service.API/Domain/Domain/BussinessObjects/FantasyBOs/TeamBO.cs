@@ -16,6 +16,12 @@ namespace Fantasy.API.Domain.BussinessObjects.FantasyBOs
 
         public SportBO Sport { get; set; }
 
-        public IEnumerable<PlayerBO> Players { get; set; }
+        public string Abbr { get; set; }
+
+        public string Market { get; set; }
+
+        public List<PlayerBO> Players { get; set; }
+        
+        public List<LeagueBO> Leagues { get; set; }
     }
 }

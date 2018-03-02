@@ -22,6 +22,8 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 
         public double SalaryCap { get; set; }
 
+        public DateTime Starts { get; set; }
+
         public IEnumerable<GameDto> Games { get; set;}
         public IEnumerable<LineupDto> LineUpsDto { get; set; }
     }

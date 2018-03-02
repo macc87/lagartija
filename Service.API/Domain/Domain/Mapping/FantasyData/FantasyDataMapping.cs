@@ -76,6 +76,8 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SalaryCap = contest.SalaryCap,
                 SignedUp = contest.SignedUp,
             };
+            ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+            result.ContestTypeId = await Create(ct);
             List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
             List<Game> gameList = new List<Game>();
             foreach (ContestGame cg in cgames)
@@ -109,7 +111,8 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SignedUp = contest.SignedUp,
                 Starts = starts
             };
-
+            ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+            result.ContestTypeId = await Create(ct);
             result.LineUps = await Create(lineups);
             result.Games = await Create(games);
             return await Task.FromResult(result);
@@ -128,6 +131,12 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                     Name = contest.Name,
                     SalaryCap = contest.SalaryCap,
                     SignedUp = contest.SignedUp,
+                };
+                ContestType ct = fContext.ContestTypes.Where(x => x.ContestTypeId == contest.ContestTypeId).First();
+                res.ContestTypeId = new ContestTypeBO()
+                {
+                    ContestTypeId = ct.ContestTypeId,
+                    Type = ct.Type
                 };
                 List<ContestGame> cgames = fContext.ContestGames.Where(x => x.ContestId == Cid).ToList();
                 List<Game> gameList = new List<Game>();
@@ -345,7 +354,7 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
             {
                 TeamId = team.TeamId,
                 TeamLogo = team.TeamLogo,
-                TeamName = team.TeamName
+                TeamName = team.TeamName,
             };
             Sport sp = fContext.Sports.Find(team.SportId);
             var sportBo = new SportBO
@@ -353,6 +362,9 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                 SportId = sp.SportId,
                 Name = sp.Name
             };
+            result.Sport = sportBo;
+            List<Player> players = team.Players.ToList();
+            result.Players = await Create(players);
             return await Task.FromResult(result);
         }
         public async Task<List<TeamBO>> Create(List<Team> teams)
@@ -541,6 +553,21 @@ namespace Fantasy.API.Domain.Mapping.FantasyData
                     Tittle = n.Tittle
                 };
                 result.Add(gbo);
+            }
+            return await Task.FromResult(result);
+        }
+        public async Task<List<ContestTypeBO>> Create(List<ContestType> contestTypes)
+        {
+            List<ContestTypeBO> result = new List<ContestTypeBO>();
+
+            foreach (ContestType ct in contestTypes)
+            {
+                ContestTypeBO ctBO = new ContestTypeBO()
+                {
+                    ContestTypeId = ct.ContestTypeId,
+                    Type = ct.Type
+                };
+                result.Add(ctBO);
             }
             return await Task.FromResult(result);
         }
