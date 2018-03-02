@@ -196,6 +196,13 @@ namespace Fantasy.API.DataAccess.Tests
         }
 
         [TestMethod]
+        public async Task GetTeamsFromGame_Successful()
+        {
+            var result = await fantasyDatClient.GetTeamsFromGame(1);
+            Assert.IsFalse(result.HasError);
+        }
+
+        [TestMethod]
         public async Task GetGoalsfromContest_Successful()
         {
             var result = await fantasyDatClient.GetGoalsfromContest(1);

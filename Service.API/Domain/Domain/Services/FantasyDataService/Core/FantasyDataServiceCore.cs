@@ -576,6 +576,27 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
                 return ExceptionHandler<List<TeamBO>>(exception);
             }
         }
+        internal async Task<ServiceResult<List<TeamBO>>> GetTeamsFromGame(long gameID)
+        {
+            try
+            {
+                var result = await FantasyClient.GetTeamsFromGame(gameID);
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get teams from game " + gameID);
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Teams);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<TeamBO>>(exception);
+            }
+        }
         internal async Task<ServiceResult<GoalsBO>> GetGoalsfromContest(Int64 id)
         {
             try
@@ -743,6 +764,27 @@ namespace Fantasy.API.Domain.Services.FantasyDataService.Core
             catch (Exception exception)
             {
                 return ExceptionHandler<List<NewsBO>>(exception);
+            }
+        }
+        internal async Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync()
+        {
+            try
+            {
+                var result = await FantasyClient.GetContestTypesAsync();
+                if (result == null)
+                {
+                    throw new ServiceException(message: "Unable to get contest types ");
+                }
+                if (result.HasError)
+                {
+                    throw new ServiceException(message: result.Messages.Description, httpStatusCode: result.HttpStatusCode, exception: result.InnerException);
+                }
+                var resultMapping = await new Mapping.FantasyData.FantasyDataMapping().Create(result.Result.Types);
+                return await ServiceOkAsync(resultMapping);
+            }
+            catch (Exception exception)
+            {
+                return ExceptionHandler<List<ContestTypeBO>>(exception);
             }
         }
         #region [Disposing]

@@ -4,13 +4,19 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 {
     public class InjuryDto
     {
-        public LeagueDto League { get; set; }
-        public IEnumerable<InjuriesTeamDto> teams { get; set; }
+
         public string _comment { get; set; }
-    }
 
-    public class InjuriesTeamDto
-    {
+        public long InjuryId { get; set; }
 
+        public string Description { get; set; }
+
+        public string Status { get; set; }
+
+        public System.DateTime StartDate { get; set; }
+
+        public System.DateTime UpdateDate { get; set; }
+
+        public PlayerDto Player { get; set; }
     }
 }

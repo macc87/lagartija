@@ -311,6 +311,17 @@ namespace Fantasy.API.Domain.Services.FantasyService
                 return _fantasyDataServiceCore.ExceptionHandler<List<TeamBO>>(exception);
             }
         }
+        public async Task<ServiceResult<List<TeamBO>>> GetTeamsFromGame(long gameID)
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetTeamsFromGame(gameID);
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<TeamBO>>(exception);
+            }
+        }
         public async Task<ServiceResult<GoalsBO>> GetGoalsfromContest(Int64 id)
         {
             try
@@ -397,6 +408,17 @@ namespace Fantasy.API.Domain.Services.FantasyService
             catch (Exception exception)
             {
                 return _fantasyDataServiceCore.ExceptionHandler<List<NewsBO>>(exception);
+            }
+        }
+        public async Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync()
+        {
+            try
+            {
+                return await _fantasyDataServiceCore.GetContestTypesAsync();
+            }
+            catch (Exception exception)
+            {
+                return _fantasyDataServiceCore.ExceptionHandler<List<ContestTypeBO>>(exception);
             }
         }
         #region [Disposing]

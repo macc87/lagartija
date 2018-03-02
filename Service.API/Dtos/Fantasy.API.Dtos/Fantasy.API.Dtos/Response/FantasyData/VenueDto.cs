@@ -18,5 +18,6 @@ namespace Fantasy.API.Dtos.Response.FantasyData
 
         public string Country { get; set; }
         public string _comment { get; set; }
+        
     }
 }

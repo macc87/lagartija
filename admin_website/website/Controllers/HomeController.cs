@@ -15,15 +15,17 @@ namespace website.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         protected UserManager<FantasyUser> UserManager { get; set; }
+        List<Tuple<String, String>> Entities { get; set; }
 
         public HomeController()
         {
             UserManager = new UserManager<FantasyUser>(new UserStore<FantasyUser>(this.db));
+            Entities = new List<Tuple<string, string>>();
         }
 
         public ActionResult Index()
         {
-            List<Notification> Notifications = new List<Notification>();
+            /*List<Notification> Notifications = new List<Notification>();
             DateTime nowPlus5 = DateTime.Now.AddDays(5);
             DateTime nowPlus10 = DateTime.Now.AddDays(10);
             Notifications = db.Notifications.Where(t => DateTime.Now >= t.InitialDate && t.InitialDate <= nowPlus5 && DateTime.Now < t.FinalDate).ToList();
@@ -31,10 +33,29 @@ namespace website.Controllers
             Promotions = db.Promotions.Where(t => DateTime.Now >= t.InitialDate && DateTime.Now < t.FinalDate).ToList();
             List<ContestType> ContestTypes = new List<ContestType>();
             ContestTypes = db.ContestTypes.ToList();
-
+            
             ViewBag.Notifications = Notifications;
             ViewBag.Promotions = Promotions;
             ViewBag.ContestTypes = ContestTypes;
+            */
+            Entities.Add(new Tuple<string, string>("Clima Conditions", "ClimaConditions"));
+            Entities.Add(new Tuple<string, string>("Contest", "Contest"));
+            Entities.Add(new Tuple<string, string>("Contest Type", "ContestType"));
+            Entities.Add(new Tuple<string, string>("Game", "Game"));
+            //Entities.Add(new Tuple<string, string>("Goal", "ClimaConditions"));
+            Entities.Add(new Tuple<string, string>("Lineup", "LineUp"));
+            Entities.Add(new Tuple<string, string>("Player", "Player"));
+            Entities.Add(new Tuple<string, string>("MLB Player", "MLBPlayer"));
+            Entities.Add(new Tuple<string, string>("News", "News"));
+            Entities.Add(new Tuple<string, string>("Notification", "Notification"));
+            Entities.Add(new Tuple<string, string>("Position", "Position" ));
+            Entities.Add(new Tuple<string, string>("Promotion Code", "PromoCode" ));
+            Entities.Add(new Tuple<string, string>("Promotion", "Promotion"));
+            Entities.Add(new Tuple<string, string>("Sport", "Sport"));
+            Entities.Add(new Tuple<string, string>("Stadium", "Stadium"));
+            Entities.Add(new Tuple<string, string>("Team", "Team"));
+
+            ViewBag.Entities = Entities;
             return View();
         }
 
@@ -349,8 +370,10 @@ namespace website.Controllers
             List<LineUp> LineUps = db.LineUps.Include("User").Where(t => t.User.Id == user.Id).ToList();
             foreach (LineUp lp in LineUps)
             {
-                LineUpMLBViewModel mlbVM = new LineUpMLBViewModel();
-                mlbVM.Lineup = lp;
+                LineUpMLBViewModel mlbVM = new LineUpMLBViewModel()
+                {
+                    Lineup = lp
+                };
                 List<LineUpToContest> lu2contest = db.LineUpToContests.Where(t => t.LineUpId == lp.Id).ToList();
                 List<LineUpToPlayer> lu2players = db.LineUpToPlayers.Where(t => t.LineUpId == lp.Id).ToList();
                 mlbVM.Contests = new List<Contest>();
