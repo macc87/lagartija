@@ -1,7 +1,7 @@
 (function($) {
     $(document).ready(function() {
         var $body = $('body');
-        var modal = $('#modal-empty-js');
+        var modal = $('#empty-modal-js');
         
         $body.on('click', '.show-modal-on-click-js', function(event) {
             event.preventDefault();

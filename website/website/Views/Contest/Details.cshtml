@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "";
+}
+
+<div class="contest-details">
+    <div class="left-bar">
+        <div>
+            <div class="contest-cap-wrapper">
+                <div class="contest-cap">
+                    <div class="objective-meter"></div>
+                    <div class="front side">
+                        @Html.Partial("_ContestCapItemFront")
+                    </div>
+                </div>
+            </div>
+            <div class="games">
+                <h3>
+                    Games
+                </h3>
+                <div class="games-list">
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="filter-vs-item text-left">
+                            <div class="team-vs">
+                                <div class="teams">SEA vs HOU</div>
+                                <div class="location">SAFECO field</div>
+                                <div class="location">10:10 pm</div>
+                            </div>
+                            <div class="weather"><span class="wi wi-rain"></span></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="timer">
+                <div class="digital">                
+                    <div>
+                        <span class="data-hours">01</span>:<span class="data-minutes">39</span>:<span class="data-seconds">22</span>
+                    </div>
+                </div>
+                <div class="text-left">
+                    Contest Starts
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="info tab-view">
+        <div class="header">
+            <h1 class="tab active" data-target="#rules-tab">Rules & Scores</h1>
+            <h1 class="tab" data-target="#prizes-tab">Prizes</h1>
+            <h1 class="tab" data-target="#info-tab">Information</h1>
+        </div>
+        <div class="info-content">
+            <div id="rules-tab" class="tab-content active">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Targets</h2>
+                        <div class="targets">
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "b1"  },
+                                            { "short-name", "1B" },
+                                            { "name", "Hits" }
+                                        })
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "b2"  },
+                                            { "short-name", "2B" },
+                                            { "name", "Doubles" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "b3"  },
+                                            { "short-name", "3B" },
+                                            { "name", "Triples" }
+                                        })
+
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "hr"  },
+                                            { "short-name", "HR" },
+                                            { "name", "Homeruns" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "sb"  },
+                                            { "short-name", "SB" },
+                                            { "name", "Stolen Bases" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "r"  },
+                                            { "short-name", "R" },
+                                            { "name", "Runs" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "rbi"  },
+                                            { "short-name", "RBI" },
+                                            { "name", "Runs Batter In" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "bb"  },
+                                            { "short-name", "BB" },
+                                            { "name", "Base on Balls" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "o"  },
+                                            { "short-name", "O" },
+                                            { "name", "Outs" }
+                                        })
+
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "k"  },
+                                            { "short-name", "K" },
+                                            { "name", "Strikeouts" }
+                                        })
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Score</h2>
+                        <div class="scores">
+                            @Html.Partial("_TotalScore")
+                            <div class="separator"></div>
+                            <div class="target-score">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+
+                <div class="target-points">
+
+                </div>
+
+            </div>
+            <div id="prizes-tab" class="tab-content">
+
+            </div>
+            <div id="info-tab" class="tab-content">
+
+            </div>
+
+            <a href="#" class="load-on-modal-js">
+                <div class="custom-btn-1">
+                    Entry Line up
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
