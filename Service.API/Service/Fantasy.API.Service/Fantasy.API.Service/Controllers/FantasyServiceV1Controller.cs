@@ -1179,7 +1179,7 @@ namespace Fantasy.API.Service.Controllers
         /// Fantasy apps
         /// </remarks>
         [HttpGet]
-        [Route("team", Name = "GetTeamsFromGameV1")]
+        [Route("team", Name = "GetTeamV1")]
         [ResponseType(typeof(ServiceResult<TeamDto>))]
         [EnumAuthorize(ApplicationRoles.ItAdmin)]
         public async Task<IHttpActionResult> GetTeamAsync(int id)
@@ -1201,6 +1201,7 @@ namespace Fantasy.API.Service.Controllers
                 return Ok(ResponseHandler.ExceptionHandler<TeamDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
         }
+        /*
         /// <summary>
         /// Get Players from Team
         /// </summary>
@@ -1230,7 +1231,7 @@ namespace Fantasy.API.Service.Controllers
             {
                 return Ok(ResponseHandler.ExceptionHandler<PlayerDto>(exception, true, userInfo: CurrentUser, httpRequestMessage: Request));
             }
-        }
+        }*/
         /// <summary>
         /// Get Players from Teams
         /// </summary>
