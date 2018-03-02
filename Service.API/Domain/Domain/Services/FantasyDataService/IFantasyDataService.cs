@@ -33,6 +33,7 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<ContestBO>>> GetContestsAsync(DateTime startDate);
         Task<ServiceResult<List<GameBO>>> GetGamesFromContestAsync(Int64 id);
         Task<ServiceResult<List<TeamBO>>> GetTeamsFromGames(List<Game> games);
+        Task<ServiceResult<List<TeamBO>>> GetTeamsFromGame(long gameID);
         Task<ServiceResult<GoalsBO>> GetGoalsfromContest(Int64 id);
         Task<ServiceResult<PlayerBO>> GetPlayer(Int64 id);
         Task<ServiceResult<List<PlayerBO>>> GetPlayersFromLineup(Int64 id);
@@ -43,5 +44,6 @@ namespace Fantasy.API.Domain.Services.FantasyService
         Task<ServiceResult<List<NewsBO>>> GetNews(DateTime start, DateTime end);
         Task<ServiceResult<List<NewsBO>>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<List<NewsBO>>> GetTeamNews(Int64 id, DateTime start, DateTime end);
+        Task<ServiceResult<List<ContestTypeBO>>> GetContestTypesAsync();
     }
 }

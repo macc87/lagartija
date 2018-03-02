@@ -244,6 +244,12 @@ namespace Fantasy.API.Domain.Tests
             Assert.IsFalse(result.HasError);
         }
         [TestMethod]
+        public async Task GetTeamsFromGame_Successful()
+        {
+            var result = await _dataService.GetTeamsFromGame(1);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
         public async Task GetNews_Successful()
         {
             DateTime start = DateTime.Now;
@@ -271,6 +277,12 @@ namespace Fantasy.API.Domain.Tests
         public async Task GetTeam_Successful()
         {
             var result = await _dataService.GetTeamAsync(2);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task GetContestTypes_Successful()
+        {
+            var result = await _dataService.GetContestTypesAsync();
             Assert.IsFalse(result.HasError);
         }
     }
