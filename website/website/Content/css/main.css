@@ -1498,8 +1498,8 @@ footer a:hover {
     bottom: -25px;
     font-family: 'FuturaStd-Bold';
     color: #c2c2c2;
-    font-size: 14px;
-    line-height: 28px;    
+    font-size: 12px;
+    line-height: 31px;    
 }
 .total-score .contestants-info.max {    
 /*     transform: translateX(-50%); */
@@ -1514,18 +1514,25 @@ footer a:hover {
 }
 .total-score .win-marker {
     position: absolute;
-    left: 50%;
-    bottom: -21px;
-    transform: translateX(-50%);
-    width: 17px;
-    height: 17px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    padding: 0px;        
     border: 2px solid #a47240;
+    background: #a47240;
     border-radius: 17px;
     font-family: 'FuturaStd-Bold';
-    line-height: 15px;
-    font-size: 7px;
+    line-height: 13px;
+    font-size: 8px;
     text-align: center;
-    color: #a47240;
+    color: #fff;
+    text-transform: uppercase;
+    height: 17px;
+    width: 17px;
+}
+.total-score .win-marker {    
+/*  macc to move    */
+    left: calc(50%);     
+    z-index: 1;
 }
 .total-score .point-bar {
     position: absolute;
@@ -1533,23 +1540,149 @@ footer a:hover {
     width: 3px;    
 }
 .total-score .point-bar.win-separator {
+    /*  macc to move    */
     left: 50%;
     transform: translateX(-50%);
 }
 .total-score .point-bar.win-separator.gold {
     background: #815931;
 }
-.total-score .position-marker {
-    position: absolute;
-    left: 70%;
-    transform: translateX(-50%);
-    font-size: 15px;
-    top: -17px;
-}
+.total-score .position-marker,
 .total-score .prize-marker {
     position: absolute;
+/*  macc to move    */
     left: 70%;
     transform: translateX(-50%);
-    font-size: 15px;
-    bottom: -16px;
+    font-size: 20px;
 }
+
+.total-score .position-marker {    
+    top: -22px;
+}
+.total-score .prize-marker {
+    bottom: -22px;
+}
+.total-score .prize {
+    position: absolute;
+    bottom: 0px;
+    /*  macc to move    */
+    left: 70%;
+    transform: translateX(-50%);
+    font-family: 'FuturaStd-Bold';
+    font-size: 12px;
+    bottom: -30px;
+    color: #a47240;
+}
+.total-score .position-info {
+    position: absolute;
+    top: -28px;
+    /*  macc to move    */
+    left: 70%;
+    transform: translateX(-50%);
+    font-family: 'FuturaStd-Bold';
+    font-size: 12px;    
+    color: #bababa;
+    white-space: nowrap;
+}
+.total-score .position-info .position {
+     color: #a47240;   
+}
+.total-score .cap {
+    box-shadow: 0px 5px 7px -2px #004246;
+    width: 70px;
+    height: 70px;    
+    border-radius: 70px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #fff;
+}
+
+/* Circular progress bar */
+.circular-progress{
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+}
+.circular-progress:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.circular-progress > span{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.circular-progress .circular-progress-left{
+    left: 0;    
+}
+.circular-progress .circular-progress-bar{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 5px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    transition-property: transform;
+    transition-duration: 1.5s;
+    transition-timing-function: linear;
+}
+.circular-progress .circular-progress-left .circular-progress-bar{
+    left: 100%;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-left: 0;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+.circular-progress .circular-progress-right{
+    right: 0;
+}
+.circular-progress .circular-progress-right .circular-progress-bar{
+    left: -100%;
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-right: 0;
+    -webkit-transform-origin: center right;
+    transform-origin: center right;
+}
+.circular-progress .circular-progress-value{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: #44484b;
+    font-size: 24px;
+    color: #fff;
+    line-height: 70px;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+.circular-progress.blue .circular-progress-bar{
+    border-color: #049dff;
+}
+.circular-progress.yellow .circular-progress-bar{
+    border-color: #fdba04;
+}
+.circular-progress.pink .circular-progress-bar{
+    border-color: #ed687c;
+}
+.circular-progress.green .circular-progress-bar{
+    border-color: #1abc9c;
+}
+/* --------------------- */

@@ -5,6 +5,7 @@ var RunAjaxSuccessFunctions = function(){
         imgbackground();
     if(initscrollableslider)    
         initscrollableslider();
+    UpdateCircularProgressBars(jQuery);
 };
 
 (function ($) {
