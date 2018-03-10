@@ -1,12 +1,41 @@
-function UpdateCircularProgressBars($){
-    $('.circular-progress-bar-js').each(function(index){
+function UpdateCircularProgressBarInit($){
+     $('.circular-progress-bar-js').each(function(index){
         var bar = $(this);
         var current = bar.data('current');
-        var progress = bar.data('progress');
         var progressDegLeft = 0;
         var progressDegRight = 0;
+        if (current <= 50){
+            progressDegLeft = (180*current)/50;
+        }
+        else{
+            progressDegLeft = 180;
+            progressDegRight = (180*(current-50))/50;
+        }
+        var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
+        var rightBar = bar.find('.circular-progress-right .circular-progress-bar');    
+//         leftBar.css('transition-delay', '0s');
+//         rightBar.css('transition-delay', '0s');    
+//         leftBar.css('transition-duration', '0s');
+//         rightBar.css('transition-duration', '0s');    
+//         leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
+//         rightBar.css('transform', 'rotate('+progressDegRight+'deg)'); 
+        bar.attr('data-current-rotation-left', progressDegLeft);
+        bar.attr('data-current-rotation-right', progressDegRight);
+     });    
+};
+
+function UpdateCircularProgressBars($){
+    $('.circular-progress-bar-js').each(function(index){
+        var bar = $(this);        
+        var current = bar.data('current');
+        var progress = bar.data('progress');
+        var currentRotationLeft = bar.attr('data-current-rotation-left');
+        var currentRotationRight = bar.attr('data-current-rotation-right');
+        var progressDegLeft = 0;
+        var progressDegRight = 0;
+
         if (progress <= 50){
-            progressDegLeft = (180*progress)/50;
+            progressDegLeft = (180*progress)/50;            
         }
         else{
             progressDegLeft = 180;
@@ -14,6 +43,8 @@ function UpdateCircularProgressBars($){
         }
         var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
         var rightBar = bar.find('.circular-progress-right .circular-progress-bar');    
+        leftBar.css('transition-duration', '1.5s');
+        rightBar.css('transition-duration', '1.5s');    
         if(progress > current){
             if(progress <= 50){ // 25 -> 40
                 leftBar.css('transition-delay', '0s');
@@ -29,6 +60,8 @@ function UpdateCircularProgressBars($){
                     rightBar.css('transition-delay', '0s');    
                 }
             }
+            leftBar.css('transform', 'rotate('+currentRotationLeft+'deg) rotate('+progressDegLeft+'deg)');
+            rightBar.css('transform', 'rotate('+currentRotationRight+'deg) rotate('+progressDegRight+'deg)');
         }
         else if(progress < current){
             if(progress <= 50){ 
@@ -45,9 +78,10 @@ function UpdateCircularProgressBars($){
                 leftBar.css('transition-delay', '0s');
                 rightBar.css('transition-delay', '0s');
             }
+            leftBar.css('transform', 'rotate('+currentRotationLeft+'deg) rotate(-'+progressDegLeft+'deg)');
+            rightBar.css('transform', 'rotate('+currentRotationRight+'deg) rotate(-'+progressDegRight+'deg)');
         }
-        leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
-        rightBar.css('transform', 'rotate('+progressDegRight+'deg)');
+        
         bar.attr('data-current', progress);
     });    
 };
@@ -100,7 +134,8 @@ function UpdateCircularProgressBars($){
 //             self.find('.side.back')
 //                 .toggleClass('activate-flip-back');
         });        
-
+        
+        UpdateCircularProgressBarInit($);
         UpdateCircularProgressBars($);
     });
 })(jQuery);
