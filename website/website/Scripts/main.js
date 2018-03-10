@@ -13,12 +13,6 @@ function UpdateCircularProgressBarInit($){
         }
         var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
         var rightBar = bar.find('.circular-progress-right .circular-progress-bar');    
-//         leftBar.css('transition-delay', '0s');
-//         rightBar.css('transition-delay', '0s');    
-//         leftBar.css('transition-duration', '0s');
-//         rightBar.css('transition-duration', '0s');    
-//         leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
-//         rightBar.css('transform', 'rotate('+progressDegRight+'deg)'); 
         bar.attr('data-current-rotation-left', progressDegLeft);
         bar.attr('data-current-rotation-right', progressDegRight);
      });    
@@ -59,9 +53,7 @@ function UpdateCircularProgressBars($){
                     leftBar.css('transition-delay', '0s');
                     rightBar.css('transition-delay', '0s');    
                 }
-            }
-            leftBar.css('transform', 'rotate('+currentRotationLeft+'deg) rotate('+progressDegLeft+'deg)');
-            rightBar.css('transform', 'rotate('+currentRotationRight+'deg) rotate('+progressDegRight+'deg)');
+            }            
         }
         else if(progress < current){
             if(progress <= 50){ 
@@ -77,11 +69,12 @@ function UpdateCircularProgressBars($){
             else{ // 75 -> 60
                 leftBar.css('transition-delay', '0s');
                 rightBar.css('transition-delay', '0s');
-            }
-            leftBar.css('transform', 'rotate('+currentRotationLeft+'deg) rotate(-'+progressDegLeft+'deg)');
-            rightBar.css('transform', 'rotate('+currentRotationRight+'deg) rotate(-'+progressDegRight+'deg)');
+            }            
         }
-        
+        leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
+        rightBar.css('transform', 'rotate('+progressDegRight+'deg)');
+        bar.attr('data-current-rotation-left', progressDegLeft);
+        bar.attr('data-current-rotation-right', progressDegRight);
         bar.attr('data-current', progress);
     });    
 };
