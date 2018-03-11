@@ -1,82 +1,77 @@
-function UpdateCircularProgressBarInit($){
-     $('.circular-progress-bar-js').each(function(index){
-        var bar = $(this);
-        var current = bar.data('current');
-        var progressDegLeft = 0;
-        var progressDegRight = 0;
-        if (current <= 50){
-            progressDegLeft = (180*current)/50;
-        }
-        else{
-            progressDegLeft = 180;
-            progressDegRight = (180*(current-50))/50;
-        }
-        var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
-        var rightBar = bar.find('.circular-progress-right .circular-progress-bar');    
-        bar.attr('data-current-rotation-left', progressDegLeft);
-        bar.attr('data-current-rotation-right', progressDegRight);
-     });    
+function UpdateCircularProgressBar($, bar){
+    var progress = bar.data('progress');        
+    var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
+    var rightBar = bar.find('.circular-progress-right .circular-progress-bar');            
+    var progressDegLeft = 0;
+    var progressDegRight = 0;
+    var progressPercentLeft = 33.33;
+    var progressPercentRight = 66.66;
+    if (progress <= 33.33){
+        progressDegLeft = (90*progress)/33.33;            
+        progressPercentLeft = progress;
+        progressPercentRight = 0;
+    }
+    else{
+        progressDegLeft = 91;            
+        progressDegRight = (180*(progress-33.33))/66.66;                    
+        progressPercentRight = progress - 33.33;
+    }                
+    leftBar.css('transition-duration', (1200 * progressPercentLeft / progress) +'ms');
+    rightBar.css('transition-duration', (1200 * progressPercentRight / progress) +'ms');    
+    leftBar.css('transition-delay', '0ms');
+    rightBar.css('transition-delay', (1200 * progressPercentLeft / progress) +'ms');                
+    leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
+    rightBar.css('transform', 'rotate('+progressDegRight+'deg)');        
+    bar.attr('data-current', progress);
 };
 
 function UpdateCircularProgressBars($){
-    $('.circular-progress-bar-js').each(function(index){
-        var bar = $(this);        
-        var current = bar.data('current');
-        var progress = bar.data('progress');
-        var currentRotationLeft = bar.attr('data-current-rotation-left');
-        var currentRotationRight = bar.attr('data-current-rotation-right');
-        var progressDegLeft = 0;
-        var progressDegRight = 0;
-
-        if (progress <= 50){
-            progressDegLeft = (180*progress)/50;            
-        }
-        else{
-            progressDegLeft = 180;
-            progressDegRight = (180*(progress-50))/50;
-        }
-        var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
-        var rightBar = bar.find('.circular-progress-right .circular-progress-bar');    
-        leftBar.css('transition-duration', '1.5s');
-        rightBar.css('transition-duration', '1.5s');    
-        if(progress > current){
-            if(progress <= 50){ // 25 -> 40
-                leftBar.css('transition-delay', '0s');
-                rightBar.css('transition-delay', '0s');
-            }
-            else{
-                if(current <= 50){ // 25 -> 75
-                    leftBar.css('transition-delay', '0s');
-                    rightBar.css('transition-delay', '1.5s');
-                }
-                else{ // 55 -> 75
-                    leftBar.css('transition-delay', '0s');
-                    rightBar.css('transition-delay', '0s');    
-                }
-            }            
-        }
-        else if(progress < current){
-            if(progress <= 50){ 
-                if(current <= 50){ // 45 -> 25
-                    leftBar.css('transition-delay', '0s');
-                    rightBar.css('transition-delay', '0s');
-                }
-                else{ // 75 -> 25
-                    leftBar.css('transition-delay', '1.5s');
-                    rightBar.css('transition-delay', '0s');
-                }
-            }
-            else{ // 75 -> 60
-                leftBar.css('transition-delay', '0s');
-                rightBar.css('transition-delay', '0s');
-            }            
-        }
-        leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
-        rightBar.css('transform', 'rotate('+progressDegRight+'deg)');
-        bar.attr('data-current-rotation-left', progressDegLeft);
-        bar.attr('data-current-rotation-right', progressDegRight);
-        bar.attr('data-current', progress);
+    $('.radial-progress-objetive.circular-progress-bar-js').each(function(index){
+        var bar = $(this);             
+        UpdateCircularProgressBar($, bar);           
     });    
+};
+
+function UpdateCapsCircularProgressBars($){
+    $('.radial-progress-cap.circular-progress-bar-js').each(function(index){
+        var bar = $(this);             
+        UpdateCircularProgressBar($, bar);           
+    });    
+};
+
+function UpdateTotalScoreBar($, bar){
+    var contestants = bar.data('contestants');
+    var position = bar.data('position');
+    var winPosition = bar.data('win-position');
+    var prize = bar.data('prize');
+    var points = bar.data('points');
+    var percent = bar.data('percent');
+
+    bar.find('.data-contestants').text(contestants);
+    bar.find('.data-position').text(position);
+    bar.find('.data-prize').text(prize);
+    bar.find('.data-points').text(points);
+    var circularBar = bar.find('.circular-progress-bar-js');    
+    circularBar.attr('data-progress', percent);
+    UpdateCircularProgressBar($, circularBar);
+
+    var widthPercent = 100 * position / contestants;
+    var winWidthPercent = 100 * winPosition / contestants;
+
+    bar.find('.win-separator').css('left', winWidthPercent+'%');
+    bar.find('.win-marker').css('left', winWidthPercent+'%');    
+    bar.find('.progress-bar').css('width', widthPercent+'%');    
+    bar.find('.position-marker').css('left', widthPercent+'%');
+    bar.find('.prize').css('left', widthPercent+'%');
+    bar.find('.prize-marker').css('left', widthPercent+'%');
+    bar.find('.position-info').css('left', widthPercent+'%');
+};
+
+function UpdateTotalScoreBars($){
+    $('.total-score-js').each(function(index){
+        var bar = $(this);
+        UpdateTotalScoreBar($, bar);
+    });
 };
 
 /* Project specific Javascript goes here. */
@@ -126,10 +121,10 @@ function UpdateCircularProgressBars($){
 //             var self = $(this);            
 //             self.find('.side.back')
 //                 .toggleClass('activate-flip-back');
-        });        
-        
-        UpdateCircularProgressBarInit($);
-        UpdateCircularProgressBars($);
+        });                
+
+        UpdateTotalScoreBars($);
+        UpdateCapsCircularProgressBars($);
     });
 })(jQuery);
 

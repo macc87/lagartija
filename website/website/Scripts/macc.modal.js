@@ -2,6 +2,13 @@
     $(document).ready(function() {
         var $body = $('body');
         var modal = $('#empty-modal-js');
+
+        modal.on('shown.bs.modal', function(){
+            modal.find('.total-score-js').each(function(index){
+               var bar = $(this);
+                UpdateTotalScoreBar($, bar); 
+            }); 
+        });
         
         $body.on('click', '.show-modal-on-click-js', function(event) {
             event.preventDefault();

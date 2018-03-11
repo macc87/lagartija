@@ -1467,12 +1467,14 @@ footer a:hover {
 
 .total-score {
     position: relative;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .total-score .target-name {
-    width: 80px;
-    height: 80px;
-    border: 4px solid #fff;
-    border-radius: 80px;
+    width: 92px;
+    height: 92px;
+    border: 10px solid #fff;
+    border-radius: 92px;
     color: #002021;
     background: #a47240;
     text-align: center;
@@ -1481,16 +1483,16 @@ footer a:hover {
     font-size: 24px;
     padding: 0;
     position: absolute;
-    top: -4px;
+    top: -10px;
     left: -4px;
     z-index: 2;
 }
 .total-score .score-bar {
     height: 72px;
     position: relative;
-    background: #fff;
-    width: calc(100% - 104px);
-    left: 52px;
+    background: #c2c2c2;
+    width: calc(100% - 202px);
+    left: 73px;
     border: 2px #004246 solid;
 }
 .total-score .contestants-info {
@@ -1499,7 +1501,7 @@ footer a:hover {
     font-family: 'FuturaStd-Bold';
     color: #c2c2c2;
     font-size: 12px;
-    line-height: 31px;    
+    line-height: 31px;        
 }
 .total-score .contestants-info.max {    
 /*     transform: translateX(-50%); */
@@ -1510,7 +1512,9 @@ footer a:hover {
 }
 .total-score .progress-bar {
     background: #004246;
-    width: 70%;
+    transition-property: width;
+    transition-duration: 1200ms;
+    transition-timing-function: linear;
 }
 .total-score .win-marker {
     position: absolute;
@@ -1528,20 +1532,15 @@ footer a:hover {
     text-transform: uppercase;
     height: 17px;
     width: 17px;
-}
-.total-score .win-marker {    
-/*  macc to move    */
-    left: calc(50%);     
     z-index: 1;
 }
+
 .total-score .point-bar {
     position: absolute;
     height: 68px;
     width: 3px;    
 }
-.total-score .point-bar.win-separator {
-    /*  macc to move    */
-    left: 50%;
+.total-score .point-bar.win-separator {    
     transform: translateX(-50%);
 }
 .total-score .point-bar.win-separator.gold {
@@ -1550,10 +1549,8 @@ footer a:hover {
 .total-score .position-marker,
 .total-score .prize-marker {
     position: absolute;
-/*  macc to move    */
-    left: 70%;
     transform: translateX(-50%);
-    font-size: 20px;
+    font-size: 20px;    
 }
 
 .total-score .position-marker {    
@@ -1562,11 +1559,22 @@ footer a:hover {
 .total-score .prize-marker {
     bottom: -22px;
 }
+
+.total-score .prize,
+.total-score .position-info,
+.total-score .position-marker,
+.total-score .prize-marker {
+    transition-property: left;
+    transition-duration: 1200ms;
+    transition-timing-function: linear;    
+    left: 0%;
+}
+
 .total-score .prize {
     position: absolute;
-    bottom: 0px;
-    /*  macc to move    */
-    left: 70%;
+    bottom: 0px;        
+/*  macc    */
+    
     transform: translateX(-50%);
     font-family: 'FuturaStd-Bold';
     font-size: 12px;
@@ -1577,7 +1585,7 @@ footer a:hover {
     position: absolute;
     top: -28px;
     /*  macc to move    */
-    left: 70%;
+    
     transform: translateX(-50%);
     font-family: 'FuturaStd-Bold';
     font-size: 12px;    
@@ -1587,26 +1595,77 @@ footer a:hover {
 .total-score .position-info .position {
      color: #a47240;   
 }
-.total-score .cap {
-    box-shadow: 0px 5px 7px -2px #004246;
-    width: 70px;
-    height: 70px;    
-    border-radius: 70px;
+.total-score .points-cap {
+    width: 140px;
+    height: 140px;    
+    border-radius: 140px;
     position: absolute;
-    top: 0px;
+    top: calc(-1*(140px - 72px)/2);
     right: 0px;
     background: #fff;
+}
+.total-score .cap-wrapper {
+    position: relative;
+/*     width: 120px; */
+/*     height: 100px; */
+    background: transparent;
+}
+.total-score .cap-wrapper .percent-bottom {
+    position: absolute;
+    bottom: -10px;
+    z-index: 1;        
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+}
+.total-score .cap-wrapper .percent-bottom.min {
+    left: 15px;        
+}
+.total-score .cap-wrapper .percent-bottom.max {
+    right: 3px;    
+}
+.total-score .objective-meter {
+    position: relative;
+/*     width: 95px;
+    height: 95px;
+    border: 10px solid #fff;
+    border-radius: 95px;
+    top: -20px; */    
+    background: transparent;
+}
+.total-score .cap {
+    box-shadow: 0px 5px 7px -2px #004246;
+    width: 90px;
+    height: 90px;    
+    border-radius: 90px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) translateY(10px);
+    background: #fff;
+    font-family: 'FuturaStd-Bold';    
+    color: #a47240;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    padding-top: 24px;
+    z-index: 1;
+}
+.total-score .cap .data-points {
+    font-size: 40px;
+    line-height: 40px;
 }
 
 /* Circular progress bar */
 .circular-progress{
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
-    background: none;
-    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    background: none;    
     box-shadow: none;
+    margin: 0 auto;
     position: relative;
+    left: 0px;
+    top: 10px;
 }
 .circular-progress:after{
     content: "";
@@ -1628,6 +1687,8 @@ footer a:hover {
 }
 .circular-progress .circular-progress-left{
     left: 0;    
+    transform-origin: center right;
+    transform: rotate(45deg);
 }
 .circular-progress .circular-progress-bar{
     width: 100%;
@@ -1643,19 +1704,22 @@ footer a:hover {
 }
 .circular-progress .circular-progress-left .circular-progress-bar{
     left: 100%;
-    border-top-right-radius: 35px;
-    border-bottom-right-radius: 35px;
+    border-top-right-radius: 110px;
+    border-bottom-right-radius: 110px;
     border-left: 0;
     -webkit-transform-origin: center left;
     transform-origin: center left;
 }
-.circular-progress .circular-progress-right{
+.circular-progress .circular-progress-right{    
     right: 0;
+    transform-origin: center left;
+    transform: rotate(-45deg);
+    z-index: 1;    
 }
 .circular-progress .circular-progress-right .circular-progress-bar{
     left: -100%;
-    border-top-left-radius: 35px;
-    border-bottom-left-radius: 35px;
+    border-top-left-radius: 110px;
+    border-bottom-left-radius: 110px;
     border-right: 0;
     -webkit-transform-origin: center right;
     transform-origin: center right;
@@ -1663,8 +1727,8 @@ footer a:hover {
 .circular-progress .circular-progress-value{
     width: 90%;
     height: 90%;
-    border-radius: 50%;
-    background: #44484b;
+    border-radius: 90%;
+    background: transparent;
     font-size: 24px;
     color: #fff;
     line-height: 70px;
@@ -1683,6 +1747,6 @@ footer a:hover {
     border-color: #ed687c;
 }
 .circular-progress.green .circular-progress-bar{
-    border-color: #1abc9c;
+    border-color: #004246;    
 }
 /* --------------------- */
