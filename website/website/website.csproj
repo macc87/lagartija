@@ -371,7 +371,7 @@
     <Content Include="Views\Shared\_ContestCapItemFront.cshtml" />
     <Content Include="Views\Shared\_ContestCapItemBack.cshtml" />
     <Content Include="Views\Shared\_TotalScore.cshtml" />
-    <Content Include="Views\Contest\_Target.cshtml" />
+    <Content Include="Views\Shared\_Target.cshtml" />
     <Content Include="Views\Shared\_TargetScore.cshtml" />
     <Content Include="Views\Shared\_PointsScore.cshtml" />
   </ItemGroup>

@@ -4,7 +4,11 @@
      data-time="@ViewData["time"]">
 
     <div class="target-name">
-        Total
+        @Html.Partial("_Target", new ViewDataDictionary {
+                                    { "css-code", @ViewData["css-code"]  },
+                                    { "short-name", @ViewData["short-name"] },
+                                    { "name", @ViewData["name"] }
+                                })
     </div>
 
     <div class="score-bar">

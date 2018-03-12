@@ -132,7 +132,14 @@
                             })
                             <div class="separator"></div>
                             <div class="target-score">
-
+                                @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "events", "9"  },
+                                    { "completed-events", "14"  },
+                                    { "css-code", "k"  },
+                                    { "short-name", "K" },
+                                    { "name", "Strikeouts" },
+                                    { "time", "500"  }
+                                })
                             </div>
                         </div>
                     </div>
