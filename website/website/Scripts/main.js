@@ -1,7 +1,12 @@
 function UpdateCircularProgressBar($, bar){
-    var progress = bar.data('progress');        
+    var progress = bar.data('progress');    
+    var currentProgress = bar.data('current');
+    var transitionTime = bar.data('time');
+    var handle = bar.find('.percent-handle');
+    var handleRotation = (progress * 2.7) - 45;    
+    bar.find('.data-progress').text(progress);
     var leftBar = bar.find('.circular-progress-left .circular-progress-bar');
-    var rightBar = bar.find('.circular-progress-right .circular-progress-bar');            
+    var rightBar = bar.find('.circular-progress-right .circular-progress-bar');                
     var progressDegLeft = 0;
     var progressDegRight = 0;
     var progressPercentLeft = 33.33;
@@ -15,14 +20,62 @@ function UpdateCircularProgressBar($, bar){
         progressDegLeft = 91;            
         progressDegRight = (180*(progress-33.33))/66.66;                    
         progressPercentRight = progress - 33.33;
-    }                
-    leftBar.css('transition-duration', (1200 * progressPercentLeft / progress) +'ms');
-    rightBar.css('transition-duration', (1200 * progressPercentRight / progress) +'ms');    
-    leftBar.css('transition-delay', '0ms');
-    rightBar.css('transition-delay', (1200 * progressPercentLeft / progress) +'ms');                
+    }
+
+    if(currentProgress <= 33.33 && progress <= 33.33){
+        leftBar.css('transition-duration', transitionTime+'ms');
+        rightBar.css('transition-duration', '0ms');                    
+        leftBar.css('transition-delay', '0ms');
+        rightBar.css('transition-delay', '0ms');                    
+    }
+    else if(currentProgress > 33.33 && progress > 33.33){
+        leftBar.css('transition-duration', '0ms');
+        rightBar.css('transition-duration', transitionTime +'ms');                    
+        leftBar.css('transition-delay', '0ms');
+        rightBar.css('transition-delay', '0ms');                    
+    }
+    else {
+        if(progress < currentProgress){        
+            if(progress == 0){
+                leftBar.css('transition-duration', (transitionTime * 0.33) +'ms');
+                rightBar.css('transition-duration', (transitionTime * 0.66) +'ms');                    
+                leftBar.css('transition-delay', (transitionTime * 0.66) +'ms');                    
+                rightBar.css('transition-delay', 0 +'ms');                        
+            }                
+            else{
+                var timeLeft = (transitionTime * (33.33 - progress) / (currentProgress - progress));
+                var timeRight = (transitionTime * (currentProgress - 33.33) / (currentProgress - progress));
+                leftBar.css('transition-duration',  timeLeft+'ms');
+                rightBar.css('transition-duration', timeRight+'ms');                    
+                leftBar.css('transition-delay', timeRight+'0ms');
+                rightBar.css('transition-delay', '0ms');                        
+            }
+        }
+        else{            
+            var timeLeft = (transitionTime * (33.33 - currentProgress) / (progress - currentProgress));
+            var timeRight = (transitionTime * (progress - 33.33) / (progress - currentProgress));
+            leftBar.css('transition-duration',  timeLeft+'ms');
+            rightBar.css('transition-duration', timeRight+'ms');                    
+            leftBar.css('transition-delay', '0ms');
+            rightBar.css('transition-delay', timeLeft+'ms');                                    
+        }       
+    }   
+    
+    
+    handle.css('transition-duration', transitionTime+'ms');    
+    handle.find('div').css('transition-duration', transitionTime+'ms');   
+       
+     
+    if(progress >= 33.33){
+        //leftBar.css('transition-delay', '0ms');
+        //rightBar.css('transition-delay', (transitionTime * progressPercentLeft / progress - transitionTime/4) +'ms');                        
+    }    
+    
     leftBar.css('transform', 'rotate('+progressDegLeft+'deg)');
-    rightBar.css('transform', 'rotate('+progressDegRight+'deg)');        
-    bar.attr('data-current', progress);
+    rightBar.css('transform', 'rotate('+progressDegRight+'deg)');                
+    handle.css('transform', 'rotate('+handleRotation+'deg)');
+    handle.find('div').css('transform', 'rotate('+(-1*handleRotation)+'deg)');
+    bar.data('current', progress);
 };
 
 function UpdateCircularProgressBars($){
@@ -46,29 +99,38 @@ function UpdateTotalScoreBar($, bar){
     var prize = bar.data('prize');
     var points = bar.data('points');
     var percent = bar.data('percent');
+    var transitionTime = bar.data('time');    
 
     bar.find('.data-contestants').text(contestants);
     bar.find('.data-position').text(position);
     bar.find('.data-prize').text(prize);
     bar.find('.data-points').text(points);
     var circularBar = bar.find('.circular-progress-bar-js');    
-    circularBar.attr('data-progress', percent);
+    circularBar.data('progress', percent);
+    circularBar.data('time', transitionTime);    
     UpdateCircularProgressBar($, circularBar);
 
-    var widthPercent = 100 * position / contestants;
-    var winWidthPercent = 100 * winPosition / contestants;
+    var widthPercent = 100 - 100 * position / contestants;
+    var winWidthPercent = 100 - 100 * winPosition / contestants;
 
     bar.find('.win-separator').css('left', winWidthPercent+'%');
-    bar.find('.win-marker').css('left', winWidthPercent+'%');    
-    bar.find('.progress-bar').css('width', widthPercent+'%');    
+    bar.find('.win-separator').css('transition-duration', transitionTime+'ms');
+    bar.find('.win-marker').css('left', winWidthPercent+'%');
+    bar.find('.win-marker').css('transition-duration', transitionTime+'ms');
+    bar.find('.progress-bar').css('width', widthPercent+'%');
+    bar.find('.progress-bar').css('transition-duration', transitionTime+'ms');
     bar.find('.position-marker').css('left', widthPercent+'%');
+    bar.find('.position-marker').css('transition-duration', transitionTime+'ms');
     bar.find('.prize').css('left', widthPercent+'%');
+    bar.find('.prize').css('transition-duration', transitionTime+'ms');
     bar.find('.prize-marker').css('left', widthPercent+'%');
+    bar.find('.prize-marker').css('transition-duration', transitionTime+'ms');
     bar.find('.position-info').css('left', widthPercent+'%');
+    bar.find('.position-info').css('transition-duration', transitionTime+'ms');
 };
 
 function UpdateTotalScoreBars($){
-    $('.total-score-js').each(function(index){
+    $('.score-js').each(function(index){
         var bar = $(this);
         UpdateTotalScoreBar($, bar);
     });
@@ -121,7 +183,44 @@ function UpdateTotalScoreBars($){
 //             var self = $(this);            
 //             self.find('.side.back')
 //                 .toggleClass('activate-flip-back');
-        });                
+        });               
+
+        var progress = 10;
+        var position = 3732;
+        var points = 0;
+        var timeHandle = 0;
+        var data = [
+            {'progress': 10, 'position': 3700, 'points': 0, 'prize': '$0'},
+            {'progress': 50, 'position': 3700, 'points': 1, 'prize': '$0'},
+            {'progress': 70, 'position': 3700, 'points': 2, 'prize': '$0'},
+            {'progress': 100, 'position': 2400, 'points': 3, 'prize': '$0'},
+            {'progress': 0, 'position': 2400, 'points': 4, 'prize': '$0'},
+            {'progress': 35, 'position': 2400, 'points': 5, 'prize': '$0'},
+            {'progress': 40, 'position': 1300, 'points': 6, 'prize': '$0'},
+            {'progress': 20, 'position': 900, 'points': 7, 'prize': '$1000'},
+            {'progress': 80, 'position': 2000, 'points': 8, 'prize': '$0'},
+            {'progress': 90, 'position': 2000, 'points': 9, 'prize': '$0'},
+            {'progress': 100, 'position': 1500, 'points': 10, 'prize': '$1500'},
+            {'progress': 50, 'position': 10, 'points': 11, 'prize': '$2500'},
+        ]
+        var pB = $('.score-js');
+        t = 0;
+        function Tick(){
+            if(t >= data.length )
+            {
+                // clearInterval(timeHandle);
+                t = 0;
+            }
+            else{                
+                pB.data('percent', data[t]['progress']);
+                pB.data('position', data[t]['position']);
+                pB.data('points', data[t]['points']);
+                pB.data('prize', data[t]['prize']);
+                UpdateTotalScoreBars($);                                
+                t += 1;
+            }
+        };
+        timeHandle = setInterval(Tick, 1200); 
 
         UpdateTotalScoreBars($);
         UpdateCapsCircularProgressBars($);

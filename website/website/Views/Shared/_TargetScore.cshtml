@@ -1,0 +1,23 @@
+﻿<div class="target-score score-js"     
+     data-events="@ViewData["events"]"     
+     data-completed-events="@ViewData["completed-events"]"     
+     data-time="@ViewData["time"]">
+
+    <div class="target-name">
+        Total
+    </div>
+
+    <div class="score-bar">
+        <div class="progress-bar"></div>        
+        <div class="event-marker">
+            <div class="events-info"></div>
+            <div class="points-info">1</div>
+        </div>                        
+        <div class="events-completed-marker">
+            <span class="fa fa-caret-down"></span>
+            <div class="data-completed-events"></div>
+        </div>        
+    </div>    
+
+    @Html.Partial("_PointsScore")
+</div>

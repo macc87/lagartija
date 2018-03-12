@@ -14,4 +14,12 @@
 </div>
 
 
-@Html.Partial("_TotalScore")
+@Html.Partial("_TotalScore", new ViewDataDictionary {
+                                { "contestants", "3732"  },
+                                { "position", "3732"  },
+                                { "win-position", "1000"  },
+                                { "prize", "0"  },
+                                { "points", "0"  },
+                                { "percent", "0"  },
+                                { "time", "1000"  }
+                            })

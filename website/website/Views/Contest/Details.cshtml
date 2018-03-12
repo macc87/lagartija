@@ -37,8 +37,8 @@
                         <span class="data-hours">01</span>:<span class="data-minutes">39</span>:<span class="data-seconds">22</span>
                     </div>
                 </div>
-                <div class="text-left">
-                    Contest Starts
+                <div class="text-center">
+                    Contest Countdown
                 </div>
             </div>
         </div>        
@@ -121,7 +121,15 @@
                     <div class="col-sm-6">
                         <h2>Score</h2>
                         <div class="scores">
-                            @Html.Partial("_TotalScore")
+                            @Html.Partial("_TotalScore", new ViewDataDictionary {
+                                { "contestants", "2000"  },
+                                { "position", "500"  },
+                                { "win-position", "1000"  },
+                                { "prize", "$2500"  },
+                                { "points", "1"  },
+                                { "percent", "50"  },
+                                { "time", "500"  }
+                            })
                             <div class="separator"></div>
                             <div class="target-score">
 
