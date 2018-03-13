@@ -2,69 +2,21 @@
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary { 
+                    { "contestants", (i+1) * 1000 },
+                    { "progress", (i+1) * 20 }
+                })
         }
     </div>
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary {
+                    { "contestants", (i+1) * 1500 },
+                    { "progress", (i+1) * 33 }
+                })
         }
     </div>    
 </div>
 
-<div class="circular-progress blue circular-progress-bar-js"
-     data-progress="75"
-     data-current="0">
-    <span class="circular-progress-left">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <span class="circular-progress-right">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <div class="circular-progress-value">
 
-    </div>
-</div>    
-
-<div class="circular-progress blue circular-progress-bar-js"
-     data-progress="25"
-     data-current="0">
-    <span class="circular-progress-left">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <span class="circular-progress-right">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <div class="circular-progress-value">
-
-    </div>
-</div>    
-
-<div class="circular-progress blue circular-progress-bar-js"
-     data-progress="75"
-     data-current="100">
-    <span class="circular-progress-left">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <span class="circular-progress-right">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <div class="circular-progress-value">
-
-    </div>
-</div>    
-
-<div class="circular-progress blue circular-progress-bar-js"
-     data-progress="25"
-     data-current="75">
-    <span class="circular-progress-left">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <span class="circular-progress-right">
-        <span class="circular-progress-bar"></span>
-    </span>
-    <div class="circular-progress-value">
-
-    </div>
-</div>    

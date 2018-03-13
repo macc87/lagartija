@@ -1,4 +1,4 @@
-﻿<div class="target flipper">
+﻿<div class="target flipper" title="@ViewData["name"]">
     <div>
         <div class="side front">
             <div class="icon sprite @ViewData["css-code"]"></div>
@@ -7,5 +7,8 @@
             @ViewData["short-name"]
         </div>
     </div>
-    <div>@ViewData["name"] (@ViewData["short-name"])</div>
+    @if (!(bool)@ViewData["in_bar"])
+    {
+        <div>@ViewData["name"] (@ViewData["short-name"])</div>
+    }
 </div>
