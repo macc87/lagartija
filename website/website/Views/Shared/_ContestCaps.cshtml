@@ -2,37 +2,21 @@
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary { 
+                    { "contestants", (i+1) * 1000 },
+                    { "progress", (i+1) * 20 }
+                })
         }
     </div>
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary {
+                    { "contestants", (i+1) * 1500 },
+                    { "progress", (i+1) * 33 }
+                })
         }
     </div>    
 </div>
 
 
-<div class="scores">
-    @Html.Partial("_TotalScore", new ViewDataDictionary {
-                                { "contestants", "3732"  },
-                                { "position", "3732"  },
-                                { "win-position", "1000"  },
-                                { "prize", "0"  },
-                                { "points", "0"  },
-                                { "percent", "0"  },
-                                { "time", "1000"  }
-                            })
-    <div class="separator"></div>
-    <div class="target-score">
-        @Html.Partial("_TargetScore", new ViewDataDictionary {
-                                    { "events", "9"  },
-                                    { "completed-events", "14"  },
-                                    { "css-code", "k"  },
-                                    { "short-name", "K" },
-                                    { "name", "Strikeouts" },
-                                    { "time", "500"  }
-                                })
-    </div>
-</div>

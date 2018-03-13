@@ -8,6 +8,13 @@
                var bar = $(this);
                 UpdateTotalScoreBar($, bar); 
             }); 
+            modal.find('.target-score-js').each(function(index){
+               var bar = $(this);
+                UpdateTargetScoreBars($);
+            }); 
+
+            SimContest($);
+            
         });
         
         $body.on('click', '.show-modal-on-click-js', function(event) {

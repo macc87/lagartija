@@ -1,4 +1,5 @@
-﻿<div class="target-score score-js"     
+﻿<div class="target-score target-score-js"     
+     id="@ViewData["id"]"
      data-events="@ViewData["events"]"     
      data-completed-events="@ViewData["completed-events"]"     
      data-time="@ViewData["time"]">
@@ -7,16 +8,20 @@
         @Html.Partial("_Target", new ViewDataDictionary {
                                     { "css-code", @ViewData["css-code"]  },
                                     { "short-name", @ViewData["short-name"] },
-                                    { "name", @ViewData["name"] }
+                                    { "name", @ViewData["name"] },
+                                    { "in_bar", true }
                                 })
     </div>
 
     <div class="score-bar">
         <div class="progress-bar"></div>        
-        <div class="event-marker">
-            <div class="events-info"></div>
-            <div class="points-info">1</div>
-        </div>                        
+        @for (int i = 0; i < 5; i++)
+        {
+            <div class="event-marker hidden">
+                <div class="events-info"></div>
+                <div class="points-info">1</div>
+            </div>
+        }        
         <div class="events-completed-marker">
             <span class="fa fa-caret-down"></span>
             <div class="data-completed-events"></div>

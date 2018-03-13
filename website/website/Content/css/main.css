@@ -697,12 +697,21 @@ h3{
     height: 300px;
 }
 .contest-cap{
+    position: relative;
     display: inline-block;
-    margin: 20px auto;        
-    width: 260px;
+    padding: 20px 20px;        
+    margin: 5px;
+    width: 300px;    
+    height: 300px;
+}
+.contest-details .contest-cap {
+    margin: 20px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 260px;    
     height: 260px;
 }
-
 .contest-cap .side{
 /*     display: none; */
     width: 260px;
@@ -1205,7 +1214,7 @@ footer a:hover{
 
 .contest-details{
     position: relative;
-    min-height: 600px;        
+    min-height: 621px;        
     border-top-left-radius: 150px;
 }
 .contest-details .left-bar{
@@ -1300,7 +1309,7 @@ footer a:hover{
     width: 100%;
     border-bottom: 4px solid #cbaa6b;
     border-right: 2px solid #cbaa6b;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 10px;
     padding-right: 15px;
 }
@@ -1357,7 +1366,7 @@ footer a:hover{
     padding-top: 13px;
 }
 
-.contest-details .targets .target{
+.target{
     display: inline-grid;
     text-align: center;
     /* height: 73px; */
@@ -1366,29 +1375,28 @@ footer a:hover{
     margin-bottom: 15px;
 }
 
-.contest-details .targets .target > div:first-child{
+.target > div:first-child{
     height: 72px;
 }
-.contest-details .targets .target > div:nth-child(2){
+.target > div:nth-child(2){
     width: 72px;
     padding-top: 7px;
     font-family: 'FuturaStd-Bold';
     font-size: 12px;
 }
-.contest-details .targets .target > div{
+.target > div{
     position: relative;
     display: block;
     /* width: 72px; */
 }
-.contest-details .targets .target .side{
+.target .side{
     width: 73px;
     height: 73px;
     border: 1px solid #001819;
     border-radius: 73px;
     background: #c6a25c;
-
 }
-.contest-details .targets .target .side.front .icon{
+.target .side.front .icon{
     height: 72px;
     /* width: 12px; */
 }
@@ -1432,7 +1440,7 @@ footer a:hover{
     background-position-x: -668px;
     background-position-y: -142px;    
 }
-.contest-details .targets .target .side.back{
+.target .side.back{
     font-family: 'FuturaStd-Bold';
     font-size: 36px;
     line-height: 72px;
@@ -1472,6 +1480,9 @@ footer a:hover{
     margin-bottom: 35px;
     margin-top: 35px;
 }
+.target-score {
+    margin-bottom: 55px;
+}
 .target-score .target-name,
 .total-score .target-name{
     width: 92px;
@@ -1490,16 +1501,21 @@ footer a:hover{
     left: -4px;
     z-index: 2;
 }
+.target-score .target-name{        
+    background: #fff;
+}
 .target-score .score-bar,
 .total-score .score-bar{
     height: 72px;
     position: relative;
     background: #c2c2c2;
     width: calc(100% - 202px);
+/*     width: 200px; */
     left: 73px;
     border: 2px #004246 solid;
 }
 .target-score .contestants-info,
+.target-score .events-info,
 .total-score .contestants-info{
     position: absolute;
     bottom: -25px;
@@ -1525,6 +1541,7 @@ footer a:hover{
     transition-timing-function: linear;
 }
 .target-score .win-marker,
+.target-score .points-info,
 .total-score .win-marker{
     position: absolute;
     top: 50%;
@@ -1558,13 +1575,35 @@ footer a:hover{
 .total-score .point-bar.win-separator.gold{
     background: #815931;
 }
+
+.target-score .event-marker {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: #815931;
+}
+.target-score .event-marker.completed {
+    top: -2px;
+    height: 72px;    
+}
+.target-score .event-marker .events-info {
+    top: -14px;
+    bottom: auto;
+    transform: translateX(-50%);
+    line-height: 12px;
+}
+.target-score .event-marker .points-info {    
+    transform: translateY(-50%) translateX(-7px);
+}
+
 .target-score .position-marker,
 .total-score .position-marker,
 .target-score .prize-marker,
 .total-score .prize-marker{
     position: absolute;
     transform: translateX(-50%);
-    font-size: 20px;    
+    font-size: 20px;        
 }
 
 .target-score .position-marker,
@@ -1577,6 +1616,8 @@ footer a:hover{
 }
 
 .target-score .prize,
+.target-score .events-completed-marker,
+.target-score .events-marker,
 .total-score .prize,
 .target-score .position-info,
 .total-score .position-info,
@@ -1591,6 +1632,7 @@ footer a:hover{
 }
 
 .target-score .prize,
+.target-score .events-completed-marker,
 .total-score .prize{
     position: absolute;
     top: -28px;    
@@ -1599,6 +1641,18 @@ footer a:hover{
     font-size: 12px;    
     color: #a47240;
     z-index: 4;
+}
+.target-score .events-completed-marker > div{
+    position: absolute;
+    top: 0px;
+    transform: translateX(-50%);
+}
+.target-score .events-completed-marker > .fa {
+    color: #002021;
+    font-size: 19px;
+    position: absolute;
+    top: 11px;
+    transform: translateX(-50%);
 }
 .target-score .position-info,
 .total-score .position-info{
@@ -1632,7 +1686,8 @@ footer a:hover{
     background: transparent;
 }
 .target-score .cap-wrapper .percent-bottom,
-.total-score .cap-wrapper .percent-bottom{
+.total-score .cap-wrapper .percent-bottom,
+.contest-cap .percent-bottom{
     position: absolute;
     bottom: -17px;
     z-index: 3;        
@@ -1640,11 +1695,13 @@ footer a:hover{
     font-size: 13px;
 }
 .target-score .cap-wrapper .percent-bottom.min,
-.total-score .cap-wrapper .percent-bottom.min{
+.total-score .cap-wrapper .percent-bottom.min,
+.contest-cap .percent-bottom.min{
     left: 23px;        
 }
 .target-score .cap-wrapper .percent-bottom.max,
-.total-score .cap-wrapper .percent-bottom.max{
+.total-score .cap-wrapper .percent-bottom.max,
+.contest-cap .percent-bottom.max{
     right: 12px;    
 }
 .target-score .objective-meter,
@@ -1811,4 +1868,44 @@ footer a:hover{
 .scores > .separator{
     height: 5px;
     background: #004246;
+}
+
+.contest-cap .objective-meter {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.contest-cap .percent-bottom{ 
+    bottom: 13px;    
+    font-family: 'RussellSquareStd-Regular';
+    font-size: 15px;
+}
+.contest-cap .percent-bottom.min{
+    left: 43px;        
+}
+.contest-cap .percent-bottom.max{
+    right: 30px;    
+}
+
+.contest-cap .circular-progress{
+    width: 300px;
+    height: 300px;
+    line-height: 300px;    
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+.contest-cap .circular-progress .circular-progress-left .circular-progress-bar{    
+    border-top-right-radius: 300px;
+    border-bottom-right-radius: 300px;    
+}
+.contest-cap .circular-progress .circular-progress-right .circular-progress-bar{    
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 300px;
+}
+.contest-cap .flipper {
+    z-index: 6;
+}
+.contest-cap .circular-progress .circular-progress-bar{        
+    border-width: 10px;    
 }

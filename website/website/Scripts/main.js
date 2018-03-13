@@ -36,20 +36,14 @@ function UpdateCircularProgressBar($, bar){
     }
     else {
         if(progress < currentProgress){        
-            if(progress == 0){
-                leftBar.css('transition-duration', (transitionTime * 0.33) +'ms');
-                rightBar.css('transition-duration', (transitionTime * 0.66) +'ms');                    
-                leftBar.css('transition-delay', (transitionTime * 0.66) +'ms');                    
-                rightBar.css('transition-delay', 0 +'ms');                        
-            }                
-            else{
+            
                 var timeLeft = (transitionTime * (33.33 - progress) / (currentProgress - progress));
                 var timeRight = (transitionTime * (currentProgress - 33.33) / (currentProgress - progress));
                 leftBar.css('transition-duration',  timeLeft+'ms');
                 rightBar.css('transition-duration', timeRight+'ms');                    
                 leftBar.css('transition-delay', timeRight+'0ms');
                 rightBar.css('transition-delay', '0ms');                        
-            }
+            
         }
         else{            
             var timeLeft = (transitionTime * (33.33 - currentProgress) / (progress - currentProgress));
@@ -136,6 +130,122 @@ function UpdateTotalScoreBars($){
     });
 };
 
+function UpdateTargetScoreBar($, bar){
+    var events = bar.data('events');
+    var completed = bar.data('completed-events');    
+    var transitionTime = bar.data('time');        
+    var points = parseInt(completed / events);
+    var percent = parseInt(100 * (completed % events) / events);
+    var max_events = (parseInt(completed / events) + 2) * events;
+    
+    var eMarkers = bar.find('.event-marker').addClass('hidden');
+    for(var i = 1; i*events < max_events; i += 1)
+    {
+        var e = i*events;
+        var marker = 0;
+        if(i <= eMarkers.length){
+            marker = $(eMarkers[i-1]);
+            marker.removeClass('hidden');
+            marker.find('.events-info').text(e);
+            if(completed >= e){
+                marker.addClass('completed');
+            }
+            else {
+                marker.removeClass('completed');
+            }
+            var leftPercent = 100 * (e / max_events);
+            var leftOffset = bar.width() * (e / max_events);
+            // marker.css('left', leftOffset + 'px');        
+            marker.css('left', leftPercent + '%');        
+        }
+    }
+
+    var progressPercent = 100 * completed / max_events;
+    var completedMarker = bar.find('.events-completed-marker');
+    bar.find('.data-completed-events').text(completed);    
+    completedMarker.css('left', progressPercent + '%');   
+    completedMarker.css('transition-duration', transitionTime+'ms');
+    bar.find('.progress-bar').css('width', progressPercent+'%');
+    bar.find('.progress-bar').css('transition-duration', transitionTime+'ms');
+
+    bar.find('.data-points').text(points);
+    var circularBar = bar.find('.circular-progress-bar-js');    
+    circularBar.data('progress', percent);
+    circularBar.data('time', transitionTime);    
+    UpdateCircularProgressBar($, circularBar);
+};
+
+function UpdateTargetScoreBars($){
+    $('.target-score-js').each(function(index){
+        var bar = $(this);
+        UpdateTargetScoreBar($, bar);
+    });
+};
+
+var timeHandle = 0;
+function SimContest($){        
+    var dataTotal = [
+        {'progress': 0, 'position': 100, 'points': 0, 'prize': '$0'},        
+        {'progress': 53, 'position': 60, 'points': 1, 'prize': '$0'},        
+        {'progress': 90, 'position': 40, 'points': 2, 'prize': '$100'},        
+        {'progress': 95, 'position': 45, 'points': 2, 'prize': '$50'},        
+        {'progress': 10, 'position': 3, 'points': 4, 'prize': '$500'},        
+        {'progress': 30, 'position': 47, 'points': 4, 'prize': '$200'},        
+        {'progress': 30, 'position': 60, 'points': 4, 'prize': '$0'},        
+        {'progress': 30, 'position': 80, 'points': 4, 'prize': '$0'},        
+    ];
+    var dataHits = [
+        {'events': 9, 'completed-events': 0},        
+        {'events': 9, 'completed-events': 4},        
+        {'events': 9, 'completed-events': 11},        
+        {'events': 9, 'completed-events': 17},        
+        {'events': 9, 'completed-events': 21},        
+        {'events': 9, 'completed-events': 22},        
+        {'events': 9, 'completed-events': 22},        
+        {'events': 9, 'completed-events': 22},        
+    ];
+    var dataDoubles = [
+        {'events': 3, 'completed-events': 0},        
+        {'events': 3, 'completed-events': 5},        
+        {'events': 3, 'completed-events': 5},        
+        {'events': 3, 'completed-events': 5},        
+        {'events': 3, 'completed-events': 7},        
+        {'events': 3, 'completed-events': 8},        
+        {'events': 3, 'completed-events': 8},        
+        {'events': 3, 'completed-events': 8},        
+    ];
+    var totalScore = $('#total-bar');
+    var hitsScore = $('#hits-bar');
+    var doublesScore = $('#doubles-bar');
+    t = 0;
+    function Tick(){
+        if(t >= dataTotal.length )
+        {
+            // clearInterval(timeHandle);
+            t = 0;
+        }
+        else{                
+            hitsScore.data('events', dataHits[t]['events']);
+            hitsScore.data('completed-events', dataHits[t]['completed-events']);            
+            UpdateTargetScoreBar($, hitsScore);                                
+
+            doublesScore.data('events', dataDoubles[t]['events']);
+            doublesScore.data('completed-events', dataDoubles[t]['completed-events']);            
+            UpdateTargetScoreBar($, doublesScore);                                
+
+            totalScore.data('percent', dataTotal[t]['progress']);
+            totalScore.data('position', dataTotal[t]['position']);
+            totalScore.data('points', dataTotal[t]['points']);
+            totalScore.data('prize', dataTotal[t]['prize']);
+            UpdateTotalScoreBar($, totalScore);             
+                                  
+            t += 1;
+        }
+    };
+    clearInterval(timeHandle);
+    timeHandle = setInterval(Tick, 2000); 
+};
+
 /* Project specific Javascript goes here. */
 (function ($) {
     var $document = $(document).ready(function() {
@@ -183,47 +293,12 @@ function UpdateTotalScoreBars($){
 //             var self = $(this);            
 //             self.find('.side.back')
 //                 .toggleClass('activate-flip-back');
-        });               
-
-        var progress = 10;
-        var position = 3732;
-        var points = 0;
-        var timeHandle = 0;
-        var data = [
-            {'progress': 10, 'position': 3700, 'points': 0, 'prize': '$0'},
-            {'progress': 50, 'position': 3700, 'points': 1, 'prize': '$0'},
-            {'progress': 70, 'position': 3700, 'points': 2, 'prize': '$0'},
-            {'progress': 100, 'position': 2400, 'points': 3, 'prize': '$0'},
-            {'progress': 0, 'position': 2400, 'points': 4, 'prize': '$0'},
-            {'progress': 35, 'position': 2400, 'points': 5, 'prize': '$0'},
-            {'progress': 40, 'position': 1300, 'points': 6, 'prize': '$0'},
-            {'progress': 20, 'position': 900, 'points': 7, 'prize': '$1000'},
-            {'progress': 80, 'position': 2000, 'points': 8, 'prize': '$0'},
-            {'progress': 90, 'position': 2000, 'points': 9, 'prize': '$0'},
-            {'progress': 100, 'position': 1500, 'points': 10, 'prize': '$1500'},
-            {'progress': 50, 'position': 10, 'points': 11, 'prize': '$2500'},
-        ]
-        var pB = $('.score-js');
-        t = 0;
-        function Tick(){
-            if(t >= data.length )
-            {
-                // clearInterval(timeHandle);
-                t = 0;
-            }
-            else{                
-                pB.data('percent', data[t]['progress']);
-                pB.data('position', data[t]['position']);
-                pB.data('points', data[t]['points']);
-                pB.data('prize', data[t]['prize']);
-                UpdateTotalScoreBars($);                                
-                t += 1;
-            }
-        };
-        timeHandle = setInterval(Tick, 1200); 
+        });                       
 
         UpdateTotalScoreBars($);
         UpdateCapsCircularProgressBars($);
+
+        UpdateTargetScoreBars($);
     });
 })(jQuery);
 

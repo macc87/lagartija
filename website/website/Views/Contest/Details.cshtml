@@ -59,61 +59,71 @@
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "b1"  },
                                             { "short-name", "1B" },
-                                            { "name", "Hits" }
+                                            { "name", "Hits" },
+                                            { "in_bar", false }                                            
                                         })
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "b2"  },
                                             { "short-name", "2B" },
-                                            { "name", "Doubles" }
+                                            { "name", "Doubles" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "b3"  },
                                             { "short-name", "3B" },
-                                            { "name", "Triples" }
+                                            { "name", "Triples" },
+                                            { "in_bar", false }
                                         })
 
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "hr"  },
                                             { "short-name", "HR" },
-                                            { "name", "Homeruns" }
+                                            { "name", "Homeruns" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "sb"  },
                                             { "short-name", "SB" },
-                                            { "name", "Stolen Bases" }
+                                            { "name", "Stolen Bases" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "r"  },
                                             { "short-name", "R" },
-                                            { "name", "Runs" }
+                                            { "name", "Runs" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "rbi"  },
                                             { "short-name", "RBI" },
-                                            { "name", "Runs Batter In" }
+                                            { "name", "Runs Batter In" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "bb"  },
                                             { "short-name", "BB" },
-                                            { "name", "Base on Balls" }
+                                            { "name", "Base on Balls" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "o"  },
                                             { "short-name", "O" },
-                                            { "name", "Outs" }
+                                            { "name", "Outs" },
+                                            { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "k"  },
                                             { "short-name", "K" },
-                                            { "name", "Strikeouts" }
+                                            { "name", "Strikeouts" },
+                                            { "in_bar", false }
                                         })
 
                         </div>
@@ -122,10 +132,11 @@
                         <h2>Score</h2>
                         <div class="scores">
                             @Html.Partial("_TotalScore", new ViewDataDictionary {
-                                { "contestants", "2000"  },
-                                { "position", "500"  },
-                                { "win-position", "1000"  },
-                                { "prize", "$2500"  },
+                                { "id", "total-bar"  },
+                                { "contestants", "100"  },
+                                { "position", "80"  },
+                                { "win-position", "50"  },
+                                { "prize", "$0"  },
                                 { "points", "1"  },
                                 { "percent", "50"  },
                                 { "time", "500"  }
@@ -133,11 +144,21 @@
                             <div class="separator"></div>
                             <div class="target-score">
                                 @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "hits-bar"  },
                                     { "events", "9"  },
-                                    { "completed-events", "14"  },
-                                    { "css-code", "k"  },
-                                    { "short-name", "K" },
-                                    { "name", "Strikeouts" },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "b1"  },
+                                    { "short-name", "H" },
+                                    { "name", "Hits" },
+                                    { "time", "500"  }
+                                })
+                                @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "doubles-bar"  },
+                                    { "events", "3"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "b2"  },
+                                    { "short-name", "2B" },
+                                    { "name", "Doubles" },
                                     { "time", "500"  }
                                 })
                             </div>
