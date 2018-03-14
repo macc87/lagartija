@@ -26,7 +26,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type);
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(double smallEntry, double bigEntry);
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type, double smallEntry, double bigEntry);
-        Task<ServiceResult<ContestTypeResponse>> GetContestTypesAsync();
+        Task<ServiceResult<ContestTypesResponse>> GetContestTypesAsync();
         //TODO: Task<ServiceResult<ContestResponse>> GetContestFilteredby(Prizing Rule);
         Task<ServiceResult<UserResponse>> GetUserInfoAsync(string login);
         Task<ServiceResult<List<Account>>> GetUsersBestRivalsAsync(string login);
@@ -52,7 +52,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
 
         Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo);
+        Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype);
 
+        
 
         Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo);

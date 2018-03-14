@@ -299,7 +299,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
-        public async Task<ServiceResult<ContestTypeResponse>> GetContestTypesAsync()
+        public async Task<ServiceResult<ContestTypesResponse>> GetContestTypesAsync()
         {
             try
             {
@@ -313,7 +313,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
             catch (Exception exception)
             {
-                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+                return _dbClientCore.ExceptionHandler<ContestTypesResponse>(exception);
             }
         }
 
@@ -808,7 +808,24 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
             }
         }
-        
+        public async Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostContestTypeAsync(ctype);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+            }
+        }
+
         #endregion
 
         #region PUT Section

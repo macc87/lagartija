@@ -419,12 +419,12 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
         }
 
-        internal async Task<ServiceResult<ContestTypeResponse>> GetContesTypesAsync()
+        internal async Task<ServiceResult<ContestTypesResponse>> GetContesTypesAsync()
         {
             try
             {
                 var ctContest = dbContext.ContestTypes.ToList();
-                var result = new ContestTypeResponse()
+                var result = new ContestTypesResponse()
                 {
                     Types = ctContest
                 };
@@ -436,7 +436,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             }
             catch (Exception ex)
             {
-                return ExceptionHandler<ContestTypeResponse>(ex);
+                return ExceptionHandler<ContestTypesResponse>(ex);
             }
         }
 
@@ -1104,7 +1104,27 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<PromotionResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                dbContext.ContestTypes.Add(ctype);
+                dbContext.SaveChanges();
+                var result = new ContestTypeResponse()
+                {
+                    Type = ctype
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Contest Type");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestTypeResponse>(ex);
+            }
+        }
         #endregion
 
         #region PUT Section
