@@ -14,7 +14,7 @@ namespace Fantasy.API.DataAccess.Tests
         readonly IFantasyClient fantasyClient = new SportsRadarClient();
         readonly IFantasyDataClient fantasyDatClient = new DatabaseClient();
 
-
+        #region GET Section
         [TestMethod]
         public async Task GetSchedule_Successful()
         {
@@ -291,5 +291,82 @@ namespace Fantasy.API.DataAccess.Tests
         //    var result = await fantasyClient.GetGameBoxScoreAsync("b6f922df-46c6-483c-8d3b-4235a6fc4520");
         //    Assert.IsFalse(result.HasError);
         //}
+
+        #endregion
+
+        #region POST Section
+
+        [TestMethod]
+        public async Task PostInformation_Successful()
+        {
+            DateTime now = DateTime.Now;
+            Information info = new Information()
+            {
+                Content = "Testing POST Info1",
+                InitialDate = now,
+                FinalDate = now.AddDays(10),
+                Name = "Info 1"
+            };
+            var result = await fantasyDatClient.PostInformationAsync(info);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostPromotion_Successful()
+        {
+            DateTime now = DateTime.Now;
+            Promotion promo = new Promotion()
+            {
+                Content = "Testing POST Info1",
+                Name = "Info 1",
+                Code = "Code1"
+            };
+            var result = await fantasyDatClient.PostPromotionAsync(promo);
+            Assert.IsFalse(result.HasError);
+        }
+        #endregion
+
+        #region PUT Section
+        [TestMethod]
+        public async Task PutInformation_Successful()
+        {
+            var infos = await fantasyDatClient.GetInformationsAsync();
+            Information info = infos.Result.Informations.Find(x=>x.InformationId == 1);
+            info.Name = "Changed Info";
+            info.InitialDate = DateTime.Now;
+            info.FinalDate = info.InitialDate.AddMonths(1);
+            var result = await fantasyDatClient.PutInformationAsync(info);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutPromotion_Successful()
+        {
+            var promos = await fantasyDatClient.GetPromotionsAsync();
+            Promotion promo = promos.Result.Promotions.Find(x => x.PromotionId == 1);
+            promo.Name = "Changed Promo";
+            promo.Code = "Changed code";
+            promo.Content = "Changed Content";
+            var result = await fantasyDatClient.PutPromotionAsync(promo);
+            Assert.IsFalse(result.HasError);
+        }
+        #endregion
+
+        #region DELETE Section
+        [TestMethod]
+        public async Task DeleteInformation_Successful()
+        {
+            var infos = await fantasyDatClient.GetInformationsAsync();
+            Information info = infos.Result.Informations.Find(x => x.InformationId == 1);
+            var result = await fantasyDatClient.DeleteInformationAsync(info);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task DeletePromotion_Successful()
+        {
+            var promos = await fantasyDatClient.GetPromotionsAsync();
+            Promotion promo = promos.Result.Promotions.Find(x => x.PromotionId == 1);
+            var result = await fantasyDatClient.DeletePromotionAsync(promo);
+            Assert.IsFalse(result.HasError);
+        }
+        #endregion
     }
 }
