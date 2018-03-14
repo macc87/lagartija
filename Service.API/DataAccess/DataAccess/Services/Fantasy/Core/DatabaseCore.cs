@@ -49,8 +49,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             _disposed = true;
         }
 
-        #endregion      
+        #endregion
 
+        #region GET Section
         internal async Task<ServiceResult<ContestsResponse>> GetContestsAsync()
         {
             try
@@ -1055,5 +1056,154 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<NewsResponse>(ex);
             }
         }
+
+        #endregion
+
+        #region POST Section
+
+        internal async Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info)
+        {
+            try
+            {
+                dbContext.Informations.Add(info);
+                dbContext.SaveChanges();
+                var result = new InformationResponse()
+                {
+                    Information = info
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Information");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InformationResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                dbContext.Promotions.Add(promo);
+                dbContext.SaveChanges();
+                var result = new PromotionResponse()
+                {
+                    Promotion = promo
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Information");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PromotionResponse>(ex);
+            }
+        }
+
+        #endregion
+
+        #region PUT Section
+
+        internal async Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info)
+        {
+            try
+            {
+                dbContext.Entry(info).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new InformationResponse()
+                {
+                    Information = info
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Information");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InformationResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                dbContext.Entry(promo).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new PromotionResponse()
+                {
+                    Promotion = promo
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Promotion");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PromotionResponse>(ex);
+            }
+        }
+        #endregion
+
+        #region Delete Section
+
+        internal async Task<ServiceResult<bool>> DeleteInformationAsync(Information info)
+        {
+            try
+            {
+                var result = true;
+                try
+                {
+                    dbContext.Informations.Remove(info);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+                return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in deleting Information");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<bool>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<bool>> DeletePromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = true;
+                try
+                {
+                    dbContext.Promotions.Remove(promo);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+                return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in deleting Promotion");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<bool>(ex);
+            }
+        }
+        #endregion 
     }
 }

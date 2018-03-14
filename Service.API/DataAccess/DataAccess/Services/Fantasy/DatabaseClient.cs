@@ -45,6 +45,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
 
         #endregion
 
+        #region GET Section
+
         public async Task<ServiceResult<ContestsResponse>> GetContestsAsync()
         {
             try
@@ -767,6 +769,124 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LineupsResponse>(exception);
             }
         }
-       
+
+        #endregion
+
+        #region POST Section
+
+        public async Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostPromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
+            }
+        }
+        
+        #endregion
+
+        #region PUT Section
+
+        public async Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
+            }
+        }
+        
+        #endregion
+
+        #region Delete Section
+
+        public async Task<ServiceResult<bool>> DeleteInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.DeleteInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<bool>(exception);
+            }
+        }
+        public async Task<ServiceResult<bool>> DeletePromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.DeletePromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<bool>(exception);
+            }
+        }
+        
+        #endregion
     }
 }
