@@ -1125,6 +1125,70 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<ContestTypeResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<SportResponse>> PostSportAsync(Sport sport)
+        {
+            try
+            {
+                dbContext.Sports.Add(sport);
+                dbContext.SaveChanges();
+                var result = new SportResponse()
+                {
+                    Sport = sport
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Sport");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<SportResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PositionResponse>> PostPositionAsync(Position position)
+        {
+             try
+            {
+                dbContext.Positions.Add(position);
+                dbContext.SaveChanges();
+                var result = new PositionResponse()
+                {
+                    Position = position
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Position");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PositionResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<ClimaConditionResponse>> PostClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                dbContext.ClimaConditions.Add(ccond);
+                dbContext.SaveChanges();
+                var result = new ClimaConditionResponse()
+                {
+                    ClimaCondition = ccond
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Clima Condition");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ClimaConditionResponse>(ex);
+            }
+        }
+
         #endregion
 
         #region PUT Section

@@ -826,6 +826,58 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
+        public async Task<ServiceResult<SportResponse>> PostSportAsync(Sport sport)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostSportAsync(sport);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SportResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PositionResponse>> PostPositionAsync(Position position)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostPositionAsync(position);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ClimaConditionResponse>> PostClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostClimaConditionAsync(ccond);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+
         #endregion
 
         #region PUT Section

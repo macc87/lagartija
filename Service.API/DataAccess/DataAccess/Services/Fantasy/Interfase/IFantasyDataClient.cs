@@ -53,8 +53,11 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo);
         Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype);
-
+        Task<ServiceResult<SportResponse>> PostSportAsync(Sport sport);
+        Task<ServiceResult<PositionResponse>> PostPositionAsync(Position position);
+        Task<ServiceResult<ClimaConditionResponse>> PostClimaConditionAsync(ClimaConditions ccond);
         
+
 
         Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo);
