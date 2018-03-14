@@ -278,6 +278,13 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.GetContestGamesAsync(1);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod()]
+        public async Task GetSport_Successful()
+        {
+            var result = await fantasyDatClient.GetSportAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
+
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{
@@ -321,6 +328,50 @@ namespace Fantasy.API.DataAccess.Tests
                 Code = "Code1"
             };
             var result = await fantasyDatClient.PostPromotionAsync(promo);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostContestType_Successful()
+        {
+            ContestType ct = new ContestType()
+            {
+                Type = "New Type"
+            };
+            var result = await fantasyDatClient.PostContestTypeAsync(ct);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostSport_Successful()
+        {
+            Sport sport = new Sport()
+            {
+                Name = "New Sport"
+            };
+            var result = await fantasyDatClient.PostSportAsync(sport);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostPosition_Successful()
+        {
+            var spres = await fantasyDatClient.GetSportAsync(1);
+            Sport sp = spres.Result.Sport;
+            Position p = new Position()
+            {
+                PositionName = "New Post",
+                Sport = sp,
+                SportId = sp.SportId
+            };
+            var result = await fantasyDatClient.PostPositionAsync(p);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostClimaCondition_Successful()
+        {
+            ContestType ct = new ContestType()
+            {
+                Type = "New Type"
+            };
+            var result = await fantasyDatClient.PostContestTypeAsync(ct);
             Assert.IsFalse(result.HasError);
         }
         #endregion
