@@ -769,7 +769,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LineupsResponse>(exception);
             }
         }
-        public async Task<ServiceResult<SportResponse>> GetSport(Int64 id)
+        public async Task<ServiceResult<SportResponse>> GetSportAsync(long id)
         {
             try
             {
@@ -890,6 +890,57 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             catch (Exception exception)
             {
                 return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<VenueResponse>> PostVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostVenueAsync(venue);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<VenueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GoalResponse>> PostGoalAsync(Goal goal)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostGoalAsync(goal);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GoalResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NotificationResponse>> PostNotificationAsync(Notification notification)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostNotificationAsync(notification);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationResponse>(exception);
             }
         }
 

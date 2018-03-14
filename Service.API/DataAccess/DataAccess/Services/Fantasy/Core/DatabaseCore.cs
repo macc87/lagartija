@@ -1101,7 +1101,6 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<InformationResponse>(ex);
             }
         }
-
         internal async Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo)
         {
             try
@@ -1207,7 +1206,69 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<ClimaConditionResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<VenueResponse>> PostVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                dbContext.Venues.Add(venue);
+                dbContext.SaveChanges();
+                var result = new VenueResponse()
+                {
+                    Venue = venue
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Venue");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<VenueResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<GoalResponse>> PostGoalAsync(Goal goal)
+        {
+            try
+            {
+                dbContext.Goals.Add(goal);
+                dbContext.SaveChanges();
+                var result = new GoalResponse()
+                {
+                    Goal = goal
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Goal");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GoalResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<NotificationResponse>> PostNotificationAsync(Notification notification)
+        {
+            try
+            {
+                dbContext.Notifications.Add(notification);
+                dbContext.SaveChanges();
+                var result = new NotificationResponse()
+                {
+                    Notification = notification
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Notification");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NotificationResponse>(ex);
+            }
+        }
         #endregion
 
         #region PUT Section
