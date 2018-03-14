@@ -367,11 +367,54 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task PostClimaCondition_Successful()
         {
-            ContestType ct = new ContestType()
+            ClimaConditions cc = new ClimaConditions()
             {
-                Type = "New Type"
+                Condition = "New Condition"
             };
-            var result = await fantasyDatClient.PostContestTypeAsync(ct);
+            var result = await fantasyDatClient.PostClimaConditionAsync(cc);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostVenue_Successful()
+        {
+            Venue v = new Venue()
+            {
+                Name = "New Venue",
+                Country = "New Country",
+                State = "New State",
+                Surface = "New Surface",
+            };
+            var result = await fantasyDatClient.PostVenueAsync(v);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostNotification_Successful()
+        {
+            Notification n = new Notification()
+            {
+                Name = "New Name",
+                Content = "New Content",
+                Active = true,
+                Link = "link",
+                AccountLogin = "admin"
+            };
+            var result = await fantasyDatClient.PostNotificationAsync(n);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostGoal_Successful()
+        {
+            var spres = await fantasyDatClient.GetSportAsync(1);
+            Sport sp = spres.Result.Sport;
+            Goal goal = new Goal()
+            {
+                Name = "New Goal",
+                CompletionCount = 12,
+                GoalLogo = "gollogo",
+                Sport = sp,
+                SportId = sp.SportId
+            };
+            var result = await fantasyDatClient.PostGoalAsync(goal);
             Assert.IsFalse(result.HasError);
         }
         #endregion
