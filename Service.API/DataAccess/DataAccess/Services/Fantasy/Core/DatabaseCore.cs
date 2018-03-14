@@ -1056,7 +1056,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<NewsResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<SportResponse>> GetSport(Int64 id)
+        {
+            try
+            {
+                Sport sp = dbContext.Sports.Where(x => x.SportId == id).First();
+                SportResponse result = new SportResponse()
+                {
+                    Sport = sp
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Sport");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<SportResponse>(ex);
+            }
+        }
         #endregion
 
         #region POST Section

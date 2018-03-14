@@ -49,6 +49,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contest);
+        Task<ServiceResult<SportResponse>> GetSportAsync(Int64 contest);
+
 
         Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo);
