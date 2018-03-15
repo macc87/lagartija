@@ -1269,6 +1269,71 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<NotificationResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<TeamResponse>> PostTeamAsync(Team team)
+        {
+            try
+            {
+                dbContext.Teams.Add(team);
+                dbContext.SaveChanges();
+                var result = new TeamResponse()
+                {
+                    Team = team
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Team");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News)
+        {
+            try
+            {
+                dbContext.News.Add(News);
+                dbContext.SaveChanges();
+                var result = new SingleNewsResponse()
+                {
+                    News = News
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating News");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<SingleNewsResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LeagueResponse>> PostLeagueAsync(League league)
+        {
+            try
+            {
+                dbContext.Leagues.Add(league);
+                dbContext.SaveChanges();
+                var result = new LeagueResponse()
+                {
+                    League = league
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating League");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LeagueResponse>(ex);
+            }
+        }
+        
+
         #endregion
 
         #region PUT Section

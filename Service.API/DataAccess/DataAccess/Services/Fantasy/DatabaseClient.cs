@@ -943,7 +943,57 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<NotificationResponse>(exception);
             }
         }
+        public async Task<ServiceResult<TeamResponse>> PostTeamAsync(Team team)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostTeamAsync(team);
 
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostNewsAsync(News);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SingleNewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostLeagueAsync(league);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
         #endregion
 
         #region PUT Section

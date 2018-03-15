@@ -61,10 +61,14 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<VenueResponse>> PostVenueAsync(Models.MSSQL.Fantasy.Venue venue);
         Task<ServiceResult<GoalResponse>> PostGoalAsync(Goal goal);
         Task<ServiceResult<NotificationResponse>> PostNotificationAsync(Notification notification);
+        Task<ServiceResult<TeamResponse>> PostTeamAsync(Models.MSSQL.Fantasy.Team team);
+        Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News);
+        Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league);
 
 
         Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo);
+
 
         Task<ServiceResult<bool>> DeleteInformationAsync(Information info);
         Task<ServiceResult<bool>> DeletePromotionAsync(Promotion promo);
