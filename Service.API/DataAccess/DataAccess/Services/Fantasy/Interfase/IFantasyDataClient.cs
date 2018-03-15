@@ -50,6 +50,11 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contest);
         Task<ServiceResult<SportResponse>> GetSportAsync(long id);
+        Task<ServiceResult<PositionResponse>> GetPositionAsync(long id);
+        Task<ServiceResult<ClimaConditionResponse>> GetClimaConditionAsync(long id);
+        Task<ServiceResult<VenueResponse>> GetVenueAsync(long id);
+        Task<ServiceResult<ContestTypeResponse>> GetContestTypeAsync(long id);
+
 
 
         Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info);
@@ -67,7 +72,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury);
         Task<ServiceResult<LineupResponse>> PostLineupAsync(Models.MSSQL.Fantasy.LineUp lineup);
         Task<ServiceResult<UserResponse>> PostAccountAsync(Account user);
-
+        Task<ServiceResult<PlayerResponse>> PostPlayerAsync(Models.MSSQL.Fantasy.Player player);
+        Task<ServiceResult<GameResponse>> PostGameAsync(Models.MSSQL.Fantasy.Game game);
+        Task<ServiceResult<ContestResponse>> PostContestAsync(Contest contest);
 
 
         Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);

@@ -1076,6 +1076,87 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<SportResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<PositionResponse>> GetPositionAsync(long id)
+        {
+            try
+            {
+                Position p = dbContext.Positions.Where(x => x.PositionId == id).First();
+                PositionResponse result = new PositionResponse()
+                {
+                    Position = p
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Position");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PositionResponse>(ex);
+            }
+        }
+
+        internal async Task<ServiceResult<VenueResponse>> GetVenueAsync(long id)
+        {
+            try
+            {
+                Venue v = dbContext.Venues.Where(x => x.VenueId == id).First();
+                VenueResponse result = new VenueResponse()
+                {
+                    Venue = v
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Venue");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<VenueResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<ContestTypeResponse>> GetContestTypeAsync(long id)
+        {
+            try
+            {
+                ContestType v = dbContext.ContestTypes.Where(x => x.ContestTypeId == id).First();
+                ContestTypeResponse result = new ContestTypeResponse()
+                {
+                    Type = v
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Contest Type");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestTypeResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<ClimaConditionResponse>> GetClimaConditionAsync(long id)
+        {
+            try
+            {
+                ClimaConditions cc = dbContext.ClimaConditions.Where(x => x.ClimaConditionsId == id).First();
+                ClimaConditionResponse result = new ClimaConditionResponse()
+                {
+                    ClimaCondition = cc
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting Clima Condition");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ClimaConditionResponse>(ex);
+            }
+        }
         #endregion
 
         #region POST Section
@@ -1397,7 +1478,69 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<UserResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<PlayerResponse>> PostPlayerAsync(Models.MSSQL.Fantasy.Player player)
+        {
+            try
+            {
+                dbContext.Players.Add(player);
+                dbContext.SaveChanges();
+                var result = new PlayerResponse()
+                {
+                    Player = player
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Player");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayerResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<GameResponse>> PostGameAsync(Models.MSSQL.Fantasy.Game game)
+        {
+            try
+            {
+                dbContext.Games.Add(game);
+                dbContext.SaveChanges();
+                var result = new GameResponse
+                {
+                    Game = game
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Game");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GameResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<ContestResponse>> PostContestAsync(Contest contest)
+        {
+            try
+            {
+                dbContext.Contests.Add(contest);
+                dbContext.SaveChanges();
+                var result = new ContestResponse()
+                {
+                    Contest = contest
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Contest");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestResponse>(ex);
+            }
+        }
         #endregion
 
         #region PUT Section

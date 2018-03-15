@@ -284,6 +284,24 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.GetSportAsync(1);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod()]
+        public async Task GetPosition_Successful()
+        {
+            var result = await fantasyDatClient.GetPositionAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod()]
+        public async Task GetClimaCondition_Successful()
+        {
+            var result = await fantasyDatClient.GetClimaConditionAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod()]
+        public async Task Venue_Successful()
+        {
+            var result = await fantasyDatClient.GetVenueAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
 
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
@@ -503,6 +521,63 @@ namespace Fantasy.API.DataAccess.Tests
                 Point = 56
             };
             var result = await fantasyDatClient.PostAccountAsync(usr);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostPlayer_Successful()
+        {
+            var positionRes = await fantasyDatClient.GetPositionAsync(1);
+            var teamRes = await fantasyDatClient.GetTeamAsync(1);
+            Player p = new Player()
+            {
+                FirstName = "Player 1",
+                LastName = "Player Last",
+                Photo = "photo",
+                Position = positionRes.Result.Position,
+                PositionId = positionRes.Result.Position.PositionId,
+                Salary = 300,
+                Team = teamRes.Result.Team,
+                TeamId = teamRes.Result.Team.TeamId,
+                PreferredName = "my name"
+            };
+            var result = await fantasyDatClient.PostPlayerAsync(p);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostGame_Successful()
+        {
+            var ccondResp = await fantasyDatClient.GetClimaConditionAsync(1);
+            var venueResp = await fantasyDatClient.GetVenueAsync(1);
+            Game g = new Game()
+            {
+                ClimaCondition = ccondResp.Result.ClimaCondition,
+                ClimaConditionsId = ccondResp.Result.ClimaCondition.ClimaConditionsId,
+                Scheduled = DateTime.Now,
+                Humidity = 10,
+                Venue = venueResp.Result.Venue,
+                VenueId = venueResp.Result.Venue.VenueId,
+                Temperture = 20,
+                TeamTeamId = 1,
+                TeamTeamId1 = 2
+            };
+            var result = await fantasyDatClient.PostGameAsync(g);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostContest_Successful()
+        {
+            var CtRes = await fantasyDatClient.GetContestTypeAsync(1);
+            Contest ctes = new Contest()
+            {
+                ContestType = CtRes.Result.Type,
+                EntryFee = 400,
+                MaxCapacity = 50,
+                SalaryCap = 50000,
+                ContestTypeId = CtRes.Result.Type.ContestTypeId,
+                Name = "Added Contest",
+                SignedUp = 30
+            };
+            var result = await fantasyDatClient.PostContestAsync(ctes);
             Assert.IsFalse(result.HasError);
         }
         #endregion
