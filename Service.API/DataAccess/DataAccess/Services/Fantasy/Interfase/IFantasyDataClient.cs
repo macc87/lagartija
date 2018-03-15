@@ -64,6 +64,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<TeamResponse>> PostTeamAsync(Models.MSSQL.Fantasy.Team team);
         Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News);
         Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league);
+        Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury);
+        Task<ServiceResult<LineupResponse>> PostLineupAsync(Lineup lineup);
+        Task<ServiceResult<UserResponse>> PostAccountAsync(Account user);
 
 
 

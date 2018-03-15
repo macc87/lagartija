@@ -994,6 +994,31 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
             }
         }
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Team team)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostLeagueAsync(league);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupResponse>> PostLineupAsync(News News)
+        {
+
+        }
+        public async Task<ServiceResult<UserResponse>> PostAccountAsync(Account user)
+        {
+
+        }
         #endregion
 
         #region PUT Section

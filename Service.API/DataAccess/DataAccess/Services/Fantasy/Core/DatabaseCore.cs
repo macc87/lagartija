@@ -1332,7 +1332,71 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<LeagueResponse>(ex);
             }
         }
-        
+        internal async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
+        {
+            try
+            {
+                dbContext.Injuries.Add(injury);
+                dbContext.SaveChanges();
+                var result = new InjuryResponse()
+                {
+                    Injury = injury
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InjuryResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LineupResponse>> PostLineupAsync(LineUp lineup)
+        {
+            try
+            {
+                dbContext.LineUps.Add(lineup);
+                dbContext.SaveChanges();
+                var result = new LineupResponse()
+                {
+                    Lineup = lineup
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<UserResponse>> PostAccountAsync(Account user)
+        {
+            try
+            {
+                dbContext.Accounts.Add(user);
+                dbContext.SaveChanges();
+                var result = new UserResponse()
+                {
+                    User = user,
+                    Money = 20.5,
+                    Point = 30
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in creating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<UserResponse>(ex);
+            }
+        }
 
         #endregion
 
