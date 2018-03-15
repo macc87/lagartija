@@ -66,6 +66,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league);
 
 
+
         Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);
         Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo);
 

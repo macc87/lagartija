@@ -458,7 +458,7 @@ namespace Fantasy.API.DataAccess.Tests
                 Team = tp,
                 TeamTeamId = tp.TeamId
             };
-            var result = await fantasyDatClient.PostTeamAsync(tp);
+            var result = await fantasyDatClient.PostLeagueAsync(lg);
             Assert.IsFalse(result.HasError);
         }
 
