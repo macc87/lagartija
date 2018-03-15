@@ -994,11 +994,11 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
             }
         }
-        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Team team)
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
         {
             try
             {
-                var result = await _dbClientCore.PostLeagueAsync(league);
+                var result = await _dbClientCore.PostInjuryAsync(injury);
 
                 if (result.HasError)
                     throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
@@ -1008,16 +1008,42 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
             catch (Exception exception)
             {
-                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+                return _dbClientCore.ExceptionHandler<InjuryResponse>(exception);
             }
         }
-        public async Task<ServiceResult<LineupResponse>> PostLineupAsync(News News)
+        public async Task<ServiceResult<LineupResponse>> PostLineupAsync(LineUp lineups)
         {
+            try
+            {
+                var result = await _dbClientCore.PostLineupAsync(lineups);
 
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupResponse>(exception);
+            }
         }
         public async Task<ServiceResult<UserResponse>> PostAccountAsync(Account user)
         {
+            try
+            {
+                var result = await _dbClientCore.PostAccountAsync(user);
 
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<UserResponse>(exception);
+            }
         }
         #endregion
 

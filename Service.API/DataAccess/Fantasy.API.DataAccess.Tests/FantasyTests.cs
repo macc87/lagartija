@@ -22,12 +22,12 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
-        public async Task GetInjuries_Successful()
+        //[TestMethod]
+        /*public async Task GetInjuries_Successful()
         {
             var result = await fantasyClient.GetInjuriesAsync();
             Assert.IsFalse(result.HasError);
-        }
+        }*/
 
         [TestMethod]
         public async Task GetContests_Successful()
@@ -461,7 +461,50 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.PostLeagueAsync(lg);
             Assert.IsFalse(result.HasError);
         }
-
+        [TestMethod]
+        public async Task PostInjury_Successful()
+        {
+            var player = await fantasyDatClient.GetPlayer(1);
+            Player pl = player.Result.Player;
+            Injury i = new Injury()
+            {
+                Comment = "comment",
+                Description = "descript",
+                StartDate = DateTime.Now,
+                UpdateDate = DateTime.Now,
+                Status = "status",
+                Player = pl,
+                PlayerPlayerId = pl.PlayerId
+            };
+            var result = await fantasyDatClient.PostInjuryAsync(i);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostLineup_Successful()
+        {
+            var userResp = await fantasyDatClient.GetUserInfoAsync("admin");
+            LineUp lp = new LineUp()
+            {
+                AccountLogin = "admin",
+                Account = userResp.Result.User
+            };
+            var result = await fantasyDatClient.PostLineupAsync(lp);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostUser_Successful()
+        {
+            Account usr = new Account()
+            {
+                Email = "user@fantasy.com",
+                Login = "newUser",
+                Money = 34,
+                Password = "1234",
+                Point = 56
+            };
+            var result = await fantasyDatClient.PostAccountAsync(usr);
+            Assert.IsFalse(result.HasError);
+        }
         #endregion
 
         #region PUT Section
