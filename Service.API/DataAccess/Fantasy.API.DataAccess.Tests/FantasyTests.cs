@@ -417,6 +417,51 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.PostGoalAsync(goal);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod]
+        public async Task PostTeam_Successful()
+        {
+            var spres = await fantasyDatClient.GetSportAsync(1);
+            Sport sp = spres.Result.Sport;
+            Team t = new Team()
+            {
+                SportId = sp.SportId,
+                Sport = sp,
+                Abbr = "NT1",
+                Market = "Market",
+                TeamLogo = "logo",
+                TeamName = "New Team"
+            };
+            var result = await fantasyDatClient.PostTeamAsync(t);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostNews_Successful()
+        {
+            News n = new News()
+            {
+                Content = "Content",
+                Date = DateTime.Now,
+                Tittle = "NewsTitle"
+            };
+            var result = await fantasyDatClient.PostNewsAsync(n);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PostLeague_Successful()
+        {
+            var steam = await fantasyDatClient.GetTeamAsync(1);
+            Team tp = steam.Result.Team;
+            League lg = new League()
+            {
+                Alias = "LBB",
+                Name = "Liga BB",
+                Team = tp,
+                TeamTeamId = tp.TeamId
+            };
+            var result = await fantasyDatClient.PostTeamAsync(tp);
+            Assert.IsFalse(result.HasError);
+        }
+
         #endregion
 
         #region PUT Section
