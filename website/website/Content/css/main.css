@@ -1905,6 +1905,8 @@ footer a:hover{
 }
 .contest-cap .flipper {
     z-index: 6;
+    width: 260px;
+    height: 260px;
 }
 .contest-cap .circular-progress .circular-progress-bar{        
     border-width: 10px;    
