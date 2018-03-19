@@ -20,14 +20,13 @@
                 <div class="games-list">
                     @for (int i = 0; i < 4; i++)
                     {
-                        <div class="filter-vs-item text-left">
-                            <div class="team-vs">
-                                <div class="teams">SEA vs HOU</div>
-                                <div class="location">SAFECO field</div>
-                                <div class="location">10:10 pm</div>
-                            </div>
-                            <div class="weather"><span class="wi wi-rain"></span></div>
-                        </div>
+                        @Html.Partial("_MatchItemDetails", new ViewDataDictionary {
+                            { "team1", "SEA" },
+                            { "team2", "HOU" },
+                            { "location", "SAFECO field" },
+                            { "datetime", "10:01 pm" },
+                            { "weather", "rain" }
+                        })                        
                     }
                 </div>
             </div>
@@ -107,20 +106,13 @@
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "bb"  },
-                                            { "short-name", "BB" },
-                                            { "name", "Base on Balls" },
+                                            { "short-name", "W" },
+                                            { "name", "Walks" },
                                             { "in_bar", false }
                                         })
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "o"  },
-                                            { "short-name", "O" },
-                                            { "name", "Outs" },
-                                            { "in_bar", false }
-                                        })
-
-                            @Html.Partial("_Target", new ViewDataDictionary {
-                                            { "css-code", "k"  },
                                             { "short-name", "K" },
                                             { "name", "Strikeouts" },
                                             { "in_bar", false }

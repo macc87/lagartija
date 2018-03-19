@@ -246,6 +246,175 @@ function SimContest($){
     timeHandle = setInterval(Tick, 2000); 
 };
 
+var timeHandle = 0;
+function SimContestLive($){    
+    var totalScore = $('#total-bar-1');    
+    var totalData = [
+        {'progress': 0, 'position': 100, 'points': 0, 'prize': '$0'},        
+        {'progress': 53, 'position': 60, 'points': 1, 'prize': '$0'},        
+        {'progress': 90, 'position': 40, 'points': 2, 'prize': '$100'},        
+        {'progress': 95, 'position': 45, 'points': 2, 'prize': '$50'},        
+        {'progress': 10, 'position': 3, 'points': 4, 'prize': '$500'},        
+        {'progress': 30, 'position': 47, 'points': 4, 'prize': '$200'},        
+        {'progress': 30, 'position': 60, 'points': 4, 'prize': '$0'},        
+        {'progress': 30, 'position': 80, 'points': 4, 'prize': '$0'},        
+    ];
+    var hitsScore = $('#hits-bar-1');
+    var hitsData = [
+        {'events': 5, 'completed-events': 0},        
+        {'events': 5, 'completed-events': 4},        
+        {'events': 5, 'completed-events': 11},        
+        {'events': 5, 'completed-events': 17},        
+        {'events': 5, 'completed-events': 21},        
+        {'events': 5, 'completed-events': 22},        
+        {'events': 5, 'completed-events': 22},        
+        {'events': 5, 'completed-events': 22},        
+    ];
+    var doublesScore = $('#doubles-bar-1');
+    var doublesData = [
+        {'events': 2, 'completed-events': 0},        
+        {'events': 2, 'completed-events': 5},        
+        {'events': 2, 'completed-events': 5},        
+        {'events': 2, 'completed-events': 5},        
+        {'events': 2, 'completed-events': 7},        
+        {'events': 2, 'completed-events': 8},        
+        {'events': 2, 'completed-events': 8},        
+        {'events': 2, 'completed-events': 8},        
+    ];
+    var triplesScore = $('#triples-bar-1');
+    var triplesData = [
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 2},        
+        {'events': 1, 'completed-events': 2},        
+        {'events': 1, 'completed-events': 2},        
+    ];
+    var rScore = $('#r-bar-1');
+    var rData = [
+        {'events': 4, 'completed-events': 0},        
+        {'events': 4, 'completed-events': 0},        
+        {'events': 4, 'completed-events': 0},        
+        {'events': 4, 'completed-events': 1},        
+        {'events': 4, 'completed-events': 1},        
+        {'events': 4, 'completed-events': 2},        
+        {'events': 4, 'completed-events': 2},        
+        {'events': 4, 'completed-events': 2},        
+    ];
+    var hrScore = $('#hr-bar-1');
+    var hrData = [
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 2},        
+        {'events': 1, 'completed-events': 2},        
+        {'events': 1, 'completed-events': 3},        
+        {'events': 1, 'completed-events': 3},        
+        {'events': 1, 'completed-events': 3},        
+    ];
+    var rbiScore = $('#rbi-bar-1');
+    var rbiData = [
+        {'events': 4, 'completed-events': 0},        
+        {'events': 4, 'completed-events': 1},        
+        {'events': 4, 'completed-events': 1},        
+        {'events': 4, 'completed-events': 2},        
+        {'events': 4, 'completed-events': 2},        
+        {'events': 4, 'completed-events': 4},        
+        {'events': 4, 'completed-events': 4},        
+        {'events': 4, 'completed-events': 4},        
+    ];
+    var bbScore = $('#bb-bar-1');
+    var bbData = [
+        {'events': 3, 'completed-events': 0},        
+        {'events': 3, 'completed-events': 1},        
+        {'events': 3, 'completed-events': 2},        
+        {'events': 3, 'completed-events': 3},        
+        {'events': 3, 'completed-events': 3},        
+        {'events': 3, 'completed-events': 4},        
+        {'events': 3, 'completed-events': 5},        
+        {'events': 3, 'completed-events': 5},        
+    ];
+    var sbScore = $('#sb-bar-1');
+    var sbData = [
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 0},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 1},        
+        {'events': 1, 'completed-events': 2},        
+        {'events': 1, 'completed-events': 2},        
+    ];
+    var oScore = $('#o-bar-1');
+    var oData = [
+        {'events': 9, 'completed-events': 0},        
+        {'events': 9, 'completed-events': 4},        
+        {'events': 9, 'completed-events': 4},        
+        {'events': 9, 'completed-events': 9},        
+        {'events': 9, 'completed-events': 12},        
+        {'events': 9, 'completed-events': 12},        
+        {'events': 9, 'completed-events': 14},        
+        {'events': 9, 'completed-events': 14},        
+    ];
+    t = 0;
+    function Tick(){
+        if(t >= totalData.length )
+        {
+            // clearInterval(timeHandle);
+            t = 0;
+        }
+        else{                
+            hitsScore.data('events', hitsData[t]['events']);
+            hitsScore.data('completed-events', hitsData[t]['completed-events']);            
+            UpdateTargetScoreBar($, hitsScore);                                
+
+            doublesScore.data('events', doublesData[t]['events']);
+            doublesScore.data('completed-events', doublesData[t]['completed-events']);            
+            UpdateTargetScoreBar($, doublesScore);                                
+
+            triplesScore.data('events', triplesData[t]['events']);
+            triplesScore.data('completed-events', triplesData[t]['completed-events']);            
+            UpdateTargetScoreBar($, triplesScore);                                
+
+            rScore.data('events', rData[t]['events']);
+            rScore.data('completed-events', rData[t]['completed-events']);            
+            UpdateTargetScoreBar($, rScore);                                
+
+            hrScore.data('events', hrData[t]['events']);
+            hrScore.data('completed-events', hrData[t]['completed-events']);            
+            UpdateTargetScoreBar($, hrScore);                                
+
+            rbiScore.data('events', rbiData[t]['events']);
+            rbiScore.data('completed-events', rbiData[t]['completed-events']);            
+            UpdateTargetScoreBar($, rbiScore);                                
+
+            bbScore.data('events', bbData[t]['events']);
+            bbScore.data('completed-events', bbData[t]['completed-events']);            
+            UpdateTargetScoreBar($, bbScore);                                
+
+            sbScore.data('events', sbData[t]['events']);
+            sbScore.data('completed-events', sbData[t]['completed-events']);            
+            UpdateTargetScoreBar($, sbScore);                                
+
+            oScore.data('events', oData[t]['events']);
+            oScore.data('completed-events', oData[t]['completed-events']);            
+            UpdateTargetScoreBar($, oScore);                                
+
+            totalScore.data('percent', totalData[t]['progress']);
+            totalScore.data('position', totalData[t]['position']);
+            totalScore.data('points', totalData[t]['points']);
+            totalScore.data('prize', totalData[t]['prize']);
+            UpdateTotalScoreBar($, totalScore);             
+                                  
+            t += 1;
+        }
+    };
+    clearInterval(timeHandle);
+    timeHandle = setInterval(Tick, 2000); 
+};
+
 /* Project specific Javascript goes here. */
 (function ($) {
     var $document = $(document).ready(function() {
@@ -299,6 +468,10 @@ function SimContest($){
         UpdateCapsCircularProgressBars($);
 
         UpdateTargetScoreBars($);
+
+        $('.nicescroll-js').niceScroll();
+
+        SimContestLive($);
     });
 })(jQuery);
 

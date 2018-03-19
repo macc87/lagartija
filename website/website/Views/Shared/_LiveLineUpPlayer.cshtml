@@ -1,0 +1,36 @@
+﻿<div class="lineup-player">    
+    <div class="player-img-small background-image-js"
+            data-src="@ViewData["img"]"
+            data-size="cover"
+            data-position="center center"
+            data-color="#ffffff">
+    </div>        
+    <div>
+        <div class="player-info">
+            <span class="position">@ViewData["position"]</span> @ViewData["name"] (@ViewData["team"])
+        </div>
+        <div class="player-stats">
+            <div class="player-stat">
+                <div class="stat">H</div>:@ViewData["H"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">2B</div>:@ViewData["2B"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">3B</div>:@ViewData["3B"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">Hr</div>:@ViewData["Hr"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">SB</div>:@ViewData["SB"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">R</div>:@ViewData["R"]
+            </div>
+            <div class="player-stat">
+                <div class="stat">RBI</div>:@ViewData["RBI"]
+            </div>
+        </div>
+    </div>
+</div>
