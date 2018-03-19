@@ -374,6 +374,13 @@
     <Content Include="Views\Shared\_Target.cshtml" />
     <Content Include="Views\Shared\_TargetScore.cshtml" />
     <Content Include="Views\Shared\_PointsScore.cshtml" />
+    <Content Include="Views\Contest\Live.cshtml" />
+    <Content Include="Views\Shared\_MatchItemFilter.cshtml" />
+    <Content Include="Views\Shared\_MatchItemDetails.cshtml" />
+    <Content Include="Views\Shared\_MatchItemLive.cshtml" />
+    <Content Include="Views\Shared\_LiveLineUpScore.cshtml" />
+    <Content Include="Views\Shared\_LiveLineUp.cshtml" />
+    <Content Include="Views\Shared\_LiveLineUpPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

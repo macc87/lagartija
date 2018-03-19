@@ -562,6 +562,12 @@ h3{
     right: 25px;
     color: #cbaa6b;
 }
+.filter-vs-item .inning{
+    font-family: 'Roboto-Bold';
+    font-size: 13px;
+    color: #004246;
+    text-transform: uppercase;
+}
 
 .custom-radio-2{
     color: #000000;
@@ -692,6 +698,8 @@ h3{
 
 .caps-view{
     text-align: center;
+    padding-top: 25px;
+    padding-bottom: 15px;
 }
 .caps-view > div{
     height: 300px;
@@ -755,7 +763,8 @@ h3{
     text-transform: uppercase;
     position: relative;
 }
-.contest-cap .front .cap-sport{
+.contest-cap .front .cap-sport,
+.live-header .cap-sport{
     background: #004246;
     color: #ffffff;
 
@@ -765,7 +774,8 @@ h3{
     color: #000000;
 
 }
-.contest-cap .cap-sport .sport-icon{
+.contest-cap .cap-sport .sport-icon,
+.live-header .sport-icon{
     height: 24px;
     width: 24px;
     position: absolute;
@@ -773,13 +783,15 @@ h3{
     left: -10px; 
     border-radius: 24px;    
 }
-.contest-cap .front .cap-sport .sport-icon{
+.contest-cap .front .cap-sport .sport-icon,
+.live-header .sport-icon{
     border: 2px solid #ffffff;    
 }
 .contest-cap .back .cap-sport .sport-icon{
     border: 2px solid #004246;    
 }
-.contest-cap .front .sprite.mlb-small{
+.contest-cap .front .sprite.mlb-small,
+.live-header .sprite.mlb-small{
     background-position-x: -22px;
     background-position-y: -62px;    
     background-color: #ffffff;
@@ -789,13 +801,15 @@ h3{
     background-position-y: -62px;    
     background-color: #004246;
 }
-.contest-cap .name{
+.contest-cap .name,
+.live-header .name{
     font-family: 'Roboto-Bold';
     font-size: 14px;    
     margin-top: 10px;
     text-transform: lowercase;
 }
-.contest-cap .front .name{
+.contest-cap .front .name,
+.live-header .name{
     color: #004246;
     padding-bottom: 15px;
 }
@@ -1453,6 +1467,9 @@ footer a:hover{
 .tab-view .tab-content.active{
     display: block;
 }
+.tab{
+    cursor: pointer;
+}
 
 .custom-btn-1{
     font-family: 'FuturaStd-Medium';
@@ -1910,4 +1927,205 @@ footer a:hover{
 }
 .contest-cap .circular-progress .circular-progress-bar{        
     border-width: 10px;    
+}
+
+.live-header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.live-header .cap-sport{
+    height: 23px;
+    width: 100px;
+    text-align: center;
+    font-family: 'RussellSquareStd-Regular';
+    font-size: 17px;
+    line-height: 23px;    
+    text-transform: uppercase;
+    position: relative;
+    left: 9px;
+}
+.live-header .name{
+    color: #004246;
+    padding-bottom: 0;
+    font-size: 18px;
+    line-height: 18px;
+}
+.matches-carousel .item{
+    text-align: right;
+    padding: 0 20px;
+}
+.matches-carousel .item .filter-vs-item {
+    display: inline-block;
+    min-width: 150px;
+    position: relative;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 2px solid #868686;
+}
+.matches-carousel .item .filter-vs-item:last-child {
+    margin-right: 0;
+    border: none;
+}
+.matches-carousel .item .filter-vs-item .weather{
+    right: 10px;
+}
+.matches-carousel .carousel-indicators {
+    bottom: -15px;
+    width: 100%;
+    margin: auto;
+    left: 0;
+}
+.matches-carousel .carousel-indicators > li{
+    background: #fff;
+    border: 2px solid #cbaa6b;
+    height: 8px;
+    width: 8px;
+    border-radius: 8px;
+    margin: 1px;
+}
+.matches-carousel .carousel-indicators > li.active{
+    background: #cbaa6b;        
+}
+.matches-carousel .carousel-control{
+    background: none;
+    z-index: 3;
+    width: auto;
+    font-size: 15px;    
+    top: 50%;
+    transform: translateY(-50%);        
+}
+.matches-carousel .carousel-control.left{
+    left: -5px;
+}
+
+.live-contests {
+    padding-top: 30px;
+}
+.live-contests h2{
+    margin-top: 0;
+    font-family: 'FuturaStd-Bold';
+    font-size: 30px;
+}
+
+#line-ups-carousel .tab {
+    font-family: 'FuturaStd-Bold';
+    display: inline-block;
+    font-size: 23px;
+    padding: 0 5px;    
+    color: #7d7d7d;
+}
+#line-ups-carousel .tab.active {
+    color: #333;
+}
+#line-ups-carousel .item {
+    text-align: center;
+}
+
+.lineup-player {
+    padding: 10px 0;
+    border-bottom: 1px solid #004246;
+    font-family: 'FuturaStd-Bold';
+}
+.lineup-player:first-child {    
+    border-top: 5px solid #004246;
+}
+.lineup-player:last-child {    
+    border-bottom: none;
+}
+#line-ups-carousel {
+    margin-bottom: 10px;
+}
+.player-img-small {
+    width: 84px;
+    height: 84px;
+    border-radius: 84px;
+    margin-right: 10px;
+}
+.lineup-player > div {
+    display: inline-block;
+    vertical-align: top;
+}
+.lineup-player .player-info {    
+    font-size: 16px;
+    line-height: 40px;
+}
+.lineup-player .player-info .position{
+    color: #7d7d7d;
+}
+.lineup-player .player-stats > div {
+    display: inline-block;
+}
+.lineup-player .player-stat {    
+    margin-right: 5px;
+}
+.lineup-player .player-stat > div {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    border-radius: 24px;
+    color: #fff;
+    background: #a47240;
+    line-height: 24px;
+    font-size: 13px;
+    margin-right: 2px;
+}
+
+.live-users {
+    background: #a47240;
+    color: #fff;
+    font-family: 'FuturaStd-Bold';
+    font-size: 16px;
+    padding: 15px 20px;
+    padding-right: 40px;
+}
+.live-users h4{
+    padding: 0 0 20px 0;
+    margin: 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid #d5d5d5;
+}
+.live-user {
+    padding: 5px 10px;
+    border-bottom: 2px solid #d5d5d5;
+}
+.live-user > div {
+    display: inline-block;
+    line-height: 16px;
+    position: relative;
+    top: -5px;
+}
+.live-user .user-img-small {
+    height: 25px;
+    width: 25px;
+    border: 2px solid #fff;
+    border-radius: 25px;   
+    position: relative;
+    top: 0px;
+    margin-left: 5px;
+}
+.live-user .user-name {
+    font-family: 'FuturaStd-Medium';    
+}
+.sroll-area-1 {
+    height: 289px;
+}
+
+#ascrail2000 {
+    background: #d5d5d5;
+    opacity: 1 !important;
+    margin-left: 23px;
+    width: 4px !important;
+}
+#ascrail2000 > div {    
+    border: none !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+    left: 1px;
+    width: 6px !important;
+
+}
+
+footer {
+    margin-top: 20px;
 }

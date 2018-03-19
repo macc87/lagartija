@@ -37,37 +37,35 @@
     <div class="filter-section">
         <h3>Games after hours</h3>        
 
-        <div class="filter-vs-item">
-            <div class="team-vs">
-                <div class="teams">SEA vs HOU</div>
-                <div class="location">SAFECO field</div>
-            </div>
-            <div class="weather"><span class="wi wi-rain"></span></div>
-        </div>
+        @Html.Partial("_MatchItemFilter", new ViewDataDictionary {
+            { "team1", "SEA" },
+            { "team2", "HOU" },
+            { "location", "SAFECO field" },            
+            { "weather", "rain" }
+        })                        
 
-        <div class="filter-vs-item">
-            <div class="team-vs">
-                <div class="teams">NYY vs MIN</div>
-                <div class="location">yankee stadium</div>
-            </div>
-            <div class="weather"><span class="wi wi-snow"></span></div>
-        </div>
 
-        <div class="filter-vs-item">
-            <div class="team-vs">
-                <div class="teams">SEA vs HOU</div>
-                <div class="location">SAFECO field</div>
-            </div>
-            <div class="weather"><span class="wi wi-day-sunny"></span></div>
-        </div>
+        @Html.Partial("_MatchItemFilter", new ViewDataDictionary {
+            { "team1", "NYY" },
+            { "team2", "MIN" },
+            { "location", "Yankee Stadium" },
+            { "weather", "snow" }
+        })        
+        
+        @Html.Partial("_MatchItemFilter", new ViewDataDictionary {
+            { "team1", "NYY" },
+            { "team2", "MIN" },
+            { "location", "Yankee Stadium" },
+            { "weather", "day-sunny" }
+        })
 
-        <div class="filter-vs-item">
-            <div class="team-vs">
-                <div class="teams">NYY vs MIN</div>
-                <div class="location">yankee stadium</div>
-            </div>
-            <div class="weather"><span class="wi wi-cloudy"></span></div>
-        </div>
+        @Html.Partial("_MatchItemFilter", new ViewDataDictionary {
+            { "team1", "NYY" },
+            { "team2", "MIN" },
+            { "location", "Yankee Stadium" },
+            { "weather", "day-cloudy" }
+        })
+
     </div>
 
     <div class="filter-section">
