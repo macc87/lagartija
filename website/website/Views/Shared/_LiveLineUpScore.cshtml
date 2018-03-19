@@ -1,0 +1,97 @@
+﻿<h2>Line Up @ViewData["lineup"] Score</h2>
+<div class="scores">
+    @Html.Partial("_TotalScore", new ViewDataDictionary {
+                                { "id", "total-bar-"+@ViewData["lineup"]  },
+                                { "contestants", "100"  },
+                                { "position", "100"  },
+                                { "win-position", "50"  },
+                                { "prize", "$0"  },
+                                { "points", "0"  },
+                                { "percent", "0"  },
+                                { "time", "500"  }
+                            })
+    <div class="separator"></div>
+    <div class="target-score">
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "hits-bar-"+@ViewData["lineup"]  },
+                                    { "events", "5"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "b1"  },
+                                    { "short-name", "H" },
+                                    { "name", "Hits" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "doubles-bar-"+@ViewData["lineup"]  },
+                                    { "events", "2"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "b2"  },
+                                    { "short-name", "2B" },
+                                    { "name", "Doubles" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "triples-bar-"+@ViewData["lineup"]  },
+                                    { "events", "1"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "b3"  },
+                                    { "short-name", "3B" },
+                                    { "name", "Triples" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "r-bar-"+@ViewData["lineup"]  },
+                                    { "events", "4"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "r"  },
+                                    { "short-name", "R" },
+                                    { "name", "Runs" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "hr-bar-"+@ViewData["lineup"]  },
+                                    { "events", "1"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "hr"  },
+                                    { "short-name", "HR" },
+                                    { "name", "Homeruns" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "rbi-bar-"+@ViewData["lineup"]  },
+                                    { "events", "4"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "rbi"  },
+                                    { "short-name", "RBI" },
+                                    { "name", "Runs Batter In" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "bb-bar-"+@ViewData["lineup"]  },
+                                    { "events", "3"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "bb"  },
+                                    { "short-name", "W" },
+                                    { "name", "Walks" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "sb-bar-"+@ViewData["lineup"]  },
+                                    { "events", "1"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "sb"  },
+                                    { "short-name", "SB" },
+                                    { "name", "Stolen Bases" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "o-bar-"+@ViewData["lineup"]  },
+                                    { "events", "9"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "o"  },
+                                    { "short-name", "K" },
+                                    { "name", "Strikeouts" },
+                                    { "time", "500"  }
+                                })
+    </div>
+</div>
