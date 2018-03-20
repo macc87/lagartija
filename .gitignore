@@ -520,3 +520,5 @@ __pycache__/
 
 *.orig
 
+*.mdf
+*.ldf
