@@ -358,6 +358,17 @@ function SimContestLive($){
         {'events': 9, 'completed-events': 14},        
         {'events': 9, 'completed-events': 14},        
     ];
+    var kScore = $('#k-bar-1');
+    var kData = [
+        {'events': 4, 'completed-events': 0},        
+        {'events': 4, 'completed-events': 2},        
+        {'events': 4, 'completed-events': 3},        
+        {'events': 4, 'completed-events': 3},        
+        {'events': 4, 'completed-events': 6},        
+        {'events': 4, 'completed-events': 6},        
+        {'events': 4, 'completed-events': 7},        
+        {'events': 4, 'completed-events': 9},        
+    ];
     t = 0;
     function Tick(){
         if(t >= totalData.length )
@@ -401,6 +412,10 @@ function SimContestLive($){
             oScore.data('events', oData[t]['events']);
             oScore.data('completed-events', oData[t]['completed-events']);            
             UpdateTargetScoreBar($, oScore);                                
+
+            kScore.data('events', kData[t]['events']);
+            kScore.data('completed-events', kData[t]['completed-events']);            
+            UpdateTargetScoreBar($, kScore);                                
 
             totalScore.data('percent', totalData[t]['progress']);
             totalScore.data('position', totalData[t]['position']);

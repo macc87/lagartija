@@ -89,6 +89,15 @@
                                     { "events", "9"  },
                                     { "completed-events", "0"  },
                                     { "css-code", "o"  },
+                                    { "short-name", "O" },
+                                    { "name", "Pitch Outs" },
+                                    { "time", "500"  }
+                                })
+        @Html.Partial("_TargetScore", new ViewDataDictionary {
+                                    { "id", "k-bar-"+@ViewData["lineup"]  },
+                                    { "events", "4"  },
+                                    { "completed-events", "0"  },
+                                    { "css-code", "k"  },
                                     { "short-name", "K" },
                                     { "name", "Strikeouts" },
                                     { "time", "500"  }
