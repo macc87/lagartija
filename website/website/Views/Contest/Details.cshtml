@@ -113,6 +113,12 @@
 
                             @Html.Partial("_Target", new ViewDataDictionary {
                                             { "css-code", "o"  },
+                                            { "short-name", "O" },
+                                            { "name", "Pitch Outs" },
+                                            { "in_bar", false }
+                                        })
+                            @Html.Partial("_Target", new ViewDataDictionary {
+                                            { "css-code", "k"  },
                                             { "short-name", "K" },
                                             { "name", "Strikeouts" },
                                             { "in_bar", false }
