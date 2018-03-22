@@ -85,7 +85,9 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond);
         Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue);
         Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal);
-
+        Task<ServiceResult<NotificationResponse>> PutNotificationAsync(Notification notification);
+        Task<ServiceResult<TeamResponse>> PutTeamAsync(Models.MSSQL.Fantasy.Team team);
+        Task<ServiceResult<SingleNewsResponse>> PutNewsAsync(News News);
 
 
         Task<ServiceResult<bool>> DeleteInformationAsync(Information info);

@@ -1304,6 +1304,59 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<GoalResponse>(exception);
             }
         }
+        public async Task<ServiceResult<NotificationResponse>> PutNotificationAsync(Notification notification)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutNotificationAsync(notification);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<TeamResponse>> PutTeamAsync(Team team)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutTeamAsync(team);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SingleNewsResponse>> PutNewsAsync(News News)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutNewsAsync(News);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SingleNewsResponse>(exception);
+            }
+        }
+
+
         #endregion
 
         #region Delete Section

@@ -1713,6 +1713,72 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<GoalResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<NotificationResponse>> PutNotificationAsync(Notification notification)
+        {
+            try
+            {
+                dbContext.Entry(notification).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new NotificationResponse()
+                {
+                    Notification = notification
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Notification");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<NotificationResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<TeamResponse>> PutTeamAsync(Team team)
+        {
+            try
+            {
+                dbContext.Entry(team).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new TeamResponse()
+                {
+                    Team = team
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Team");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<TeamResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<SingleNewsResponse>> PutNewsAsync(News News)
+        {
+            try
+            {
+                dbContext.Entry(News).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new SingleNewsResponse()
+                {
+                    News = News
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating News");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<SingleNewsResponse>(ex);
+            }
+        }
+
+
+
         #endregion
 
         #region Delete Section
