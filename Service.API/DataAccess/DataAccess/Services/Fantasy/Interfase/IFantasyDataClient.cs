@@ -54,6 +54,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ClimaConditionResponse>> GetClimaConditionAsync(long id);
         Task<ServiceResult<VenueResponse>> GetVenueAsync(long id);
         Task<ServiceResult<ContestTypeResponse>> GetContestTypeAsync(long id);
+        Task<ServiceResult<LeagueResponse>> GetLeagueAsync(long id);
 
 
 

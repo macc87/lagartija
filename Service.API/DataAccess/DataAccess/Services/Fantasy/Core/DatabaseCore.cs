@@ -1157,6 +1157,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<ClimaConditionResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<LeagueResponse>> GetLeagueAsync(long id)
+        {
+            try
+            {
+                League lg = dbContext.Leagues.Where(x => x.LeagueId == id).First();
+                LeagueResponse result = new LeagueResponse()
+                {
+                    League = lg
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting League");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LeagueResponse>(ex);
+            }
+        }
         #endregion
 
         #region POST Section
