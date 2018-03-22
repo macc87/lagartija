@@ -1776,7 +1776,69 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<SingleNewsResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<LeagueResponse>> PutLeagueAsync(League league)
+        {
+            try
+            {
+                dbContext.Entry(league).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new LeagueResponse()
+                {
+                    League = league
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating League");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LeagueResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PutInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
+        {
+            try
+            {
+                dbContext.Entry(injury).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new InjuryResponse()
+                {
+                    Injury = injury
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InjuryResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<LineupResponse>> PutLineupAsync(LineUp lineup)
+        {
+            try
+            {
+                dbContext.Entry(lineup).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new LineupResponse()
+                {
+                    Lineup = lineup
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<LineupResponse>(ex);
+            }
+        }
 
 
         #endregion

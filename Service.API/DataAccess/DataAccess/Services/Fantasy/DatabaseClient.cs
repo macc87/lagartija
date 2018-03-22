@@ -1355,7 +1355,57 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<SingleNewsResponse>(exception);
             }
         }
+        public async Task<ServiceResult<LeagueResponse>> PutLeagueAsync(Models.MSSQL.Fantasy.League league)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutLeagueAsync(league);
 
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PutInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutInjuryAsync(injury);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InjuryResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupResponse>> PutLineupAsync(LineUp lineups)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutLineupAsync(lineups);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupResponse>(exception);
+            }
+        }
 
         #endregion
 
