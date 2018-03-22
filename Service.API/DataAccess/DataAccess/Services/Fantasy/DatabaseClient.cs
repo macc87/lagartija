@@ -1440,7 +1440,74 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LineupResponse>(exception);
             }
         }
+        public async Task<ServiceResult<UserResponse>> PutAccountAsync(Account user)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutAccountAsync(user);
 
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<UserResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PlayerResponse>> PutPlayerAsync(Models.MSSQL.Fantasy.Player player)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPlayerAsync(player);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GameResponse>> PutGameAsync(Models.MSSQL.Fantasy.Game game)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutGameAsync(game);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GameResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestResponse>> PutContestAsync(Contest contest)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutContestAsync(contest);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestResponse>(exception);
+            }
+        }
         #endregion
 
         #region Delete Section

@@ -1879,7 +1879,92 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<LineupResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<UserResponse>> PutAccountAsync(Account user)
+        {
+            try
+            {
+                dbContext.Entry(user).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new UserResponse()
+                {
+                    User = user,
+                    Money = 20.5,
+                    Point = 30
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<UserResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PlayerResponse>> PutPlayerAsync(Models.MSSQL.Fantasy.Player player)
+        {
+            try
+            {
+                dbContext.Entry(player).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new PlayerResponse()
+                {
+                    Player = player
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Player");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PlayerResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<GameResponse>> PutGameAsync(Models.MSSQL.Fantasy.Game game)
+        {
+            try
+            {
+                dbContext.Entry(game).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new GameResponse
+                {
+                    Game = game
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Game");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GameResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<ContestResponse>> PutContestAsync(Contest contest)
+        {
+            try
+            {
+                dbContext.Entry(contest).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new ContestResponse()
+                {
+                    Contest = contest
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Contest");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestResponse>(ex);
+            }
+        }
 
         #endregion
 

@@ -93,7 +93,10 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<LeagueResponse>> PutLeagueAsync(Models.MSSQL.Fantasy.League league);
         Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PutInjuryAsync(Models.MSSQL.Fantasy.Injury injury);
         Task<ServiceResult<LineupResponse>> PutLineupAsync(Models.MSSQL.Fantasy.LineUp lineup);
-
+        Task<ServiceResult<UserResponse>> PutAccountAsync(Account user);
+        Task<ServiceResult<PlayerResponse>> PutPlayerAsync(Models.MSSQL.Fantasy.Player player);
+        Task<ServiceResult<GameResponse>> PutGameAsync(Models.MSSQL.Fantasy.Game game);
+        Task<ServiceResult<ContestResponse>> PutContestAsync(Contest contest);
 
 
         Task<ServiceResult<bool>> DeleteInformationAsync(Information info);
