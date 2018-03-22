@@ -605,6 +605,33 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.PutPromotionAsync(promo);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod]
+        public async Task PutContestType_Successful()
+        {
+            var ct = await fantasyDatClient.GetContestTypeAsync(1);
+            ContestType ctype = ct.Result.Type;
+            ctype.Type = "Changed Type";
+            var result = await fantasyDatClient.PutContestTypeAsync(ctype);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutSport_Successful()
+        {
+            var s = await fantasyDatClient.GetSportAsync(1);
+            Sport sport = s.Result.Sport;
+            sport.Name = "Baseball Changed";
+            var result = await fantasyDatClient.PutSportAsync(sport);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutPosition_Successful()
+        {
+            var p = await fantasyDatClient.GetPositionAsync(1);
+            Position pos = p.Result.Position;
+            pos.PositionName = "Position Changed";
+            var result = await fantasyDatClient.PutPositionAsync(pos);
+            Assert.IsFalse(result.HasError);
+        }
         #endregion
 
         #region DELETE Section
