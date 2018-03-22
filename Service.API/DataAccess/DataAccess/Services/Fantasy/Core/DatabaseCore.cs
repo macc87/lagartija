@@ -1559,7 +1559,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                     return await ServiceOkAsync(result);
 
                 throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
-                        message: "HandleResponse failed in creating Information");
+                        message: "HandleResponse failed in updating Information");
             }
             catch (Exception ex)
             {
@@ -1580,13 +1580,77 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                     return await ServiceOkAsync(result);
 
                 throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
-                        message: "HandleResponse failed in creating Promotion");
+                        message: "HandleResponse failed in updating Promotion");
             }
             catch (Exception ex)
             {
                 return ExceptionHandler<PromotionResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<ContestTypeResponse>> PutContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                dbContext.Entry(ctype).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new ContestTypeResponse()
+                {
+                    Type = ctype
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Contest Type");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ContestTypeResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<SportResponse>> PutSportAsync(Sport sport)
+        {
+            try
+            {
+                dbContext.Entry(sport).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new SportResponse()
+                {
+                    Sport = sport
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Sport");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<SportResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<PositionResponse>> PutPositionAsync(Position position)
+        {
+            try
+            {
+                dbContext.Entry(position).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new PositionResponse()
+                {
+                    Position = position
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Position");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<PositionResponse>(ex);
+            }
+        }
+
         #endregion
 
         #region Delete Section

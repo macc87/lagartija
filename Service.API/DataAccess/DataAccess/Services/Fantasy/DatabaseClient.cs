@@ -1202,7 +1202,57 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
             }
         }
-        
+        public async Task<ServiceResult<ContestTypeResponse>> PutContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutContestTypeAsync(ctype);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SportResponse>> PutSportAsync(Sport sport)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutSportAsync(sport);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SportResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PositionResponse>> PutPositionAsync(Position position)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPositionAsync(position);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
+            }
+        }
         #endregion
 
         #region Delete Section
