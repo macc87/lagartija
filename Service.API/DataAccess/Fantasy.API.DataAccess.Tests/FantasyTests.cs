@@ -632,6 +632,36 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.PutPositionAsync(pos);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod]
+        public async Task PutClimaCondition_Successful()
+        {
+            var cc = await fantasyDatClient.GetClimaConditionAsync(1);
+            ClimaConditions clima = cc.Result.ClimaCondition;
+            clima.Condition = "Sunny Changed";
+            var result = await fantasyDatClient.PutClimaConditionAsync(clima);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutVenue_Successful()
+        {
+            var v = await fantasyDatClient.GetVenueAsync(1);
+            Venue venue = v.Result.Venue;
+            venue.Country = "USA Changed";
+            venue.Name = "Changed Name";
+            venue.State = "Changed State";
+            venue.Surface = "grass";
+            var result = await fantasyDatClient.PostVenueAsync(venue);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutGoal_Successful()
+        {
+            var cc = await fantasyDatClient.GetGoalsfromContest(1);
+            Goal goal = cc.Result.Goals[0];
+            goal.Name = "Goal Name Changed";
+            var result = await fantasyDatClient.PutGoalAsync(goal);
+            Assert.IsFalse(result.HasError);
+        }
         #endregion
 
         #region DELETE Section
