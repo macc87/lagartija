@@ -1177,6 +1177,26 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<LeagueResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> GetInjuryAsync(long id)
+        {
+            try
+            {
+                Injury inj = dbContext.Injuries.Where(x => x.InjuryId == id).First();
+                InjuryResponse result = new InjuryResponse()
+                {
+                    Injury = inj
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in getting an Injury");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<InjuryResponse>(ex);
+            }
+        }
         #endregion
 
         #region POST Section
