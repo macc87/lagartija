@@ -1650,7 +1650,69 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 return ExceptionHandler<PositionResponse>(ex);
             }
         }
+        internal async Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                dbContext.Entry(ccond).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new ClimaConditionResponse()
+                {
+                    ClimaCondition = ccond
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
 
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Clima Condition");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<ClimaConditionResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                dbContext.Entry(venue).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new VenueResponse()
+                {
+                    Venue = venue
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Venue");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<VenueResponse>(ex);
+            }
+        }
+        internal async Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal)
+        {
+            try
+            {
+                dbContext.Entry(goal).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                var result = new GoalResponse()
+                {
+                    Goal = goal
+                };
+                if (result != null)
+                    return await ServiceOkAsync(result);
+
+                throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
+                        message: "HandleResponse failed in updating Goal");
+            }
+            catch (Exception ex)
+            {
+                return ExceptionHandler<GoalResponse>(ex);
+            }
+        }
         #endregion
 
         #region Delete Section

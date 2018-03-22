@@ -1253,6 +1253,57 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
             }
         }
+        public async Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutClimaConditionAsync(ccond);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutVenueAsync(venue);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<VenueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutGoalAsync(goal);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GoalResponse>(exception);
+            }
+        }
         #endregion
 
         #region Delete Section

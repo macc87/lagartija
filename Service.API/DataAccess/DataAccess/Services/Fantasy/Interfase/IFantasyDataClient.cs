@@ -82,6 +82,10 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ContestTypeResponse>> PutContestTypeAsync(ContestType ctype);
         Task<ServiceResult<SportResponse>> PutSportAsync(Sport sport);
         Task<ServiceResult<PositionResponse>> PutPositionAsync(Position position);
+        Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond);
+        Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue);
+        Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal);
+
 
 
         Task<ServiceResult<bool>> DeleteInformationAsync(Information info);
