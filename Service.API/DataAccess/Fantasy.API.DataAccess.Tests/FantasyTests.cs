@@ -297,12 +297,23 @@ namespace Fantasy.API.DataAccess.Tests
             Assert.IsFalse(result.HasError);
         }
         [TestMethod()]
-        public async Task Venue_Successful()
+        public async Task GetVenue_Successful()
         {
             var result = await fantasyDatClient.GetVenueAsync(1);
             Assert.IsFalse(result.HasError);
         }
-
+        [TestMethod()]
+        public async Task GetLeague_Successful()
+        {
+            var result = await fantasyDatClient.GetLeagueAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod()]
+        public async Task GetInjuries_Successful()
+        {
+            var result = await fantasyDatClient.GetInjuryAsync(1);
+            Assert.IsFalse(result.HasError);
+        }
         //[TestMethod]
         //public async Task GetGameSummary_Successful()
         //{
@@ -692,6 +703,37 @@ namespace Fantasy.API.DataAccess.Tests
             news.Tittle = "Tittle Changed";
             var result = await fantasyDatClient.PutNewsAsync(news);
             Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutLeague_Successful()
+        {
+            var l = await fantasyDatClient.GetLeagueAsync(1);
+            League league = l.Result.League;
+            league.Alias = "Alias Changed";
+            league.Name = "League Changed";
+            var result = await fantasyDatClient.PutLeagueAsync(league);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutInjury_Successful()
+        {
+            var t = await fantasyDatClient.GetInjuryAsync(1);
+            Models.MSSQL.Fantasy.Injury injury = t.Result.Injury;
+            injury.Status = "Changed Status";
+            injury.Description = "Changed Description";
+            var result = await fantasyDatClient.PutInjuryAsync(injury);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutLineup_Successful()
+        {
+            var n = await fantasyDatClient.GetLineupsAsync("admin");
+            var lp = n.Result.Lineups[0];
+            lp.AccountLogin = "testuser";
+            var result = await fantasyDatClient.PutLineupAsync(lp);
+            Assert.IsFalse(result.HasError);
+            lp.AccountLogin = "admin";
+            result = await fantasyDatClient.PutLineupAsync(lp);
         }
         #endregion
 
