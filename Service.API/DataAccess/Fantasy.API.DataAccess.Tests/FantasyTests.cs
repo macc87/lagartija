@@ -662,6 +662,37 @@ namespace Fantasy.API.DataAccess.Tests
             var result = await fantasyDatClient.PutGoalAsync(goal);
             Assert.IsFalse(result.HasError);
         }
+        [TestMethod]
+        public async Task PutNotification_Successful()
+        {
+            var n = await fantasyDatClient.GetActiveNotificationsAsync();
+            Notification not = n.Result.Notifications[0];
+            not.Name = "Notification Name Changed";
+            var result = await fantasyDatClient.PutNotificationAsync(not);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutTeam_Successful()
+        {
+            var t = await fantasyDatClient.GetTeamAsync(1);
+            Team team = t.Result.Team;
+            team.Abbr = "Abbr Changed";
+            team.TeamName = "Changed Name";
+            var result = await fantasyDatClient.PutTeamAsync(team);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutNews_Successful()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end = start.AddDays(10);
+            var n = await fantasyDatClient.GetNews(start, end);
+            News news = n.Result.News[0];
+            news.Content = "Content Changed";
+            news.Tittle = "Tittle Changed";
+            var result = await fantasyDatClient.PutNewsAsync(news);
+            Assert.IsFalse(result.HasError);
+        }
         #endregion
 
         #region DELETE Section
