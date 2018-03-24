@@ -26,7 +26,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type);
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(double smallEntry, double bigEntry);
         Task<ServiceResult<ContestsResponse>> GetContestFilteredbyAsync(ContestType type, double smallEntry, double bigEntry);
-        Task<ServiceResult<ContestTypeResponse>> GetContestTypesAsync();
+        Task<ServiceResult<ContestTypesResponse>> GetContestTypesAsync();
         //TODO: Task<ServiceResult<ContestResponse>> GetContestFilteredby(Prizing Rule);
         Task<ServiceResult<UserResponse>> GetUserInfoAsync(string login);
         Task<ServiceResult<List<Account>>> GetUsersBestRivalsAsync(string login);
@@ -49,6 +49,60 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
         Task<ServiceResult<NewsResponse>> GetPlayerNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<NewsResponse>> GetTeamNews(Int64 id, DateTime start, DateTime end);
         Task<ServiceResult<List<ContestGame>>> GetContestGamesAsync(Int64 contest);
+        Task<ServiceResult<SportResponse>> GetSportAsync(long id);
+        Task<ServiceResult<PositionResponse>> GetPositionAsync(long id);
+        Task<ServiceResult<ClimaConditionResponse>> GetClimaConditionAsync(long id);
+        Task<ServiceResult<VenueResponse>> GetVenueAsync(long id);
+        Task<ServiceResult<ContestTypeResponse>> GetContestTypeAsync(long id);
+        Task<ServiceResult<LeagueResponse>> GetLeagueAsync(long id);
+        Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> GetInjuryAsync(long id);
+
+
+
+        Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info);
+        Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo);
+        Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype);
+        Task<ServiceResult<SportResponse>> PostSportAsync(Sport sport);
+        Task<ServiceResult<PositionResponse>> PostPositionAsync(Position position);
+        Task<ServiceResult<ClimaConditionResponse>> PostClimaConditionAsync(ClimaConditions ccond);
+        Task<ServiceResult<VenueResponse>> PostVenueAsync(Models.MSSQL.Fantasy.Venue venue);
+        Task<ServiceResult<GoalResponse>> PostGoalAsync(Goal goal);
+        Task<ServiceResult<NotificationResponse>> PostNotificationAsync(Notification notification);
+        Task<ServiceResult<TeamResponse>> PostTeamAsync(Models.MSSQL.Fantasy.Team team);
+        Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News);
+        Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league);
+        Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury);
+        Task<ServiceResult<LineupResponse>> PostLineupAsync(Models.MSSQL.Fantasy.LineUp lineup);
+        Task<ServiceResult<UserResponse>> PostAccountAsync(Account user);
+        Task<ServiceResult<PlayerResponse>> PostPlayerAsync(Models.MSSQL.Fantasy.Player player);
+        Task<ServiceResult<GameResponse>> PostGameAsync(Models.MSSQL.Fantasy.Game game);
+        Task<ServiceResult<ContestResponse>> PostContestAsync(Contest contest);
+
+
+        Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info);
+        Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo);
+        Task<ServiceResult<ContestTypeResponse>> PutContestTypeAsync(ContestType ctype);
+        Task<ServiceResult<SportResponse>> PutSportAsync(Sport sport);
+        Task<ServiceResult<PositionResponse>> PutPositionAsync(Position position);
+        Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond);
+        Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue);
+        Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal);
+        Task<ServiceResult<NotificationResponse>> PutNotificationAsync(Notification notification);
+        Task<ServiceResult<TeamResponse>> PutTeamAsync(Models.MSSQL.Fantasy.Team team);
+        Task<ServiceResult<SingleNewsResponse>> PutNewsAsync(News News);
+        Task<ServiceResult<LeagueResponse>> PutLeagueAsync(Models.MSSQL.Fantasy.League league);
+        Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PutInjuryAsync(Models.MSSQL.Fantasy.Injury injury);
+        Task<ServiceResult<LineupResponse>> PutLineupAsync(Models.MSSQL.Fantasy.LineUp lineup);
+        Task<ServiceResult<UserResponse>> PutAccountAsync(Account user);
+        Task<ServiceResult<PlayerResponse>> PutPlayerAsync(Models.MSSQL.Fantasy.Player player);
+        Task<ServiceResult<GameResponse>> PutGameAsync(Models.MSSQL.Fantasy.Game game);
+        Task<ServiceResult<ContestResponse>> PutContestAsync(Contest contest);
+
+
+        Task<ServiceResult<bool>> DeleteInformationAsync(Information info);
+        Task<ServiceResult<bool>> DeletePromotionAsync(Promotion promo);
+
+
     }
 };
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
 {
-    public class ContestTypeResponse
+    public class GoalResponse
     {
-        public ContestType Type { get; set; }
+        public Goal Goal { get; set; }
         public string _comment { get; set; }
     }
 }

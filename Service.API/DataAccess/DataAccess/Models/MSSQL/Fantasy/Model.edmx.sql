@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/26/2018 09:53:26
--- Generated from EDMX file: D:\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
+-- Date Created: 03/24/2018 02:37:19
+-- Generated from EDMX file: C:\Data\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -77,9 +77,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_AccountAccountFriends1]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AccountFriends] DROP CONSTRAINT [FK_AccountAccountFriends1];
 GO
-IF OBJECT_ID(N'[dbo].[FK_TeamLeague]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Leagues] DROP CONSTRAINT [FK_TeamLeague];
-GO
 IF OBJECT_ID(N'[dbo].[FK_PlayerInjury]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Injuries] DROP CONSTRAINT [FK_PlayerInjury];
 GO
@@ -94,6 +91,12 @@ IF OBJECT_ID(N'[dbo].[FK_TeamNewsTeam]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_NewsNewsTeam]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[NewsTeams] DROP CONSTRAINT [FK_NewsNewsTeam];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamLeague]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamLeagues] DROP CONSTRAINT [FK_TeamTeamLeague];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LeagueTeamLeague]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamLeagues] DROP CONSTRAINT [FK_LeagueTeamLeague];
 GO
 
 -- --------------------------------------------------
@@ -172,6 +175,9 @@ GO
 IF OBJECT_ID(N'[dbo].[NewsTeams]', 'U') IS NOT NULL
     DROP TABLE [dbo].[NewsTeams];
 GO
+IF OBJECT_ID(N'[dbo].[TeamLeagues]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamLeagues];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -179,7 +185,7 @@ GO
 
 -- Creating table 'Injuries'
 CREATE TABLE [dbo].[Injuries] (
-    [InjuryId] bigint  NOT NULL,
+    [InjuryId] bigint IDENTITY(1,1) NOT NULL,
     [Comment] varchar(max)  NULL,
     [Description] varchar(500)  NULL,
     [Status] varchar(50)  NOT NULL,
@@ -191,10 +197,9 @@ GO
 
 -- Creating table 'Leagues'
 CREATE TABLE [dbo].[Leagues] (
-    [LeagueId] bigint  NOT NULL,
+    [LeagueId] bigint IDENTITY(1,1) NOT NULL,
     [Name] varchar(50)  NOT NULL,
-    [Alias] varchar(10)  NOT NULL,
-    [TeamTeamId] bigint  NOT NULL
+    [Alias] varchar(10)  NOT NULL
 );
 GO
 
@@ -318,8 +323,7 @@ GO
 -- Creating table 'LineUps'
 CREATE TABLE [dbo].[LineUps] (
     [LineUpId] bigint IDENTITY(1,1) NOT NULL,
-    [AccountLogin] nvarchar(50)  NOT NULL,
-    [PlayerLineupId] bigint  NOT NULL
+    [AccountLogin] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -398,6 +402,14 @@ CREATE TABLE [dbo].[NewsTeams] (
     [NewsTeamId] bigint IDENTITY(1,1) NOT NULL,
     [TeamId] bigint  NOT NULL,
     [NewsId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'TeamLeagues'
+CREATE TABLE [dbo].[TeamLeagues] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [TeamTeamId] bigint  NOT NULL,
+    [LeagueLeagueId] bigint  NOT NULL
 );
 GO
 
@@ -547,6 +559,12 @@ GO
 ALTER TABLE [dbo].[NewsTeams]
 ADD CONSTRAINT [PK_NewsTeams]
     PRIMARY KEY CLUSTERED ([NewsTeamId], [TeamId], [NewsId] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [PK_TeamLeagues]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -847,21 +865,6 @@ ON [dbo].[AccountFriends]
     ([AccountLogin1]);
 GO
 
--- Creating foreign key on [TeamTeamId] in table 'Leagues'
-ALTER TABLE [dbo].[Leagues]
-ADD CONSTRAINT [FK_TeamLeague]
-    FOREIGN KEY ([TeamTeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TeamLeague'
-CREATE INDEX [IX_FK_TeamLeague]
-ON [dbo].[Leagues]
-    ([TeamTeamId]);
-GO
-
 -- Creating foreign key on [PlayerPlayerId] in table 'Injuries'
 ALTER TABLE [dbo].[Injuries]
 ADD CONSTRAINT [FK_PlayerInjury]
@@ -935,6 +938,36 @@ GO
 CREATE INDEX [IX_FK_NewsNewsTeam]
 ON [dbo].[NewsTeams]
     ([NewsId]);
+GO
+
+-- Creating foreign key on [TeamTeamId] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [FK_TeamTeamLeague]
+    FOREIGN KEY ([TeamTeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamTeamLeague'
+CREATE INDEX [IX_FK_TeamTeamLeague]
+ON [dbo].[TeamLeagues]
+    ([TeamTeamId]);
+GO
+
+-- Creating foreign key on [LeagueLeagueId] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [FK_LeagueTeamLeague]
+    FOREIGN KEY ([LeagueLeagueId])
+    REFERENCES [dbo].[Leagues]
+        ([LeagueId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LeagueTeamLeague'
+CREATE INDEX [IX_FK_LeagueTeamLeague]
+ON [dbo].[TeamLeagues]
+    ([LeagueLeagueId]);
 GO
 
 -- --------------------------------------------------

@@ -40,11 +40,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private string _accountLogin;
-    
-        public long PlayerLineupId
-        {
-            get; set;
-        }
 
         #endregion
 

@@ -45,6 +45,8 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
 
         #endregion
 
+        #region GET Section
+
         public async Task<ServiceResult<ContestsResponse>> GetContestsAsync()
         {
             try
@@ -297,7 +299,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
         }
 
-        public async Task<ServiceResult<ContestTypeResponse>> GetContestTypesAsync()
+        public async Task<ServiceResult<ContestTypesResponse>> GetContestTypesAsync()
         {
             try
             {
@@ -311,7 +313,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
             }
             catch (Exception exception)
             {
-                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+                return _dbClientCore.ExceptionHandler<ContestTypesResponse>(exception);
             }
         }
 
@@ -767,6 +769,784 @@ namespace Fantasy.API.DataAccess.Services.Fantasy
                 return _dbClientCore.ExceptionHandler<LineupsResponse>(exception);
             }
         }
-       
+        public async Task<ServiceResult<SportResponse>> GetSportAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetSport(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SportResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PositionResponse>> GetPositionAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetPositionAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<VenueResponse>> GetVenueAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetVenueAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<VenueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestTypeResponse>> GetContestTypeAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetContestTypeAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ClimaConditionResponse>> GetClimaConditionAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetClimaConditionAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LeagueResponse>> GetLeagueAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetLeagueAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> GetInjuryAsync(long id)
+        {
+            try
+            {
+                var result = await _dbClientCore.GetInjuryAsync(id);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InjuryResponse>(exception);
+            }
+        }
+        #endregion
+
+        #region POST Section
+
+        public async Task<ServiceResult<InformationResponse>> PostInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PromotionResponse>> PostPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostPromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestTypeResponse>> PostContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostContestTypeAsync(ctype);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SportResponse>> PostSportAsync(Sport sport)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostSportAsync(sport);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SportResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PositionResponse>> PostPositionAsync(Position position)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostPositionAsync(position);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ClimaConditionResponse>> PostClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostClimaConditionAsync(ccond);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<VenueResponse>> PostVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostVenueAsync(venue);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<VenueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GoalResponse>> PostGoalAsync(Goal goal)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostGoalAsync(goal);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GoalResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NotificationResponse>> PostNotificationAsync(Notification notification)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostNotificationAsync(notification);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<TeamResponse>> PostTeamAsync(Team team)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostTeamAsync(team);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SingleNewsResponse>> PostNewsAsync(News News)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostNewsAsync(News);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SingleNewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LeagueResponse>> PostLeagueAsync(Models.MSSQL.Fantasy.League league)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostLeagueAsync(league);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PostInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostInjuryAsync(injury);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InjuryResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupResponse>> PostLineupAsync(LineUp lineups)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostLineupAsync(lineups);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<UserResponse>> PostAccountAsync(Account user)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostAccountAsync(user);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<UserResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PlayerResponse>> PostPlayerAsync(Models.MSSQL.Fantasy.Player player)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostPlayerAsync(player);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GameResponse>> PostGameAsync(Models.MSSQL.Fantasy.Game game)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostGameAsync(game);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GameResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestResponse>> PostContestAsync(Contest contest)
+        {
+            try
+            {
+                var result = await _dbClientCore.PostContestAsync(contest);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestResponse>(exception);
+            }
+        }
+        #endregion
+
+        #region PUT Section
+
+        public async Task<ServiceResult<InformationResponse>> PutInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InformationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PromotionResponse>> PutPromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PromotionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestTypeResponse>> PutContestTypeAsync(ContestType ctype)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutContestTypeAsync(ctype);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestTypeResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SportResponse>> PutSportAsync(Sport sport)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutSportAsync(sport);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SportResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PositionResponse>> PutPositionAsync(Position position)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPositionAsync(position);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PositionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ClimaConditionResponse>> PutClimaConditionAsync(ClimaConditions ccond)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutClimaConditionAsync(ccond);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ClimaConditionResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<VenueResponse>> PutVenueAsync(Models.MSSQL.Fantasy.Venue venue)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutVenueAsync(venue);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<VenueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GoalResponse>> PutGoalAsync(Goal goal)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutGoalAsync(goal);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GoalResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<NotificationResponse>> PutNotificationAsync(Notification notification)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutNotificationAsync(notification);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<NotificationResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<TeamResponse>> PutTeamAsync(Team team)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutTeamAsync(team);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<TeamResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<SingleNewsResponse>> PutNewsAsync(News News)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutNewsAsync(News);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<SingleNewsResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LeagueResponse>> PutLeagueAsync(Models.MSSQL.Fantasy.League league)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutLeagueAsync(league);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LeagueResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<Models.MSSQL.Fantasy.InjuryResponse>> PutInjuryAsync(Models.MSSQL.Fantasy.Injury injury)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutInjuryAsync(injury);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<InjuryResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<LineupResponse>> PutLineupAsync(LineUp lineups)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutLineupAsync(lineups);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<LineupResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<UserResponse>> PutAccountAsync(Account user)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutAccountAsync(user);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<UserResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<PlayerResponse>> PutPlayerAsync(Models.MSSQL.Fantasy.Player player)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutPlayerAsync(player);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<PlayerResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<GameResponse>> PutGameAsync(Models.MSSQL.Fantasy.Game game)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutGameAsync(game);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<GameResponse>(exception);
+            }
+        }
+        public async Task<ServiceResult<ContestResponse>> PutContestAsync(Contest contest)
+        {
+            try
+            {
+                var result = await _dbClientCore.PutContestAsync(contest);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<ContestResponse>(exception);
+            }
+        }
+        #endregion
+
+        #region Delete Section
+
+        public async Task<ServiceResult<bool>> DeleteInformationAsync(Information info)
+        {
+            try
+            {
+                var result = await _dbClientCore.DeleteInformationAsync(info);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<bool>(exception);
+            }
+        }
+        public async Task<ServiceResult<bool>> DeletePromotionAsync(Promotion promo)
+        {
+            try
+            {
+                var result = await _dbClientCore.DeletePromotionAsync(promo);
+
+                if (result.HasError)
+                    throw new ServiceException(result.InnerException, httpStatusCode: result.HttpStatusCode,
+                        message: result.Messages.Description, serviceResultCodeMessage: result.Messages.Code);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                return _dbClientCore.ExceptionHandler<bool>(exception);
+            }
+        }
+        
+        #endregion
     }
 }
