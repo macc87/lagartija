@@ -68,7 +68,6 @@ namespace Fantasy.API.DataAccess.DbContexts.MSSQL.FantasyData
         public virtual DbSet<NewsPlayer> PlayerNews { get; set; }
         public virtual DbSet<NewsTeam> TeamNews { get; set; }
         public virtual DbSet<Injury> Injuries  { get; set; }
-
-
+        public virtual DbSet<TeamLeague> TeamLeagues { get; set; }
     }
 }
