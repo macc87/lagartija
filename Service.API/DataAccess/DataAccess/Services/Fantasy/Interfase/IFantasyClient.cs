@@ -11,7 +11,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Interfase
 {
     public interface IFantasyClient : IDisposable
     {
-        Task<ServiceResult<InjuryResponse>> GetInjuriesAsync();
+        Task<ServiceResult<Models.Services.FantasyData.InjuryResponse>> GetInjuriesAsync();
         Task<ServiceResult<ScheduleBase>> GetDailyScheduleAsync(DateTime date);
         Task<ServiceResult<GameSummaryResponse>> GetGameSummaryAsync(string gameId);
         ////Task<ServiceResult<GameBoxScore>> GetGameBoxScoreAsync(string gameId);
