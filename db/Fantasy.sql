@@ -20,7 +20,7 @@ GO
 
 -- Creating table 'Injuries'
 CREATE TABLE [dbo].[Injuries] (
-    [InjuryId] bigint  NOT NULL,
+    [InjuryId] bigint IDENTITY(1,1) NOT NULL,
     [Comment] varchar(max)  NULL,
     [Description] varchar(500)  NULL,
     [Status] varchar(50)  NOT NULL,
@@ -32,7 +32,7 @@ GO
 
 -- Creating table 'Leagues'
 CREATE TABLE [dbo].[Leagues] (
-    [LeagueId] bigint  NOT NULL,
+    [LeagueId] bigint IDENTITY(1,1) NOT NULL,
     [Name] varchar(50)  NOT NULL,
     [Alias] varchar(10)  NOT NULL
 );
@@ -158,8 +158,7 @@ GO
 -- Creating table 'LineUps'
 CREATE TABLE [dbo].[LineUps] (
     [LineUpId] bigint IDENTITY(1,1) NOT NULL,
-    [AccountLogin] nvarchar(50)  NOT NULL,
-    [PlayerLineupId] bigint  NOT NULL
+    [AccountLogin] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -1097,4 +1096,47 @@ INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [Account
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Notifications] OFF
+GO
+
+-- ----------------------------
+-- Records of Lineups
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[LineUps] ON
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'1', N'admin')
+GO
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'2', N'admin')
+GO
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'3', N'admin')
+GO
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'4', N'testuser1')
+GO
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'5', N'testuser2')
+GO
+GO
+INSERT INTO [dbo].[LineUps] ([LineUpId] ,[AccountLogin]) VALUES (N'6', N'testuser3')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[LineUps] OFF
+GO
+
+-- ----------------------------
+-- Records of Injuries
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Injuries] ON
+GO
+INSERT INTO [dbo].[Injuries] ([InjuryId], [Comment], [Description], [Status], [StartDate], [UpdateDate], [PlayerPlayerId]) VALUES (N'1', N'Awfull Injury', N'Shoulder Injury', N'Cured',N'2017-12-12 23:36:24.000', N'2018-01-23 23:36:24.000', N'1')
+GO
+GO
+INSERT INTO [dbo].[Injuries] ([InjuryId], [Comment], [Description], [Status], [StartDate], [UpdateDate], [PlayerPlayerId]) VALUES (N'2', N'Awfull Injury', N'Leg Injury', N'Rehabilitation',N'2018-01-29 23:36:24.000', N'2018-02-12 23:36:24.000', N'2')
+GO
+GO
+INSERT INTO [dbo].[Injuries] ([InjuryId], [Comment], [Description], [Status], [StartDate], [UpdateDate], [PlayerPlayerId]) VALUES (N'3', N'Awfull Injury', N'Head Injury', N'Injured',N'2018-02-20 23:36:24.000', N'2018-03-23 23:36:24.000', N'3')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Injuries] OFF
 GO
