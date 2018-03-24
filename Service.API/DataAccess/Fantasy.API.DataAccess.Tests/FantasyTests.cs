@@ -95,6 +95,8 @@ namespace Fantasy.API.DataAccess.Tests
             var cte = await fantasyDatClient.GetContestsAsync();
             var contest = cte.Result.Contests;
             var result = await fantasyDatClient.GetNextContestTimeAsync(contest);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("C:\\Data\\Work\\Freelance\\FantasyLeague\\Project\\errorlog\\errorGame.txt");
+            sw.Write(result.InnerException.InnerException);
             Assert.IsFalse(result.HasError);
         }
 
@@ -478,14 +480,10 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task PostLeague_Successful()
         {
-            var steam = await fantasyDatClient.GetTeamAsync(1);
-            Team tp = steam.Result.Team;
             League lg = new League()
             {
                 Alias = "LBB",
-                Name = "Liga BB",
-                Team = tp,
-                TeamTeamId = tp.TeamId
+                Name = "Liga BB"
             };
             var result = await fantasyDatClient.PostLeagueAsync(lg);
             Assert.IsFalse(result.HasError);
@@ -502,10 +500,11 @@ namespace Fantasy.API.DataAccess.Tests
                 StartDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 Status = "status",
-                Player = pl,
                 PlayerPlayerId = pl.PlayerId
             };
             var result = await fantasyDatClient.PostInjuryAsync(i);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter("errorPutContest4.txt");
+            sw.WriteLine(result.InnerException.InnerException);
             Assert.IsFalse(result.HasError);
         }
         [TestMethod]
@@ -523,10 +522,11 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task PostUser_Successful()
         {
+            Random r = new Random();
             Account usr = new Account()
             {
                 Email = "user@fantasy.com",
-                Login = "newUser",
+                Login = "newUser1" + r.Next().ToString(),
                 Money = 34,
                 Password = "1234",
                 Point = 56
@@ -538,37 +538,33 @@ namespace Fantasy.API.DataAccess.Tests
         public async Task PostPlayer_Successful()
         {
             var positionRes = await fantasyDatClient.GetPositionAsync(1);
-            var teamRes = await fantasyDatClient.GetTeamAsync(1);
+            var teamRes = await fantasyDatClient.GetTeamAsync(2);
             Player p = new Player()
             {
                 FirstName = "Player 1",
                 LastName = "Player Last",
                 Photo = "photo",
-                Position = positionRes.Result.Position,
                 PositionId = positionRes.Result.Position.PositionId,
                 Salary = 300,
-                Team = teamRes.Result.Team,
                 TeamId = teamRes.Result.Team.TeamId,
                 PreferredName = "my name"
             };
             var result = await fantasyDatClient.PostPlayerAsync(p);
             Assert.IsFalse(result.HasError);
         }
-        [TestMethod]
+        [TestMethod()]
         public async Task PostGame_Successful()
         {
             var ccondResp = await fantasyDatClient.GetClimaConditionAsync(1);
-            var venueResp = await fantasyDatClient.GetVenueAsync(1);
+            var venueResp = await fantasyDatClient.GetVenueAsync(2);
             Game g = new Game()
             {
-                ClimaCondition = ccondResp.Result.ClimaCondition,
                 ClimaConditionsId = ccondResp.Result.ClimaCondition.ClimaConditionsId,
                 Scheduled = DateTime.Now,
                 Humidity = 10,
-                Venue = venueResp.Result.Venue,
                 VenueId = venueResp.Result.Venue.VenueId,
                 Temperture = 20,
-                TeamTeamId = 1,
+                TeamTeamId = 3,
                 TeamTeamId1 = 2
             };
             var result = await fantasyDatClient.PostGameAsync(g);
@@ -661,7 +657,7 @@ namespace Fantasy.API.DataAccess.Tests
             venue.Name = "Changed Name";
             venue.State = "Changed State";
             venue.Surface = "grass";
-            var result = await fantasyDatClient.PostVenueAsync(venue);
+            var result = await fantasyDatClient.PutVenueAsync(venue);
             Assert.IsFalse(result.HasError);
         }
         [TestMethod]
@@ -685,7 +681,7 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task PutTeam_Successful()
         {
-            var t = await fantasyDatClient.GetTeamAsync(1);
+            var t = await fantasyDatClient.GetTeamAsync(2);
             Team team = t.Result.Team;
             team.Abbr = "Abbr Changed";
             team.TeamName = "Changed Name";
@@ -695,8 +691,8 @@ namespace Fantasy.API.DataAccess.Tests
         [TestMethod]
         public async Task PutNews_Successful()
         {
-            DateTime start = DateTime.Now;
-            DateTime end = start.AddDays(10);
+            DateTime start = new DateTime(2018, 03, 24, 00, 16, 42);
+            DateTime end = start.AddDays(30);
             var n = await fantasyDatClient.GetNews(start, end);
             News news = n.Result.News[0];
             news.Content = "Content Changed";
@@ -709,7 +705,7 @@ namespace Fantasy.API.DataAccess.Tests
         {
             var l = await fantasyDatClient.GetLeagueAsync(1);
             League league = l.Result.League;
-            league.Alias = "Alias Changed";
+            league.Alias = "ACH";
             league.Name = "League Changed";
             var result = await fantasyDatClient.PutLeagueAsync(league);
             Assert.IsFalse(result.HasError);
@@ -729,12 +725,48 @@ namespace Fantasy.API.DataAccess.Tests
         {
             var n = await fantasyDatClient.GetLineupsAsync("admin");
             var lp = n.Result.Lineups[0];
-            lp.AccountLogin = "testuser";
+            lp.AccountLogin = "testuser1";
             var result = await fantasyDatClient.PutLineupAsync(lp);
             Assert.IsFalse(result.HasError);
             lp.AccountLogin = "admin";
             result = await fantasyDatClient.PutLineupAsync(lp);
         }
+        [TestMethod]
+        public async Task PutAccount_Successful()
+        {
+            var n = await fantasyDatClient.GetUserInfoAsync("testuser1");
+            var lp = n.Result.User;
+            lp.Password = "12345";
+            var result = await fantasyDatClient.PutAccountAsync(lp);
+            Assert.IsFalse(result.HasError);            
+        }
+        [TestMethod]
+        public async Task PutPlayer_Successful()
+        {
+            var n = await fantasyDatClient.GetPlayer(1);
+            var lp = n.Result.Player;
+            lp.FirstName = "Player Changed";
+            var result = await fantasyDatClient.PutPlayerAsync(lp);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutGame_Successful()
+        {
+            var n = await fantasyDatClient.GetGame(1);
+            var lp = n.Result.Game;
+            lp.Scheduled = DateTime.Now;
+            var result = await fantasyDatClient.PutGameAsync(lp);
+            Assert.IsFalse(result.HasError);
+        }
+        [TestMethod]
+        public async Task PutContest_Successful()
+        {
+            var n = await fantasyDatClient.GetContest(1);
+            var lp = n.Result.Contest;
+            lp.Name = "Changed Name";
+            var result = await fantasyDatClient.PutContestAsync(lp);
+            Assert.IsFalse(result.HasError);
+    }
         #endregion
 
         #region DELETE Section

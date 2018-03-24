@@ -112,38 +112,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         }
         private ICollection<Player> _players;
     
-        public ICollection<League> Leagues
-        {
-            get
-            {
-                if (_leagues == null)
-                {
-                    var newCollection = new FixupCollection<League>();
-                    newCollection.CollectionChanged += FixupLeagues;
-                    _leagues = newCollection;
-                }
-                return _leagues;
-            }
-            set
-            {
-                if (!ReferenceEquals(_leagues, value))
-                {
-                    var previousValue = _leagues as FixupCollection<League>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupLeagues;
-                    }
-                    _leagues = value;
-                    var newValue = value as FixupCollection<League>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupLeagues;
-                    }
-                }
-            }
-        }
-        private ICollection<League> _leagues;
-    
         public ICollection<NewsTeam> NewsTeams
         {
             get
@@ -175,6 +143,38 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
         private ICollection<NewsTeam> _newsTeams;
+    
+        public ICollection<TeamLeague> TeamLeagues
+        {
+            get
+            {
+                if (_teamLeagues == null)
+                {
+                    var newCollection = new FixupCollection<TeamLeague>();
+                    newCollection.CollectionChanged += FixupTeamLeagues;
+                    _teamLeagues = newCollection;
+                }
+                return _teamLeagues;
+            }
+            set
+            {
+                if (!ReferenceEquals(_teamLeagues, value))
+                {
+                    var previousValue = _teamLeagues as FixupCollection<TeamLeague>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupTeamLeagues;
+                    }
+                    _teamLeagues = value;
+                    var newValue = value as FixupCollection<TeamLeague>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupTeamLeagues;
+                    }
+                }
+            }
+        }
+        private ICollection<TeamLeague> _teamLeagues;
 
         #endregion
 
@@ -222,28 +222,6 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             }
         }
     
-        private void FixupLeagues(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (League item in e.NewItems)
-                {
-                    item.Team = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (League item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Team, this))
-                    {
-                        item.Team = null;
-                    }
-                }
-            }
-        }
-    
         private void FixupNewsTeams(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -257,6 +235,28 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
             if (e.OldItems != null)
             {
                 foreach (NewsTeam item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Team, this))
+                    {
+                        item.Team = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupTeamLeagues(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (TeamLeague item in e.NewItems)
+                {
+                    item.Team = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (TeamLeague item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Team, this))
                     {

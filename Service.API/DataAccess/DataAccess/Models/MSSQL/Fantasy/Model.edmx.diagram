@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7f1d42c025ac4ad6916049b718f6dd05" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="FantasyModel.Injury" Width="1.5" PointX="6.625" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FantasyModel.League" Width="1.5" PointX="0.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FantasyModel.League" Width="1.5" PointX="0.5" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.Account" Width="1.5" PointX="8.25" PointY="15.125" />
         <EntityTypeShape EntityType="FantasyModel.Sport" Width="1.5" PointX="2.625" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="FantasyModel.Information" Width="1.5" PointX="11.375" PointY="4.125" />
@@ -41,14 +41,13 @@
         <EntityTypeShape EntityType="FantasyModel.ContestLineup" Width="1.5" PointX="8.875" PointY="9.875" />
         <AssociationConnector Association="FantasyModel.ContestLineupContest" />
         <AssociationConnector Association="FantasyModel.LineUpContestLineup" />
-        <EntityTypeShape EntityType="FantasyModel.Goal" Width="1.5" PointX="0.5" PointY="4.5" />
+        <EntityTypeShape EntityType="FantasyModel.Goal" Width="1.5" PointX="2.625" PointY="1.125" />
         <AssociationConnector Association="FantasyModel.GoalSport" />
         <EntityTypeShape EntityType="FantasyModel.Notification" Width="1.5" PointX="5.875" PointY="15.125" />
         <AssociationConnector Association="FantasyModel.NotificationAccount" />
         <EntityTypeShape EntityType="FantasyModel.AccountFriends" Width="1.5" PointX="10.5" PointY="15.125" />
         <AssociationConnector Association="FantasyModel.AccountAccountFriends" />
         <AssociationConnector Association="FantasyModel.AccountAccountFriends1" />
-        <AssociationConnector Association="FantasyModel.TeamLeague" />
         <AssociationConnector Association="FantasyModel.PlayerInjury" />
         <EntityTypeShape EntityType="FantasyModel.News" Width="1.5" PointX="8.875" PointY="7.375" />
         <EntityTypeShape EntityType="FantasyModel.NewsPlayer" Width="1.5" PointX="6.75" PointY="7.125" />
@@ -57,6 +56,9 @@
         <EntityTypeShape EntityType="FantasyModel.NewsTeam" Width="1.5" PointX="8.875" PointY="4.75" />
         <AssociationConnector Association="FantasyModel.TeamNewsTeam" />
         <AssociationConnector Association="FantasyModel.NewsNewsTeam" />
+        <EntityTypeShape EntityType="FantasyModel.TeamLeague" Width="1.5" PointX="0.5" PointY="4" />
+        <AssociationConnector Association="FantasyModel.TeamTeamLeague" />
+        <AssociationConnector Association="FantasyModel.LeagueTeamLeague" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
