@@ -13,165 +13,6 @@ GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
--- --------------------------------------------------
--- Dropping existing FOREIGN KEY constraints
--- --------------------------------------------------
-
-IF OBJECT_ID(N'[dbo].[FK_Sport_Team]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Teams] DROP CONSTRAINT [FK_Sport_Team];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TeamPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_TeamPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Position_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Players] DROP CONSTRAINT [FK_Position_Player];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestType_Contest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Contests] DROP CONSTRAINT [FK_ContestType_Contest];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ClimaConditionsGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_ClimaConditionsGame];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AccountLineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LineUps] DROP CONSTRAINT [FK_AccountLineUp];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SportPosition]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Positions] DROP CONSTRAINT [FK_SportPosition];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestGameContest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestGames] DROP CONSTRAINT [FK_ContestGameContest];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestGameGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestGames] DROP CONSTRAINT [FK_ContestGameGame];
-GO
-IF OBJECT_ID(N'[dbo].[FK_VenueGame]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_VenueGame];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GameTeam1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Games] DROP CONSTRAINT [FK_GameTeam1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerLineupLineUp]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerLineups] DROP CONSTRAINT [FK_PlayerLineupLineUp];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerLineupPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PlayerLineups] DROP CONSTRAINT [FK_PlayerLineupPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ContestLineupContest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestLineups] DROP CONSTRAINT [FK_ContestLineupContest];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LineUpContestLineup]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ContestLineups] DROP CONSTRAINT [FK_LineUpContestLineup];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GoalSport]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Goals] DROP CONSTRAINT [FK_GoalSport];
-GO
-IF OBJECT_ID(N'[dbo].[FK_NotificationAccount]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Notifications] DROP CONSTRAINT [FK_NotificationAccount];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AccountAccountFriends]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AccountFriends] DROP CONSTRAINT [FK_AccountAccountFriends];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AccountAccountFriends1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AccountFriends] DROP CONSTRAINT [FK_AccountAccountFriends1];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TeamLeague]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Leagues] DROP CONSTRAINT [FK_TeamLeague];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerInjury]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Injuries] DROP CONSTRAINT [FK_PlayerInjury];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerNewsPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[NewsPlayers] DROP CONSTRAINT [FK_PlayerNewsPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_NewsNewsPlayer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[NewsPlayers] DROP CONSTRAINT [FK_NewsNewsPlayer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TeamNewsTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[NewsTeams] DROP CONSTRAINT [FK_TeamNewsTeam];
-GO
-IF OBJECT_ID(N'[dbo].[FK_NewsNewsTeam]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[NewsTeams] DROP CONSTRAINT [FK_NewsNewsTeam];
-GO
-
--- --------------------------------------------------
--- Dropping existing tables
--- --------------------------------------------------
-
-IF OBJECT_ID(N'[dbo].[Injuries]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Injuries];
-GO
-IF OBJECT_ID(N'[dbo].[Leagues]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Leagues];
-GO
-IF OBJECT_ID(N'[dbo].[Accounts]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Accounts];
-GO
-IF OBJECT_ID(N'[dbo].[Sports]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Sports];
-GO
-IF OBJECT_ID(N'[dbo].[Information]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Information];
-GO
-IF OBJECT_ID(N'[dbo].[ClimaConditions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ClimaConditions];
-GO
-IF OBJECT_ID(N'[dbo].[Venues]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Venues];
-GO
-IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Players];
-GO
-IF OBJECT_ID(N'[dbo].[Positions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Positions];
-GO
-IF OBJECT_ID(N'[dbo].[Teams]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Teams];
-GO
-IF OBJECT_ID(N'[dbo].[ContestTypes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ContestTypes];
-GO
-IF OBJECT_ID(N'[dbo].[Contests]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Contests];
-GO
-IF OBJECT_ID(N'[dbo].[Games]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Games];
-GO
-IF OBJECT_ID(N'[dbo].[Promotions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Promotions];
-GO
-IF OBJECT_ID(N'[dbo].[LineUps]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LineUps];
-GO
-IF OBJECT_ID(N'[dbo].[ContestGames]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ContestGames];
-GO
-IF OBJECT_ID(N'[dbo].[PlayerLineups]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerLineups];
-GO
-IF OBJECT_ID(N'[dbo].[ContestLineups]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ContestLineups];
-GO
-IF OBJECT_ID(N'[dbo].[Goals]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Goals];
-GO
-IF OBJECT_ID(N'[dbo].[Notifications]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Notifications];
-GO
-IF OBJECT_ID(N'[dbo].[AccountFriends]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AccountFriends];
-GO
-IF OBJECT_ID(N'[dbo].[News]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[News];
-GO
-IF OBJECT_ID(N'[dbo].[NewsPlayers]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[NewsPlayers];
-GO
-IF OBJECT_ID(N'[dbo].[NewsTeams]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[NewsTeams];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -193,8 +34,7 @@ GO
 CREATE TABLE [dbo].[Leagues] (
     [LeagueId] bigint  NOT NULL,
     [Name] varchar(50)  NOT NULL,
-    [Alias] varchar(10)  NOT NULL,
-    [TeamTeamId] bigint  NOT NULL
+    [Alias] varchar(10)  NOT NULL
 );
 GO
 
@@ -401,6 +241,14 @@ CREATE TABLE [dbo].[NewsTeams] (
 );
 GO
 
+-- Creating table 'TeamLeagues'
+CREATE TABLE [dbo].[TeamLeagues] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [TeamTeamId] bigint  NOT NULL,
+    [LeagueLeagueId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -547,6 +395,12 @@ GO
 ALTER TABLE [dbo].[NewsTeams]
 ADD CONSTRAINT [PK_NewsTeams]
     PRIMARY KEY CLUSTERED ([NewsTeamId], [TeamId], [NewsId] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [PK_TeamLeagues]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -847,21 +701,6 @@ ON [dbo].[AccountFriends]
     ([AccountLogin1]);
 GO
 
--- Creating foreign key on [TeamTeamId] in table 'Leagues'
-ALTER TABLE [dbo].[Leagues]
-ADD CONSTRAINT [FK_TeamLeague]
-    FOREIGN KEY ([TeamTeamId])
-    REFERENCES [dbo].[Teams]
-        ([TeamId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TeamLeague'
-CREATE INDEX [IX_FK_TeamLeague]
-ON [dbo].[Leagues]
-    ([TeamTeamId]);
-GO
-
 -- Creating foreign key on [PlayerPlayerId] in table 'Injuries'
 ALTER TABLE [dbo].[Injuries]
 ADD CONSTRAINT [FK_PlayerInjury]
@@ -935,6 +774,36 @@ GO
 CREATE INDEX [IX_FK_NewsNewsTeam]
 ON [dbo].[NewsTeams]
     ([NewsId]);
+GO
+
+-- Creating foreign key on [TeamTeamId] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [FK_TeamTeamLeague]
+    FOREIGN KEY ([TeamTeamId])
+    REFERENCES [dbo].[Teams]
+        ([TeamId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamTeamLeague'
+CREATE INDEX [IX_FK_TeamTeamLeague]
+ON [dbo].[TeamLeagues]
+    ([TeamTeamId]);
+GO
+
+-- Creating foreign key on [LeagueLeagueId] in table 'TeamLeagues'
+ALTER TABLE [dbo].[TeamLeagues]
+ADD CONSTRAINT [FK_LeagueTeamLeague]
+    FOREIGN KEY ([LeagueLeagueId])
+    REFERENCES [dbo].[Leagues]
+        ([LeagueId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LeagueTeamLeague'
+CREATE INDEX [IX_FK_LeagueTeamLeague]
+ON [dbo].[TeamLeagues]
+    ([LeagueLeagueId]);
 GO
 
 -- --------------------------------------------------
@@ -1061,6 +930,17 @@ INSERT INTO [dbo].[Teams] ([TeamId], [TeamName], [TeamLogo], [SportId], [Abbr], 
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Teams] OFF
+GO
+
+-- ----------------------------
+-- Records of Teams
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[Leagues] ON
+GO
+INSERT INTO [dbo].[Leagues] ([LeagueId], [Name], [Alias]) VALUES (N'1', N'Major League Baseball', N'MLB')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[Leagues] OFF
 GO
 
 -- ----------------------------
@@ -1217,21 +1097,4 @@ INSERT INTO [dbo].[Notifications] ([NotificationId], [Name], [Content], [Account
 GO
 GO
 SET IDENTITY_INSERT [dbo].[Notifications] OFF
-GO
-
--- ----------------------------
--- Records of AccountFriends
--- ----------------------------
-SET IDENTITY_INSERT [dbo].[AccountFriends] ON
-GO
-INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'1', N'admin', N'testuser1')
-GO
-GO
-INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'2', N'admin', N'testuser2')
-GO
-GO
-INSERT INTO [dbo].[AccountFriends] ([AccountFriendsId], [AccountLogin], [AccountLogin1]) VALUES (N'3', N'admin', N'testuser3')
-GO
-GO
-SET IDENTITY_INSERT [dbo].[AccountFriends] OFF
 GO
