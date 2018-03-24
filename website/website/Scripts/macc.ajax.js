@@ -4,7 +4,7 @@ var RunAjaxSuccessFunctions = function(){
     if(imgbackground)    
         imgbackground();
     if(initscrollableslider)    
-        initscrollableslider();
+        initscrollableslider();   
 };
 
 (function ($) {

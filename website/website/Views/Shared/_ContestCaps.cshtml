@@ -2,13 +2,21 @@
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary { 
+                    { "contestants", (i+1) * 1000 },
+                    { "progress", (i+1) * 17 }
+                })
         }
     </div>
     <div>
         @for (int i = 0; i < 3; i++)
         {
-            @Html.Partial("_ContestCapItem")
+            @Html.Partial("_ContestCapItem", new ViewDataDictionary {
+                    { "contestants", (i+1) * 1500 },
+                    { "progress", (i+1) * 33 }
+                })
         }
-    </div>
+    </div>    
 </div>
+
+
