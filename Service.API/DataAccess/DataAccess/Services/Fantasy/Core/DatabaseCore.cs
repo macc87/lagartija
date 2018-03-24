@@ -146,7 +146,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
             {
                 Team t = dbContext.Teams.Where(x => x.TeamId == teamId).First();
                 t.Sport = dbContext.Sports.First(x => x.SportId == t.SportId);
-                t.Leagues = dbContext.Leagues.Where(x => x.TeamTeamId == teamId).ToList();
+                t.TeamLeagues = dbContext.TeamLeagues.Where(x => x.Id == teamId).ToList();
                 t.Players = dbContext.Players.Where(x => x.TeamId == teamId).ToList();
                 var result = new TeamResponse()
                 {
@@ -238,7 +238,7 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                 {
                     Notifications = new List<Notification>()
                 };
-                result.Notifications = dbContext.Notifications.Where(x=>x.Active).Include("Account").ToList();
+                result.Notifications = dbContext.Notifications.Where(x=>x.Active).ToList();
                 if (result != null)
                     return await ServiceOkAsync(result);
 
@@ -1955,8 +1955,10 @@ namespace Fantasy.API.DataAccess.Services.Fantasy.Core
                     Contest = contest
                 };
                 if (result != null)
-                    return await ServiceOkAsync(result);
-
+                {
+                    var res = await ServiceOkAsync(result);
+                    return res;
+                }
                 throw new ServiceException(httpStatusCode: HttpStatusCode.InternalServerError,
                         message: "HandleResponse failed in updating Contest");
             }

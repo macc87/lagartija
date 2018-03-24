@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/23/2018 23:26:12
+-- Date Created: 03/24/2018 02:37:19
 -- Generated from EDMX file: C:\Data\Work\Freelance\FantasyLeague\Project\lagartija\Service.API\DataAccess\DataAccess\Models\MSSQL\Fantasy\Model.edmx
 -- --------------------------------------------------
 
@@ -185,7 +185,7 @@ GO
 
 -- Creating table 'Injuries'
 CREATE TABLE [dbo].[Injuries] (
-    [InjuryId] bigint  NOT NULL,
+    [InjuryId] bigint IDENTITY(1,1) NOT NULL,
     [Comment] varchar(max)  NULL,
     [Description] varchar(500)  NULL,
     [Status] varchar(50)  NOT NULL,
@@ -197,7 +197,7 @@ GO
 
 -- Creating table 'Leagues'
 CREATE TABLE [dbo].[Leagues] (
-    [LeagueId] bigint  NOT NULL,
+    [LeagueId] bigint IDENTITY(1,1) NOT NULL,
     [Name] varchar(50)  NOT NULL,
     [Alias] varchar(10)  NOT NULL
 );
@@ -323,8 +323,7 @@ GO
 -- Creating table 'LineUps'
 CREATE TABLE [dbo].[LineUps] (
     [LineUpId] bigint IDENTITY(1,1) NOT NULL,
-    [AccountLogin] nvarchar(50)  NOT NULL,
-    [PlayerLineupId] bigint  NOT NULL
+    [AccountLogin] nvarchar(50)  NOT NULL
 );
 GO
 

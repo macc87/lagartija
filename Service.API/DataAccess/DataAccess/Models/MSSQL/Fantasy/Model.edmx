@@ -144,7 +144,7 @@
     <Key>
       <PropertyRef Name="InjuryId" />
     </Key>
-    <Property Name="InjuryId" Type="bigint" Nullable="false" />
+    <Property Name="InjuryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Comment" Type="varchar(max)" Nullable="true" />
     <Property Name="Description" Type="varchar" Nullable="true" MaxLength="500" />
     <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
@@ -156,10 +156,9 @@
     <Key>
       <PropertyRef Name="LeagueId" />
     </Key>
-    <Property Name="LeagueId" Type="bigint" Nullable="false" />
+    <Property Name="LeagueId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Alias" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="TeamTeamId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts">
     <Key>
@@ -284,7 +283,6 @@
     </Key>
     <Property Name="LineUpId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AccountLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="PlayerLineupId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="ContestGames">
     <Key>
@@ -716,7 +714,7 @@
           <Key>
             <PropertyRef Name="InjuryId" />
           </Key>
-          <Property Name="InjuryId" Type="Int64" Nullable="false" />
+          <Property Name="InjuryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -729,7 +727,7 @@
           <Key>
             <PropertyRef Name="LeagueId" />
           </Key>
-          <Property Name="LeagueId" Type="Int64" Nullable="false" />
+          <Property Name="LeagueId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TeamLeagues" Relationship="FantasyModel.LeagueTeamLeague" FromRole="League" ToRole="TeamLeague" />
@@ -1079,7 +1077,6 @@
           <NavigationProperty Name="Account" Relationship="FantasyModel.AccountLineUp" FromRole="LineUp" ToRole="Account" />
           <Property Name="AccountLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PlayerLineup" Relationship="FantasyModel.PlayerLineupLineUp" FromRole="LineUp" ToRole="PlayerLineup" />
-          <Property Name="PlayerLineupId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="ContestLineups" Relationship="FantasyModel.LineUpContestLineup" FromRole="LineUp" ToRole="ContestLineup" />
         </EntityType>
         <Association Name="AccountLineUp">
@@ -1622,7 +1619,6 @@
         <MappingFragment StoreEntitySet="LineUps">
           <ScalarProperty Name="LineUpId" ColumnName="LineUpId" />
           <ScalarProperty Name="AccountLogin" ColumnName="AccountLogin" />
-          <ScalarProperty Name="PlayerLineupId" ColumnName="PlayerLineupId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
