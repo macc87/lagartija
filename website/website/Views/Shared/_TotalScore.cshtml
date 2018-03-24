@@ -1,0 +1,30 @@
+﻿<div class="total-score score-js"
+     id="@ViewData["id"]"
+     data-contestants="@ViewData["contestants"]"
+     data-position="@ViewData["position"]"
+     data-win-position="@ViewData["win-position"]"
+     data-prize="@ViewData["prize"]"
+     data-points="@ViewData["points"]"
+     data-percent="@ViewData["percent"]"
+     data-time="@ViewData["time"]">
+
+    <div class="target-name">
+        Total
+    </div>
+
+    <div class="score-bar">
+        <div class="progress-bar"></div>
+        <div class="data-contestants contestants-info max"></div>
+        <div class="contestants-info min">1</div>        
+        <div class="win-marker" title="Winning">w</div>                
+        <div class="point-bar win-separator gold"></div>
+        <div class="position-marker"><span class="fa fa-caret-down"></span></div>
+        <div class="position-info">
+            <span class="data-position position"></span>
+        </div>
+        <div class="prize-marker"><span class="fa fa-caret-up"></span></div>
+        <div class="data-prize prize"></div>
+    </div>    
+
+    @Html.Partial("_PointsScore")
+</div>

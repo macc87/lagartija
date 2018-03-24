@@ -1,0 +1,274 @@
+﻿@{
+    ViewBag.Title = "Live Contests";
+}
+
+<section id="live-contests">   
+
+    <div class="live-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="cap-sport">
+                        <div class="sport-icon sprite mlb-small"></div>
+                        MLB
+                    </div>
+                    <div class="name">
+                        stolen bases contest
+                    </div>
+                </div>
+                <div class="col-sm-9">                    
+                    <div id="match-carousel" class="carousel slide matches-carousel" data-ride="carousel">
+                        <!-- Indicators -->
+                        @*<ol class="carousel-indicators">
+                            <li data-target="#match-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#match-carousel" data-slide-to="1"></li>
+                            <li data-target="#match-carousel" data-slide-to="2"></li>
+                        </ol>*@
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#match-carousel" data-slide="prev">
+                            <span class="fa fa-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#match-carousel" data-slide="next">
+                            <span class="fa fa-chevron-right"></span>
+                        </a>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "5" },
+                                    { "weather", "rain" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "3" },
+                                    { "weather", "day-sunny" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "8" },
+                                    { "weather", "snow" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "3" },
+                                    { "weather", "day-sunny" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "6" },
+                                    { "weather", "cloudy" }
+                                })                               
+                                
+                            </div>                            
+                            <div class="item">
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "5" },
+                                    { "weather", "rain" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "3" },
+                                    { "weather", "day-sunny" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "5" },
+                                    { "weather", "rain" }
+                                })                                
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "6" },
+                                    { "weather", "cloudy" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "5" },
+                                    { "weather", "rain" }
+                                })
+                                
+                            </div>                            
+                            <div class="item">
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "5" },
+                                    { "weather", "rain" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "BOS" },
+                                    { "team2", "MIN" },
+                                    { "location", "Feenway park" },
+                                    { "inning-part", "down" },
+                                    { "inning-number", "3" },
+                                    { "weather", "day-sunny" }
+                                })
+
+                                @Html.Partial("_MatchItemLive", new ViewDataDictionary {
+                                    { "team1", "SEA" },
+                                    { "team2", "HOU" },
+                                    { "location", "SAFECO field" },
+                                    { "inning-part", "up" },
+                                    { "inning-number", "8" },
+                                    { "weather", "snow" }
+                                })             
+                            </div>                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="live-contests container tab-view">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="tab-content line-up-1 active">
+                    @Html.Partial("_LiveLineUpScore", new ViewDataDictionary {
+                                    { "lineup", 1 }
+                                })                             
+                </div>
+                <div class="tab-content line-up-2">
+                    @Html.Partial("_LiveLineUpScore", new ViewDataDictionary {
+                                    { "lineup", 2 }
+                                })                  
+                </div>
+                <div class="tab-content line-up-3">
+                    @Html.Partial("_LiveLineUpScore", new ViewDataDictionary {
+                                    { "lineup", 3 }
+                                })                  
+                </div>
+                <div class="tab-content line-up-4">
+                    @Html.Partial("_LiveLineUpScore", new ViewDataDictionary {
+                                    { "lineup", 4 }
+                                })
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <div id="line-ups-carousel" class="carousel slide matches-carousel" data-ride="">                   
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#line-ups-carousel" data-slide="prev">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#line-ups-carousel" data-slide="next">
+                        <span class="fa fa-chevron-right"></span>
+                    </a>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">                            
+                            <div class="tab active"
+                                 data-target=".line-up-1">
+                                Line Up 1
+                            </div>
+                            <div class="tab"
+                                 data-target=".line-up-2">
+                                Line Up 2
+                            </div>
+                            <div class="tab"
+                                 data-target=".line-up-3">
+                                Line Up 3
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="tab"
+                                 data-target=".line-up-4">
+                                Line Up 4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line-up tab-content line-up-1 active">
+                    @Html.Partial("_LiveLineUp", new ViewDataDictionary {
+                                    { "lineup", 1 }
+                                })
+                </div>
+                <div class="line-up tab-content line-up-2">
+                    @Html.Partial("_LiveLineUp", new ViewDataDictionary {
+                                    { "lineup", 2 }
+                                })
+                </div>
+                <div class="line-up tab-content line-up-3">
+                    @Html.Partial("_LiveLineUp", new ViewDataDictionary {
+                                    { "lineup", 3 }
+                                })
+                </div>
+                <div class="line-up tab-content line-up-4">
+                    @Html.Partial("_LiveLineUp", new ViewDataDictionary {
+                                    { "lineup", 4 }
+                                })
+                </div>
+
+                <div class="live-users">
+                    <h4>Users</h4>
+                    <div class="nicescroll-js sroll-area-1">
+                        @for(int i = 1; i < 100; i++)
+                        {
+                            <div class="live-user">
+                                <div>@i</div>                            
+                                <div class="user-img-small background-image-js"
+                                     data-src="/Content/Media/Images/users/default-1.png"
+                                     data-size="cover"
+                                     data-position="center center"
+                                     data-color="#a47240">
+                                </div>      
+                                <div class="user-name">loremipsumuser</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
