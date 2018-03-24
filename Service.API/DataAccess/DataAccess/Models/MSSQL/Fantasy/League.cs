@@ -33,63 +33,65 @@ namespace Fantasy.API.DataAccess.Models.MSSQL.Fantasy
         {
             get; set;
         }
-    
-        public long TeamTeamId
-        {
-    get { return _teamTeamId; }
-            set
-            {
-                if (_teamTeamId != value)
-                {
-                    if (Team != null && Team.TeamId != value)
-                    {
-                        Team = null;
-                    }
-                    _teamTeamId = value;
-                }
-            }
-        }
-        private long _teamTeamId;
 
         #endregion
 
         #region Navigation Properties
     
-        public Team Team
+        public ICollection<TeamLeague> TeamLeagues
         {
-            get { return _team; }
+            get
+            {
+                if (_teamLeagues == null)
+                {
+                    var newCollection = new FixupCollection<TeamLeague>();
+                    newCollection.CollectionChanged += FixupTeamLeagues;
+                    _teamLeagues = newCollection;
+                }
+                return _teamLeagues;
+            }
             set
             {
-                if (!ReferenceEquals(_team, value))
+                if (!ReferenceEquals(_teamLeagues, value))
                 {
-                    var previousValue = _team;
-                    _team = value;
-                    FixupTeam(previousValue);
+                    var previousValue = _teamLeagues as FixupCollection<TeamLeague>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupTeamLeagues;
+                    }
+                    _teamLeagues = value;
+                    var newValue = value as FixupCollection<TeamLeague>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupTeamLeagues;
+                    }
                 }
             }
         }
-        private Team _team;
+        private ICollection<TeamLeague> _teamLeagues;
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupTeam(Team previousValue)
+        private void FixupTeamLeagues(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (previousValue != null && previousValue.Leagues.Contains(this))
+            if (e.NewItems != null)
             {
-                previousValue.Leagues.Remove(this);
+                foreach (TeamLeague item in e.NewItems)
+                {
+                    item.League = this;
+                }
             }
     
-            if (Team != null)
+            if (e.OldItems != null)
             {
-                if (!Team.Leagues.Contains(this))
+                foreach (TeamLeague item in e.OldItems)
                 {
-                    Team.Leagues.Add(this);
-                }
-                if (TeamTeamId != Team.TeamId)
-                {
-                    TeamTeamId = Team.TeamId;
+                    if (ReferenceEquals(item.League, this))
+                    {
+                        item.League = null;
+                    }
                 }
             }
         }

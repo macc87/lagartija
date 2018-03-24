@@ -30,6 +30,7 @@
     <EntitySet Name="News" EntityType="FantasyModel.Store.News" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="NewsPlayers" EntityType="FantasyModel.Store.NewsPlayers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="NewsTeams" EntityType="FantasyModel.Store.NewsTeams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeamLeagues" EntityType="FantasyModel.Store.TeamLeagues" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Sport_Team" Association="FantasyModel.Store.FK_Sport_Team">
       <End Role="Sport" EntitySet="Sports" />
       <End Role="Team" EntitySet="Teams" />
@@ -110,10 +111,6 @@
       <End Role="Account" EntitySet="Accounts" />
       <End Role="AccountFriends" EntitySet="AccountFriends" />
     </AssociationSet>
-    <AssociationSet Name="TeamLeague" Association="FantasyModel.Store.TeamLeague">
-      <End Role="Team" EntitySet="Teams" />
-      <End Role="League" EntitySet="Leagues" />
-    </AssociationSet>
     <AssociationSet Name="PlayerInjury" Association="FantasyModel.Store.PlayerInjury">
       <End Role="Player" EntitySet="Players" />
       <End Role="Injury" EntitySet="Injuries" />
@@ -133,6 +130,14 @@
     <AssociationSet Name="NewsNewsTeam" Association="FantasyModel.Store.NewsNewsTeam">
       <End Role="News" EntitySet="News" />
       <End Role="NewsTeam" EntitySet="NewsTeams" />
+    </AssociationSet>
+    <AssociationSet Name="TeamTeamLeague" Association="FantasyModel.Store.TeamTeamLeague">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="TeamLeague" EntitySet="TeamLeagues" />
+    </AssociationSet>
+    <AssociationSet Name="LeagueTeamLeague" Association="FantasyModel.Store.LeagueTeamLeague">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="TeamLeague" EntitySet="TeamLeagues" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Injuries">
@@ -370,6 +375,14 @@
     <Property Name="NewsTeamId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TeamId" Type="bigint" Nullable="false" />
     <Property Name="NewsId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeamLeagues">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamTeamId" Type="bigint" Nullable="false" />
+    <Property Name="LeagueLeagueId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="FK_Sport_Team">
     <End Role="Sport" Type="FantasyModel.Store.Sports" Multiplicity="1" />
@@ -611,18 +624,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TeamLeague">
-    <End Role="Team" Type="FantasyModel.Store.Teams" Multiplicity="1" />
-    <End Role="League" Type="FantasyModel.Store.Leagues" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Team">
-        <PropertyRef Name="TeamId" />
-      </Principal>
-      <Dependent Role="League">
-        <PropertyRef Name="TeamTeamId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="PlayerInjury">
     <End Role="Player" Type="FantasyModel.Store.Players" Multiplicity="1" />
     <End Role="Injury" Type="FantasyModel.Store.Injuries" Multiplicity="*" />
@@ -683,6 +684,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="TeamTeamLeague">
+    <End Role="Team" Type="FantasyModel.Store.Teams" Multiplicity="1" />
+    <End Role="TeamLeague" Type="FantasyModel.Store.TeamLeagues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="TeamLeague">
+        <PropertyRef Name="TeamTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LeagueTeamLeague">
+    <End Role="League" Type="FantasyModel.Store.Leagues" Multiplicity="1" />
+    <End Role="TeamLeague" Type="FantasyModel.Store.TeamLeagues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="LeagueId" />
+      </Principal>
+      <Dependent Role="TeamLeague">
+        <PropertyRef Name="LeagueLeagueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -707,8 +732,7 @@
           <Property Name="LeagueId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Team" Relationship="FantasyModel.TeamLeague" FromRole="League" ToRole="Team" />
-          <Property Name="TeamTeamId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TeamLeagues" Relationship="FantasyModel.LeagueTeamLeague" FromRole="League" ToRole="TeamLeague" />
         </EntityType>
         <EntityContainer Name="FantasyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Injuries" EntityType="Self.Injury" />
@@ -812,10 +836,6 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="AccountFriends" EntitySet="AccountFriends" />
           </AssociationSet>
-          <AssociationSet Name="TeamLeague" Association="FantasyModel.TeamLeague">
-            <End Role="Team" EntitySet="Teams" />
-            <End Role="League" EntitySet="Leagues" />
-          </AssociationSet>
           <AssociationSet Name="PlayerInjury" Association="FantasyModel.PlayerInjury">
             <End Role="Player" EntitySet="Players" />
             <End Role="Injury" EntitySet="Injuries" />
@@ -838,6 +858,15 @@
           <AssociationSet Name="NewsNewsTeam" Association="FantasyModel.NewsNewsTeam">
             <End Role="News" EntitySet="News" />
             <End Role="NewsTeam" EntitySet="NewsTeams" />
+          </AssociationSet>
+          <EntitySet Name="TeamLeagues" EntityType="FantasyModel.TeamLeague" />
+          <AssociationSet Name="TeamTeamLeague" Association="FantasyModel.TeamTeamLeague">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamLeague" EntitySet="TeamLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="LeagueTeamLeague" Association="FantasyModel.LeagueTeamLeague">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="TeamLeague" EntitySet="TeamLeagues" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Account">
@@ -931,8 +960,8 @@
           <NavigationProperty Name="Players" Relationship="FantasyModel.TeamPlayer" FromRole="Team" ToRole="Player" />
           <Property Name="Abbr" Type="String" Nullable="false" />
           <Property Name="Market" Type="String" Nullable="false" />
-          <NavigationProperty Name="Leagues" Relationship="FantasyModel.TeamLeague" FromRole="Team" ToRole="League" />
           <NavigationProperty Name="NewsTeams" Relationship="FantasyModel.TeamNewsTeam" FromRole="Team" ToRole="NewsTeam" />
+          <NavigationProperty Name="TeamLeagues" Relationship="FantasyModel.TeamTeamLeague" FromRole="Team" ToRole="TeamLeague" />
         </EntityType>
         <Association Name="FK_Sport_Team">
           <End Type="FantasyModel.Sport" Role="Sport" Multiplicity="1" />
@@ -1302,18 +1331,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TeamLeague">
-          <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
-          <End Type="FantasyModel.League" Role="League" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="TeamId" />
-            </Principal>
-            <Dependent Role="League">
-              <PropertyRef Name="TeamTeamId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="PlayerInjury">
           <End Type="FantasyModel.Player" Role="Player" Multiplicity="1" />
           <End Type="FantasyModel.Injury" Role="Injury" Multiplicity="*" />
@@ -1409,6 +1426,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TeamLeague">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Team" Relationship="FantasyModel.TeamTeamLeague" FromRole="TeamLeague" ToRole="Team" />
+          <Property Name="TeamTeamId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="League" Relationship="FantasyModel.LeagueTeamLeague" FromRole="TeamLeague" ToRole="League" />
+          <Property Name="LeagueLeagueId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="TeamTeamLeague">
+          <End Type="FantasyModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="FantasyModel.TeamLeague" Role="TeamLeague" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="TeamLeague">
+              <PropertyRef Name="TeamTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LeagueTeamLeague">
+          <End Type="FantasyModel.League" Role="League" Multiplicity="1" />
+          <End Type="FantasyModel.TeamLeague" Role="TeamLeague" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="TeamLeague">
+              <PropertyRef Name="LeagueLeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1434,7 +1485,6 @@
           <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Alias" ColumnName="Alias" />
-          <ScalarProperty Name="TeamTeamId" ColumnName="TeamTeamId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1660,6 +1710,15 @@
           <ScalarProperty Name="NewsTeamId" ColumnName="NewsTeamId" />
           <ScalarProperty Name="TeamId" ColumnName="TeamId" />
           <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamLeagues">
+      <EntityTypeMapping TypeName="IsTypeOf(FantasyModel.TeamLeague)">
+        <MappingFragment StoreEntitySet="TeamLeagues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeamTeamId" ColumnName="TeamTeamId" />
+          <ScalarProperty Name="LeagueLeagueId" ColumnName="LeagueLeagueId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
